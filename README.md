@@ -1,24 +1,73 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
 
-Things you may want to cover:
+|Column|Type|Option|
+|------|----|------|
+|name|string|null: false|
+|email|string|null: false, unique: true|
+|password|string|null: false|
+|nickname|string|null: false|
+|address|string|null: false|
+|text|text|
+|image|string|
+|good|integer|default: 0|
+|normal|integer|default: 0|
+|bad|integer|default: 0|
 
-* Ruby version
 
-* System dependencies
+### Association
+- has_many :products
+- has_one :credit
 
-* Configuration
 
-* Database creation
+## puroductssテーブル
 
-* Database initialization
+|Column|Type|Option|
+|------|----|------|
+|name|string|null: false|
+|price|integer|null: false|
+|text|text|null: false|
+|image|string|null: false|
+|status|string|null: false|
+|stage|string|null: false|
+|delivery_responsivility|string|null: false|
+|delivery_way|string|null: false|
+|delivery_area|string|null: false|
+|delivery_day|string|null: false|
+|saler_id|references|null: false, foreign_key: true|
+|buyer_id|references|foreign_key: true|
+|category_id|references|null: false, foreign_key: true|
+|brand_id|references|foreign_key|
+|size_id|references|foreign_key|
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+### Association
+- belongs_to :user
+- belongs_to :category
+- belongs_to :brand
+- belongs_to :size
 
-* Deployment instructions
+## messagesテーブル
 
-* .......
+|Column|Type|Option|
+|------|----|------|
+|body|text|
+|image|string|
+|user_id|references|null: false, foreign_key: true|
+|group_id|references|null: false, foreign_key: true|
+
+### Association
+- belongs_to :user
+- belongs_to :group
+
+## users_groupsテーブル
+
+|Column|Type|Option|
+|------|----|------|
+|user_id|references|null: false, foreign_key: true|
+|group_id|references|null: false, foreign_key: true|
+
+### Association
+- belongs_to :user
+- belongs_to :group
