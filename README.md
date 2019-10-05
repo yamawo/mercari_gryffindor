@@ -21,7 +21,7 @@
 - has_one :credit
 
 
-## puroductssテーブル
+## puroductsテーブル
 
 |Column|Type|Option|
 |------|----|------|
@@ -48,26 +48,29 @@
 - belongs_to :brand
 - belongs_to :size
 
-## messagesテーブル
+## categorysテーブル
 
 |Column|Type|Option|
 |------|----|------|
-|body|text|
-|image|string|
-|user_id|references|null: false, foreign_key: true|
-|group_id|references|null: false, foreign_key: true|
+|name|string|null :false|
 
 ### Association
-- belongs_to :user
-- belongs_to :group
+- ha_many :products
 
-## users_groupsテーブル
+## brandsテーブル
 
 |Column|Type|Option|
 |------|----|------|
-|user_id|references|null: false, foreign_key: true|
-|group_id|references|null: false, foreign_key: true|
+|name|string|null: false|
 
 ### Association
-- belongs_to :user
-- belongs_to :group
+- has_many :products
+
+## sizesテーブル
+
+|Column|Type|Option|
+|------|----|------|
+|name|string|null: false|
+
+### Association
+- has_many :products
