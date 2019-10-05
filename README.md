@@ -29,7 +29,7 @@
 |customer_id|references|foreign_key: true|
 
 ### Association
-- belongs_to :user
+- belongs_to :user, dependent: :delete
 
 ## puroductsテーブル
 
@@ -65,8 +65,8 @@
 |product_id|references|foreign_key: true|
 
 ### Association
-- belongs_to :user
-- belongs_to :product
+- belongs_to :user, dependent: :delete
+- belongs_to :product, dependent: :delete
 
 ## categorysテーブル
 
