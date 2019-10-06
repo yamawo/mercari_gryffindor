@@ -13,6 +13,6 @@
         %h1
           = link_to "/" do
             = image_tag "logo.svg", size: '134x36'
-          = form_for @products do |f|
-            = f.text_field :name, placeholder: "何かお探しですか?"
+        = form_for @products  do |f| 
+          = f.text_field :name, placeholder: "何かお探しですか?", class: "input-default", rows: 40
     = yield
