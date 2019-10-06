@@ -7,4 +7,12 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
+  %header.pc-header.visivle-pc
+    .pc-header-inner
+      .pc-header-top
+        %h1
+          = link_to "/" do
+            = image_tag "logo.svg", size: '134x36'
+          = form_for @products do |f|
+            = f.text_field
     = yield
