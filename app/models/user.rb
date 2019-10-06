@@ -14,7 +14,8 @@ class User < ApplicationRecord
          validates :birthdate_day
          validates :email
          validates :phone_number
-         validates :password
          validates :nickname
+         validates :password_confirmation 
   end
+         validates :password, confirmation: true
 end
