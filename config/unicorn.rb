@@ -22,6 +22,8 @@ stdout_path "#{app_path}/log/unicorn.stdout.log"
 # Railsアプリケーションの応答を待つ上限時間を設定
 timeout 60
 
+# 設定
+
 preload_app true
 GC.respond_to?(:copy_on_write_friendly=) && GC.copy_on_write_friendly = true
 
