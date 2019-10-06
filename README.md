@@ -29,7 +29,7 @@
 |postal_code|integer|null :false|
 
 ### Association
-- belongs_to :user
+- belongs_to :user, dependent: :delete
 
 ## creditsテーブル
 
@@ -49,7 +49,6 @@
 |name|string|null: false|
 |price|integer|null: false|
 |text|text|null: false|
-|image|string|null: false|
 |status|integer|null: false|
 |stage|string|null: false|
 |delivery_responsivility|string|null: false|
@@ -59,8 +58,8 @@
 |user_id|references|null: false, foreign_key: true|
 |buyer_id|references|foreign_key: true|
 |category_id|references|null: false, foreign_key: true|
-|brand_id|references|foreign_key|
-|size_id|references|foreign_key|
+|brand_id|references|foreign_key :true|
+|size_id|references|foreign_key :true|
 
 ### Association
 - belongs_to :user, dependent: :delete
@@ -68,6 +67,17 @@
 - belongs_to :brand
 - belongs_to :size
 - has_many :likes
+- has_many :product_images
+
+## product_imagesテーブル
+
+|Column|Type|Option|
+|------|----|------|
+|image|string|
+|product_id|references|foreign_key :true|
+
+### Association
+- belongs_to :product, dependent: :delete
 
 ## likesテーブル
 |Column|Type|Option|
