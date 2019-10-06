@@ -31,9 +31,13 @@
 
 |Column|Type|Option|
 |------|----|------|
-|name|string|null :false|
 |user_id|references|foreign_key: true, null: false|
-|postal_code|integer|null :false|
+|postal_code|string|null :false|
+|address_prefecture|string|null :false|
+|address_city|string|null :false|
+|address_number|string|null :false|
+|address_building|string|
+|address_phone|string|
 
 ### Association
 - belongs_to :user, dependent: :delete
