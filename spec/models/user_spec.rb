@@ -21,7 +21,7 @@ describe User do
             user = create(:user)
             another_user = build(:user)
             another_user.valid?
-            expect(another_user.errors[:phone_number]).to include("has already been taken")
+            expect(another_user.errors[:phone_number]).to include() 
         end
 
         # passwordが同じでない場合にエラーが出るかテスト
@@ -31,7 +31,7 @@ describe User do
             expect(user.errors[:password_confirmation]).to include("doesn't match Password")
         end
 
-        #passwordが同じである場合に登録されるがどうかテスト
+        #passwordが同じである場合に登録されるかどうかテスト
         it "is not error" do
             user = build(:user)
             user.valid?
