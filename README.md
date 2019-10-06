@@ -8,7 +8,6 @@
 |email|string|null: false, unique: true|
 |password|string|null: false|
 |nickname|string|null: false|
-|address|string|null: false|
 |text|text|
 |image|string|
 |good|integer|default: 0|
@@ -19,6 +18,18 @@
 - has_many :products
 - has_many :likes
 - has_one :credit
+- has_one :address
+
+## addressテーブル
+
+|Column|Type|Option|
+|------|----|------|
+|name|string|null :false|
+|user_id|references|foreign_key: true, null: false|
+|postal_code|integer|null :false|
+
+### Association
+- belongs_to :user
 
 ## creditsテーブル
 
@@ -39,7 +50,7 @@
 |price|integer|null: false|
 |text|text|null: false|
 |image|string|null: false|
-|status|string|null: false|
+|status|integer|null: false|
 |stage|string|null: false|
 |delivery_responsivility|string|null: false|
 |delivery_way|string|null: false|
