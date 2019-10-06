@@ -12,7 +12,7 @@
 |birthdate_month|integer|null: false|
 |birthdate_day|integer|null: false|
 |email|string|null: false, unique: true|
-|phon_number|integer|null: false, unique: true|
+|phone_number|integer|null: false, unique: true|
 |password|string|null: false|
 |nickname|string|null: false|
 |text|text|
