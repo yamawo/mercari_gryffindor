@@ -1,0 +1,30 @@
+%header.pc-header.visivle-pc
+  .pc-header__inner
+    .pc-header__top
+      %h1
+        = link_to "/" do
+          = image_tag "logo.svg", size: '134x40'
+      = search_form_for @q do |f| 
+        = f.search_field :name_cont, placeholder: "何かお探しですか?", class: "input-default"
+        = f.submit id: "search_btn"
+        %label(for="search_btn" class="search_icon")
+          = fa_icon "search"
+    .pc-header__nav--box
+      %nav(class="l-left")  
+        %ul(class="pc-header__nav")  
+          %li
+            %h2
+              = link_to "/", class: "pc-header__nav--root" do 
+                = fa_icon "list-ul", class: "icon-list"
+                カテゴリーから探す
+          %li
+            %h2
+              = link_to "/", class: "pc-header__nav--root" do
+                = fa_icon "tag", class: "icon-list fa-rotate-315"
+                ブランドから探す
+      %nav(class="l-right") 
+        %ul(class="pc-header__login-nav")
+          %li
+            = link_to "新規会員登録", "/", class: "sp-header-btn"
+          %li
+            = link_to "ログイン", "/", class: "sp-header-btn header-login"  
