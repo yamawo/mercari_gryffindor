@@ -1,0 +1,49 @@
+.signup-footer {
+    width: 456px;
+    height: 220px;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    padding: 40px 0;
+    text-align: center;
+    font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
+    background-color: #f5f5f5;
+        &__list {
+            font-size: 0;
+            li:first-child {
+                margin: 0;
+            }
+            li {
+                display: inline-block;
+                margin: 0 0 0 16px;
+                font-size: 12px;
+
+            }
+            a {
+                display: block;
+                color: #333;
+                text-decoration: none;
+            }
+            .clearfix::after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+        }
+    .signup-footer__logo {
+        display: block;
+        color: #333;
+        width: 80px;
+        height: 65px;
+        margin: 40px auto 0;
+    }
+    p {
+        margin: 8px 0 0;
+        small {
+            font-size: 13px;
+        }
+    }
+}
