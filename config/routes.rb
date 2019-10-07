@@ -1,5 +1,18 @@
 Rails.application.routes.draw do
-  devise_for :users
   root to: "makonari#index"
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :users 
+  resources :users do
+    collection do
+      scope :sign_up do           # ディレクトリの階層の変更はなし
+        get 'step3'
+        get 'step4'
+        get 'step5'
+        get 'step6'
+        get 'step7'
+        get 'step8'
+      end
+    end
+  end
+    
+  
 end
