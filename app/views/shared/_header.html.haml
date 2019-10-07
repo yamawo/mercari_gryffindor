@@ -7,11 +7,11 @@
       = search_form_for @q do |f|
         = f.search_field :name_cont, placeholder: "何かお探しですか?", class: "input-default"
         = f.submit id: "search_btn"
-        %label(for="search_btn" class="search_icon")
+        %label.search_btn.search_icon
           = fa_icon "search"
     .pc-header__nav--box
-      %nav(class="l-left")
-        %ul(class="pc-header__nav")
+      %nav.l-left
+        %ul.pc-header__nav
           %li
             %h2
               = link_to "/", class: "pc-header__nav--root" do
@@ -22,8 +22,8 @@
               = link_to "/", class: "pc-header__nav--root" do
                 = fa_icon "tag", class: "icon-list fa-rotate-315"
                 ブランドから探す
-      %nav(class="l-right")
-        %ul(class="pc-header__login-nav")
+      %nav.l-right
+        %ul.pc-header__login-nav
           %li
             = link_to "新規会員登録", "/", class: "sp-header-btn"
           %li
