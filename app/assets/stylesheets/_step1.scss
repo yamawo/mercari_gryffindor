@@ -1,0 +1,76 @@
+.signup-header{
+  background-color: rgb(245, 245, 245);
+  align-items: center;
+    display: flex;
+  height: 128px;
+  &__title{
+    width: 185px;
+    height: 49px;
+    margin: auto;
+  }
+}
+.signup-main{
+  height: calc(100vh - 128px);
+  background-color: rgb(245, 245, 245);
+  &__box{
+    text-align: center;
+    width: 456px;
+    background-color: #fff;
+    margin: 0 auto;  
+    &__login{
+      padding: 40px 64px;
+      font-size: 14px;
+      border-bottom: 1px solid rgb(245, 245, 245);  
+      a{
+        display: block;
+        margin: 8px 0 0;
+        border: 1px solid #0099e8;
+        background: #0099e8;
+        color: #fff;
+        line-height: 40px;
+      }
+    }
+    &__link{
+      padding: 32px 64px;
+      #facebook-login{
+        width: 330px;
+        height: 50px;
+        background: #385185;
+        color: #fff;
+        font-size: 13px;
+        p{
+          margin: 5px 30px 0  0;
+        }
+        i{
+          font-size: 30px;
+          float: left;
+          position: relative;
+          top: 50%;
+          left: 10px;
+        }
+      }
+      #google-login{
+        width: 330px;
+        height: 50px;
+        background-color: #fff;
+        font-size: 13px;
+        margin: 16px 0 0;
+        p{
+          margin: 5px 30px 0  0;
+        }
+        i{
+          font-size: 30px;
+          float: left;
+          position: relative;
+          top: 50%;
+          left: 10px;
+        }
+      }
+    }
+    &__block{
+      &__form{
+        padding: 24px 64px 32px;
+      }
+    }
+  }
+}

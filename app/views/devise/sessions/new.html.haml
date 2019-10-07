@@ -1,17 +1,37 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+.signup-header
+  .signup-header__title
+    %img{alt: "mercari", src: "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?3761641567"}/
+.signup-main
+  .signup-main__box
+    .signup-main__box__login
+      %p アカウントをお持ちでない方はこちら
+      %a 新規会員登録
+    .signup-main__box__link
+      %button#facebook-login
+        %i.fa.fa-facebook-official.fa-3x
+        %p Facebookでログイン
+      %button#google-login
+        %img{alt: "google-icon", src: "../public/image/google.svg"}/
+        %p Googleでログイン
+    .signup-main__box__block
+      %form{action: "", method: "POST", novalidate: "novalidate"}
+      .signup-main__box__block__form
+        
+
+-# %h2 Log in
+-# = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+-#   .field
+-#     = f.label :email
+-#     %br/
+-#     = f.email_field :email, autofocus: true, autocomplete: "email"
+-#   .field
+-#     = f.label :password
+-#     %br/
+-#     = f.password_field :password, autocomplete: "current-password"
+-#   - if devise_mapping.rememberable?
+-#     .field
+-#       = f.check_box :remember_me
+-#       = f.label :remember_me
+-#   .actions
+-#     = f.submit "Log in"
+-# = render "devise/shared/links"

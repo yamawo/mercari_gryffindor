@@ -69,3 +69,4 @@ gem 'pry-rails'
 gem 'devise'
 #haml-rails
 gem 'haml-rails'
+gem "font-awesome-rails"
