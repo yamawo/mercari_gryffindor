@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  #現在basic認証は別の方が作業しており、認証することができないため
+  #応急処置として、コメントアウトしています
   # before_action :basic_auth
 
   # private
