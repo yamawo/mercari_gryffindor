@@ -1,0 +1,7 @@
+@mixin position-style() {
+  left: 50%;
+  margin-left: -50vw;
+  position: relative;
+  top: 0px;
+  width: 100vw;
+}

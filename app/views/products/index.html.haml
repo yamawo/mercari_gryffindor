@@ -1,0 +1,83 @@
+.body
+  .main
+    .contents
+      .contents__content
+        .contents__content__image
+          = link_to "/" do
+            = image_tag "index_keyvisual.png", size: "680x340"
+          .contents__content__image__slider
+            .contents__content__image__slider__name
+        .contents__content__popular-caterory
+          %h2.contents__content__popular-caterory__name
+            人気のカテゴリー
+          .contents__content__popular-caterory__genre
+            %ul.contents__content__popular-caterory__genre__elements
+              %li.contents__content__popular-caterory__genre__elements__element
+                レディース
+              %li.contents__content__popular-caterory__genre__elements__element
+                メンズ
+              %li.contents__content__popular-caterory__genre__elements__element
+                家電・スマホ・カメラ
+              %li.contents__content__popular-caterory__genre__elements__element
+                おもちゃ・ホビー・グッズ
+        .contents__content__category-list
+          .contents__content__category-list__box
+            .contents__content__category-list__box__name
+              %h3.contents__content__category-list__box__name__new-item
+                レディース新着アイテム
+              = link_to "/", class: "contents__content__category-list__box__name__more" do
+                もっと見る
+            .contents__content__category-list__box__elements
+              .contents__content__category-list__box__elements__element
+                = render "products_element"
+                = render "products_element"
+                = render "products_element"
+                = render "products_element"
+                = render "products_element"
+        .contents__content__popular-brand
+          %h2.contents__content__popular-brand__name
+            人気のブランド
+          .contents__content__popular-brand__genre
+            %ul.contents__content__popular-brand__genre__elements
+              %li.contents__content__popular-brand__genre__elements__element
+                シャネル
+              %li.contents__content__popular-brand__genre__elements__element
+                ルイヴィトン
+              %li.contents__content__popular-brand__genre__elements__element
+                シュプリーム
+              %li.contents__content__popular-brand__genre__elements__element
+                ナイキ
+        .contents__content__brand-list
+          .contents__content__brand-list__box
+            .contents__content__brand-list__box__name
+              %h3.contents__content__brand-list__box__name__new-item
+                シャネル新着アイテム
+              = link_to "/", class: "contents__content__brand-list__box__name__more" do
+                もっと見る
+            .contents__content__brand-list__box__elements
+              .contents__content__brand-list__box__elements__element
+                = render "products_element"
+                = render "products_element"
+    .sell
+      = link_to "/", class: "sell__btn" do
+        .sell__btn__detail
+          .sell__btn__detail__text
+            出品
+          = fa_icon "camera", class: "sell_btn__detail__icon fa-3x"
+    %aside.download
+      .download__backimage
+      .download__display
+        .download__display__content
+          .download__display__content__left
+            .download__display__content__left__text1
+              スマホでかんたんフリマアプリ
+            .download__display__content__left__text2
+              今すぐ無料ダウンロード！
+            .download__display__content__left__icon
+              = image_tag "mercari_icon.png", class: "download__display__content__left__icon__merukari" 
+              = link_to "/", class: "download__display__content__left__icon__app" do
+                = image_tag "appstore-icon.svg", class: "download__display__content__left__icon__app__store"
+              = link_to "/", class: "download__display__content__left__icon__google" do
+                = image_tag "google-play.svg", class: "download__display__content__left__icon__google__play"
+          %figure.download__display__content__right
+            = image_tag "download_app.png", class: "download__display__content__right__phone-image"
