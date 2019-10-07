@@ -1,7 +1,16 @@
+.clearfix::after{
+  content: "";
+  display: block;
+  clear: both;
+}
+h1{
+  height: 36px;
+}
 .pc-header{
   background-color: #fff;
   width: 100%;
   height: 100px;
+  border-bottom: solid 1px rgb(244, 244, 253);
   &__inner{
   height: 100%;
   width: 1020px;
@@ -13,15 +22,37 @@
   display: flex;
   }
   &__nav{
+    
     &--box{
       margin: 8px 0 0;
+      height: 44px;
+
     }
     &--root{
       font-weight: 700;
+      text-decoration: none;
+      padding-right: 22px;
     }
   }
 }
-
+.pc-header li{
+  display: inline-block;
+}
+.l-left{
+  float: left;
+  line-height: 36px;  
+}
+.l-right{
+  float: right;
+}
+.icon-list{
+  margin-right: 4px;
+  color: red;
+  font-size: 15px;
+}
+.fa-rotate-315 {
+	transform: rotate(315deg);
+}
 .product_search{
   width: 100%;  
   height: 40px;
@@ -50,4 +81,82 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
+.sp-header-btn{
+  display: inherit;
+  border: 1px solid red;
+  color: white;
+  background: red;
+  height: 30px;
+  padding: 0 10px;
+  line-height: 30px;
+  text-decoration: none;
+  border-radius: 4px;
+}
+.header-login{
+  border: 1px solid blue;
+  color: blue;
+  background: none;
+  margin-left: 7px;
+}
+.global-footer nav{
+  width: 1020px;
+  margin: 0 auto;
+}
+.global-footer{
+  background: #212121;
+  color: #fff;
+  padding: 0 20px 10px 20px; 
+}
+.footer-cell{
+  margin: 18px 0 0 0;
+  width: 23%;
+  float: left;  
+}
+.footer-cell:first-child{
+  width: 20%;
+  padding: 0 20px 0 0;
+}
+.footer-cell.full-width{
+  width: 42%;
+  padding-right: 40px;
+}
+.footer-cell li{
+  margin-top: 14px;  
+  opacity: .7;
+}
+.footer-cell a{
+  text-decoration: none;
+  color: #fff;
+  font-size: 12px;
+
+}  
+.footer-social-link{
+  display: inline-block;
+}
+.footer-social-link a{
+  opacity: 1;
+}
+.icon_twitter{
+  margin: 16px 18px 0 0;
+}
+.inner-footer-cell{
+  float: left;
+  width: 50%;
+}
+.footer-nav-lang{
+  width: auto;
+}
+.footer-bottom{
+  width: 1020px;
+  margin: 30px auto 20px;
+}
+.footer-copyright{
+  font-size: 12px;
+  width: 745px;
+  text-align: center;
+  display: inline-block;
+}
+.footer-logo{
+  text-decoration: none;
 }
