@@ -59,7 +59,6 @@
         &__name{
           margin-bottom: 16px;
           align-items: flex-end;
-          box-pack: justify;
           display: flex;
           -webkit-box-pack: justify;
           justify-content: space-between;
@@ -113,7 +112,6 @@
               width: 100%;
               display: flex;
               align-items: center;
-              box-align: center;
               background-color: gray;
               margin: 0;
               &__caption{
@@ -177,7 +175,6 @@
         &__name{
           margin-bottom: 16px;
           align-items: flex-end;
-          box-pack: justify;
           display: flex;
           -webkit-box-pack: justify;
           justify-content: space-between;
@@ -231,7 +228,6 @@
               width: 100%;
               display: flex;
               align-items: center;
-              box-align: center;
               background-color: gray;
               margin: 0;
               &__caption{
@@ -285,7 +281,6 @@
     background-position: center center;
     &__content{
       display: flex;
-      box-pack: justify;
       justify-content: space-between;
       width: 750px;
       height: 260px;
@@ -293,7 +288,6 @@
       &__left{
         display: flex;
         flex-direction: column;
-        box-pack: center;
         justify-content: center;
         &__text1{
           color: rgb(255, 255, 255);
