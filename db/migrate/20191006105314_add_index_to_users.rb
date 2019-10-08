@@ -1,4 +1,4 @@
-class AddIndexToUsers < ActiveRecord::Migration[5.0]
+class AddIndexToUsers < ActiveRecord::Migration[5.2]
   def change
     add_index :users, :phone_number, unique: true
   end
