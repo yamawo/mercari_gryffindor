@@ -10,31 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191008063641) do
+ActiveRecord::Schema.define(version: 2019_10_08_063641) do
 
-  create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string  "postal_code",        null: false
-    t.string  "address_prefecture", null: false
-    t.string  "address_city",       null: false
-    t.string  "address_number",     null: false
-    t.string  "address_building"
-    t.string  "address_phone"
-    t.integer "user_id"
-    t.index ["user_id"], name: "index_addresses_on_user_id", using: :btree
-  end
-
-  create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",                                  null: false
-    t.integer  "price",                                 null: false
-    t.text     "text",                    limit: 65535, null: false
-    t.integer  "status",                                null: false
-    t.string   "stage",                                 null: false
-    t.string   "delivery_responsivility",               null: false
-    t.string   "delivery_way",                          null: false
-    t.string   "delivery_area",                         null: false
-    t.string   "delivery_day",                          null: false
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "postal_code", null: false
+    t.string "address_prefecture", null: false
+    t.string "address_city", null: false
+    t.string "address_number", null: false
+    t.string "address_building"
+    t.string "address_phone"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
