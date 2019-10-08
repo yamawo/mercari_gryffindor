@@ -1,0 +1,42 @@
+.complete{
+  padding-bottom: 40px;
+  .complete-main{
+    font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
+    min-height: 100%;
+    &__box{
+      text-align: center;
+      width: 700px;
+      background-color: #fff;
+      margin: 0 auto;  
+        h1{
+          font-size: 22px;
+          padding: 32px;
+          border-bottom: 1px solid $main_color; 
+          font-weight: 900;
+        }
+        &__form{
+          padding: 40px 40px 64px;
+          p{
+            font-size: 18px;
+          }
+          &__link{
+            max-width: 343px;
+            margin: 0 auto;
+            a{
+              color: #fff;
+              background-color: #ea352d;
+              border-radius: 4px;
+              display: block;
+              width: 100%;
+              line-height: 48px;
+              font-size: 14px;
+              border: 1px solid transparent;
+              text-decoration: none;
+              position: relative;
+              margin-top: 40px;
+            }
+          }
+        }
+    }
+  }
+}

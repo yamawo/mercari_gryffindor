@@ -1,12 +1,8 @@
-* {
-  margin: 0 auto;
-}
-html,
-body{
+.sighin{
   z-index: 1;
   min-height: 100%;
-  .signup-header{
-    background-color: rgb(245, 245, 245);
+  .signin-header{
+    background-color: #f5f5f5;
     align-items: center;
     display: flex;
     height: 128px;
@@ -16,10 +12,10 @@ body{
       margin: auto;
     }
   }
-  .signup-main{
+  .signin-main{
     font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
     min-height: 100%;
-    background-color: rgb(245, 245, 245);
+    background-color: #f5f5f5;
     &__box{
       text-align: center;
       width: 456px;
@@ -28,7 +24,7 @@ body{
       &__login{
         padding: 40px 64px;
         font-size: 14px;
-        border-bottom: 1px solid rgb(245, 245, 245);  
+        border-bottom: 1px solid #f5f5f5;  
         a{
           display: block;
           margin: 5px 0 0;
@@ -125,5 +121,5 @@ body{
   }
 }
 body {
-  background-color: rgb(245, 245, 245);
+  background-color: #f5f5f5;
 }
