@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root to: "makonari#index"
   devise_for :users 
+  
+  resources :address
   resources :users do
     collection do
       scope :sign_up do           # ディレクトリの階層の変更はなし
