@@ -5,6 +5,14 @@ class UsersController < ApplicationController
         @user = User.new()
     end
     
+    def step4
+        @user = User.new()
+    end
+    
+    def step6
+        @user = User.new
+    @user.build_address
+    end
 
     def set_year
         years = []

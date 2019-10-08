@@ -1,0 +1,100 @@
+body {
+  font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
+  background-color: #f5f5f5;
+}
+p {
+  margin: 8px 0 0;
+  line-height: 1.5;
+}
+.icon-arrow-right { 
+  height: 10px;
+  width: 10px;
+  content: "";
+  position: absolute;
+  right: 7px;
+  top: 3px;
+  border-bottom: 2px solid rgb(0, 149, 238);
+  border-right: 2px solid rgb(0, 149, 238);
+  margin: auto;
+  box-sizing: border-box;
+  transform: rotate(-45deg);
+}
+
+
+.contents{
+  &__main{
+    &__content{
+      margin: 0 auto;
+      width: 700px;
+      &__registration{
+        padding: 32px;
+        font-size: 22px;
+        border-bottom: 1px solid #f5f5f5;
+        text-align: center;
+        font-weight: bold;
+        background-color: white;
+      }
+      &__form{
+        padding: 24px 16px 40px;
+        background-color: white;
+        
+        &__field{
+          max-width: 348px;
+          margin: 0 auto;
+          
+          &__callnumber{
+            &__label{
+              display: block;
+              font-weight: 600;
+              
+            }
+            &__input{
+              width: 316px;
+              margin: 8px 0 0;
+              height: 28px;
+              padding: 10px 16px 8px;
+              border-radius: 4px;
+              border: 1px solid #ccc;
+              background: #fff;
+              line-height: 1.5;
+              font-size: 16px;
+            }
+          }
+          &__text{
+            max-width: 348px;
+            margin: 0 auto;
+            &__btn{
+              margin: 24px 0 0;
+              background: #ea352d;
+              border: 1px solid #ea354d;
+              color: #fff;
+              display: block;
+              width: 100%;
+              line-height: 48px;
+              font-size: 14px;
+              cursor: pointer;
+              text-align: center;
+              
+            }
+          }
+          &__text2{
+            margin-top: 8px;
+            max-width: 348px;
+          }
+          &__reason{
+            text-align: right;
+            margin-top: 24px;
+            position: relative;
+            padding-right: 14px;
+            &__link{
+              color: #0099e8;
+              text-decoration: none;
+            }
+          }
+        }
+        
+      }
+    }
+
+  }
+}
