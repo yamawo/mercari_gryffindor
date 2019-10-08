@@ -7,7 +7,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.7', '>= 5.0.7.2'
+gem 'rails', '5.2.3'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.3.18', '< 0.6.0'
 # Use Puma as the app server
@@ -75,3 +75,4 @@ gem 'devise'
 #haml-rails
 gem 'haml-rails'
 gem "font-awesome-rails"
+gem 'bootsnap'
