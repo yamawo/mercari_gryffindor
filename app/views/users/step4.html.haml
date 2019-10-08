@@ -1,14 +1,26 @@
 %body
   .contents
-    %header.contents__header
+    %header.step3-single_container__header
     %main.contents__main
       %section.contents__main__content
         %h2.contents__main__content__registration
           電話番号の確認
-        = form_for [@user] do |f|
-          .contents__main__content__callnumber
-            = f.lavel :text, class
-            = f.text_label :text
-          
+        %form.contents__main__content__form
+          = form_for @user do |f|
+            .contents__main__content__form__field
+              .contents__main__content__form__field__callnumber
+                = f.label :携帯電話の番号, class: "contents__main__content__form__field__callnumber__label"
+                = f.text_field :text, placeholder: "携帯電話の番号を入力", class: "contents__main__content__form__field__callnumber__input"
+              %p.contents__main__content__form__field__text
+                本人確認のため、携帯電話のSMS(ショートメッセージサービス)を利用して認証を行います。
+                = form_for @user do |f|
+                  = f.submit "SMSを送信する", type: "submit", class: "contents__main__content__form__field__text__btn"
+                  %p.contents__main__content__form__field__text2
+                    ※電話番号は本人確認や不正利用防止のために利用します。他のユーザーに公開されることはありません。
+              .contents__main__content__form__field__reason
+                = link_to "/" , class: "contents__main__content__form__field__reason__link" do
+                  電話番号の確認が必要な理由
+                  %i.icon-arrow-right
+
 
     = render "footer"
