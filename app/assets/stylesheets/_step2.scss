@@ -1,7 +1,7 @@
 .sighup{
   padding-bottom: 40px;
   .signup-header{
-    background-color: rgb(245, 245, 245);
+    background-color: $main_color;
     align-items: center;
     display: flex;
     height: 128px;
@@ -14,7 +14,6 @@
   .signup-main{
     font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
     min-height: 100%;
-    background-color: rgb(245, 245, 245);
     &__box{
       text-align: center;
       width: 700px;
@@ -23,7 +22,7 @@
         h2{
           font-size: 22px;
           padding: 32px;
-          border-bottom: 1px solid rgb(245, 245, 245); 
+          border-bottom: 1px solid $main_color; 
           font-weight: 900;
         }
         &__form{
@@ -107,6 +106,4 @@
     }
   }
 }
-footer{
-  background-color: rgb(245, 245, 245);
-}
+
