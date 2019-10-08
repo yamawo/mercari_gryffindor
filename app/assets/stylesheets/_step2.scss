@@ -1,0 +1,112 @@
+.sighup{
+  padding-bottom: 40px;
+  .signup-header{
+    background-color: rgb(245, 245, 245);
+    align-items: center;
+    display: flex;
+    height: 128px;
+    &__title{
+      width: 185px;
+      height: 49px;
+      margin: auto;
+    }
+  }
+  .signup-main{
+    font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
+    min-height: 100%;
+    background-color: rgb(245, 245, 245);
+    &__box{
+      text-align: center;
+      width: 700px;
+      background-color: #fff;
+      margin: 0 auto;  
+        h2{
+          font-size: 22px;
+          padding: 32px;
+          border-bottom: 1px solid rgb(245, 245, 245); 
+          font-weight: 900;
+        }
+        &__form{
+          padding: 40px 40px 64px;
+          &__link{
+            max-width: 343px;
+            margin: 0 auto;
+            a{
+              color: #fff;
+              background-color: #ea352d;
+              border-radius: 4px;
+              display: block;
+              width: 100%;
+              line-height: 48px;
+              font-size: 14px;
+              border: 1px solid transparent;
+              text-decoration: none;
+              position: relative;
+              i{
+                font-size: 20px;
+                position: absolute;
+                top: 30%;
+                left: 16px;
+              }
+            }
+            #facebook-login{
+              border-radius: 4px;
+              margin: 16px 0 0;
+              background: #385185;
+              color: #fff;
+              position: relative;
+              display: block;
+              width: 100%;
+              line-height: 48px;
+              font-size: 14px;
+              border: 1px solid transparent;
+              -webkit-transition: all ease-out .3s;
+              transition: all ease-out .3s;
+              cursor: pointer;
+              text-align: center;
+              font-size: 13px;
+              i{
+                position: absolute;
+                top: 20%;
+                left: 16px;
+                font-size: 30px
+              }
+            }
+            #google-login{
+              border-radius: 4px;
+              margin: 16px 0 0;
+              background: #fff;
+              position: relative;
+              display: block;
+              width: 100%;
+              line-height: 48px;
+              font-size: 14px;
+              border: 1px solid transparent;
+              -webkit-transition: all ease-out .3s;
+              transition: all ease-out .3s;
+              cursor: pointer;
+              text-align: center;
+              font-size: 13px;
+              border-width: 1px;
+              border-style: solid;
+              border-color: rgb(186, 186, 186);
+              border-image: initial;
+              img{
+                float: left;
+              }
+              p{
+                position: absolute;
+                left: 0;
+                right: 0;
+                margin: auto;
+              }
+            }
+          }
+
+        }
+    }
+  }
+}
+footer{
+  background-color: rgb(245, 245, 245);
+}

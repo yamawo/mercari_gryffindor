@@ -1,11 +1,7 @@
-* {
-  margin: 0 auto;
-}
-html,
-body{
+.sighin{
   z-index: 1;
   min-height: 100%;
-  .signup-header{
+  .signin-header{
     background-color: rgb(245, 245, 245);
     align-items: center;
     display: flex;
@@ -16,7 +12,7 @@ body{
       margin: auto;
     }
   }
-  .signup-main{
+  .signin-main{
     font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
     min-height: 100%;
     background-color: rgb(245, 245, 245);
