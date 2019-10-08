@@ -1,21 +1,79 @@
-%h2 Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
-    %br/
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Sign up"
-= render "devise/shared/links"
+.sighup
+  %header.signup-header
+    .signup-header__title
+      %a{href: ""}
+        %img{alt: "mercari", src: "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?3761641567"}/
+  %main.signup-main
+    %section.signup-main__box
+      %h2.l-single-head.registration 新規会員登録
+      .signup-main__box__form
+        .signup-main__box__form__link
+          %a.btn-default.btn-mail{href: "https://www.mercari.com/jp/signup/registration/"}
+            メールアドレスで登録する
+            %i.fa.fa-envelope-o
+          %button#facebook-login.btn-default.btn-sns.btn-sns-facebook
+            %i.fa.fa-facebook-official.fa
+            Facebookで登録する
+          %button#google-login.btn-default.btn-sns.btn-sns-google
+            %img{alt: "Flower", src: "/images/google.svg"}/
+            %p Googleで登録する
+
+          
+  
+    
+= render 'users/footer'
+      
+-# .sighup
+-#   %header.signup-header
+-#     .signup-header__title
+-#       %a{href: ""}
+-#         %img{alt: "mercari", src: "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?3761641567"}/
+-#   %main.sighup-main
+-#     .sighup-main__box
+      
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-# %h2 Sign up
+-# = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+-#   = render "devise/shared/error_messages", resource: resource
+-#   .field
+-#     = f.label :email
+-#     %br/
+-#     = f.email_field :email, autofocus: true, autocomplete: "email"
+-#   .field
+-#     = f.label :password
+-#     - if @minimum_password_length
+-#       %em
+-#         (#{@minimum_password_length} characters minimum)
+-#     %br/
+-#     = f.password_field :password, autocomplete: "new-password"
+-#   .field
+-#     = f.label :password_confirmation
+-#     %br/
+-#     = f.password_field :password_confirmation, autocomplete: "new-password"
+-#   .actions
+-#     = f.submit "Sign up"
+-# = render "devise/shared/links"

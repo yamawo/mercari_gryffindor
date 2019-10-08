@@ -1,14 +1,14 @@
-%body
-  %header.signup-header
-    .signup-header__title
+.sighin
+  %header.signin-header
+    .signin-header__title
       %a{href: ""}
         %img{alt: "mercari", src: "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?3761641567"}/
-  %main.signup-main
-    .signup-main__box
-      .signup-main__box__login
+  %main.signin-main
+    .signin-main__box
+      .signin-main__box__login
         %p アカウントをお持ちでない方はこちら
         %a{href: ""} 新規会員登録 
-      .signup-main__box__link
+      .signin-main__box__link
         %button#facebook-login
           %i.fa.fa-facebook-official.fa-3x
           %p Facebookでログイン
@@ -16,19 +16,21 @@
           %img{alt: "Flower", src: "/images/google.svg"}/
           %p Googleでログイン
       %form{action: "/users/sign_up/", method: "POST", novalidate: "novalidate"}
-        .signup-main__box__block__form  
-          .signup-main__box__block__form__mail
+        .signin-main__box__block__form  
+          .signin-main__box__block__form__mail
             %input.login-input-text.input-default{name: "email", placeholder: "メールアドレス", type: "email"}/
-          .signup-main__box__block__form__password
+          .signin-main__box__block__form__password
             %input.login-input-text.input-default{name: "password", placeholder: "パスワード", type: "password"}/
-          .signup-main__box__block__form__robot
-            .signup-main__box__block__form__robot__captcha{"data-sitekey" => "6LfZGCYTAAAAAHoK-s7Lg5OdYg5Fq4susvALmZoc"}
+          .signin-main__box__block__form__robot
+            .signin-main__box__block__form__robot__captcha{"data-sitekey" => "6LfZGCYTAAAAAHoK-s7Lg5OdYg5Fq4susvALmZoc"}
               %div{style: "width: 304px; height: 78px;"}
                 %div
                   %iframe{frameborder: "0", height: "78", name: "a-ce3cn14bckvo", role: "presentation", sandbox: "allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox", scrolling: "no", src: "https://www.google.com/recaptcha/api2/anchor?ar=1&k=6LfZGCYTAAAAAHoK-s7Lg5OdYg5Fq4susvALmZoc&co=aHR0cHM6Ly93d3cubWVyY2FyaS5jb206NDQz&hl=ja&v=Zy-zVXWdnDW6AUZkKlojAKGe&size=normal&cb=myw7rr4i2i49", width: "304"}
           %button.login-submit.btn-default.btn-red{type: "submit"} ログイン
           %input{name: "login_callback", type: "hidden", value: ""}/
           %a{href: ""} パスワードをお忘れの方
+
+          
   
     
 = render 'users/footer'
