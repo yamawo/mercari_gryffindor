@@ -73,11 +73,35 @@
                             .step3-single_container__main__section__registration__form__content__group__birthday-wrap
                                 .step3-single_container__main__section__registration__form__content__group__birthday-wrap__select-wrap
                                     %i.step3-single_container__main__section__registration__form__content__group__birthday-wrap__select-wrap__icon
-                                    %select#(name="year").step3-single_container__main__section__registration__form__content__group__birthday-wrap__select-wrap__select-default
-                                        %option(value="")--
-                                        
-
-
-
-
+                                    = f.select :birthdate_year, @year, {prompt: "--"}, {class: "step3-single_container__main__section__registration__form__content__group__birthday-wrap__select-wrap__select-default"}
+                                %span 年
+                                .step3-single_container__main__section__registration__form__content__group__birthday-wrap__select-wrap.step3-single_container__main__section__registration__form__content__group__birthday-wrap__month
+                                    %i.step3-single_container__main__section__registration__form__content__group__birthday-wrap__select-wrap__icon
+                                    = f.select :birthdate_month, @month, {prompt: "--"}, {class: "step3-single_container__main__section__registration__form__content__group__birthday-wrap__select-wrap__select-default"}
+                                %span 月
+                                .step3-single_container__main__section__registration__form__content__group__birthday-wrap__select-wrap.step3-single_container__main__section__registration__form__content__group__birthday-wrap__day
+                                    %i.step3-single_container__main__section__registration__form__content__group__birthday-wrap__select-wrap__icon
+                                    = f.select :birthdate_day, @day, {prompt: "--"}, {class: "step3-single_container__main__section__registration__form__content__group__birthday-wrap__select-wrap__select-default"}
+                                %span 日
+                            .clearfix
+                        %p.step3-single_container__main__section__registration__form__content__info
+                            ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合がございます。
+                    .step3-single_container__main__section__registration__form__content
+                        .step3-single_container__main__section__registration__form__content__group
+                            .step3-single_container__main__section__registration__form__content__group__g-recaptcha.step3-single_container__main__section__registration__form__content__group__signup-recaptcha{"data-sitekey": "6LfZGCYTAAAAAHoK-s7Lg5OdYg5Fq4susvALmZoc"}
+                                %div{style:"width: 304px; height: 78px;"}
+                                    %div
+                                        %iframe{frameborder: "0", height: "78", name: "a-bkjmrr5qrcch", role: "presentation", sandbox: "allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox", scrolling: "no", src: "https://www.google.com/recaptcha/api2/anchor?ar=2&k=6LfZGCYTAAAAAHoK-s7Lg5OdYg5Fq4susvALmZoc&co=aHR0cHM6Ly93d3cubWVyY2FyaS5jb206NDQz&hl=ja&v=Zy-zVXWdnDW6AUZkKlojAKGe&size=normal&cb=l9pa2wfzvw7h", width: "304"}
+                                        %textarea.step3-single_container__main__section__registration__form__content__group__g-recaptcha__response{name: "g-recaptcha-response", style: "width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"}
+                        .step3-single_container__main__section__registration__form__content__group
+                            %p.step3-single_container__main__section__registration__form__content__group__text.step3-single_container__main__section__registration__form__content__group__center
+                                「次へ進む」のボタンを押すことにより
+                                = link_to('利用規約', "https://www.mercari.com/jp/tos_list/")
+                                に同意したものとみなします
+                            %button.step3-single_container__main__section__registration__form__content__group__btn-default.step3-single_container__main__section__registration__form__content__group__btn-red{type: "submit"} 次へ進む
+                            .step3-single_container__main__section__registration__form__content__group.step3-single_container__main__section__registration__form__content__group__light
+                                %p
+                                = link_to('本人情報の登録について', "https://www.mercari.com/jp/help_center/article/423/")
+                                %i.step3-single_container__main__section__registration__form__content__group__icon-allow-right
 = render "users/footer"
+                    
