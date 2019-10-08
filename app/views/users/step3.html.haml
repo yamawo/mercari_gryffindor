@@ -7,36 +7,75 @@
                 %li.step3-single_container__header__progress-bar__active
                     会員情報
                     .step3-single_container__header__progress-bar__active__status
-                        .step3-single_container__header__progress-bar__active__status:after
+                        .step3-single_container__header__progress-bar__active__status::after
                 %li
                     電話番号認証
                     .step3-single_container__header__progress-bar__active__status
-                        .step3-single_container__header__progress-bar__active__status:before
-                        .step3-single_container__header__progress-bar__active__status:after
+                        .step3-single_container__header__progress-bar__active__status::before
+                        .step3-single_container__header__progress-bar__active__status::after
                 %li
                     お届け先住所入力
                     .step3-single_container__header__progress-bar__active__status
-                        .step3-single_container__header__progress-bar__active__status:before
-                        .step3-single_container__header__progress-bar__active__status:after
+                        .step3-single_container__header__progress-bar__active__status::before
+                        .step3-single_container__header__progress-bar__active__status::after
                 %li
                     支払い方法
                     .step3-single_container__header__progress-bar__active__status
-                        .step3-single_container__header__progress-bar__active__status:before
-                        .step3-single_container__header__progress-bar__active__status:after
+                        .step3-single_container__header__progress-bar__active__status::before
+                        .step3-single_container__header__progress-bar__active__status::after
                 %li
                     完了
                     .step3-single_container__header__progress-bar__active__status
-                        .step3-single_container__header__progress-bar__active__status:before
-                .clearfix:after
+                        .step3-single_container__header__progress-bar__active__status::before
+                .clearfix::after
     %main.step3-single_container__main
         %section.step3-single_container__main__section
             %h2.step3-single_container__main__section__registration
                 会員情報入力
-                = form_for @user, url: step4_users_path, method: :get, html: {class: "step3-single_container__main__section__ragistration"} do |f|
-                    = f.text_field :nickname, placeholder: "例) メルカリ太郎"
-                    = f.email_field :email, placeholder: "PC・携帯どちらでも可"
-                  
-
+                = form_for @user, url: step4_users_path, method: :get, html: {class: "step3-single_container__main__section__registration__form"} do |f|
+                    .step3-single_container__main__section__registration__form__content
+                        .step3-single_container__main__section__registration__form__content__group
+                            %label(for="nickname")ニックネーム
+                            %span.step3-single_container__main__section__registration__form__content__group__require 必須
+                            = f.text_field :nickname, placeholder: "例) メルカリ太郎"
+                        .step3-single_container__main__section__registration__form__content__group
+                            %label(for="email")メールアドレス
+                            %span.step3-single_container__main__section__registration__form__content__group__require 必須
+                            = f.email_field :email, placeholder: "PC・携帯どちらでも可"
+                        .step3-single_container__main__section__registration__form__content__group
+                            %label(for="password")パスワード
+                            %span.step3-single_container__main__section__registration__form__content__group__require 必須
+                            = f.password_field :password, placeholder: "7文字以上"
+                        .step3-single_container__main__section__registration__form__content__group
+                            %label(for="password_confirmation")パスワード（確認）
+                            %span.step3-single_container__main__section__registration__form__content__group__require 必須
+                            = f.password_field :password_confirmation, placeholder: "7文字以上"
+                        .step3-single_container__main__section__registration__form__content__group
+                            %h3.step3-single_container__main__section__registration__form__content__group__sub-head.text-left 本人確認
+                            %p.step3-single_container__main__section__registration__form__content__group__text
+                                安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+                        .step3-single_container__main__section__registration__form__content__group
+                            %div
+                                %label お名前（全角）
+                                %span.step3-single_container__main__section__registration__form__content__group__require 必須
+                            = f.text_field :last_name, placeholder: "例）朝比奈"
+                            = f.text_field :first_name, placeholder: "例）彩"
+                        .step3-single_container__main__section__registration__form__content__group
+                            %div
+                                %label(for="last_name_kana")お名前カナ（全角）
+                                %span.step3-single_container__main__section__registration__form__content__group__require 必須
+                            = f.text_field :last_name_kana, placeholder: "例）アサヒナ"
+                            = f.text_field :first_name_kana, placeholder: "例）アヤ"
+                        .step3-single_container__main__section__registration__form__content__group
+                            %label(for="birthday")生年月日
+                            %span.step3-single_container__main__section__registration__form__content__group__require 必須
+                            %br/
+                            .step3-single_container__main__section__registration__form__content__group__birthday-wrap
+                                .step3-single_container__main__section__registration__form__content__group__birthday-wrap__select-wrap
+                                    %i.step3-single_container__main__section__registration__form__content__group__birthday-wrap__select-wrap__icon
+                                    %select#(name="year").step3-single_container__main__section__registration__form__content__group__birthday-wrap__select-wrap__select-default
+                                        %option(value="")--
+                                        
 
 
 
