@@ -28,8 +28,14 @@
                     .step3-single_container__header__progress-bar__active__status
                         .step3-single_container__header__progress-bar__active__status:before
                 .clearfix:after
-
-
+    %main.step3-single_container__main
+        %section.step3-single_container__main__section
+            %h2.step3-single_container__main__section__registration
+                会員情報入力
+                = form_for @user, url: step4_users_path, method: :get, html: {class: "step3-single_container__main__section__ragistration"} do |f|
+                    = f.text_field :nickname, placeholder: "例) メルカリ太郎"
+                    = f.email_field :email, placeholder: "PC・携帯どちらでも可"
+                  
 
 
 
