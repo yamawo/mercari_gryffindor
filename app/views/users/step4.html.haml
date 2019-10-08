@@ -1,0 +1,14 @@
+%body
+  .contents
+    %header.contents__header
+    %main.contents__main
+      %section.contents__main__content
+        %h2.contents__main__content__registration
+          電話番号の確認
+        = form_for [@user] do |f|
+          .contents__main__content__callnumber
+            = f.lavel :text, class
+            = f.text_label :text
+          
+
+    = render "footer"
