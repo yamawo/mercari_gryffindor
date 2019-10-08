@@ -249,86 +249,9 @@
   
   }
 }
-.sell{
-  bottom: 32px;
-  font-size: 22px;
-  height: 160px;
-  right: 32px;
-  width: 160px;
-  position: fixed;
-  z-index: 2;
-  &__btn{
-    &__detail{
-      text-align: center;
-      background-color: rgb(234, 53, 45);
-      border-radius: 50%;
-      height: 128px;
-      width: 160px;
-      padding-top: 32px;
-      &__text{
-        font-size: 22px;
-        color: rgb(255, 255, 255)
-      }
-     
-      
-    }
-  }
 
-}
-.download{
-  &__display{
-    background: url(https://web-jp-assets.mercdn.net/_next/static/images/download_app_bg-b57d6f1a32f2aebd89cf6f43bc2e4b39.jpg) center center / cover;
-    background-position: center center;
-    &__content{
-      display: flex;
-      justify-content: space-between;
-      width: 750px;
-      height: 260px;
-      margin: 0px auto;
-      &__left{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        &__text1{
-          color: rgb(255, 255, 255);
-          font-size: 24px;
-          font-weight: 600;
-          margin-bottom: 15px;
-        }
-        &__text2{
-          color: rgb(255, 255, 255);
-          font-size: 35px;
-          width: 450px;
-          margin-bottom: 20px;
-        }
-        &__icon{
-          &__merukari{
-            height: 68px;
-            margin-right: 20px;
-            width: 68px;
-          }
-          &__app__store{
-            height: 40px;
-            margin-right: 8px;
-            width: 144px;
-          }
-          &__google__play{
-            height: 40px;
-            width: 144px;
 
-          }
-        }
-      }
-      &__right{
-        margin: 0;
-        &__phone-image{
-        height: 260px;
-        width: 300px;
-        }
-      }
-    }
-  }
-}
+
 .fa-camera {
   color: white;
 }

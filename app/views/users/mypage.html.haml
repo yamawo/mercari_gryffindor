@@ -1,0 +1,121 @@
+= render "shared/header"
+%nav.navbar
+  %ul.navbar__list
+    %li.navbar__list__ele
+      = link_to "", class: "navbar__list__ele__link"
+        %span.navbar__list__ele__link__name
+        メルカリ
+      %i.icon-arrow-right
+    %li.navbar__list__ele
+      = link_to "", class: "navbar__list__ele__link"
+        %span.navbar__list__ele__link__name
+        マイページ
+      %i.icon-arrow-right
+    %li.navbar__list__ele
+      = link_to "", class: "navbar__list__ele__link"
+        %span.navbar__list__ele__link__name
+        プロフィール
+      %i.icon-arrow-right
+%main.main
+  .l-side
+    %nav.l-side__nav
+      %ul.l-side__nav__list
+        %li
+          = link_to "/", class: "l-side__nav__list__item__active"
+            %i.l-side__nav__list__link__icon
+        %li
+          = link_to "/", class: "l-side__nav__list__item"
+            %i.l-side__nav__list__link__icon
+        %li
+          = link_to "/", class: "l-side__nav__list__link"
+            %i.l-side__nav__list__link__icon
+        %li
+          = link_to "/", class: "l-side__nav__list__link"
+            %i.l-side__nav__list__link__icon
+        %li
+          = link_to "/", class: "l-side__nav__list__link"
+            %i.l-side__nav__list__link__icon
+        %li
+          = link_to "/", class: "l-side__nav__list__link"
+            %i.l-side__nav__list__link__icon
+        %li
+          = link_to "/", class: "l-side__nav__list__link"
+            %i.l-side__nav__list__link__icon
+        %li
+          = link_to "/", class: "l-side__nav__list__link"
+            %i.l-side__nav__list__link__icon
+        %li
+          = link_to "/", class: "l-side__nav__list__link"
+            %i.l-side__nav__list__link__icon
+        %li
+          = link_to "/", class: "l-side__nav__list__link"
+            %i.l-side__nav__list__link__icon
+        %li
+          = link_to "/", class: "l-side__nav__list__link"
+            %i.l-side__nav__list__link__icon
+        %li
+          = link_to "/", class: "l-side__nav__list__link"
+            %i.l-side__nav__list__link__icon
+        %li
+          = link_to "/", class: "l-side__nav__list__link"
+            %i.l-side__nav__list__link__icon
+        %li
+          = link_to "/", class: "l-side__nav__list__link"
+            %i.l-side__nav__list__link__icon
+      %h3.l-side__nav_head
+        メルペイ
+      %ul.l-side__nav__list
+        %li
+          = link_to "/", class: "l-side__nav__list__item__active"
+            %i.l-side__nav__list__link__icon
+        %li
+          = link_to "/", class: "l-side__nav__list__item__active"
+            %i.l-side__nav__list__link__icon
+      %h3.l-side__nav_head
+        設定
+      %ul.l-side__nav__list
+        %li
+          = link_to "/", class: "l-side__nav__list__item__active"
+            %i.l-side__nav__list__link__icon
+        %li
+          = link_to "/", class: "l-side__nav__list__item__active"
+            %i.l-side__nav__list__link__icon
+        %li
+          = link_to "/", class: "l-side__nav__list__item__active"
+            %i.l-side__nav__list__link__icon
+        %li
+          = link_to "/", class: "l-side__nav__list__item__active"
+            %i.l-side__nav__list__link__icon
+        %li
+          = link_to "/", class: "l-side__nav__list__item__active"
+            %i.l-side__nav__list__link__icon
+        %li
+          = link_to "/", class: "l-side__nav__list__item__active"
+            %i.l-side__nav__list__link__icon
+        %li
+          = link_to "/", class: "l-side__nav__list__item__active"
+            %i.l-side__nav__list__link__icon
+
+  .r-content
+    %section.r-content__mypage-icon
+      = link_to "/", class: "r-content__mypage-icon__a"
+        %figure.r-content__mypage-icon__a__image
+          = image_tag "member_photo.png", class: "r-content__mypage-icon__a__image__src"
+        %h2.r-content__mypage-icon__a__name
+          まこ
+        .r-content__mypage-icon__a__number
+          .r-content__mypage-icon__a__number__review
+            評価
+            %span.r-content__mypage-icon__a__number__review
+          .r-content__mypage-icon__a__number__sell
+            出品数
+            %span.r-content__mypage-icon__a__number
+    %section.r-content__tab
+    %aside.r-content__modal
+    %section.r-content__tab2
+   
+
+
+= render "shared/sell-btn"
+= render "shared/download-ad"
+= render "shared/footer"
