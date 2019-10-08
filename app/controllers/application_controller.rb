@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :basic_auth, if: :production?
 
-  private
+  # private
 
   def production?
     Rails.env.production?
