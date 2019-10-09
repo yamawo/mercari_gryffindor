@@ -55,7 +55,7 @@
               = i.label :都道府県
               %span.form-require
                 必須               
-              = i.select :address_prefecture, [["北海道", "北海道"]]
+              = i.select :address_prefecture, User.prefectures.keys
             .form-group
               = i.label :市区町村
               %span.form-require
