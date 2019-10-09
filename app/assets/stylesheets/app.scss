@@ -169,29 +169,19 @@ div {
   position: relative;
   top: -10px;
   transition: 1.0s ;
-  color: rgb(0, 0, 0);
   .fa.fa-heart-o{
-    font-size: 20px;
-    margin-right: 6px;
-    transition: 1.0s ;
-    .fa.fa-heart-o-text{
-      font-size: 14px;
-      
-    }
+  color: rgb(204, 204, 204);
+  font-size: 20px;
+  margin-right: 6px;
+  transition: 1.0s ;
   }
 }
-// .sp-header-iine:hover {
-  //   color:rgb(0, 162, 255);
-  // }
-  .fa.fa-heart-o:hover {
-    color:rgb(0, 162, 255);
-    .fa-heart-o::before {
-      content: "\f08a";
-      color: rgb(204, 204, 204);
-  
-  }
-  }
- 
+.sp-header-iine:hover {
+  color:rgb(0, 162, 255);
+}
+.fa.fa-heart-o:hover {
+  color:rgb(0, 162, 255);
+}
 .sp-header-notice{
   margin-right: 19px;
   position: relative;
@@ -248,3 +238,4 @@ div {
   position: relative;
   bottom: -10px;
 }
+

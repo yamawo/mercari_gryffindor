@@ -25,25 +25,25 @@
       %nav.l-right
         %ul.pc-header__login-nav  
         - if user_signed_in?
-          %li
-            = link_to "新規会員登録", "/", class: "sp-header-btn"
-          %li
-            = link_to "ログイン", "/", class: "sp-header-btn header-login"
-        - else
           %li.sp-header-iine
             %a.sp-header-iine-link{href: "/jp/mypage/like/history/"}
               %i.fa.fa-heart-o
-                %a2.fa.fa-heart-o-text いいね！一覧
+              いいね！一覧
           %li.sp-header-notice
             %a.sp-header-notice-link{href: "/jp/mypage/notification/"}
               %i.fa.fa-bell-o
               お知らせ
           %li.sp-header-todolist
-            %a.sp-header-todolist-link{href: "/jp/mypage/todo/"}
+            %a.sc-RefOD.jwHbWf{href: "/jp/mypage/todo/"}
               %i.fa.fa-check
-                %a3.fa.fa-check-text やることリスト
+              やることリスト
           %li.sp-header-mypage
             %a.sp-header-mypage-link{href: "/jp/mypage/"}
               %img.sp-header-mypage-img{alt: "", src: "https://static.mercdn.net/images/member_photo_noimage_thumb.png"}>/
-              マイページ
-                
+              マイページ     
+        - else
+          %li
+            = link_to "新規会員登録", "/", class: "sp-header-btn"
+          %li
+            = link_to "ログイン", "/", class: "sp-header-btn header-login"
+          
