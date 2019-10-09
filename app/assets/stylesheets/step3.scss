@@ -48,7 +48,7 @@ body {
                     font-size: 12px;
                     color: #888888;
                 }
-                &__active {
+                .step3-single_container__header__progress-bar__active {
                     font-weight: 600;
                     color: $header_list_active_color;
                     &__status {
@@ -68,6 +68,17 @@ body {
                             height: 2px;
                             background: $header_list_not_active_color;
                         }
+                    }
+                }
+                .step3-single_container__header__progress-bar__not-active {
+                    font-weight: 600;
+                    color: $header_list_not_active_color;
+                    &__status {
+                        background: $header_list_not_active_color;
+                        width: 12px;
+                        height: 12px;
+                        margin: 8px auto 0;
+                        border-radius: 50%;
                         &::before {
                             right: 50%;
                             position: absolute;
@@ -77,7 +88,41 @@ body {
                             content: "";
                             width: 100%;
                             height: 2px;
-                            background: $header_list_active_color;
+                            background: $header_list_not_active_color;
+                        }
+                        &::after {
+                            left: 50%;
+                            position: absolute;
+                            bottom: 5px;
+                            z-index: -1;
+                            display: block;
+                            content: "";
+                            width: 100%;
+                            height: 2px;
+                            background: $header_list_not_active_color;
+                        }
+
+                    }
+                }
+                .step3-single_container__header__progress-bar__not-active-last {
+                    font-weight: 600;
+                    color: $header_list_not_active_color;
+                    &__status-last {
+                        background: $header_list_not_active_color;
+                        width: 12px;
+                        height: 12px;
+                        margin: 8px auto 0;
+                        border-radius: 50%;
+                        &::before {
+                            right: 50%;
+                            position: absolute;
+                            bottom: 5px;
+                            z-index: -1;
+                            display: block;
+                            content: "";
+                            width: 100%;
+                            height: 2px;
+                            background: $header_list_not_active_color;
                         }
                     }
                 }
@@ -85,6 +130,106 @@ body {
                     content: "";
                     display: block;
                     clear: both;
+                }
+            }
+        }
+    }
+    &__main {
+        display: block;
+        &__section {
+            width: 700px;
+            margin: 0 auto;
+            background: #ffffff;
+            &__registration {
+                font-size: 22px;
+                padding: 32px;
+                line-height: 1.5;
+                text-align: center;
+                &__form {
+                    padding: 40px 40px 64px;
+                    border-top: 1px solid #f5f5f5;
+                    &__content {
+                        max-width: 343px;
+                        margin: 0 auto;
+                        &__group:first-child {
+                            margin: 0;
+                        }
+                        &__group {
+                            margin-top: 32px;
+                            margin: 24px 0 0;
+                            label {
+                                font-weight: 600;
+                                display: inline-block;
+                            }
+                            &__require {
+                                background: $header_list_active_color;
+                                margin: 0 0 0 8px;
+                                padding: 2px 4px;
+                                border-radius: 2px;
+                                color: #ffffff;
+                                font-size: 12px;
+                                vertical-align: top;
+                            }
+                            &__default {
+                                width: 100%;
+                                margin: 8px 0 0;
+                                height: 48px;
+                                padding: 10px 16px 8px;
+                                border-radius: 4px;
+                                border: 1px solid #cccccc;
+                                background: #ffffff;
+                                line-height: 1.5;
+                                font-size: 16px;
+                            }
+                            &__sub-head {
+                                font-size: 16px;
+                            }
+                            &__text {
+                                margin: 8px 0 0;
+                                padding: 0;
+                                line-height: 1.5;
+                            }
+                            &__half:first-of-type {
+                                margin-right: 8px; 
+                            }
+                            &__half {
+                                width: calc(50% - 6px);
+                                margin: 8px 0 0;
+                                height: 48px;
+                                padding: 10px 16px 8px;
+                                border-radius: 4px;
+                                border: 1px solid #cccccc;
+                                background: #ffffff;
+                                line-height: 1.5;
+                                font-size: 16px;
+                            }
+                            &__birthday-wrap {
+                                width: 76px;
+                                display: inline-block;
+                                &__select-wrap:first-of-type {
+                                    width: 76px;
+                                }
+                                &__select-wrap {
+                                    display: inline-block;
+                                    margin: 8px 0 0;
+                                    position: relative;
+                                    background: #ffffff;
+                                    &__icon {
+                                        right: 12px;
+                                        position: absolute;
+                                        top: 50%;
+                                        z-index: 2;
+                                        color: #888888;
+                                        font-size: 8px;
+                                        transform: translate(0, -50%);
+                                    }
+                                }
+                                span {
+                                    margin: 0 2px;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

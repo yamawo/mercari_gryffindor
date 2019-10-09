@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
     before_action :set_year, :set_month, :set_day
+    layout "users_layout"
     
     def step3
         @user = User.new()
