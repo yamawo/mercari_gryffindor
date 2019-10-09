@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root to: "products#index"
-  devise_for :users
+  devise_for :users, :controllers => {
+    :registrations => 'users/registrations',
+    :sessions => 'users/sessions'   
+  } 
   resources :address  
   resources :products, only: [:index]
   resources :users do
