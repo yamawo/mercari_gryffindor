@@ -1,0 +1,322 @@
+.navbar{
+  position: relative;
+  border-top: 1px solid #eee;
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
+  background: #fff;
+  font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
+  &__list{
+    overflow: visible;
+    width: 1020px;
+    margin: 0 auto;
+    padding: 16px 0;
+    white-space: normal;
+    display: flex;
+    &__ele{
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      display: inline-block;
+      font-size: 14px;
+      line-height: 1.2;
+      position: relative;
+      &__link{
+        color: #333;
+        &__name{
+          &__active{
+            font-weight: 600;
+          }
+        }
+       
+      }
+    }
+
+  }
+}
+
+
+
+.main{
+  margin: 40px auto 0;
+  width: 1020px;
+  font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
+  &__l-side{
+    float: left;
+    width: 280px;
+    margin: 0 40px 0 0;
+    padding: 0 0 40px;
+    &__nav{
+      &__list{
+        &__item{
+          height: 16px;
+          border-bottom: 1px solid #eee;
+          position: relative;
+          display: block;
+          padding: 16px;
+          background: #fff;
+          font-size: 14px;
+          color: #333;
+          &__active{
+            font-weight: 600;
+          }
+         
+        }
+      }
+      &__head{
+        margin: 40px 0 0;
+        font-size: 16px;
+        font-weight: bold;
+      }
+    }
+  }
+  &__r-content{
+    float: right;
+    width: 700px;
+    display: block;
+    &__mypage-icon{
+
+      height: 160px;
+      position: relative;
+      padding: 20px;
+      background: url(user_bg.jpeg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      text-align: center;
+
+      &__a{
+        display: block;
+        color: #333;
+        position: absolute;
+        top: 20%;
+        left: 0;
+        right: 0;
+        &__image{
+          overflow: hidden;
+          width: 60px;
+          height: 60px;
+          margin: 0 auto;
+          border-radius: 50%;
+        }
+        &__name{
+          margin: 8px 0 0;
+          font-size: 14px;
+          font-weight: 600;
+
+        }
+        &__number{
+          margin: 8px 0 0;
+          display: flex;
+	        justify-content: center;
+          &__review{
+            &__count{
+              margin: 0 0 0 8px;
+              font-size: 16px;
+              font-weight: 600;
+            }
+          }
+          &__sell{
+            margin: 0 0 0 16px;
+            &__count{
+              margin: 0 0 0 8px;
+              font-size: 16px;
+              font-weight: 600;
+            }
+
+          }
+        }
+      }
+
+    }
+    &__todo{
+      background: #fff;
+      &__list{
+        border: 0;
+        background: #eee;
+        display: flex;
+        &__name{
+          width: 50%;
+          display: inline-block;
+          text-align: center;
+          vertical-align: top;
+          &__link{
+            position: relative;
+            display: block;
+            color: #333;
+            font-size: 16px;
+            line-height: 72px;
+            font-weight: bold;
+            &__active{
+              position: relative;
+              display: block;
+              color: #333;
+              font-size: 16px;
+              line-height: 72px;
+              font-weight: bold;
+              background: #fff;
+              border-top: 2px solid #ea352d;
+            }
+          }
+        }
+      }
+      &__content{
+        &__nofication{
+          &__elements{
+            &__element{
+              display: block;
+              min-height: 47px;
+              padding: 16px;
+              color: #333;
+              border-bottom: 1px solid #eee;
+              &__figure{
+                position: relative;
+                overflow: hidden;
+                float: left;
+                width: 48px;
+                height: 48px;
+                margin: 0;
+                &__image{
+                  position: absolute;
+                  top: 0;
+                  right: 0;
+                  bottom: 10px;
+                  left: 0;
+                  z-index: 1;
+                  width: 100%;
+                  opacity: 1;
+                }
+              }
+              &__body{
+                margin: 0 40px 0 68px;
+                &__text{
+                  overflow: hidden;
+                  max-height: 4.4em;
+                  line-height: 1.5;
+                  font-size: 14px;
+                }
+                &__time{
+                  display: inline-block;
+                  color: #888;
+                  &__icon{
+                    margin: 0 8px 0 0;
+                  }
+                  &__count{
+                    font-size: 14px;
+                  }
+                }
+              }
+            }
+          }
+          &__more{
+            padding: 16px;
+            &__link{
+              display: block;
+              height: 56px;
+              margin: 0 auto;
+              background: #eee;
+              color: #333;
+              line-height: 56px;
+              text-align: center;
+            }
+          }
+        }
+      }
+
+    }
+    &__tab{
+      margin: 40px 0 0;
+      background: #fff;
+      height: 400px;
+      &__name{
+        padding: 0 16px;
+        background: #fafafa;
+        font-size: 16px;
+        line-height: 72px;
+        font-weight: bold;
+      }
+      &__status{
+        border: 0;
+        background: #eee;
+        display: flex;
+        &__elements{
+          
+          width: 50%;
+          display: inline-block;
+          text-align: center;
+          vertical-align: top;
+          &__link{
+            font-size: 16px;
+            font-weight: bold;
+            position: relative;
+            display: block;
+            color: block;
+            line-height: 72px;
+            &__active{
+              background: #fff;
+              font-size: 16px;
+              font-weight: bold;
+              position: relative;
+              display: block;
+              color: block;
+              line-height: 72px;
+              border-top: 2px solid #ea352d;
+
+            }
+
+          }
+        }
+
+      }
+      &__content{
+        &__list{
+          &__element{
+            padding: 160px 0 60px;
+            background: url(mercari_icon3.png);
+            background-repeat: no-repeat;
+            background-position: center 40px;
+            background-size: 78px 85px;
+            text-align: center;
+            font-size: 16px;
+            color: #ccc;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}
+ul{
+  list-style: none;
+}
+h2{
+  line-height: 1.4;
+}
+h3{
+  font-size: 22px;
+}
+.icon-arrow-right{
+  height: 10px;
+  width: 10px;
+  content: "";
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  border-bottom: 2px solid #ccc;
+  border-right: 2px solid #ccc;
+  margin: auto;
+  box-sizing: border-box;
+  transform: rotate(-45deg);
+  
+}
+
+i{
+  margin: 0 8px;
+  font-size: 18px;
+  color: #888;
+  line-height: 1;
+
+}
+.fa{
+  display: inline-block;
+}
+body{
+  background: #f5f5f5;
+}
+

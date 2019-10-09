@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :basic_auth, if: :production?
-  before_action :edit
-
+  before_action :search_product
   # private
 
   def production?
@@ -14,8 +13,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def edit
+  def search_product
     @q = Product.ransack(params[:q])
     @products = @q.result(distinct: true)
   end
+
 end
