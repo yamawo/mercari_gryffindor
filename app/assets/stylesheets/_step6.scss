@@ -23,7 +23,7 @@
 .form-group label{
   font-weight: 600;
 }
-input{
+.form-group input{
   width: calc(100% - 34px);
   margin-top: 8px;
   padding: 10px 16px 8px;
@@ -63,7 +63,7 @@ select{
   border-radius: 2px; 
   vertical-align: top;
 }
-.submit-btn{
+.form-group .submit-btn{
   width: 100%;
   background-color: red;
   color: white;
