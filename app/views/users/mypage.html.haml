@@ -1,0 +1,181 @@
+%body
+  %nav.navbar
+    %ul.navbar__list
+      %li.navbar__list__ele
+        = link_to "", class: "navbar__list__ele__link" do
+          %span.navbar__list__ele__link__name
+            メルカリ
+        %i.fa.fa-angle-right
+      %li.navbar__list__ele
+        = link_to "", class: "navbar__list__ele__link" do
+          %span.navbar__list__ele__link__name__active
+            マイページ
+  %main.main
+    .main__l-side
+      %nav.main__l-side__nav
+        %ul.main__l-side__nav__list
+          %li
+            = link_to "/", class: "main__l-side__nav__list__item" do
+              マイページ
+              %span.main__l-side__nav__list__item__number
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "main__l-side__nav__list__item" do
+              お知らせ
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "main__l-side__nav__list__item" do
+              やることリスト
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "main__l-side__nav__list__item" do
+              いいね！一覧
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "main__l-side__nav__list__item" do
+              出品する
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "main__l-side__nav__list__item" do
+              出品した商品 - 出品中
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "main__l-side__nav__list__item" do
+              出品した商品 - 取引中
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "main__l-side__nav__list__item" do
+              出品した商品 - 売却済み
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "main__l-side__nav__list__item" do
+              購入した商品 - 取引中
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "main__l-side__nav__list__item" do
+              購入した商品 - 過去の取引
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "main__l-side__nav__list__item" do
+              ニュース一覧
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "main__l-side__nav__list__item" do
+              評価一覧
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "main__l-side__nav__list__item" do
+              ガイド
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "main__l-side__nav__list__item" do
+              お問い合わせ
+              %i.icon-arrow-right
+        %h3.main__l-side__nav__head
+          メルペイ
+        %ul.main__l-side__nav__list
+          %li
+            = link_to "/", class: "main__l-side__nav__list__item" do
+              売り上げ・振込申請
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "main__l-side__nav__list__item" do
+              ポイント
+              %i.icon-arrow-right
+        %h3.main__l-side__nav__head
+          設定
+        %ul.main__l-side__nav__list
+          %li
+            = link_to "/", class: "main__l-side__nav__list__item" do
+              プロフィール
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "main__l-side__nav__list__item" do
+              発送元・お届け先住所変更
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "main__l-side__nav__list__item" do
+              支払い方法
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "main__l-side__nav__list__item" do
+              メール/パスワード
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "main__l-side__nav__list__item" do
+              本人情報
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "main__l-side__nav__list__item" do
+              電話番号の確認
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "main__l-side__nav__list__item" do
+              ログアウト
+              %i.icon-arrow-right
+
+    .main__r-content
+      %section.main__r-content__mypage-icon
+        = link_to "/", class: "main__r-content__mypage-icon__a"  do
+          %figure.main__r-content__mypage-icon__a__image
+            = image_tag "member_photo.png", size: "60x60", class: "main__r-content__mypage-icon__a__image__src"
+          %h2.main__r-content__mypage-icon__a__name
+            まこ
+          .main__r-content__mypage-icon__a__number
+            .main__r-content__mypage-icon__a__number__review
+              評価
+              %span.main__r-content__mypage-icon__a__number__review__count
+                0 
+            .main__r-content__mypage-icon__a__number__sell
+              出品数
+              %span.main__r-content__mypage-icon__a__number__sell__count
+                0
+      %section.main__r-content__todo
+        %ul.main__r-content__todo__list
+          %li.main__r-content__todo__list__name
+            %h3
+              = link_to "/", class: "main__r-content__todo__list__name__link__active" do
+                お知らせ
+          %li.main__r-content__todo__list__name
+            %h3
+              = link_to "/", class: "main__r-content__todo__list__name__link" do
+                やることリスト
+        .main__r-content__todo__content
+          %ul.main__r-content__todo__content__nofication
+            %li.main__r-content__todo__content__nofication__elements
+              = link_to "/", class: "main__r-content__todo__content__nofication__elements__element" do
+                %figure.main__r-content__todo__content__nofication__elements__element__figure
+                  = image_tag "mercari_icon2.png", class: "main__r-content__todo__content__nofication__elements__element__figure__image"
+                .main__r-content__todo__content__nofication__elements__element__body
+                  .main__r-content__todo__content__nofication__elements__element__body__text
+                    事務局から個別メッセージ「ログイン通知」
+                  .main__r-content__todo__content__nofication__elements__element__body__time
+                    %i.far.fa-clock.main__r-content__todo__content__nofication__elements__element__body__time__icon
+                    %span.main__r-content__todo__content__nofication__elements__element__body__time__count
+                      20時間前
+            %li.main__r-content__todo__content__nofication__more
+              = link_to "/", class: "main__r-content__todo__content__nofication__more__link" do
+                一覧を見る
+
+      %aside.main__r-content__modal
+      %section.main__r-content__tab
+        %h2.main__r-content__tab__name
+          購入した商品
+        %ul.main__r-content__tab__status
+          %li.main__r-content__tab__status__elements
+            %h3
+              = link_to "/", class: "main__r-content__tab__status__elements__link__active" do
+                取引中
+          %li.main__r-content__tab__status__elements
+            %h3
+              = link_to "/", class: "main__r-content__tab__status__elements__link" do
+                過去の取引
+        .main__r-content__tab__content
+          %ul.main__r-content__tab__content__list
+            %li.main__r-content__tab__content__list__element
+              取引中の商品がありません
+    
+
+
+  = render "shared/sell-btn"
+  = render "shared/download-ad"
