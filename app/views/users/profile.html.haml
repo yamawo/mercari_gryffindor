@@ -11,16 +11,17 @@
         %i.fa.fa-angle-right
       %li{itemscope: "", itemtype: "http://data-vocabulary.org/Breadcrumb"}
         %span.profile{itemprop: "title"} プロフィール
+  .edit__main
     .edit__main__profile
-      %section.edit__page__main__profile__box
-        %h2.edit-page__main__profile__box__title プロフィール
+      %section.box
+        %h2.title プロフィール
         %form{action: "https://www.mercari.com/jp/mypage/profile/", method: "POST"}
           %input{name: "__csrf_value", type: "hidden"}/
-          .edit__main__profile__box__title__icon
-            %figure
+          .edit__main__profile__icon
+            %profile-figure
               %img{height: "60", src: "//static.mercdn.net/images/member_photo_noimage_thumb.png", width: "60"}/
             %input.input-default{name: "nickname", placeholder: "例)AYA☆セール中", type: "text", value: "マコなり"}/
-          .edit__main__profile__box__title__content
+          .edit__main__profile__content
             %textarea.textarea-default{name: "introduction", placeholder: "例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪"}
             %input{name: "after_save_callback", type: "hidden", value: "https://www.mercari.com/jp/mypage/profile/"}/
             %button.btn-default.btn-red{type: "submit"} 変更する
