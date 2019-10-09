@@ -1,4 +1,3 @@
-= render "shared/header"
 %nav.navbar
   %ul.navbar__list
     %li.navbar__list__ele
@@ -11,111 +10,130 @@
         %span.navbar__list__ele__link__name
           マイページ
       %i.icon-arrow-right
-    %li.navbar__list__ele
-      = link_to "", class: "navbar__list__ele__link" do
-        %span.navbar__list__ele__link__name
-          プロフィール
-      %i.icon-arrow-right
+    
 %main.main
-  .l-side
-    %nav.l-side__nav
-      %ul.l-side__nav__list
+  .main__l-side
+    %nav.main__l-side__nav
+      %ul.main__l-side__nav__list
         %li
-          = link_to "/", class: "l-side__nav__list__item__active" do
-            %i.l-side__nav__list__link__icon
+          = link_to "/", class: "main__l-side__nav__list__item" do
+            マイページ
+            %span.main__l-side__nav__list__item__number
+            %i.main__l-side__nav__list__item__icon
         %li
-          = link_to "/", class: "l-side__nav__list__item" do
-            %i.l-side__nav__list__link__icon
+          = link_to "/", class: "main__l-side__nav__list__item" do
+            お知らせ
+            %i.main__l-side__nav__list__item__icon
         %li
-          = link_to "/", class: "l-side__nav__list__link" do
-            %i.l-side__nav__list__link__icon
+          = link_to "/", class: "main__l-side__nav__list__item" do
+            やることリスト
+            %i.main__l-side__nav__list__item__icon
         %li
-          = link_to "/", class: "l-side__nav__list__link" do
-            %i.l-side__nav__list__link__icon
+          = link_to "/", class: "main__l-side__nav__list__item" do
+            いいね！一覧
+            %i.main__l-side__nav__list__item__icon
         %li
-          = link_to "/", class: "l-side__nav__list__link" do
-            %i.l-side__nav__list__link__icon
+          = link_to "/", class: "main__l-side__nav__list__item" do
+            出品する
+            %i.main__l-side__nav__list__item__icon
         %li
-          = link_to "/", class: "l-side__nav__list__link" do
-            %i.l-side__nav__list__link__icon
+          = link_to "/", class: "main__l-side__nav__list__item" do
+            出品した商品 - 出品中
+            %i.main__l-side__nav__list__item__icon
         %li
-          = link_to "/", class: "l-side__nav__list__link" do
-            %i.l-side__nav__list__link__icon
+          = link_to "/", class: "main__l-side__nav__list__item" do
+            出品した商品 - 取引中
+            %i.main__l-side__nav__list__item__icon
         %li
-          = link_to "/", class: "l-side__nav__list__link" do
-            %i.l-side__nav__list__link__icon
+          = link_to "/", class: "main__l-side__nav__list__item" do
+            出品した商品 - 売却済み
+            %i.main__l-side__nav__list__item__icon
         %li
-          = link_to "/", class: "l-side__nav__list__link" do
-            %i.l-side__nav__list__link__icon
+          = link_to "/", class: "main__l-side__nav__list__item" do
+            購入した商品 - 取引中
+            %i.main__l-side__nav__list__link__icon
         %li
-          = link_to "/", class: "l-side__nav__list__link" do
-            %i.l-side__nav__list__link__icon
+          = link_to "/", class: "main__l-side__nav__list__item" do
+            購入した商品 - 過去の取引
+            %i.main__l-side__nav__list__link__icon
         %li
-          = link_to "/", class: "l-side__nav__list__link" do
-            %i.l-side__nav__list__link__icon
+          = link_to "/", class: "main__l-side__nav__list__item" do
+            ニュース一覧
+            %i.main__l-side__nav__list__link__icon
         %li
-          = link_to "/", class: "l-side__nav__list__link" do
-            %i.l-side__nav__list__link__icon
+          = link_to "/", class: "main__l-side__nav__list__item" do
+            評価一覧
+            %i.main__l-side__nav__list__link__icon
         %li
-          = link_to "/", class: "l-side__nav__list__link" do
-            %i.l-side__nav__list__link__icon
+          = link_to "/", class: "main__l-side__nav__list__item" do
+            ガイド
+            %i.main__l-side__nav__list__link__icon
         %li
-          = link_to "/", class: "l-side__nav__list__link" do
-            %i.l-side__nav__list__link__icon
-      %h3.l-side__nav_head
+          = link_to "/", class: "main__l-side__nav__list__item" do
+            お問い合わせ
+            %i.main__l-side__nav__list__link__icon
+      %h3.main__l-side__nav_head
         メルペイ
-      %ul.l-side__nav__list
+      %ul.main__l-side__nav__list
         %li
-          = link_to "/", class: "l-side__nav__list__item__active" do
-            %i.l-side__nav__list__link__icon
+          = link_to "/", class: "main__l-side__nav__list__item" do
+            売り上げ・振込申請
+            %i.main__l-side__nav__list__link__icon
         %li
-          = link_to "/", class: "l-side__nav__list__item__active" do
-            %i.l-side__nav__list__link__icon
-      %h3.l-side__nav_head
+          = link_to "/", class: "main__l-side__nav__list__item" do
+            ポイント
+            %i.main__l-side__nav__list__link__icon
+      %h3.main__l-side__nav_head
         設定
-      %ul.l-side__nav__list
+      %ul.main__l-side__nav__list
         %li
-          = link_to "/", class: "l-side__nav__list__item__active" do
-            %i.l-side__nav__list__link__icon
+          = link_to "/", class: "main__l-side__nav__list__item" do
+            プロフィール
+            %i.main__l-side__nav__list__link__icon
         %li
-          = link_to "/", class: "l-side__nav__list__item__active" do
-            %i.l-side__nav__list__link__icon
+          = link_to "/", class: "main__l-side__nav__list__item" do
+            発送元・お届け先住所変更
+            %i.main__l-side__nav__list__link__icon
         %li
-          = link_to "/", class: "l-side__nav__list__item__active" do
-            %i.l-side__nav__list__link__icon
+          = link_to "/", class: "main__l-side__nav__list__item" do
+            支払い方法
+            %i.main__l-side__nav__list__link__icon
         %li
-          = link_to "/", class: "l-side__nav__list__item__active" do
-            %i.l-side__nav__list__link__icon
+          = link_to "/", class: "main__l-side__nav__list__item" do
+            メール/パスワード
+            %i.main__l-side__nav__list__link__icon
         %li
-          = link_to "/", class: "l-side__nav__list__item__active" do
-            %i.l-side__nav__list__link__icon
+          = link_to "/", class: "main__l-side__nav__list__item" do
+            本人情報
+            %i.main__l-side__nav__list__link__icon
         %li
-          = link_to "/", class: "l-side__nav__list__item__active" do
-            %i.l-side__nav__list__link__icon
+          = link_to "/", class: "main__l-side__nav__list__item" do
+            電話番号の確認
+            %i.main__l-side__nav__list__link__icon
         %li
-          = link_to "/", class: "l-side__nav__list__item__active" do
-            %i.l-side__nav__list__link__icon
+          = link_to "/", class: "main__l-side__nav__list__item" do
+            ログアウト
+            %i.main__l-side__nav__list__link__icon
 
-  .r-content
-    %section.r-content__mypage-icon
-      = link_to "/", class: "r-content__mypage-icon__a"  do
-        %figure.r-content__mypage-icon__a__image
-          = image_tag "member_photo.png", class: "r-content__mypage-icon__a__image__src"
-        %h2.r-content__mypage-icon__a__name
+  .main__r-content
+    %section.main__r-content__mypage-icon
+      = link_to "/", class: "main__r-content__mypage-icon__a"  do
+        %figure.main__r-content__mypage-icon__a__image
+          = image_tag "member_photo.png", class: "main__r-content__mypage-icon__a__image__src"
+        %h2.main__r-content__mypage-icon__a__name
           まこ
-        .r-content__mypage-icon__a__number
-          .r-content__mypage-icon__a__number__review
+        .main__r-content__mypage-icon__a__number
+          .main__r-content__mypage-icon__a__number__review
             評価
-            %span.r-content__mypage-icon__a__number__review
-          .r-content__mypage-icon__a__number__sell
+            %span.main__r-content__mypage-icon__a__number__review
+          .main__r-content__mypage-icon__a__number__sell
             出品数
-            %span.r-content__mypage-icon__a__number
-    %section.r-content__tab
-    %aside.r-content__modal
-    %section.r-content__tab2
+            %span.main__r-content__mypage-icon__a__number
+    %section.main__r-content__tab
+    %aside.main__r-content__modal
+    %section.main__r-content__tab2
    
 
 
 = render "shared/sell-btn"
 = render "shared/download-ad"
-= render "shared/footer"

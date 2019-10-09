@@ -1,0 +1,48 @@
+.main{
+  margin: 40px 0 auto;
+  width: 1020px;
+  font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
+  &__l-side{
+    float: left;
+    width: 280px;
+    margin: 0 40 0 0;
+    &__nav{
+      &__list{
+        list-style: none;
+      
+        &__item{
+          border-bottom: 1px solid #eee;
+          position: relative;
+          display: block;
+          padding: 16px;
+          background: #fff;
+          font-size: 14px;
+          color: #333;
+          &__active{
+            background: #eee;
+            font-weight: 600;
+          }
+          &__icon{
+            position: absolute;
+            top: 50%;
+            right: 16px;
+            color: #ccc;
+            transform: translate(0, -50%);
+            transition: all ease-out .2s;
+
+          }
+        }
+      }
+    }
+  }
+}
+
+i{
+  display: inline-block;
+  font-family: "icon-font";
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  
+}
