@@ -1,4 +1,5 @@
 .edit{
+  height: 800px;
   background-color: rgb(245, 245, 245);
   font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
   &__position{
@@ -31,73 +32,69 @@
       }
     }
   }
-  &__page{
-    background-color: rgb(245, 245, 245);
-    margin: 0;
-    padding: 0;
-    &__main{
-      margin: 40px auto 0;
-      width: 1020px;
-      &__profile{
-        float: right;
-        width: 700px;
-        &__box{
-          background: #fff;
-          &__title{
-            font-size: 24px;
-            padding: 8px 24px;
-            border-bottom: 1px solid #f5f5f5;
+  &__main{
+    margin: 40px auto 0;
+    width: 1020px;
+    height: 600px;
+    &__profile{
+      float: right;
+      width: 700px;
+      &__box{
+        background: #fff;
+        &__title{
+          font-size: 24px;
+          padding: 8px 24px;
+          border-bottom: 1px solid #f5f5f5;
+          text-align: center;
+          line-height: 1.4;
+          &__icon{
+            padding: 72px 16px 24px;
+            background: url("/../../images/user-profile.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
             text-align: center;
-            line-height: 1.4;
-            &__icon{
-              padding: 72px 16px 24px;
-              background: url("awai.jpeg");
-              background-repeat: no-repeat;
-              background-size: cover;
-              text-align: center;
-              font-size: 0;
-              figure{
-                display: inline-block;
-                overflow: hidden;
-                border-radius: 50%;
-                vertical-align: middle;
-              }
-              .input-default{
-                width: 220px;
-                margin: 0 0 0 8px;
-                vertical-align: middle;
-                height: 48px;
-                padding: 10px 16px 8px;
-                border-radius: 4px;
-                border: 1px solid #ccc;
-                background: #fff;
-                line-height: 1.5;
-                font-size: 16px;
-              }
+            font-size: 0;
+            figure{
+              display: inline-block;
+              overflow: hidden;
+              border-radius: 50%;
+              vertical-align: middle;
             }
-            &__content{
-              padding: 40px 16px;
-              .textarea-default{
-                min-height: 216px;
-                display: block;
-                width: 100%;
-                max-width: 100%;
-                padding: 10px;
-                border: 1px solid #ccc;
-                background: #fff;
-                font-size: 16px;
-                line-height: 1.5;
-              }
-              button{
-                margin: 16px 0 0;
-                background: #ea352d;
-                border: 1px solid #ea352d;
-                color: #fff;
-                display: block;
-                width: 100%;
-                line-height: 48px;
-                font-size: 14px;
-              }
+            .input-default{
+              width: 220px;
+              margin: 0 0 0 8px;
+              vertical-align: middle;
+              height: 48px;
+              padding: 10px 16px 8px;
+              border-radius: 4px;
+              border: 1px solid #ccc;
+              background: #fff;
+              line-height: 1.5;
+              font-size: 16px;
+            }
+          }
+          &__content{
+            padding: 40px 16px;
+            .textarea-default{
+              min-height: 216px;
+              display: block;
+              width: 100%;
+              max-width: 100%;
+              padding: 10px;
+              border: 1px solid #ccc;
+              background: #fff;
+              font-size: 16px;
+              line-height: 1.5;
+            }
+            button{
+              margin: 16px 0 0;
+              background: #ea352d;
+              border: 1px solid #ea352d;
+              color: #fff;
+              display: block;
+              width: 100%;
+              line-height: 48px;
+              font-size: 14px;
             }
           }
         }
