@@ -164,3 +164,87 @@ div {
   transition: all 0.5s ease 0s;
   opacity: 1;
 }
+.sp-header-iine{
+  margin-right: 22px;
+  position: relative;
+  top: -10px;
+  transition: 1.0s ;
+  color: rgb(0, 0, 0);
+  .fa.fa-heart-o{
+    font-size: 20px;
+    margin-right: 6px;
+    transition: 1.0s ;
+    .fa.fa-heart-o-text{
+      font-size: 14px;
+      
+    }
+  }
+}
+// .sp-header-iine:hover {
+  //   color:rgb(0, 162, 255);
+  // }
+  .fa.fa-heart-o:hover {
+    color:rgb(0, 162, 255);
+    .fa-heart-o::before {
+      content: "\f08a";
+      color: rgb(204, 204, 204);
+  
+  }
+  }
+ 
+.sp-header-notice{
+  margin-right: 19px;
+  position: relative;
+  top: -10px;
+  transition: 1.0s ;
+}
+.sp-header-notice:hover {
+  color:rgb(0, 162, 255);
+}
+.fa.fa-bell-o{
+  color: rgb(204, 204, 204);
+  font-size: 20px;
+  margin-right: 5px;
+  transition: 1.0s ;
+}
+.fa.fa-bell-o:hover {
+  color:rgb(0, 162, 255);
+}
+.sp-header-todolist{
+  position: relative;
+  top: -10px;
+  margin-right: 25px;
+  transition: 1.0s ;
+}
+.sp-header-todolist:hover {
+  color:rgb(0, 162, 255);
+}
+.fa.fa-check{
+  color: rgb(204, 204, 204);
+  font-size: 25px;
+  margin-right: 8px;
+  position: relative;
+  bottom: -5px;
+  transition: 1.0s ;
+}
+.fa.fa-check:hover {
+  color:rgb(0, 162, 255);
+}
+.sp-header-mypage{
+  transition: 1.0s ;
+}
+.sp-header-mypage:hover {
+  color:rgb(0, 162, 255);
+}
+.sp-header-mypage-link{
+  position: relative;
+  top: -10px;
+}
+.sp-header-mypage-img{
+  margin-right: 10px;
+  width: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  bottom: -10px;
+}
