@@ -8,7 +8,7 @@
     box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
     background: #fff;
     ul{
-      width: 1020px;
+      
       margin: 0 auto;
       padding: 16px 0;
       white-space: normal;
@@ -104,5 +104,35 @@
         
       
     }
+    .l-side{
+      float: left;
+      width: 280px;
+      margin: 0 40px 0 0;
+      padding: 0 0 40px;
+      &__nav{
+        &__list{
+          &__item{
+            height: 16px;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            display: block;
+            padding: 16px;
+            background: #fff;
+            font-size: 14px;
+            color: #333;
+            &__active{
+              font-weight: 600;
+            }
+           
+          }
+        }
+        &__head{
+          margin: 40px 0 0;
+          font-size: 16px;
+          font-weight: bold;
+        }
+      }
+    }
+    
   }
 }
