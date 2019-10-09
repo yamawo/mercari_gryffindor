@@ -13,5 +13,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def serch_product
+    @q = Product.ransack(params[:q])
+    @products = @q.result(distinct: true)
+  end
+
   
 end
