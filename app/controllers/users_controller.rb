@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :set_year, :set_month, :set_day
 
   def step3
+    @user = User.new
     session[:nickname] = user_params[:nickname]
     session[:email] = user_params[:email]
     session[:password] = user_params[:password]
@@ -13,19 +14,15 @@ class UsersController < ApplicationController
     session[:birthdate_year] = user_params[:birthdate_year]
     session[:birthdate_month] = user_params[:birthdate_month]
     session[:birthdate_day] = user_params[:birthdate_day]
-    session[] = user_params[]
-    session[] = user_params[]
-    @user = User.new()
   end
 
     def step4
-      session[] = user_params[]
         @user = User.new()
     end
 
     def step6
-        @user = User.new
-    @user.build_address
+      @user = User.new
+      @user.build_address
     end
 
     def set_year
@@ -56,7 +53,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(
+    params.permit(
       :last_name,
       :first_name,
       :last_name_kana,
