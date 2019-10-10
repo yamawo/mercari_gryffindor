@@ -116,10 +116,13 @@
               電話番号の確認
               %i.icon-arrow-right
           %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
+            = link_to "/", class: "main__l-side__nav__list__item__active" do
               ログアウト
               %i.icon-arrow-right
-              
+    .main__r-content
+      .main__r-content__block
+        .main__r-content__block__form
+          = link_to "ログアウト", "/users/sign_out", method: :delete, class: "main__r-content__block__form__btn"
 
 
 
