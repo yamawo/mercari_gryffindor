@@ -56,6 +56,28 @@
           color: #333;
           &__active{
             font-weight: 600;
+            font-weight: 600;
+            height: 16px;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            display: block;
+            padding: 16px;
+            font-size: 14px;
+            color: #333; 
+            background: #eee;
+            .icon-arrow-right{
+              height: 10px;
+              width: 10px;
+              content: "";
+              position: absolute;
+              right: 16px;
+              top: 50%;
+              border-bottom: 2px solid #333;
+              border-right: 2px solid #333;
+              margin: auto;
+              box-sizing: border-box;
+              transform: rotate(-45deg);
+            }
           }
          
         }
