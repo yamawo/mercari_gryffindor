@@ -18,27 +18,6 @@ class UsersController < ApplicationController
         # session[] = user_params[]
         @user = User.new()
     end
-<<<<<<< HEAD
-=======
-    
-=======
-  before_action :set_year, :set_month, :set_day
-
-  def step3
-    @user = User.new
-    session[:nickname] = user_params[:nickname]
-    session[:email] = user_params[:email]
-    session[:password] = user_params[:password]
-    session[:password_confirmation] = user_params[:password_confirmation]
-    session[:last_name] = user_params[:last_name]
-    session[:first_name] = user_params[:first_name]
-    session[:last_name_kana] = user_params[:last_name_kana]
-    session[:first_name_kana] = user_params[:first_name_kana]
-    session[:birthdate_year] = user_params[:birthdate_year]
-    session[:birthdate_month] = user_params[:birthdate_month]
-    session[:birthdate_day] = user_params[:birthdate_day]
-  end
->>>>>>> d374b3b3cd10691a7c832a338d49060507f5134d
 
     def step4
         @user = User.new()
@@ -76,7 +55,6 @@ class UsersController < ApplicationController
 
   private
 
-<<<<<<< HEAD
 #   def user_params
 #     params.require(:user).permit(
 #       :last_name,
@@ -106,35 +84,4 @@ class UsersController < ApplicationController
 #       ]
 #     )
 #   end  
-=======
-  def user_params
-    params.permit(
-      :last_name,
-      :first_name,
-      :last_name_kana,
-      :first_name_kana,
-      :birthdate_year,
-      :birthdate_month,
-      :birthdate_day,
-      :email,
-      :phone_number,
-      :password,
-      :nickname,
-      :text,
-      :image,
-      :good,
-      :normal,
-      :bad,
-      address_attributes: [
-        :id,
-        :postal_code,
-        :address_prefecture,
-        :address_city,
-        :address_number,
-        :address_building,
-        :address_phone,
-      ]
-    )
-  end  
->>>>>>> d374b3b3cd10691a7c832a338d49060507f5134d
 end
