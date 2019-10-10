@@ -6,7 +6,7 @@
         %h2.contents__main__content__registration
           電話番号の確認
         %form.contents__main__content__form
-          = form_for @user do |f|
+          = form_for @user, url: step6_users_path do |f|
             .contents__main__content__form__field
               .contents__main__content__form__field__callnumber
                 = f.label :携帯電話の番号, class: "contents__main__content__form__field__callnumber__label"
@@ -21,6 +21,4 @@
                 = link_to "/" , class: "contents__main__content__form__field__reason__link" do
                   電話番号の確認が必要な理由
                   %i.icon-arrow-right
-
-
     = render "footer"
