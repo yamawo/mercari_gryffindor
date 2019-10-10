@@ -8,9 +8,14 @@
         %i.fa.fa-angle-right
       %li.navbar__list__ele
         = link_to "", class: "navbar__list__ele__link" do
-          %span.navbar__list__ele__link__name__active
+          %span.navbar__list__ele__link__name
             マイページ
-  %main
+        %i.fa.fa-angle-right
+      %li.navbar__list__ele
+        = link_to "", class: "navbar__list__ele__link" do
+          %span.navbar__list__ele__link__name__active
+            本人情報の登録
+  %main.main
     .main__l-side
       %nav.main__l-side__nav
         %ul.main__l-side__nav__list
@@ -113,4 +118,102 @@
             = link_to "/", class: "main__l-side__nav__list__item" do
               ログアウト
               %i.icon-arrow-right
-  .confirmation-content
+    .confirmation-content
+      %h2.confirmation-content__title 本人情報の登録
+      %form.confirmation-content__main{action: "https://www.mercari.com/jp/mypage/identification/save/", method: "POST", novalidate: ""}
+        .confirmation-content__main__overview
+          %p
+            お客さまの本人情報をご登録ください。
+            %br>/
+            登録されたお名前・生年月日を変更する場合、本人確認書類の提出が必要になります。
+          %p.confirmation-content__main__overview__text
+            %a.confirmation-content__main__overview__text__letter{href: "/jp/help_center/article/495/", target: "_blank"}
+              本人確認書類のアップロードについて
+              %i.fa.fa-angle-right
+        .confirmation-content__main__form-group
+          %label.confirmation-content__main__form-group__label お名前
+          %p.confirmation-content__main__form-group__text 朝比奈 彩
+        .confirmation-content__main__form-group
+          %label.confirmation-content__main__form-group__label お名前カナ
+          %p.confirmation-content__main__form-group__text アサヒナ アヤ
+        .confirmation-content__main__form-group
+          %label.confirmation-content__main__form-group__label{for: "birthday"} 生年月日
+          %p.confirmation-content__main__form-group__text 1993/10/06
+        .confirmation-content__main__form-group
+          %label.confirmation-content__main__form-group__label{for: "zip_code"} 郵便番号
+          %span.confirmation-content__main__form-group__any 任意
+          %input.confirmation-content__main__form-group__input{name: "zip_code", placeholder: "例）1234567", type: "text", value: "5630041"}/
+        .confirmation-content__main__form-group
+          %labe.confirmation-content__main__form-group__labell{for: "prefecture"} 都道府県
+          %span.confirmation-content__main__form-group__any 任意
+          .confirmation-content__main__form-group__select
+            %select.confirmation-content__main__form-group__select__box{name: "prefecture"}
+              %option --
+              %option 北海道
+              %option 青森県
+              %option 岩手県
+              %option 宮城県
+              %option 秋田県
+              %option 山形県
+              %option 福島県
+              %option 東京都
+              %option 神奈川県
+              %option 埼玉県
+              %option 千葉県
+              %option 茨城県
+              %option 栃木県
+              %option 群馬県
+              %option 山梨県
+              %option 新潟県
+              %option 長野県
+              %option 富山県
+              %option 石川県
+              %option 福井県
+              %option 愛知県
+              %option 岐阜県
+              %option 静岡県
+              %option 三重県
+              %option{selected: "selected"} 大阪府
+              %option 兵庫県
+              %option 京都府
+              %option 滋賀県
+              %option 奈良県
+              %option 和歌山県
+              %option 鳥取県
+              %option 島根県
+              %option 岡山県
+              %option 広島県
+              %option 山口県
+              %option 徳島県
+              %option 香川県
+              %option 愛媛県
+              %option 高知県
+              %option 福岡県
+              %option 佐賀県
+              %option 長崎県
+              %option 熊本県
+              %option 大分県
+              %option 宮崎県
+              %option 鹿児島県
+              %option 沖縄県
+        .confirmation-content__main__form-group
+          %label.confirmation-content__main__form-group__label{for: "city"} 市区町村
+          %span.confirmation-content__main__form-group__any 任意
+          %input.confirmation-content__main__form-group__input{name: "city", placeholder: "例) 横浜市緑区", type: "text", value: "池田市満寿美町"}/
+        .confirmation-content__main__form-group
+          %label.confirmation-content__main__form-group__label{for: "address1_label"} 番地
+          %span.confirmation-content__main__form-group__any 任意
+          %input.confirmation-content__main__form-group__input{name: "address1", placeholder: "例) 青山1−1−1", type: "text", value: "8‐25"}/
+        .confirmation-content__main__form-group
+          %label.confirmation-content__main__form-group__label{for: "address2_label"} 建物名
+          %span.confirmation-content__main__form-group__any 任意
+          %input.confirmation-content__main__form-group__input{name: "address2", placeholder: "例) 柳ビル103", type: "text", value: ""}/
+        %button.confirmation-content__main__btn{type: "submit"} 登録する
+        .confirmation-content__main__text-right
+          %p.confirmation-content__main__text-right__p
+            %a.confirmation-content__main__text-right__p__a{href: "/jp/help_center/article/423/", target: "_blank"}
+              本人情報の登録について
+              %i.fa.fa-angle-right
+        %input{name: "__csrf_value", type: "hidden", value: "fc020c457bd6c31d1180b69c4bfb4eeb06c300eaeafaf5dde2e5c06df644f978370bcbba341a03fbef0eaee213d6d715f9cd82d06f111ac28aeb5b2b5f0763fe8"}/
+  = render "shared/sell-btn"
+  = render "shared/download-ad"
