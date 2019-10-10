@@ -1,21 +1,27 @@
 .edit
   .edit__position
     %ul
-      %li{ itemscope: "", itemtype: "http://data-vocabulary.org/Breadcrumb" }  
-        %a{href: "https://www.mercari.com/jp/", itemprop: "url"}
+      %li
+        = link_to ""
+        %a
+          = link_to ""
           %span{itemprop: "title"} メルカリ
         %i.fa.fa-angle-right
-      %li{itemscope: "", itemtype: "http://data-vocabulary.org/Breadcrumb"}
-        %a{href: "https://www.mercari.com/jp/mypage/", itemprop: "url"}
+      %li
+        = link_to ""
+        %a 
+          = link_to ""
           %span{itemprop: "title"} マイページ
         %i.fa.fa-angle-right
-      %li{itemscope: "", itemtype: "http://data-vocabulary.org/Breadcrumb"}
+      %li
+        = link_to ""
         %span.profile{itemprop: "title"} プロフィール
   .edit__main
     .edit__main__profile
       %section.box
         %h2.title プロフィール
-        %form{action: "https://www.mercari.com/jp/mypage/profile/", method: "POST"}
+        %form
+          = link_to ""
           %input{name: "__csrf_value", type: "hidden"}/
           .edit__main__profile__icon
             %profile-figure
@@ -23,7 +29,7 @@
             %input.input-default{name: "nickname", placeholder: "例)AYA☆セール中", type: "text", value: "マコなり"}/
           .edit__main__profile__content
             %textarea.textarea-default{name: "introduction", placeholder: "例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪"}
-            %input{name: "after_save_callback", type: "hidden", value: "https://www.mercari.com/jp/mypage/profile/"}/
+            %input{name: "after_save_callback", type: "hidden"}/
             %button.btn-default.btn-red{type: "submit"} 変更する
             %i.icon-arrow-right
     .edit__main__l-side
