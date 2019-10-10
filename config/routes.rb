@@ -12,7 +12,6 @@ Rails.application.routes.draw do
       scope :sign_up do           # ディレクトリの階層の変更はなし
         get 'step3'
         get 'step4'
-        get 'step5'
         get 'step6'
         get 'step7'
         get 'step8'
