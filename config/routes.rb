@@ -9,3 +9,6 @@ Rails.application.routes.draw do
       get :profile
       get "mypage"
       get "logout"
+    end
+  end
+end
