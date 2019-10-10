@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_06_114900) do
+ActiveRecord::Schema.define(version: 2019_10_08_063641) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "postal_code", null: false
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 2019_10_06_114900) do
     t.string "address_number", null: false
     t.string "address_building"
     t.string "address_phone"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -60,4 +62,5 @@ ActiveRecord::Schema.define(version: 2019_10_06_114900) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "addresses", "users"
 end
