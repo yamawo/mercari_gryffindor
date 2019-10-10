@@ -28,6 +28,10 @@ class UsersController < ApplicationController
       @user.build_address
     end
 
+    def step7
+        @user = User.new()
+    end
+
     def set_year
         years = []
         for year in 1900..2019 do
