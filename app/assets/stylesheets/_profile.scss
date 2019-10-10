@@ -1,5 +1,4 @@
 .edit{
-  height: 800px;
   background-color: rgb(245, 245, 245);
   font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
   &__position{
@@ -8,7 +7,7 @@
     box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
     background: #fff;
     ul{
-      
+      width: 1020px;
       margin: 0 auto;
       padding: 16px 0;
       white-space: normal;
@@ -33,15 +32,14 @@
     }
   }
   &__main{
+    height: 1292px;
     margin: 40px auto 0;
     width: 1020px;
-    height: 600px;
     &__profile{
       float: right;
       width: 700px;
       section{
         background: #fff;
-      
         h2{
           font-size: 24px;
           padding: 8px 24px;
@@ -51,60 +49,60 @@
           font-weight: 900;
         }
       }
-          &__icon{
-            padding: 72px 16px 24px;
-            background: url("user-profile.jpg");
-            background-repeat: no-repeat;
-            background-size: cover;
-            text-align: center;
-            font-size: 0;
-            profile-figure{
-              display: inline-block;
-              overflow: hidden;
-              border-radius: 50%;
-              vertical-align: middle;
-            }
-            .input-default{
-              margin-left: 8px;
-              width: 185px;
-              vertical-align: middle;
-              height: 30px;
-              padding: 10px 16px 8px;
-              border-radius: 4px;
-              border: 1px solid #ccc;
-              background: #fff;
-              line-height: 1.5;
-              font-size: 16px;
-            }
+      &__icon{
+        padding: 72px 16px 24px;
+        background: url("user-profile.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        text-align: center;
+        font-size: 0;
+        profile-figure{
+          display: inline-block;
+          overflow: hidden;
+          border-radius: 50%;
+          vertical-align: middle;
+        }
+        .input-default{
+          margin-left: 8px;
+          width: 185px;
+          vertical-align: middle;
+          height: 30px;
+          padding: 10px 16px 8px;
+          border-radius: 4px;
+          border: 1px solid #ccc;
+          background: #fff;
+          line-height: 1.5;
+          font-size: 16px;
+        }
+      }
+        &__content{
+          padding: 40px 16px;
+          .textarea-default{
+            min-height: 190px;
+            display: block;
+            width: 97%;
+            max-width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background: #fff;
+            font-size: 16px;
+            line-height: 1.5;
           }
-          &__content{
-            padding: 40px 16px;
-            .textarea-default{
-              min-height: 190px;
-              display: block;
-              width: 97%;
-              max-width: 100%;
-              padding: 10px;
-              border: 1px solid #ccc;
-              background: #fff;
-              font-size: 16px;
-              line-height: 1.5;
-            }
-            button{
-              margin: 16px 0 0;
-              background: #ea352d;
-              border: 1px solid #ea352d;
-              color: #fff;
-              display: block;
-              width: 100%;
-              line-height: 45px;
-              font-size: 14px;
-            }
+          button{
+            margin: 16px 0 0;
+            background: #ea352d;
+            border: 1px solid #ea352d;
+            color: #fff;
+            display: block;
+            width: 100%;
+            line-height: 45px;
+            font-size: 14px;
           }
+        }
         
       
     }
-    .l-side{
+    &__l-side{
       float: left;
       width: 280px;
       margin: 0 40px 0 0;
@@ -133,6 +131,8 @@
         }
       }
     }
-    
   }
+}
+.download__display__content {
+  margin: 0 325px 0 325px;
 }
