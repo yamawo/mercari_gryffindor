@@ -37,14 +37,18 @@ class UsersController < ApplicationController
     session[:address_phone] = user_params[:address_phone]
   end
 
-  def set_year
-    years = []
-    for year in 1900..2019 do
-        years << year 
+    def step7
+        @user = User.new()
     end
-    new_years = years.reverse
-    @year = new_years
-  end
+
+    def set_year
+        years = []
+        for year in 1900..2019 do
+            years << year 
+        end
+        new_years = years.reverse
+        @year = new_years
+    end
 
   def set_month
     months = []

@@ -9,7 +9,7 @@ body {
 }
 
 .step3-single_container {
-    padding: 0 0 220px;
+    padding: 0;
     &__header {
         height: 128px;
         text-align: center;
@@ -178,7 +178,7 @@ body {
                         &__default {
                             width: 100%;
                             margin: 8px 0 0;
-                            padding: 10px 16px 8px;
+                            padding: 10px 0 8px 16px;
                             border-radius: 4px;
                             border: 1px solid #cccccc;
                             background: #ffffff;
