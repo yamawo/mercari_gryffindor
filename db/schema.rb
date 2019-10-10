@@ -20,6 +20,10 @@ ActiveRecord::Schema.define(version: 2019_10_10_082651) do
     t.string "address_building"
     t.string "address_phone"
     t.bigint "user_id"
+    t.string "last_name", null: false
+    t.string "first_name", null: false
+    t.string "last_name_kana", null: false
+    t.string "first_name_kana", null: false
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 

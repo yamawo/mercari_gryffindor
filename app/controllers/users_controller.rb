@@ -1,31 +1,44 @@
 class UsersController < ApplicationController
-    before_action :set_year, :set_month, :set_day
-    layout "users_layout"
+  before_action :set_year, :set_month, :set_day
+  before_action :validates_step3, only: :step4
+  layout "users_layout"
     
-    def step3
-        # session[:nickname] = user_params[:nickname]
-        # session[:email] = user_params[:email]
-        # session[:password] = user_params[:password]
-        # session[:password_confirmation] = user_params[:password_confirmation]
-        # session[:last_name] = user_params[:last_name]
-        # session[:first_name] = user_params[:first_name]
-        # session[:last_name_kana] = user_params[:last_name_kana]
-        # session[:first_name_kana] = user_params[:first_name_kana]
-        # session[:birthdate_year] = user_params[:birthdate_year]
-        # session[:birthdate_month] = user_params[:birthdate_month]
-        # session[:birthdate_day] = user_params[:birthdate_day]
-        # session[] = user_params[]
-        # session[] = user_params[]
-        @user = User.new()
-    end
+  def step3
+    @user = User.new
+  end
 
-    def step4
-        @user = User.new()
-    end
+  def step4 
+    @user = User.new
+    session[:nickname] = user_params[:nickname]
+    session[:email] = user_params[:email]
+    session[:password] = user_params[:password]
+    session[:password_confirmation] = user_params[:password_confirmation]
+    session[:last_name] = user_params[:last_name]
+    session[:first_name] = user_params[:first_name]
+    session[:last_name_kana] = user_params[:last_name_kana]
+    session[:first_name_kana] = user_params[:first_name_kana]
+    session[:birthdate_year] = user_params[:birthdate_year]
+    session[:birthdate_month] = user_params[:birthdate_month]
+    session[:birthdate_day] = user_params[:birthdate_day]        
+  end
 
-    def step6
-      @user = User.new
-      @user.build_address
+  def step6
+    @user = User.new
+    @user.build_address
+    session[:postal_code] = user_params[:postal_code]
+    session[:address_prefecture] = user_params[:address_prefecture]
+    session[:address_city] = user_params[:address_city]
+    session[:address_number] = user_params[:address_number]
+    session[:last_name] = user_params[:last_name]
+    session[:first_name] = user_params[:first_name]
+    session[:last_name_kana] = user_params[:last_name_kana]
+    session[:first_name_kana] = user_params[:first_name_kana]
+    session[:address_building] = user_params[:address_building]
+    session[:address_phone] = user_params[:address_phone]
+  end
+
+    def step7
+        @user = User.new()
     end
 
     def set_year
@@ -37,51 +50,96 @@ class UsersController < ApplicationController
         @year = new_years
     end
 
-    def set_month
-        months = []
-        for month in 1..12 do
-            months << month
-        end
-        @month = months        
+  def set_month
+    months = []
+    for month in 1..12 do
+        months << month
     end
+    @month = months        
+  end
 
-    def set_day
-        days = []
-        for day in 1..31 do
-            days << day
-        end
-        @day = days
+  def set_day
+    days = []
+    for day in 1..31 do
+        days << day
     end
+    @day = days
+  end
+
+  def create
+    @user = User.new(
+      nickname: session[:nickname],
+      email: session[:email],
+      password: session[:password],
+      password_confirmation: session[:password_confirmation],
+      last_name: session[:last_name],
+      first_name: session[:first_name],
+      last_name_kana: session[:last_name_kana],
+      first_name_kana: session[:first_name_kana],
+      birthdate_year: session[:birthdate_year],
+      birthdate_month: session[:birthdate_month],
+      birthdate_day: session[:birthdate_day],
+    )
+    @user.build_address(user_params[:address_attributes])
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_to new_user_path
+    else 
+      render "/"
+    end   
+  end
+
+  def step8
+    sign_in User.find(session[:id]) unless user_signed_in?
+  end
 
   private
 
-#   def user_params
-#     params.require(:user).permit(
-#       :last_name,
-#       :first_name,
-#       :last_name_kana,
-#       :first_name_kana,
-#       :birthdate_year,
-#       :birthdate_month,
-#       :birthdate_day,
-#       :email,
-#       :phone_number,
-#       :password,
-#       :nickname,
-#       :text,
-#       :image,
-#       :good,
-#       :normal,
-#       :bad,
-#       address_attributes: [
-#         :id,
-#         :postal_code,
-#         :address_prefecture,
-#         :address_city,
-#         :address_number,
-#         :address_building,
-#         :address_phone,
-#       ]
-#     )
-#   end  
+  def validates_step3
+    session[:nickname] = user_params[:nickname]
+    session[:email] = user_params[:email]
+    session[:password] = user_params[:password]
+    session[:password_confirmation] = user_params[:password_confirmation]
+    session[:last_name] = user_params[:last_name]
+    session[:first_name] = user_params[:first_name]
+    session[:last_name_kana] = user_params[:last_name_kana]
+    session[:first_name_kana] = user_params[:first_name_kana]
+    session[:birthdate_year] = user_params[:birthdate_year]
+    session[:birthdate_month] = user_params[:birthdate_month]
+    session[:birthdate_day] = user_params[:birthdate_day]
+  end
+
+  def user_params
+    params.require(:user).permit(
+      :last_name,
+      :first_name,
+      :last_name_kana,
+      :first_name_kana,
+      :birthdate_year,
+      :birthdate_month,
+      :birthdate_day,
+      :email,
+      :phone_number,
+      :password,
+      :nickname,
+      :text,
+      :image,
+      :good,
+      :normal,
+      :bad,
+      address_attributes: [
+        :id,
+        :last_name,
+        :first_name,
+        :last_name_kana,
+        :first_name_kana,        
+        :postal_code,
+        :address_prefecture,
+        :address_city,
+        :address_number,
+        :address_building,
+        :address_phone,
+      ]
+    )
+  end  
 end
