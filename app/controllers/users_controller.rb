@@ -1,4 +1,13 @@
 class UsersController < ApplicationController
+<<<<<<< HEAD
+    before_action :set_year, :set_month, :set_day
+    layout "users_layout"
+    
+    def step3
+        @user = User.new()
+    end
+    
+=======
   before_action :set_year, :set_month, :set_day
 
   def step3
@@ -16,6 +25,7 @@ class UsersController < ApplicationController
     session[:birthdate_day] = user_params[:birthdate_day]
   end
 
+>>>>>>> 31ec68f519d673754b5ace0e1e22c3f447bbefa9
     def step4
         @user = User.new()
     end
