@@ -1,0 +1,138 @@
+.edit
+  .edit__position
+    %ul
+      %li
+        = link_to ""
+        %a
+          = link_to ""
+          %span{itemprop: "title"} メルカリ
+        %i.fa.fa-angle-right
+      %li
+        = link_to ""
+        %a 
+          = link_to ""
+          %span{itemprop: "title"} マイページ
+        %i.fa.fa-angle-right
+      %li
+        = link_to ""
+        %span.profile{itemprop: "title"} プロフィール
+  .edit__main
+    .edit__main__profile
+      %section.box
+        %h2.title プロフィール
+        %form
+          = link_to ""
+          %input{name: "__csrf_value", type: "hidden"}/
+          .edit__main__profile__icon
+            %profile-figure
+              %img{height: "60", src: "//static.mercdn.net/images/member_photo_noimage_thumb.png", width: "60"}/
+            %input.input-default{name: "nickname", placeholder: "例)AYA☆セール中", type: "text", value: "マコなり"}/
+          .edit__main__profile__content
+            %textarea.textarea-default{name: "introduction", placeholder: "例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪"}
+            %input{name: "after_save_callback", type: "hidden"}/
+            %button.btn-default.btn-red{type: "submit"} 変更する
+            %i.icon-arrow-right
+    .edit__main__l-side
+      %nav.edit__main__l-side__nav
+        %ul.edit__main__l-side__nav__list
+          %li
+            = link_to "/", class: "edit__main__l-side__nav__list__item" do
+              マイページ
+              %span.edit__main__l-side__nav__list__item__number
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "edit__main__l-side__nav__list__item" do
+              お知らせ
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "edit__main__l-side__nav__list__item" do
+              やることリスト
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "edit__main__l-side__nav__list__item" do
+              いいね！一覧
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "edit__main__l-side__nav__list__item" do
+              出品する
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "edit__main__l-side__nav__list__item" do
+              出品した商品 - 出品中
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "edit__main__l-side__nav__list__item" do
+              出品した商品 - 取引中
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "edit__main__l-side__nav__list__item" do
+              出品した商品 - 売却済み
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "edit__main__l-side__nav__list__item" do
+              購入した商品 - 取引中
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "edit__main__l-side__nav__list__item" do
+              購入した商品 - 過去の取引
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "edit__main__l-side__nav__list__item" do
+              ニュース一覧
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "edit__main__l-side__nav__list__item" do
+              評価一覧
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "edit__main__l-side__nav__list__item" do
+              ガイド
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "edit__main__l-side__nav__list__item" do
+              お問い合わせ
+              %i.icon-arrow-right
+        %h3.edit__main__l-side__nav__head
+          メルペイ
+        %ul.edit__main__l-side__nav__list
+          %li
+            = link_to "/", class: "edit__main__l-side__nav__list__item" do
+              売り上げ・振込申請
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "edit__main__l-side__nav__list__item" do
+              ポイント
+              %i.icon-arrow-right
+        %h3.edit__main__l-side__nav__head
+          設定
+        %ul.edit__main__l-side__nav__list
+          %li
+            = link_to "/", class: "edit__main__l-side__nav__list__item__active" do
+              プロフィール
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "edit__main__l-side__nav__list__item" do
+              発送元・お届け先住所変更
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "edit__main__l-side__nav__list__item" do
+              支払い方法
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "edit__main__l-side__nav__list__item" do
+              メール/パスワード
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "edit__main__l-side__nav__list__item" do
+              本人情報
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "edit__main__l-side__nav__list__item" do
+              電話番号の確認
+              %i.icon-arrow-right
+          %li
+            = link_to "/", class: "edit__main__l-side__nav__list__item" do
+              ログアウト
+              %i.icon-arrow-right
+= render "shared/sell-btn"
+= render "shared/download-ad"
