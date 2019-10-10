@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   } 
   resources :address  
   resources :products, only: [:index]
+  
   resources :users do
     collection do
       scope :sign_up do           # ディレクトリの階層の変更はなし
