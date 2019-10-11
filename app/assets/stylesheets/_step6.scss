@@ -1,4 +1,4 @@
-.step6-single_container {
+.step6 {
   padding: 0;
   &__header {
     height: 128px;
@@ -38,7 +38,7 @@
           font-size: 12px;
           color: #888888;
         }
-        .step6-single_container__header__progress-bar__active {
+        .step6__header__progress-bar__active {
           font-weight: 600;
           color: $header_list_active_color;
           &__status {
@@ -60,7 +60,7 @@
             }
           }
         }
-        .step6-single_container__header__progress-bar__second-active {
+        .step6__header__progress-bar__second-active {
           font-weight: 600;
           color: $header_list_active_color;
           &__status {
@@ -93,7 +93,7 @@
             }
           }
         }
-        .step6-single_container__header__progress-bar__third-active {
+        .step6__header__progress-bar__third-active {
           font-weight: 600;
           color: $header_list_active_color;
           &__status {
@@ -126,7 +126,7 @@
             }
           }
         }
-        .step6-single_container__header__progress-bar__not-active {
+        .step6__header__progress-bar__not-active {
           font-weight: 600;
           color: $header_list_not_active_color;
           &__status {
@@ -159,7 +159,7 @@
             }
           }
         }
-        .step6-single_container__header__progress-bar__not-active-last {
+        .step6__header__progress-bar__not-active-last {
           font-weight: 600;
           color: $header_list_not_active_color;
           &__status-last {
@@ -188,76 +188,78 @@
         }
       }
     }
+  }  
+  .single-main{
+    width: 700px;
+    background-color: white;
+    margin: 0 auto;
+    .l-single-container {
+      .l-capter-head{
+        font-size: 22px;
+        padding: 32px;
+        font-weight: 700;
+        text-align: center;
+        border-bottom: 1px solid $main_color; 
+        .l-single-content{
+          max-width: 343px;
+          margin: 0 auto;
+          .form-group label{
+            font-weight: 600;
+          }
+          .form-group input{
+            width: calc(100% - 34px);
+            margin-top: 8px;
+            padding: 10px 16px 8px;
+            height: 28px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+          }
+          select{
+            width: 100%;
+            margin-top: 8px;
+            padding: 10px 16px 8px;
+            height: 48px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 16px;  
+            background-color: white;
+          }
+          .form-require{
+            background-color: red;
+            color: white;
+            margin-left: 8px;
+            font-size: 12px;
+            padding: 2px 4px;
+            border-radius: 2px;
+            vertical-align: top;
+          }
+          .form-group:not(:first-of-type){
+            padding-top: 32px;
+          }
+          .form-any{
+            background-color: rgb(204, 199, 199);
+            color: white;
+            margin-left: 8px;
+            font-size: 12px;
+            padding: 2px 4px; 
+            border-radius: 2px; 
+            vertical-align: top;
+          }
+        }
+        .form-group .submit-btn{
+          width: 100%;
+          background-color: red;
+          color: white;
+          border: 1px solid red;
+          border-radius: 0; 
+          height: 50px;
+          cursor: pointer;
+        }
+      }
+    }
   }
-}    
-.single-main{
-  width: 700px;
-  background-color: white;
-  margin: 0 auto;
-}
-.l-capter-head{
-  font-size: 22px;
-  padding: 32px;
-  font-weight: 700;
-  text-align: center;
-  border-bottom: 1px solid $main_color; 
 }
 #new_user{
   padding: 40px 40px 64px;
-}
-.l-single-content{
-  max-width: 343px;
-  margin: 0 auto;
-}
-.form-group label{
-  font-weight: 600;
-}
-.form-group input{
-  width: calc(100% - 34px);
-  margin-top: 8px;
-  padding: 10px 16px 8px;
-  height: 28px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-}
-select{
-  width: 100%;
-  margin-top: 8px;
-  padding: 10px 16px 8px;
-  height: 48px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  font-size: 16px;  
-  background-color: white;
-}
-.form-group:not(:first-of-type){
-  padding-top: 32px;
-}
-.form-require{
-  background-color: red;
-  color: white;
-  margin-left: 8px;
-  font-size: 12px;
-  padding: 2px 4px;
-  border-radius: 2px;
-  vertical-align: top;
-}
-.form-any{
-  background-color: rgb(204, 199, 199);
-  color: white;
-  margin-left: 8px;
-  font-size: 12px;
-  padding: 2px 4px; 
-  border-radius: 2px; 
-  vertical-align: top;
-}
-.form-group .submit-btn{
-  width: 100%;
-  background-color: red;
-  color: white;
-  border: 1px solid red;
-  border-radius: 0; 
-  height: 50px;
-  cursor: pointer;
 }
