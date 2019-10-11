@@ -120,7 +120,7 @@
               %i.icon-arrow-right
     .confirmation-content
       %h2.confirmation-content__title 本人情報の登録
-      %form.confirmation-content__main{action: "https://www.mercari.com/jp/mypage/identification/save/", method: "POST", novalidate: ""}
+      .confirmation-content__main
         .confirmation-content__main__overview
           %p
             お客さまの本人情報をご登録ください。
@@ -147,8 +147,8 @@
           %labe.confirmation-content__main__form-group__labell{for: "prefecture"} 都道府県
           %span.confirmation-content__main__form-group__any 任意
           .confirmation-content__main__form-group__select
-            = form_for(@presence) do |f|
-              = f.collection_select : Prefecture.all, :id, :name
+            = form_for @address, url: confirmation_users_path do |f|
+              = f.collection_select :address_prefecture,Prefecture.all, :id, :name, prompt: "大阪府", class: 'box'
         .confirmation-content__main__form-group
           %label.confirmation-content__main__form-group__label{for: "city"} 市区町村
           %span.confirmation-content__main__form-group__any 任意

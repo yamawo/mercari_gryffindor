@@ -77,7 +77,7 @@
         margin: 8px 0 0;
         position: relative;
         background: #fff;
-        &__box{
+        #address_address_prefecture{
           width: 100%;
           position: relative;
           z-index: 2;
@@ -107,8 +107,11 @@
         margin: 8px 0 0;
         line-height: 1.5;
         color: #0099e8;
-        i{
-          color: #0099e8;
+        &__a{
+          font-size: 14px;
+          i{
+            color: #0099e8;
+          }
         }
       }
     }
