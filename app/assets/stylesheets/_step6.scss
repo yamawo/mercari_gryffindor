@@ -200,7 +200,7 @@
         font-weight: 700;
         text-align: center;
         border-bottom: 1px solid $main_color; 
-        .l-single-content{
+        &__content{
           max-width: 343px;
           margin: 0 auto;
           .form-group label{
@@ -247,16 +247,18 @@
             vertical-align: top;
           }
         }
-        .form-group .submit-btn{
-          width: 100%;
-          background-color: red;
-          color: white;
-          border: 1px solid red;
-          border-radius: 0; 
-          height: 50px;
-          cursor: pointer;
-        }
       }
+      .form-group .submit-btn{
+        width: 100%;
+        background-color: red;
+        color: white;
+        border: 1px solid red;
+        border-radius: 0; 
+        height: 50px;
+        cursor: pointer;
+        margin-top: 40px;
+      }
+      
     }
   }
 }

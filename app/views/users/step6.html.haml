@@ -26,7 +26,7 @@
         住所入力
       = form_for @user, url: step7_users_path, method: :GET do |f|
         = f.fields_for :address do |i|
-          .l-single-content
+          .l-capter-head__content
             .form-group
               = i.label :お名前
               %span.form-require
