@@ -76,3 +76,4 @@ gem 'devise'
 gem 'haml-rails'
 
 gem 'bootsnap'
+gem 'active_hash'

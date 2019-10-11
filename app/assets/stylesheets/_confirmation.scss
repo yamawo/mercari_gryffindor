@@ -1,0 +1,119 @@
+.confirmation-content{
+  margin-bottom: 85px;
+  float: right;
+  width: 700px;
+  background: #fff;
+  font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
+
+  &__title{
+    font-size: 24px;
+    padding: 8px 24px;
+    border-bottom: 1px solid #f5f5f5;
+    text-align: center;
+    line-height: 1.4; 
+    font-weight: 800;
+  }
+  &__main{
+    padding: 64px;
+    border-top: 1px solid #f5f5f5;
+    &__overview{
+      p{
+        margin: 5px 0 0;
+        line-height: 1.5; 
+        font-size: 14px;
+      }
+      &__text{
+        margin: 5px 0 0;
+        line-height: 1.5;
+        text-align: right;
+        position: relative;
+      
+        &__letter{
+          color: #0099e8;
+          text-decoration: none;
+          margin-right: 10px;
+        i{
+          color: #0099e8;
+          font-size: 25px;
+          position: absolute;
+          bottom: 0.1px;
+          left: 555px;
+        }
+        }
+      }
+    }
+    &__form-group{
+      margin: 35px 0 0;
+      &__label{
+        font-weight: 600;
+        font-size: 13px;
+      }
+      &__text{
+        margin: 8px 0 0;
+        line-height: 1.5;
+        font-size: 14px;
+      }
+      &__any{
+        margin: 0 0 0 8px;
+        padding: 2px 4px;
+        border-radius: 2px;
+        color: #fff;
+        font-size: 12px;
+        vertical-align: top;
+        background-color: #ccc;
+      }
+      &__input{
+        margin: 8px 0 0;
+        height: 25px;
+        padding: 10px 16px 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        background: #fff;
+        line-height: 1.5;
+        font-size: 14px;
+        width: 100%;
+      }
+      &__select{
+        margin: 8px 0 0;
+        position: relative;
+        background: #fff;
+        #address_address_prefecture{
+          width: 100%;
+          position: relative;
+          z-index: 2;
+          height: 48px;
+          padding: 0 16px;
+          border-radius: 4px;
+          border: 1px solid #ccc;
+          background: 0;
+          font-size: 16px;
+          line-height: 1.5;
+        }
+      }
+    }
+    &__btn{
+      margin: 40px 0 0 0;
+      background: #ea352d;
+      border: 1px solid #ea352d;
+      color: #fff;
+      width: 100%;
+      line-height: 45px;
+      font-size: 14px;
+    }
+    &__text-right{
+      margin: 40px 0 0;
+      text-align: right;
+      &__p{
+        margin: 8px 0 0;
+        line-height: 1.5;
+        color: #0099e8;
+        &__a{
+          font-size: 14px;
+          i{
+            color: #0099e8;
+          }
+        }
+      }
+    }
+  }
+}

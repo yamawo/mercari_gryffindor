@@ -6,8 +6,9 @@ Rails.application.routes.draw do
   resources :products, only: [:index]
   resources :users, only: [:mypage, :logout] do
     collection do
-      get :profile
+      get "profile"
       get "mypage"
+      get "confirmation"
       get "logout"
     end
   end

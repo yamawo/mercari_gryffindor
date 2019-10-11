@@ -10,4 +10,7 @@ class UsersController < ApplicationController
     
   end
   
+  def confirmation
+    @address = Address.new
+  end
 end
