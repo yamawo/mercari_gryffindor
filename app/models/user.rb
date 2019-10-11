@@ -4,22 +4,20 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_one :address
+
   accepts_nested_attributes_for :address
 
   with_options presence: true do
-         validates :last_name
-         validates :first_name
-         validates :last_name_kana
-         validates :first_name_kana
-         validates :birthdate_year
-         validates :birthdate_month
-         validates :birthdate_day
-         validates :email
-         validates :phone_number
-         validates :nickname
-         validates :password_confirmation 
+         validates :last_name, on: :validates_step3
+         validates :first_name, on: :validates_step3
+         validates :last_name_kana, on: :validates_step3
+         validates :first_name_kana, on: :validates_step3
+         validates :birthdate_year, on: :validates_step3
+         validates :birthdate_month, on: :validates_step3
+         validates :birthdate_day, on: :validates_step3
+         validates :phone_number, on: :validates_step3
+         validates :nickname, on: :validates_step3
   end
-         validates :password, confirmation: true
 
   enum prefecture: {
        "北海道": "北海道",

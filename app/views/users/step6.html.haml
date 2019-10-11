@@ -1,24 +1,24 @@
-.step6-single_container
-  %header.step6-single_container__header
+.step6
+  %header.step6__header
     %h1
-      = link_to image_tag('https://www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?2296184308', alt: 'mercari',height: '49', width: '185', class: 'step6-single_container__header__logo'), "https://www.mercari.com/jp/"
-    %nav.step6-single_container__header__progress-bar.step6-single_container__header__signup-bar
+      = link_to image_tag('https://www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?2296184308', alt: 'mercari',height: '49', width: '185', class: 'step6__header__logo'), "https://www.mercari.com/jp/"
+    %nav.step6__header__progress-bar.step6__header__signup-bar
       %ol.clearfix
-        %li.step6-single_container__header__progress-bar__active
+        %li.step6__header__progress-bar__active
           会員情報
-          .step6-single_container__header__progress-bar__active__status
-        %li.step6-single_container__header__progress-bar__second-active
+          .step6__header__progress-bar__active__status
+        %li.step6__header__progress-bar__second-active
           電話番号認証
-          .step6-single_container__header__progress-bar__second-active__status
-        %li.step6-single_container__header__progress-bar__third-active
+          .step6__header__progress-bar__second-active__status
+        %li.step6__header__progress-bar__third-active
           お届け先住所入力
-          .step6-single_container__header__progress-bar__third-active__status
-        %li.step6-single_container__header__progress-bar__not-active
+          .step6__header__progress-bar__third-active__status
+        %li.step6__header__progress-bar__not-active
           支払い方法
-          .step6-single_container__header__progress-bar__not-active__status
-        %li.step6-single_container__header__progress-bar__not-active-last
+          .step6__header__progress-bar__not-active__status
+        %li.step6__header__progress-bar__not-active-last
           完了
-          .step6-single_container__header__progress-bar__not-active-last__status-last
+          .step6__header__progress-bar__not-active-last__status-last
         .clearfix
   %main.single-main
     %section.l-single-container
@@ -26,7 +26,7 @@
         住所入力
       = form_for @user, url: step7_users_path, method: :GET do |f|
         = f.fields_for :address do |i|
-          .l-single-content
+          .l-capter-head__content
             .form-group
               = i.label :お名前
               %span.form-require
@@ -69,6 +69,6 @@
               %span.form-any
                 任意
               = i.text_field :address_phone, placeholder: "例) 09056677211" 
-          .form-group
+          .form-group-button
             = f.submit "次へ進む", class: "submit-btn"
   = render "users/footer"
