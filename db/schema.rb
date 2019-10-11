@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 2019_10_11_014514) do
     t.string "address_number", null: false
     t.string "address_building"
     t.string "address_phone"
+    t.integer "prefecture_id"
+    t.string "country"
   end
 
   create_table "prefectures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -26,7 +28,7 @@ ActiveRecord::Schema.define(version: 2019_10_11_014514) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "products", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.integer "price", null: false
     t.text "text", null: false
