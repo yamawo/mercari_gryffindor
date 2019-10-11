@@ -18,5 +18,4 @@ class ApplicationController < ActionController::Base
     @products = @q.result(distinct: true)
   end
 
-  
 end
