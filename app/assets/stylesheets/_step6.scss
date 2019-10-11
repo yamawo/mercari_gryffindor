@@ -203,7 +203,6 @@
         &__content{
           max-width: 343px;
           margin: 0 auto;
-          .form-group {
             .form-group label{
               font-weight: 600;
             }
@@ -248,11 +247,10 @@
               vertical-align: top;
             }
           }
-        }
-        .form-group {
-          .submit-btn{
-            width: 100%;
-            background-color: red;
+          .form-group {
+            .submit-btn{
+              width: 100%;
+              background-color: red;
             color: white;
             border: 1px solid red;
             border-radius: 0; 
@@ -270,17 +268,19 @@
           }
         }
       }
-      .form-group .submit-btn{
-        width: 100%;
-        background-color: red;
-        color: white;
-        border: 1px solid red;
-        border-radius: 0; 
-        height: 50px;
-        cursor: pointer;
-        margin-top: 40px;
+      .form-group-button {        // buttonタグにはtext-align当たらないのでwrapper作ってそこにかける
+        text-align: center;
+        .submit-btn{
+          width: 50%;
+          background-color: red;
+          color: white;
+          border: 1px solid red;
+          border-radius: 0; 
+          height: 50px;
+          cursor: pointer;
+          margin-top: 40px;
+        }
       }
-      
     }
   }
 }
