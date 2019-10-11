@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
 
   def profile
+
   end
+
   def mypage
 
   end
@@ -9,5 +11,6 @@ class UsersController < ApplicationController
   def logout
     
   end
+  
   
 end

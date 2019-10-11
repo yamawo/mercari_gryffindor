@@ -1,0 +1,209 @@
+@mixin label { 
+  font-weight: 600;
+  display: inline-block;
+  font-weight: bold;
+}
+@mixin need {
+  background: #ea352d;
+  margin: 0 0 0 8px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 12px;
+  vertical-align: top;
+}
+
+
+
+.selling{
+  position: relative;
+  min-height: 100%;
+  background-color: #f5f5f5;
+  font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1; 
+  &__main{
+    &__sec{
+      margin: 0 auto;
+      width: 700px;
+      background: #fff;
+      &__content__form{
+        &__heading{
+          padding: 32px 16px;
+          font-size: 22px;
+          line-height: 1.5;
+          font-weight: bold;
+          text-align: center;
+        }
+        &__write{
+          border-top: 1px solid #eee;
+          &__upload{
+            width: 620px;
+            padding: 40px;
+            &__heading{
+              font-size: 16px;
+              font-weight: bold;
+              &__need{
+                @include need;
+              }
+            }
+            &__p{
+              margin: 8px 0 0;
+              line-height: 1.5;
+            }
+            &__box{
+              display: block;
+              width: 620px;
+              margin: 16px auto 0;
+              &::after{
+                content: "";
+                display: block;
+                clear: both;
+              }
+              &__drop{
+                width: 100%;
+                margin-left: 0;
+                float: right;
+                // padding: 40px;
+                position: relative;
+                min-height: 162px;
+                background: #f5f5f5;
+                border: 1px dashed #ccc;
+                text-align: center;
+                cursor: pointer;
+                &__input{
+                  display: none;
+                  &__select{
+                    position: absolute;
+                    top: 40%;
+                    left: 16px;
+                    right: 16px;
+                    text-align: center;
+                    font-size: 14px;
+                    line-height: 1.5;
+                  }
+                }
+
+              }
+            }
+          }
+          &__content{
+            padding: 40px;
+            border-top: 1px solid #eee;
+            &__group{
+              margin: 40px 0 0;
+              &:first-child{
+                margin: 0;
+              }
+              &__label{
+                @include label;
+                &__need{
+                 @include need;
+                }
+              }
+              &__input{
+                width: 588px;
+                margin: 8px 0 0;
+                height: 28px;
+                padding: 10px 16px 8px;
+                border-radius: 4px;
+                border: 1px solid #ccc;
+                background: #fff;
+                line-height: 1.5;
+                font-size: 16px;
+              }
+              &__textarea{
+                margin: 8px 0 0;
+                display: block;
+                width: 100%;
+                max-width: 100%;
+                min-height: 104px;
+                padding: 10px;
+                border: 1px solid #ccc;
+                background: #fff;
+                font-size: 16px;
+                line-height: 1.5;
+              }
+            }
+            &__heading{
+              float: left;
+              color: #888;
+              font-size: 14px;
+              font-weight: bold;
+            }
+            &__box{
+              float: right;
+              width: 400px;
+              margin: 0;
+              &__group{
+                margin: 40px 0 0;
+                &:first-child{
+                  margin: 0;
+                }
+                &__label{
+                  @include label;
+                  &__need{
+                    @include need;
+                  }
+                }
+                &__select{
+                  margin: 8px 0 0;
+                  position: relative;
+                  background: #fff;
+                  font-family: inherit;
+                  &__icon{
+                    margin: 0;
+                  }
+                  
+                  &__list{
+                    width: 400px;
+                    padding: 0 16px;
+                    position: relative;
+                    z-index: 2;
+                    height: 48px;
+                    border-radius: 4px;
+                    border: 1px solid #ccc;
+                    background: 0;
+                    font-size: 16px;
+                    line-height: 1.5;
+                    cursor: pointer;
+                    font-weight: normal;
+                    
+                  }
+
+                  
+                }
+              }
+              &__list{
+                list-style: none;
+                &__group{
+                  &__
+                }
+                &__per{
+
+                }
+                &__profit{
+
+                }
+              }
+            }
+            &__link{
+              display: inline-block;
+              width: 14px;
+              height: 14px;
+              border-radius: 50%;
+              background: #0099e8;
+              color: #fff;
+              line-height: 14px;
+              font-size: 12px;
+              text-align: center;
+            }
+          }
+          
+        }
+      }
+    }
+  }
+  
+}
