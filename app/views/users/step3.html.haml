@@ -38,7 +38,7 @@
                         %span.step3-single_container__main__section__form__content__group__require 必須
                         = f.password_field :password, placeholder: "7文字以上", class: "step3-single_container__main__section__form__content__group__default"
                     .step3-single_container__main__section__form__content__group
-                        %label(for="password_confirmation")パスワード（確認）
+                        %label(for="password_confirmation")パスワード (確認)
                         %span.step3-single_container__main__section__form__content__group__require 必須
                         = f.password_field :password_confirmation, placeholder: "7文字以上", class: "step3-single_container__main__section__form__content__group__default"
                     .step3-single_container__main__section__form__content__group
@@ -47,13 +47,13 @@
                             安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
                     .step3-single_container__main__section__form__content__group
                         %div
-                            %label お名前（全角）
+                            %label お名前 (全角)
                             %span.step3-single_container__main__section__form__content__group__require 必須
                         = f.text_field :last_name, placeholder: "例）朝比奈", class: "step3-single_container__main__section__form__content__group__half"
                         = f.text_field :first_name, placeholder: "例）彩", class: "step3-single_container__main__section__form__content__group__half"
                     .step3-single_container__main__section__form__content__group
                         %div
-                            %label(for="last_name_kana")お名前カナ（全角）
+                            %label(for="last_name_kana")お名前カナ (全角)
                             %span.step3-single_container__main__section__form__content__group__require 必須
                         = f.text_field :last_name_kana, placeholder: "例）アサヒナ", class: "step3-single_container__main__section__form__content__group__half"
                         = f.text_field :first_name_kana, placeholder: "例）アヤ", class: "step3-single_container__main__section__form__content__group__half"
@@ -63,15 +63,15 @@
                         %br/
                         .step3-single_container__main__section__form__content__group__birthday-wrap
                             .step3-single_container__main__section__form__content__group__birthday-wrap__select-wrap
-                                %i.step3-single_container__main__section__form__content__group__birthday-wrap__select-wrap__icon
+                                %i.step3-single_container__main__section__form__content__group__birthday-wrap__select-wrap__icon.fas.fa-chevron-down
                                 = f.select :birthdate_year, @year, {prompt: "--"}, {class: "step3-single_container__main__section__form__content__group__birthday-wrap__select-wrap__select-default"}
                             %span 年
                             .step3-single_container__main__section__form__content__group__birthday-wrap__select-wrap.step3-single_container__main__section__form__content__group__birthday-wrap__month
-                                %i.step3-single_container__main__section__form__content__group__birthday-wrap__select-wrap__icon
+                                %i.step3-single_container__main__section__form__content__group__birthday-wrap__select-wrap__icon.fas.fa-chevron-down
                                 = f.select :birthdate_month, @month, {prompt: "--"}, {class: "step3-single_container__main__section__form__content__group__birthday-wrap__select-wrap__select-default"}
                             %span 月
                             .step3-single_container__main__section__form__content__group__birthday-wrap__select-wrap.step3-single_container__main__section__form__content__group__birthday-wrap__day
-                                %i.step3-single_container__main__section__form__content__group__birthday-wrap__select-wrap__icon
+                                %i.step3-single_container__main__section__form__content__group__birthday-wrap__select-wrap__icon.fas.fa-chevron-down
                                 = f.select :birthdate_day, @day, {prompt: "--"}, {class: "step3-single_container__main__section__form__content__group__birthday-wrap__select-wrap__select-default"}
                             %span 日
                         .clearfix

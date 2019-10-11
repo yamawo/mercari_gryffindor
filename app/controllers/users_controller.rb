@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
   def step6
     @user = User.new
-    # @user.build_address
+    @user.build_address
     # session[:postal_code] = user_params[:postal_code]
     # session[:address_prefecture] = user_params[:address_prefecture]
     # session[:address_city] = user_params[:address_city]
