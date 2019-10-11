@@ -20,41 +20,39 @@
           完了
           .step7-container__header__progress-bar__not-active-last__status-last
         .clearfix
-  %main.step7-container__main
-    %section.step7-container__main__content
-      %h2.step7-container__main__content__registration
+  %main.step7-single_container__main
+    %section.step7-single_container__main__section
+      %h2.step7-single_container__main__section__registration
         支払い方法
-      .step7-container__main__content__credit-card
-        .step7-container__main__content__credit-card__inner
-          = form_with url: credits_path, method: :post, id: 'charge-form' do |form|
-            .l-single-content
-              .form-group
-                = form.label :カード番号
-                %span.form-require
-                  必須
-                = form.text_field :credits_number, type: 'text', placeholder: '半角数字のみ', maxlength: "16"
+        = form_with url: credits_path, method: :post, id: 'charge-form' do |form|
+          .l-capter-head__content
+            .form-group
+              = form.label :カード番号
+              %span.form-require
+                必須
+              = form.text_field :credits_number, type: 'text', placeholder: '半角数字のみ', maxlength: "16"
 
-              .form-group
-                = form.label :有効期限
-                %span.form-require
-                  必須
+            .form-group
+              = form.label :有効期限
+              %span.form-require
+                必須
+              %br
+              .form-group__wrap
+                = form.select :exp_month, [["01", 1],["02", 2],["03", 3],["04", 4],["05", 5],["06", 6],["07", 7],["08", 8],["09", 9],["10", 10],["11", 11],["12", 12]], {}, class: 'credit-expire'
+                %i.fas.fa-chevron-down
+                %span.expire-text 月
                 %br
-                .form-group__wrap
-                  = form.select :exp_month, [["01", 1],["02", 2],["03", 3],["04", 4],["05", 5],["06", 6],["07", 7],["08", 8],["09", 9],["10", 10],["11", 11],["12", 12]], {}, class: 'credit-expire'
-                  %i.fas.fa-angle-down.payment-select-icon
-                  %span.expire-text 月
-                  %br
-                .form-group__wrap
-                  =form.select :exp_year, [["19", 2019],["20", 2020],["21", 2021],["22", 2022],["23", 2023],["24", 2024],["25", 2025],["26", 2026],["27", 2027],["28", 2028],["29", 2029]], {}, class: 'credit-expire'
-                  %i.fas.fa-angle-down.payment-select-icon
-                  %span.expire-text 年
-                  %br
+              .form-group__wrap
+                =form.select :exp_year, [["19", 2019],["20", 2020],["21", 2021],["22", 2022],["23", 2023],["24", 2024],["25", 2025],["26", 2026],["27", 2027],["28", 2028],["29", 2029]], {}, class: 'credit-expire'
+                %i.fas.fa-chevron-down
+                %span.expire-text 年
+                %br
 
-              .form-group
-                = form.label :セキュリティコード
-                %span.form-require
-                  必須
-                = form.text_field :cvc, type: 'text', placeholder: 'カード背面4桁もしくは3桁の番号', maxlength: "4"
+            .form-group
+              = form.label :セキュリティコード
+              %span.form-require
+                必須
+              = form.text_field :cvc, type: 'text', placeholder: 'カード背面4桁もしくは3桁の番号', maxlength: "4"
           -# = form_with url: credit_path, method: :post, html: { name: "inputForm"} do |f| # createアクションのパスを指定
           -#   = f.label :カード番号, class: 'label'
           -#   %span 必須

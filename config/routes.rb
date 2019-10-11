@@ -5,6 +5,13 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'   
   } 
   resources :address  
+  resources :credits, only: [:new, :show] do
+    collection do
+      post 'show', to: 'credits#show'
+      post 'pay', to: 'credits#pay'
+      post 'delete', to: 'credits#delete'
+    end
+  end
   resources :products, only: [:index]
   resources :users do
     collection do
