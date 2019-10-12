@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_year, :set_month, :set_day
-  before_action :validates_step3, only: :step4
-  before_action :validates_step6, only: :step7
+  # before_action :validates_step3, only: :step4
+  # before_action :validates_step6, only: :step7
   layout "users_layout"
     
   def step3
