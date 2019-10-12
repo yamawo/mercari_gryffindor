@@ -189,4 +189,183 @@
       }
     }
   }
+  &__main{
+    width: 700px;
+    font-size: 24px;
+    padding: 8px 24px;
+    margin: 0 auto;
+    &__section {
+      background: #fff;
+      &__registration{
+        font-size: 24px;
+        padding: 15px 24px;
+        border-bottom: 1px solid #f5f5f5;
+        text-align: center;
+      }
+      &__form{
+        padding: 40px 40px 64px;
+        border-top: 1px solid #f5f5f5;
+        &__box{
+          max-width: 343px;
+          margin: 0 auto;
+          font-size: 14px;
+          &__group{
+            label{
+              font-weight: 600;
+            }
+            .form-require{
+              background: #ea352d;
+              margin: 0 0 0 8px;
+              padding: 2px 4px;
+              border-radius: 2px;
+              color: #fff;
+              font-size: 12px;
+              vertical-align: top;
+            }
+            &__input{
+              width: 90%;
+              margin: 8px 0 0;
+              height: 28px;
+              padding: 10px 16px 8px;
+              border-radius: 4px;
+              border: 1px solid #ccc;
+              background: #fff;
+              line-height: 1.5;
+              font-size: 16px;
+            }
+            &__logo{
+              margin: 8px 0 0;
+              font-size: 0;
+              &__visa{
+                margin: 0;
+                display: inline-block;
+              }
+            &__master-card{
+              display: inline-block;
+              margin: 0 0 0 8px;
+            }
+            &__saison-card{
+              display: inline-block;
+              margin: 0 0 0 8px;
+            }
+            &__jcb{
+              display: inline-block;
+              margin: 0 0 0 8px;
+            }
+            &__amex{
+              display: inline-block;
+              margin: 0 0 0 8px;
+            }
+            &__diners-card{
+              display: inline-block;
+              margin: 0 0 0 8px;
+            }
+            &__discover{
+              display: inline-block;
+              margin: 0 0 0 8px;
+            }
+            }
+          }
+          &__expiration-date{
+            margin-top: 32px;
+            label{
+              font-weight: 600;
+            }
+            .form-require{
+              background: #ea352d;
+              margin: 0 0 0 8px;
+              padding: 2px 4px;
+              border-radius: 2px;
+              color: #fff;
+              font-size: 12px;
+              vertical-align: top;
+            }
+            &__select-box{
+              display: inline-block;
+              width: calc(50% - 2px);
+              margin-top: 10px;
+              &__content{
+                width: calc(100% - 38px);
+                position: relative;
+                z-index: 2;
+                height: 45px;
+                padding: 0 16px;
+                border-radius: 4px;
+                border: 1px solid #ccc;
+                background: 0;
+                font-size: 16px;
+                line-height: 1.5;
+                cursor: pointer;
+                -webkit-appearance: none;
+                font-weight: 100;
+              }
+              i{
+                font-size: 20px;
+                margin: 0 6px 0 -15px;
+                position: relative;
+                top: 3px;
+                right: 16px;
+                color: #888;
+              }
+            }
+          }
+          &__security-code{
+            margin-top: 32px;
+            &__label{
+              font-weight: 600;
+            }
+            .form-require{
+              background: #ea352d;
+              margin: 0 0 0 8px;
+              padding: 2px 4px;
+              border-radius: 2px;
+              color: #fff;
+              font-size: 12px;
+              vertical-align: top;
+            }
+            &__number{
+              width: 90%;
+              margin: 8px 0 0;
+              height: 30px;
+              padding: 10px 16px 8px;
+              border-radius: 4px;
+              border: 1px solid #ccc;
+              background: #fff;
+              line-height: 1.5;
+              font-size: 16px;
+            }
+            &__question{
+              position: relative;
+              margin: 8px 0 0;
+              &__text{
+                text-align: right;
+                color: #0099e8;
+                &__icon{
+                  display: inline-block;
+                  width: 14px;
+                  height: 14px;
+                  border-radius: 50%;
+                  background: #0099e8;
+                  color: #fff;
+                  line-height: 14px;
+                  font-size: 12px;
+                  text-align: center;
+                }
+              }
+            }
+          }
+          &__btn{
+            margin-top: 32px;
+            background: #ea352d;
+            border: 1px solid #ea352d;
+            color: #fff;
+            display: block;
+            width: 100%;
+            line-height: 48px;
+            font-size: 14px;
+          }
+        }
+      }
+    }   
+  }
 }

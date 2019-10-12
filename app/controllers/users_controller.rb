@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
+  require "payjp"
   before_action :set_year, :set_month, :set_day
-  before_action :validates_step3, only: :step4
-  before_action :validates_step6, only: :step7
+  # before_action :validates_step3, only: :step4
+  # before_action :validates_step6, only: :step7
   layout "users_layout"
 
   def step3
@@ -26,16 +27,16 @@ class UsersController < ApplicationController
   def step6
     @user = User.new
     @user.build_address
-    # session[:postal_code] = user_params[:postal_code]
-    # session[:address_prefecture] = user_params[:address_prefecture]
-    # session[:address_city] = user_params[:address_city]
-    # session[:address_number] = user_params[:address_number]
-    # session[:last_name] = user_params[:last_name]
-    # session[:first_name] = user_params[:first_name]
-    # session[:last_name_kana] = user_params[:last_name_kana]
-    # session[:first_name_kana] = user_params[:first_name_kana]
-    # session[:address_building] = user_params[:address_building]
-    # session[:address_phone] = user_params[:address_phone]
+    session[:postal_code] = user_params[:postal_code]
+    session[:address_prefecture] = user_params[:address_prefecture]
+    session[:address_city] = user_params[:address_city]
+    session[:address_number] = user_params[:address_number]
+    session[:last_name] = user_params[:last_name]
+    session[:first_name] = user_params[:first_name]
+    session[:last_name_kana] = user_params[:last_name_kana]
+    session[:first_name_kana] = user_params[:first_name_kana]
+    session[:address_building] = user_params[:address_building]
+    session[:address_phone] = user_params[:address_phone]
   end
 
     def step7
@@ -83,11 +84,12 @@ class UsersController < ApplicationController
     )
     @user.build_address(user_params[:address_attributes])
     if @user.save
+        # payjpのコントローラを記述
       session[:user_id] = @user.id
       redirect_to new_user_path
     else 
       render "/"
-    end   
+    end
   end
 
   def step8

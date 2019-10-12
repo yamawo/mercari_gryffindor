@@ -222,25 +222,40 @@ body {
                         }
                         &__birthday-wrap {
                             display: inline-block;
+                            width: 100%;
                             &__select-wrap:first-of-type {
-                                width: 73px;
+                                width: 75px;
+                            }
+                            &__month {
+                                width: 65px;
+                            }
+                            &__day {
+                                width: 65px;
                             }
                             &__select-wrap {
-                                width: 73px;
+                                width: 75px;
                                 display: inline-block;
                                 margin: 8px 0 0;
                                 position: relative;
                                 background: #ffffff;
                                 &__icon {
-                                    right: 12px;
+                                    right: 13px;
                                     position: absolute;
                                     top: 50%;
+                                    right: 10px;
                                     z-index: 2;
                                     color: #888888;
-                                    font-size: 8px;
+                                    font-size: 20px;
                                     transform: translate(0, -50%);
+                                    &::before {
+                                        content: '\f078';
+                                        font-weight: 900;
+                                    }
                                 }
                                 &__select-default {
+                                    -webkit-appearance: none;
+                                    -moz-appearance: none;
+                                    appearance: none;
                                     padding: 0 10px;
                                     position: relative;
                                     z-index: 2;
@@ -251,6 +266,7 @@ body {
                                     font-size: 16px;
                                     line-height: 1.5;
                                     cursor: pointer;
+                                    width: 75px;
                                 }
                             }
                             span {

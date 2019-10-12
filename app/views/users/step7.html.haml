@@ -21,29 +21,57 @@
           .step7-container__header__progress-bar__not-active-last__status-last
         .clearfix
   %main.step7-container__main
-    %section.step7-container__main__content
-      %h2.step7-container__main__content__registration
+    %section.step7-container__main__section
+      %h2.step7-container__main__section__registration
         支払い方法
-      .step7-container__main__content__credit-card
-        .step7-container__main__content__credit-card__inner
-          -# = form_with url: credit_path, method: :post, html: { name: "inputForm"} do |f| # createアクションのパスを指定
-          -#   = f.label :カード番号, class: 'label'
-          -#   %span 必須
-          -#   = f.text_field :card_number, type: 'text', class: 'input-number', placeholder: '半角数字のみ', maxlength: "16"
-          -#   .cards-expire
-          -#     = f.label :有効期限, class: 'label'
-          -#     %span 必須
-          -#     %br
-          -#     .cards-expire__wrap
-          -#       = f.select :exp_month, [["01",1],["02",2],["03",3],["04",4],["05",5],["06",6]["07",7],["08",8],["09",9],["10",10],["11",11],["12",12]],{}, class:'input-expire'
-          -#       %span.expire-text 月
-          -#       %br
-          -#     .cards-expire__wrap
-          -#       = f.select :exp_year, [["19",2019],["20",2020],["21",2021],["22",2022],["23",2023],["24",2024],["25",2025],["26",2026],["27",2027],["28",2028],["29",2029]],{}, class: 'input-expire'
-          -#       %span.expire-text 年
-          -#   .cards-expire
-          -#     = f.label :セキュリティコード, class: 'label'
-          -#     %span 必須
-          -#     = f.text_field :cvc, type: 'text', class: 'input-number', placeholder: 'カード背面4桁もしくは3桁の番号', maxlength: "4"
-          -#   .content-bottm#card_token
-          -#     = f.submit '追加する', class: 'content-bottom--add-btn'
+      // ここでform_withを使ってuserの情報を持ってstep8のページに移った上でネストさせてカードも情報はPay.jpに送るformの記述をしたい
+      // = form_with model: @user, url: step8_users_path, method: :GET do |f|
+      = form_with url: credits_path, method: :post, class: 'step7-container__main__section__form', html: { name: "inputForm"}  do |form|
+        .step7-container__main__section__form__box
+          .step7-container__main__section__form__box__group
+            %label{for: "payment_card_no"} カード番号
+            %span.form-require
+              必須
+            = form.text_field :credit_number, type: 'text', placeholder: '半角数字のみ', maxlength: "16", class: 'step7-container__main__section__form__box__group__input'
+            %ul.step7-container__main__section__form__box__group__logo
+              %li.step7-container__main__section__form__box__group__logo__visa
+                %img{alt: "", height: "20", src: "//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?3466462615", width: "49"}/
+              %li.step7-container__main__section__form__box__group__logo__master-card
+                %img{alt: "", height: "20", src: "//www-mercari-jp.akamaized.net/assets/img/card/master-card.svg?3466462615", width: "34"}/
+              %li.step7-container__main__section__form__box__group__logo__saison-card
+                %img{alt: "", height: "20", src: "//www-mercari-jp.akamaized.net/assets/img/card/saison-card.svg?3466462615", width: "30"}/
+              %li.step7-container__main__section__form__box__group__logo__jcb
+                %img{alt: "", height: "20", src: "//www-mercari-jp.akamaized.net/assets/img/card/jcb.svg?3466462615", width: "32"}/
+              %li.step7-container__main__section__form__box__group__logo__amex
+                %img{alt: "", height: "20", src: "//www-mercari-jp.akamaized.net/assets/img/card/american_express.svg?3466462615", width: "21"}/
+              %li.step7-container__main__section__form__box__group__logo__diners-card
+                %img{alt: "", height: "20", src: "//www-mercari-jp.akamaized.net/assets/img/card/dinersclub.svg?3466462615", width: "32"}/
+              %li.step7-container__main__section__form__box__group__logo__discover
+                %img{alt: "", height: "20", src: "//www-mercari-jp.akamaized.net/assets/img/card/discover.svg?3466462615", width: "32"}/
+          .step7-container__main__section__form__box__expiration-date
+            %label{for: "payment_card_expire"} 有効期限
+            %span.form-require
+              必須
+            %br
+            .step7-container__main__section__form__box__expiration-date__select-box
+              = form.select :exp_month, [["01", 1],["02", 2],["03", 3],["04", 4],["05", 5],["06", 6],["07", 7],["08", 8],["09", 9],["10", 10],["11", 11],["12", 12]], {}, class: 'step7-container__main__section__form__box__expiration-date__select-box__content'
+              %i.fas.fa-chevron-down
+              %span.expire-text 月
+              %br
+            .step7-container__main__section__form__box__expiration-date__select-box
+              =form.select :exp_year, [["19", 2019],["20", 2020],["21", 2021],["22", 2022],["23", 2023],["24", 2024],["25", 2025],["26", 2026],["27", 2027],["28", 2028],["29", 2029]], {}, class: 'step7-container__main__section__form__box__expiration-date__select-box__content'
+              %i.fas.fa-chevron-down
+              %span.expire-text 年
+              %br
+          .step7-container__main__section__form__box__security-code
+            = form.label :セキュリティコード, class: 'step7-container__main__section__form__box__security-code__label'
+            %span.form-require
+              必須
+            = form.text_field :cvc, type: 'text', placeholder: 'カード背面4桁もしくは3桁の番号', maxlength: "4", class: 'step7-container__main__section__form__box__security-code__number'
+            .step7-container__main__section__form__box__security-code__question
+              .step7-container__main__section__form__box__security-code__question__text
+                %span.step7-container__main__section__form__box__security-code__question__text__icon> ?
+                カード裏面の番号とは？ 
+          %input{name: "after_save_callback", type: "hidden", value: ""}/
+          %button#token_submit.step7-container__main__section__form__box__btn{type: "button"} 次へ進む
+= render 'users/footer'
