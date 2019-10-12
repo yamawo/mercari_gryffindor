@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  require "payjp"
   before_action :set_year, :set_month, :set_day
   # before_action :validates_step3, only: :step4
   # before_action :validates_step6, only: :step7
@@ -83,11 +84,12 @@ class UsersController < ApplicationController
     )
     @user.build_address(user_params[:address_attributes])
     if @user.save
+        # payjpのコントローラを記述
       session[:user_id] = @user.id
       redirect_to new_user_path
     else 
       render "/"
-    end   
+    end
   end
 
   def step8
