@@ -7,7 +7,17 @@ body {
     line-height: 1;
     background-color: $main_color;
 }
-
+.field_with_errors input{
+  border-color: red;
+}
+.birthday_error{
+  color: red;
+  padding-top: 10px;
+}
+.has-error{
+  color: red;
+  padding-top: 10px;  
+}
 .step3-single_container {
     padding: 0;
     &__header {

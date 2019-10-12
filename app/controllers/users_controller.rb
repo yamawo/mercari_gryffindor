@@ -3,29 +3,29 @@ class UsersController < ApplicationController
   before_action :validates_step3, only: :step4
   before_action :validates_step6, only: :step7
   layout "users_layout"
-    
+
   def step3
     @user = User.new
   end
 
   def step4 
     @user = User.new
-    session[:nickname] = user_params[:nickname]
-    session[:email] = user_params[:email]
-    session[:password] = user_params[:password]
-    session[:password_confirmation] = user_params[:password_confirmation]
-    session[:last_name] = user_params[:last_name]
-    session[:first_name] = user_params[:first_name]
-    session[:last_name_kana] = user_params[:last_name_kana]
-    session[:first_name_kana] = user_params[:first_name_kana]
-    session[:birthdate_year] = user_params[:birthdate_year]
-    session[:birthdate_month] = user_params[:birthdate_month]
-    session[:birthdate_day] = user_params[:birthdate_day]
+    # session[:nickname] = user_params[:nickname]
+    # session[:email] = user_params[:email]
+    # session[:password] = user_params[:password]
+    # session[:password_confirmation] = user_params[:password_confirmation]
+    # session[:last_name] = user_params[:last_name]
+    # session[:first_name] = user_params[:first_name]
+    # session[:last_name_kana] = user_params[:last_name_kana]
+    # session[:first_name_kana] = user_params[:first_name_kana]
+    # session[:birthdate_year] = user_params[:birthdate_year]
+    # session[:birthdate_month] = user_params[:birthdate_month]
+    # session[:birthdate_day] = user_params[:birthdate_day]
   end
 
   def step6
     @user = User.new
-    # @user.build_address
+    @user.build_address
     # session[:postal_code] = user_params[:postal_code]
     # session[:address_prefecture] = user_params[:address_prefecture]
     # session[:address_city] = user_params[:address_city]
@@ -91,7 +91,7 @@ class UsersController < ApplicationController
   end
 
   def step8
-    sign_in User.find(session[:id]) unless user_signed_in?
+    # sign_in User.find(session[:id]) unless user_signed_in?
   end
 
   def validates_step3
