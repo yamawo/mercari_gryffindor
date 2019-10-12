@@ -30,10 +30,11 @@
                   .selling__main__sec__content__form__write__upload__box
                     .selling__main__sec__content__form__write__upload__box__items
                     .selling__main__sec__content__form__write__upload__box__drop
-                      = f.file_field :image, class: "selling__main__sec__content__form__write__upload__box__drop__input"
+                      = f.file_field :image, class: "selling__main__sec__content__form__write__upload__box__drop__input", type: "file"
                       %pre.selling__main__sec__content__form__write__upload__box__drop__input__select
                         ドラッグアンドドロップ
                         またはクリックしてファイルをアップロード
+                      %i.selling__main__sec__content__form__write__upload__box__drop__icon
 
                 .selling__main__sec__content__form__write__content
                   .selling__main__sec__content__form__write__content__group
@@ -58,15 +59,15 @@
                         %span.selling__main__sec__content__form__write__content__box__group__label__need
                           必須
                       .selling__main__sec__content__form__write__content__box__group__select
-                        %i.icon-arrow-botton.selling__main__sec__content__form__write__content__box__group__select__icon
-                        = f.select :name, [["---"], ["レディース"], ["メンズ"], ["ベビー・キッズ"], ["インテリア・住まい・小物"], ["本・音楽・ゲーム"], ["おもちゃ・ホビー・グッズ"], ["コスメ・香水・美容"], ["家電・スマホ・カメラ"], ["スポーツ・レジャー"], ["ハンドメイド"], ["チケット"], ["自動車・オートバイ"], ["その他"]], {}, class: "selling__main__sec__content__form__write__content__box__group__select__list"
+                        %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
+                        = f.select :name, [["---"], ["レディース"], ["メンズ"], ["ベビー・キッズ"], ["インテリア・住まい・小物"], ["本・音楽・ゲーム"], ["おもちゃ・ホビー・グッズ"], ["コスメ・香水・美容"], ["家電・スマホ・カメラ"], ["スポーツ・レジャー"], ["ハンドメイド"], ["チケット"], ["自動車・オートバイ"], ["その他"]], {}, class: "selling__main__sec__content__form__write__content__box__group__select__list" 
                     .selling__main__sec__content__form__write__content__box__group
                       %label.selling__main__sec__content__form__write__content__box__group__label
                         商品の状態
                         %span.selling__main__sec__content__form__write__content__box__group__label__need
                           必須
                       .selling__main__sec__content__form__write__content__box__group__select
-                        %i.selling__main__sec__content__form__write__content__box__group__select__icon
+                        %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
                         = f.select :name, [["---"], ["新品"], ["未使用に近い"], ["目立った傷や汚れなし"], ["やや傷や汚れあり"], ["傷や汚れあり"], ["全体的に状態が悪い"]], {}, class: "selling__main__sec__content__form__write__content__box__group__select__list"
                 .selling__main__sec__content__form__write__content.clearfix
                   %h3.selling__main__sec__content__form__write__content__heading
@@ -80,7 +81,7 @@
                         %span.selling__main__sec__content__form__write__content__box__group__label__need
                           必須
                       .selling__main__sec__content__form__write__content__box__group__select
-                        %i.selling__main__sec__content__form__write__content__box__group__select__icon
+                        %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
                         = f.select :name, [["---"], ["送料込み（出品負担）"], ["着払い（購入者負担）"]], {}, class: "selling__main__sec__content__form__write__content__box__group__select__list"
                     .selling__main__sec__content__form__write__content__box__group
                       %label.selling__main__sec__content__form__write__content__box__group__label
@@ -88,7 +89,7 @@
                         %span.selling__main__sec__content__form__write__content__box__group__label__need
                           必須
                       .selling__main__sec__content__form__write__content__box__group__select
-                        %i.selling__main__sec__content__form__write__content__box__group__select__icon
+                        %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
                         = f.select :name, [["---"], ["北海道"], ["青森県"], ["岩手県"], ["宮城県"], ["秋田県"], ["山形県"], ["福島県"], ["茨城県"], ["栃木県"], ["群馬県"], ["埼玉県"], ["千葉県"], ["東京都"], ["神奈川県"], ["新潟県"], ["富山県"], ["石川県"], ["福井県"], ["山梨県"], ["長野県"], ["岐阜県"], ["静岡県"], ["愛知県"], ["三重県"], ["滋賀県"], ["京都府"], ["大阪府"], ["兵庫県"], ["奈良県"], ["和歌山県"], ["鳥取県"], ["島根県"], ["岡山県"], ["広島県"], ["山口県"], ["徳島県"], ["香川県"], ["愛媛県"], ["高知県"], ["福岡県"], ["佐賀県"], ["長崎県"], ["熊本県"], ["大分県"], ["宮崎県"], ["鹿児島県"], ["沖縄県"]], {}, class: "selling__main__sec__content__form__write__content__box__group__select__list"
                     .selling__main__sec__content__form__write__content__box__group
                       %label.selling__main__sec__content__form__write__content__box__group__label
@@ -96,7 +97,7 @@
                         %span.selling__main__sec__content__form__write__content__box__group__label__need
                           必須
                       .selling__main__sec__content__form__write__content__box__group__select
-                        %i.selling__main__sec__content__form__write__content__box__group__select__icon
+                        %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
                         = f.select :name, [["---"], ["1~2日で発送"], ["2~3日で発送"], ["4~7日で発送"]], {}, class: "selling__main__sec__content__form__write__content__box__group__select__list"
                 .selling__main__sec__content__form__write__content.clearfix
                   %h3.selling__main__sec__content__form__write__content__heading
@@ -106,24 +107,27 @@
                   .selling__main__sec__content__form__write__content__box
                     %ul.selling__main__sec__content__form__write__content__box__list
                       %li.selling__main__sec__content__form__write__content__box__list__group
-                        %label.selling__main__sec__content__form__write__content__box__list__group__label
-                          価格
-                          %span.selling__main__sec__content__form__write__content__box__list__group__label__need
-                            必須
-                        .selling__main__sec__content__form__write__content__box__list__group__price
-                          ¥
-                          .selling__main__sec__content__form__write__content__box__list__group__price__input
-                            = f.text_field :text, placeholder: "例）300"
+                        .selling__main__sec__content__form__write__content__box__list__group__clearfix
+                          %label.selling__main__sec__content__form__write__content__box__list__group__clearfix__label
+                            価格
+                            %span.selling__main__sec__content__form__write__content__box__list__group__clearfix__label__need
+                              必須
+                          .selling__main__sec__content__form__write__content__box__list__group__clearfix__price
+                            ¥
+                            .selling__main__sec__content__form__write__content__box__list__group__clearfix__price__input
+                              = f.text_field :text, placeholder: "例）300", class: "selling__main__sec__content__form__write__content__box__list__group__clearfix__price__input__form"
                       %li.selling__main__sec__content__form__write__content__box__list__per
-                        .selling__main__sec__content__form__write__content__box__list__per__left
-                          販売手数料（10%）
-                        .selling__main__sec__content__form__write__content__box__list__per__right
-                          ー
+                        .selling__main__sec__content__form__write__content__box__list__per__clearfix
+                          .selling__main__sec__content__form__write__content__box__list__per__clearfix__left
+                            販売手数料（10%）
+                          .selling__main__sec__content__form__write__content__box__list__per__clearfix__right
+                            −
                       %li.selling__main__sec__content__form__write__content__box__list__profit
-                        .selling__main__sec__content__form__write__content__box__list__profit__left
-                          販売利益
-                        .selling__main__sec__content__form__write__content__box__list__profit__right
-                          ー
+                        .selling__main__sec__content__form__write__content__box__list__profit__clearfix
+                          .selling__main__sec__content__form__write__content__box__list__profit__clearfix__left
+                            販売利益
+                          .selling__main__sec__content__form__write__content__box__list__profit__clearfix__right
+                            −
                 .selling__main__sec__content__form__write__modal
                 .selling__main__sec__content__form__write__btn-box
                   .selling__main__sec__content__form__write__btn-box__explain
@@ -144,9 +148,7 @@
                       = link_to "/", class: "selling__main__sec__content__form__write__btn-box__explain__line__link", target: "_blank" do
                         加盟店規約
                       に同意したことになります。
-                  = f.submit "出品する", class: "selling__main__sec__content__form__write__btn-box__btn"
-                  = link_to "/", class: "sell_ing_main__sec__content__form__write__btn-box__explain__link" do
+                  %button.selling__main__sec__content__form__write__btn-box__btn
+                    出品する
+                  = link_to "/", class: "selling__main__sec__content__form__write__btn-box__link" do
                     もどる
-
-
-      
