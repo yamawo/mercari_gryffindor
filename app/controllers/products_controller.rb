@@ -14,6 +14,10 @@ class ProductsController < ApplicationController
     product.save
   end
 
+  def privacy_policy
+      
+  end
+
   private 
   def product_params
     params.require(:user).permit(:image, :name, :text, :category_id, :status, :delivery_responsivility, :delivery_way, :delivery_area, :delivery_day, :price)
