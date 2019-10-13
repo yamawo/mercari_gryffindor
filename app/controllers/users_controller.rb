@@ -27,16 +27,19 @@ class UsersController < ApplicationController
   def step4
     @user = User.new
     session[:user_params] = user_params
+    
   end
 
   def step6
     @user = User.new
     @user.build_address
+    puts session[:user_params]
   end
 
   def step7
     @user = User.new
     session[:address_attributes1] = user_params[:address_attributes]
+    puts session[:user_params]
     # session[:postal_code] = user_params[:postal_code]
     # session[:address_prefecture] = user_params[:address_prefecture]
     # session[:address_city] = user_params[:address_city]
@@ -115,6 +118,7 @@ class UsersController < ApplicationController
         #     )
         #     @card = Credit.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
         #     if @card.save
+
         #         sign_in User.find(session[:id]) unless user_signed_in?
         #     else
         #         render "/"
@@ -189,14 +193,15 @@ class UsersController < ApplicationController
   # end
 
   def validates_step6
-    session[:user_params] = user_params[:address_attributes]
+    session[:address_attributes] = user_params[:address_attributes]
     @user = User.new(
       email: session[:email],
       password: session[:password],
       password_confirmation: session[:password_confirmation],
     )
-    @user.build_address(session[:user_params])
+    @user.build_address(session[:address_attributes])
     render "/users/step6" unless @user.valid?(:validates_step6)
+    puts session[:user_params]
   end
   private
 
