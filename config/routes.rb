@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root to: "products#index"
   devise_for :users, controllers: {
     registrations: 'users/registrations',
-    sessions: 'users/sessions'   
+    sessions: 'users/sessions'
   } 
   resources :address  
   resources :credits, only: [:new, :show] do
