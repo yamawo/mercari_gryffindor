@@ -9,19 +9,24 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def step4 
+  # def step4 
+  #   @user = User.new
+  #   session[:nickname] = user_params[:nickname]
+  #   session[:email] = user_params[:email]
+  #   session[:password] = user_params[:password]
+  #   session[:password_confirmation] = user_params[:password_confirmation]
+  #   session[:last_name] = user_params[:last_name]
+  #   session[:first_name] = user_params[:first_name]
+  #   session[:last_name_kana] = user_params[:last_name_kana]
+  #   session[:first_name_kana] = user_params[:first_name_kana]
+  #   session[:birthdate_year] = user_params[:birthdate_year]
+  #   session[:birthdate_month] = user_params[:birthdate_month]
+  #   session[:birthdate_day] = user_params[:birthdate_day]
+  # end
+
+  def step4
     @user = User.new
-    session[:nickname] = user_params[:nickname]
-    session[:email] = user_params[:email]
-    session[:password] = user_params[:password]
-    session[:password_confirmation] = user_params[:password_confirmation]
-    session[:last_name] = user_params[:last_name]
-    session[:first_name] = user_params[:first_name]
-    session[:last_name_kana] = user_params[:last_name_kana]
-    session[:first_name_kana] = user_params[:first_name_kana]
-    session[:birthdate_year] = user_params[:birthdate_year]
-    session[:birthdate_month] = user_params[:birthdate_month]
-    session[:birthdate_day] = user_params[:birthdate_day]
+    session[:user_params] = user_params
   end
 
   def step6
@@ -30,17 +35,19 @@ class UsersController < ApplicationController
   end
 
   def step7
-    @user = User.new()
-    session[:postal_code] = user_params[:postal_code]
-    session[:address_prefecture] = user_params[:address_prefecture]
-    session[:address_city] = user_params[:address_city]
-    session[:address_number] = user_params[:address_number]
-    session[:last_name] = user_params[:last_name]
-    session[:first_name] = user_params[:first_name]
-    session[:last_name_kana] = user_params[:last_name_kana]
-    session[:first_name_kana] = user_params[:first_name_kana]
-    session[:address_building] = user_params[:address_building]
-    session[:address_phone] = user_params[:address_phone]
+    @user = User.new
+    session[:address_attributes1] = user_params[:address_attributes]
+    # session[:postal_code] = user_params[:postal_code]
+    # session[:address_prefecture] = user_params[:address_prefecture]
+    # session[:address_city] = user_params[:address_city]
+    # session[:address_number] = user_params[:address_number]
+    # session[:last_name] = user_params[:last_name]
+    # session[:first_name] = user_params[:first_name]
+    # session[:last_name_kana] = user_params[:last_name_kana]
+    # session[:first_name_kana] = user_params[:first_name_kana]
+    # session[:address_building] = user_params[:address_building]
+    # session[:address_phone] = user_params[:address_phone]
+    
     #     PayjpとCardのデータベースを作成
     #     Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
 
@@ -88,78 +95,68 @@ class UsersController < ApplicationController
     @day = days
   end
 
-  def create
-    @user = User.new(
-      nickname: session[:nickname],
-      email: session[:email],
-      password: session[:password],
-      password_confirmation: session[:password_confirmation],
-      last_name: session[:last_name],
-      first_name: session[:first_name],
-      last_name_kana: session[:last_name_kana],
-      first_name_kana: session[:first_name_kana],
-      birthdate_year: session[:birthdate_year],
-      birthdate_month: session[:birthdate_month],
-      birthdate_day: session[:birthdate_day],
-    )
+  def step8
+    @user = User.new(session[:user_params])
     @user.build_address(user_params[:address_attributes])
     if @user.save
         session[:id] = @user.id
+        # PayjpとCardのデータベースを作成
+        # Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
+
+        # if params['payjp-token'].blank?
+        #     redirect_to action: "new"
+        # else
+        #     # トークンが正常に発行されていたら、顧客情報をPAY.JPに登録する
+        #     customer = Payjp::Customer.create(
+        #         description: 'test', # 書かなくてもいい。PAY.JPの顧客情報に表示する概要
+        #         email: current_user.email, # current_user.emailなのかな？
+        #         card: params['payjp-token'], # 直前のnewアクションで発行され、送られてくるトークンをここで顧客に紐づけて永久保存する
+        #         metadata: {user_id: current_user.id} # 書かなくてもOK。
+        #     )
+        #     @card = Credit.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
+        #     if @card.save
+        #         sign_in User.find(session[:id]) unless user_signed_in?
+        #     else
+        #         render "/"
+        #     end
+        # end
     else 
       render "/"
     end
   end
 
-  def step8
-    # sign_in User.find(session[:id]) unless user_signed_in?
-    # PayjpとCardのデータベースを作成
-    Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
-
-    if params['payjp-token'].blank?
-        redirect_to action: "new"
-    else
-        # トークンが正常に発行されていたら、顧客情報をPAY.JPに登録する
-        customer = Payjp::Customer.create(
-            description: 'test', # 書かなくてもいい。PAY.JPの顧客情報に表示する概要
-            email: current_user.email, # current_user.emailなのかな？
-            card: params['payjp-token'], # 直前のnewアクションで発行され、送られてくるトークンをここで顧客に紐づけて永久保存する
-            metadata: {user_id: current_user.id} # 書かなくてもOK。
-        )
-        @card = Credit.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
-        if @card.save
-            sign_in User.find(session[:id]) unless user_signed_in?
-        else
-            render "/"
-        end
-    end
-  end
+  # def validates_step3
+  #   session[:nickname] = user_params[:nickname]
+  #   session[:email] = user_params[:email]
+  #   session[:password] = user_params[:password]
+  #   session[:password_confirmation] = user_params[:password_confirmation]
+  #   session[:last_name] = user_params[:last_name]
+  #   session[:first_name] = user_params[:first_name]
+  #   session[:last_name_kana] = user_params[:last_name_kana]
+  #   session[:first_name_kana] = user_params[:first_name_kana]
+  #   session[:birthdate_year] = user_params[:birthdate_year]
+  #   session[:birthdate_month] = user_params[:birthdate_month]
+  #   session[:birthdate_day] = user_params[:birthdate_day]
+  #   @user = User.new(
+  #     nickname: session[:nickname],
+  #     email: session[:email],
+  #     password: session[:password],
+  #     password_confirmation: session[:password_confirmation],
+  #     last_name: session[:last_name],
+  #     first_name: session[:first_name],
+  #     last_name_kana: session[:last_name_kana],
+  #     first_name_kana: session[:first_name_kana],
+  #     birthdate_year: session[:birthdate_year],
+  #     birthdate_month: session[:birthdate_month],
+  #     birthdate_day: session[:birthdate_day],
+  #     phone_number: "09012345678"
+  #   )
+  #   render "/users/step3" unless @user.valid?(:validates_step3)
+  # end
 
   def validates_step3
-    session[:nickname] = user_params[:nickname]
-    session[:email] = user_params[:email]
-    session[:password] = user_params[:password]
-    session[:password_confirmation] = user_params[:password_confirmation]
-    session[:last_name] = user_params[:last_name]
-    session[:first_name] = user_params[:first_name]
-    session[:last_name_kana] = user_params[:last_name_kana]
-    session[:first_name_kana] = user_params[:first_name_kana]
-    session[:birthdate_year] = user_params[:birthdate_year]
-    session[:birthdate_month] = user_params[:birthdate_month]
-    session[:birthdate_day] = user_params[:birthdate_day]
-    @user = User.new(
-      nickname: session[:nickname],
-      email: session[:email],
-      password: session[:password],
-      password_confirmation: session[:password_confirmation],
-      last_name: session[:last_name],
-      first_name: session[:first_name],
-      last_name_kana: session[:last_name_kana],
-      first_name_kana: session[:first_name_kana],
-      birthdate_year: session[:birthdate_year],
-      birthdate_month: session[:birthdate_month],
-      birthdate_day: session[:birthdate_day],
-      phone_number: "09012345678"
-    )
+    session[:user_params] = user_params
+    @user = User.new(session[:user_params])
     render "/users/step3" unless @user.valid?(:validates_step3)
   end
 

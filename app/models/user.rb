@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :omniauthable
   has_one :address
   accepts_nested_attributes_for :address
 
@@ -11,7 +11,7 @@ class User < ApplicationRecord
        validates :first_name, on: :validates_step3
        validates :last_name_kana, on: :validates_step3
        validates :first_name_kana, on: :validates_step3
-       validates :phone_number, on: :validates_step3
+     #   validates :phone_number, on: :validates_step3
        validates :nickname, on: :validates_step3
        validates :password_confirmation, on: :validates_step3
   end
