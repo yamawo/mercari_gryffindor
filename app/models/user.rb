@@ -4,7 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_one :address
-
   accepts_nested_attributes_for :address
 
   with_options presence: true do
@@ -14,7 +13,7 @@ class User < ApplicationRecord
        validates :first_name_kana, on: :validates_step3
        validates :phone_number, on: :validates_step3
        validates :nickname, on: :validates_step3
-       validates :password_confirmation
+       validates :password_confirmation, on: :validates_step3
   end
   validates :birthdate_year, :birthdate_month, :birthdate_day, presence: true, on: :validates_step3
   # validates :birthdate_month, presence: true, on: :validates_step3

@@ -4,6 +4,14 @@ ja:
       user: ユーザー # view側： User.model_name.human => "ユーザ" / t("activerecord.models.user")と同じ
       # board: 掲示板
     attributes:
+        address:
+          first_name: 名
+          last_name: 姓
+          first_name_kana: 名前カナ # view側： User.human_attribute_name :name => "名前" /　t("activerecord.attributes.user.name")と同じ
+          last_name_kana: 姓カナ
+          postal_code: 郵便番号
+          address_city: 市区町村
+          address_number: 番地
         user:
           id: ID
           first_name: 名 # view側： User.human_attribute_name :name => "名前" /　t("activerecord.attributes.user.name")と同じ
