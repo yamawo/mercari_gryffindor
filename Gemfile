@@ -77,9 +77,9 @@ gem 'haml-rails'
 gem 'rails-i18n'
 gem "font-awesome-rails"
 gem 'bootsnap'
-
 # payjp
 gem 'payjp'
 # omniauth
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'active_hash'
