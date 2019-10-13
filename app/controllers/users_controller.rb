@@ -26,6 +26,7 @@ class UsersController < ApplicationController
 
   def step4
     @user = User.new
+    # ここにはpostal_codeは入ってない
     session[:user_params] = user_params
   end
 
@@ -36,6 +37,7 @@ class UsersController < ApplicationController
 
   def step7
     @user = User.new
+    # 下記の中にpostal_codeが入ってる
     session[:address_attributes1] = user_params[:address_attributes]
     # session[:postal_code] = user_params[:postal_code]
     # session[:address_prefecture] = user_params[:address_prefecture]
@@ -97,29 +99,29 @@ class UsersController < ApplicationController
 
   def step8
     @user = User.new(session[:user_params])
-    @user.build_address(user_params[:address_attributes])
+    @user.build_address(user_params[:address_attributes1])
     if @user.save
         session[:id] = @user.id
-        # PayjpとCardのデータベースを作成
-        # Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
+        PayjpとCardのデータベースを作成
+        Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
 
-        # if params['payjp-token'].blank?
-        #     redirect_to action: "new"
-        # else
-        #     # トークンが正常に発行されていたら、顧客情報をPAY.JPに登録する
-        #     customer = Payjp::Customer.create(
-        #         description: 'test', # 書かなくてもいい。PAY.JPの顧客情報に表示する概要
-        #         email: current_user.email, # current_user.emailなのかな？
-        #         card: params['payjp-token'], # 直前のnewアクションで発行され、送られてくるトークンをここで顧客に紐づけて永久保存する
-        #         metadata: {user_id: current_user.id} # 書かなくてもOK。
-        #     )
-        #     @card = Credit.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
-        #     if @card.save
-        #         sign_in User.find(session[:id]) unless user_signed_in?
-        #     else
-        #         render "/"
-        #     end
-        # end
+        if params['payjp-token'].blank?
+            redirect_to action: "new"
+        else
+            # トークンが正常に発行されていたら、顧客情報をPAY.JPに登録する
+            customer = Payjp::Customer.create(
+                description: 'test', # 書かなくてもいい。PAY.JPの顧客情報に表示する概要
+                email: @user.email, # current_user.emailなのかな？
+                card: params['payjp-token'], # 直前のnewアクションで発行され、送られてくるトークンをここで顧客に紐づけて永久保存する
+                metadata: {user_id: @user.id} # 書かなくてもOK。
+            )
+            @card = Credit.new(user_id: @user.id, customer_id: customer.id, card_id: customer.default_card)
+            if @card.save
+                sign_in User.find(session[:id]) unless user_signed_in?
+            else
+                render "/"
+            end
+        end
     else 
       render "/"
     end
@@ -189,13 +191,13 @@ class UsersController < ApplicationController
   # end
 
   def validates_step6
-    session[:user_params] = user_params[:address_attributes]
+    session[:address_attributes1] = user_params[:address_attributes]
     @user = User.new(
       email: session[:email],
       password: session[:password],
       password_confirmation: session[:password_confirmation],
     )
-    @user.build_address(session[:user_params])
+    @user.build_address(session[:address_attributes1])
     render "/users/step6" unless @user.valid?(:validates_step6)
   end
   private
