@@ -20,7 +20,7 @@ Rails.application.routes.draw do
         get 'step4'
         get 'step6'
         get 'step7'
-        get 'step8'
+        post 'step8'
       end
     end
   end
