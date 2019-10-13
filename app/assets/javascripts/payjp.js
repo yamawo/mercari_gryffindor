@@ -8,20 +8,20 @@ document.addEventListener(
 
         //クレジットカード情報を生成
         const card = {
-          number: document.getElementById("credit_number").value,
-          cvc: document.getElementById("cvc").value,
-          exp_month: document.getElementById("exp_month").value,
-          exp_year: document.getElementById("exp_year").value
+          number: document.getElementById("user_credit_number").value,
+          cvc: document.getElementById("user_cvc").value,
+          exp_month: document.getElementById("user_exp_month").value,
+          exp_year: document.getElementById("user_exp_year").value
         }; //入力されたデータを取得
 
         //トークンを生成
-        Payjp.createToken(card, (status, response) => {
+        Payjp.createToken(card, function(status, response) {
           if (status === 200) { //成功した場合
-            $("#credit_number").removeAttr("name");
-            $("#cvc").removeAttr("name");
-            $("#exp_month").removeAttr("name");
-            $("#exp_year").removeAttr("name"); //カード情報を自分のサーバーにpostせずに削除
-            $("#token_submit").append(
+            $("#user_credit_number").removeAttr("name");
+            $("#user_cvc").removeAttr("name");
+            $("#user_exp_month").removeAttr("name");
+            $("#user_exp_year").removeAttr("name"); //カード情報を自分のサーバーにpostせずに削除
+            $("#user_token_submit").append(
               $('<input type="hidden" name="payjp-token">').val(response.id)
             ); //トークンを送信できるように隠しタグを生成
             document.inputForm.submit();

@@ -4,7 +4,9 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     sessions: 'users/sessions'   
   } 
-  resources :address  
+  
+  resources :address 
+  
   resources :credits, only: [:new, :show] do
     collection do
       post 'show', to: 'credits#show'
@@ -12,7 +14,9 @@ Rails.application.routes.draw do
       post 'delete', to: 'credits#delete'
     end
   end
+  
   resources :products, only: [:index]
+  
   resources :users do
     collection do
       scope :sign_up do           # ディレクトリの階層の変更はなし
@@ -20,8 +24,18 @@ Rails.application.routes.draw do
         get 'step4'
         get 'step6'
         get 'step7'
-        get 'step8'
+        post 'step8'
       end
     end
   end
+end
+
+ resources :users, only: [:mypage, :logout] do
+   collection do
+     get "profile"
+     get "mypage"
+     get "confirmation"
+     get "logout"
+   end
+ end
 end
