@@ -91,13 +91,12 @@ class UsersController < ApplicationController
   def validates_step6
     session[:address_attributes1] = user_params[:address_attributes]
     @user = User.new(
-      email: session[:email],
-      password: session[:password],
-      password_confirmation: session[:password_confirmation],
+      email: session[:user_params]["email"],
+      password: session[:user_params]["password"],
+      password_confirmation: session[:user_params]["password_confirmation"],
     )
     @user.build_address(session[:address_attributes1])
     render "/users/step6" unless @user.valid?(:validates_step6)
-    puts session[:user_params]
   end
 
   private
