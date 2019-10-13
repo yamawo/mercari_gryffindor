@@ -74,4 +74,9 @@ gem 'pry-rails'
 gem 'devise'
 #haml-rails
 gem 'haml-rails'
+gem "nokogiri"
+
+gem "font-awesome-rails"
 gem 'bootsnap'
+#レコードを階層構造として編成
+gem "ancestry"

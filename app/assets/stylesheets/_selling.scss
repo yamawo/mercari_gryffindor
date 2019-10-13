@@ -91,7 +91,6 @@
                 width: 100%;
                 margin-left: 0;
                 float: right;
-                // padding: 40px;
                 position: relative;
                 min-height: 162px;
                 background: #f5f5f5;
@@ -99,7 +98,6 @@
                 text-align: center;
                 cursor: pointer;
                 &__input{
-                  display: none;
                   &__select{
                     position: absolute;
                     top: 40%;
@@ -129,6 +127,7 @@
                 &__need{
                  @include need;
                 }
+                
               }
               &__input{
                 width: 588px;
@@ -168,6 +167,15 @@
                   &__need{
                     @include need;
                   }
+                  &__free{
+                    background: #ccc;
+                    margin: 0 0 0 8px;
+                    padding: 2px 4px;
+                    border-radius: 2px;
+                    color: #fff;
+                    font-size: 12px;
+                    vertical-align: top;
+                  }
                 }
                 &__select{
                   margin: 8px 0 0;
@@ -187,6 +195,20 @@
                   
                   &__list{
                     width: 400px;
+                    padding: 0 16px;
+                    position: relative;
+                    z-index: 2;
+                    height: 48px;
+                    border-radius: 4px;
+                    border: 1px solid #ccc;
+                    background: 0;
+                    font-size: 16px;
+                    line-height: 1.5;
+                    cursor: pointer;
+                    -webkit-appearance: none;
+                  }
+                  &__input{
+                    width: 366px;
                     padding: 0 16px;
                     position: relative;
                     z-index: 2;
