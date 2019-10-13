@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2019_10_13_041445) do
 
-  create_table "addresses", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "postal_code", null: false
     t.string "address_prefecture", null: false
     t.string "address_city", null: false
@@ -29,12 +29,7 @@ ActiveRecord::Schema.define(version: 2019_10_13_041445) do
     t.index ["ancestry"], name: "index_categories_on_ancestry"
   end
 
-  create_table "prefectures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "products", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.integer "price", null: false
     t.text "text", null: false
@@ -48,7 +43,7 @@ ActiveRecord::Schema.define(version: 2019_10_13_041445) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "last_name", null: false
