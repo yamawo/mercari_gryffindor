@@ -105,26 +105,6 @@ class UsersController < ApplicationController
     @user.build_address(user_params[:address_attributes])
     if @user.save
         session[:id] = @user.id
-        # PayjpとCardのデータベースを作成
-        # Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
-
-        # if params['payjp-token'].blank?
-        #     redirect_to action: "new"
-        # else
-        #     # トークンが正常に発行されていたら、顧客情報をPAY.JPに登録する
-        #     customer = Payjp::Customer.create(
-        #         description: 'test', # 書かなくてもいい。PAY.JPの顧客情報に表示する概要
-        #         email: current_user.email, # current_user.emailなのかな？
-        #         card: params['payjp-token'], # 直前のnewアクションで発行され、送られてくるトークンをここで顧客に紐づけて永久保存する
-        #         metadata: {user_id: current_user.id} # 書かなくてもOK。
-        #     )
-        #     @card = Credit.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
-        #     if @card.save
-        #         redirect_to action: "step8"
-        #     else
-        #         render "/"
-        #     end
-        # end
     else 
       render "/"
     end
@@ -132,6 +112,26 @@ class UsersController < ApplicationController
 
   def step8
     # sign_in User.find(session[:id]) unless user_signed_in?
+    # PayjpとCardのデータベースを作成
+    Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
+
+    if params['payjp-token'].blank?
+        redirect_to action: "new"
+    else
+        # トークンが正常に発行されていたら、顧客情報をPAY.JPに登録する
+        customer = Payjp::Customer.create(
+            description: 'test', # 書かなくてもいい。PAY.JPの顧客情報に表示する概要
+            email: current_user.email, # current_user.emailなのかな？
+            card: params['payjp-token'], # 直前のnewアクションで発行され、送られてくるトークンをここで顧客に紐づけて永久保存する
+            metadata: {user_id: current_user.id} # 書かなくてもOK。
+        )
+        @card = Credit.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
+        if @card.save
+            sign_in User.find(session[:id]) unless user_signed_in?
+        else
+            render "/"
+        end
+    end
   end
 
   def validates_step3
