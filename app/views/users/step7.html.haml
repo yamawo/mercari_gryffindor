@@ -26,7 +26,7 @@
         支払い方法
       // ここでform_withを使ってuserの情報を持ってstep8のページに移った上でネストさせてカードも情報はPay.jpに送るformの記述をしたい
       // = form_with model: @user, url: step8_users_path, method: :GET, class: 'step7-container__main__section__form', html: { name: "inputForm"} do |f|
-      = form_with model: @user, local: true, url: step8_users_path, method: :post, class: 'step7-container__main__section__form', html: { name: "inputForm"}  do |form|
+      = form_with model: @user, url: step8_users_path, local: true, method: :post, class: 'step7-container__main__section__form', html: { name: "inputForm"}  do |form|
         .step7-container__main__section__form__box
           .step7-container__main__section__form__box__group
             %label{for: "payment_card_no"} カード番号
