@@ -97,7 +97,7 @@ class UsersController < ApplicationController
     )
     @user.build_address(session[:address_attributes1])
     render "/users/step6" unless @user.valid?(:validates_step6)
-    puts session[:user_params]
+    puts session[:email]
   end
 
   private
