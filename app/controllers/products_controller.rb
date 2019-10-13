@@ -1,7 +1,5 @@
 class ProductsController < ApplicationController
   
- 
-
   def index
     @product = Product.new
   end
@@ -20,4 +18,5 @@ class ProductsController < ApplicationController
   def product_params
     params.require(:user).permit(:image, :name, :text, :category_id, :status, :delivery_responsivility, :delivery_way, :delivery_area, :delivery_day, :price)
   end
+  
 end
