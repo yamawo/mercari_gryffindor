@@ -40,7 +40,39 @@ class UsersController < ApplicationController
   end
 
     def step7
-        @user = User.new()
+        @user = User.new
+        # ここにuserの情報を保持しながら、Pay.jpのデータベースにクレジットカードのformの入力情報を保存したい
+        session[:last_name] = user_params[:last_name]
+        session[:first_name] = user_params[:first_name]
+        session[:last_name_kana] = user_params[:last_name_kana]
+        session[:first_name_kana] = user_params[:first_name_kana]
+        session[:postal_code] = user_params[:postal_code]
+        session[:address_prefecture] = user_params[:address_prefecture]
+        session[:address_city] = user_params[:address_city]
+        session[:address_number] = user_params[:address_number]
+        session[:address_building] = user_params[:address_building]
+        session[:address_phone] = user_params[:address_phone]
+
+    #     #PayjpとCardのデータベースを作成
+    #     Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
+
+    #     if params['payjp-token'].blank?
+    #         redirect_to action: "new"
+    #     else
+    #         # トークンが正常に発行されていたら、顧客情報をPAY.JPに登録する
+    #         customer = Payjp::Customer.create(
+    #             description: 'test', # 書かなくてもいい。PAY.JPの顧客情報に表示する概要
+    #             email: current_user.email, # current_user.emailなのかな？
+    #             card: params['payjp-token'], # 直前のnewアクションで発行され、送られてくるトークンをここで顧客に紐づけて永久保存する
+    #             metadata: {user_id: current_user.id} # 書かなくてもOK。
+    #         )
+    #         @card = Credit.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
+    #         if @card.save
+    #             redirect_to action: "create"
+    #         else
+    #             render "/"
+    #         end
+    #     end
     end
 
     def set_year
@@ -84,9 +116,27 @@ class UsersController < ApplicationController
     )
     @user.build_address(user_params[:address_attributes])
     if @user.save
-        # payjpのコントローラを記述
-      session[:user_id] = @user.id
-      redirect_to new_user_path
+        session[:id] = @user.id
+        # PayjpとCardのデータベースを作成
+        # Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
+
+        # if params['payjp-token'].blank?
+        #     redirect_to action: "new"
+        # else
+        #     # トークンが正常に発行されていたら、顧客情報をPAY.JPに登録する
+        #     customer = Payjp::Customer.create(
+        #         description: 'test', # 書かなくてもいい。PAY.JPの顧客情報に表示する概要
+        #         email: current_user.email, # current_user.emailなのかな？
+        #         card: params['payjp-token'], # 直前のnewアクションで発行され、送られてくるトークンをここで顧客に紐づけて永久保存する
+        #         metadata: {user_id: current_user.id} # 書かなくてもOK。
+        #     )
+        #     @card = Credit.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
+        #     if @card.save
+        #         redirect_to action: "step8"
+        #     else
+        #         render "/"
+        #     end
+        # end
     else 
       render "/"
     end
@@ -186,5 +236,5 @@ class UsersController < ApplicationController
         :address_phone,
       ]
     )
-  end  
+  end
 end
