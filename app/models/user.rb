@@ -11,7 +11,7 @@ class User < ApplicationRecord
        validates :first_name, on: :validates_step3
        validates :last_name_kana, on: :validates_step3
        validates :first_name_kana, on: :validates_step3
-       validates :phone_number, on: :validates_step3
+     #   validates :phone_number, on: :validates_step3
        validates :nickname, on: :validates_step3
        validates :password_confirmation, on: :validates_step3
   end
