@@ -28,14 +28,13 @@ Rails.application.routes.draw do
       end
     end
   end
-end
 
- resources :users, only: [:mypage, :logout] do
-   collection do
-     get "profile"
-     get "mypage"
-     get "confirmation"
-     get "logout"
-   end
- end
+  resources :users, only: [:mypage, :logout] do
+    collection do
+      get "profile"
+      get "mypage"
+      get "confirmation"
+      get "logout"
+    end
+  end
 end
