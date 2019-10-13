@@ -13,7 +13,6 @@ class UsersController < ApplicationController
   def step4
     @user = User.new
     session[:user_params] = user_params
-    
   end
 
   def step6
@@ -100,6 +99,7 @@ class UsersController < ApplicationController
     render "/users/step6" unless @user.valid?(:validates_step6)
     puts session[:user_params]
   end
+
   private
 
   def user_params
@@ -135,20 +135,19 @@ class UsersController < ApplicationController
         :address_phone,
       ]
     )
+  end
 
   def profile
   end
-    
-  def mypage
 
+  def mypage
   end
 
   def logout
-    
   end
   
   def confirmation
     @address = Address.new
   end
-    
+
 end
