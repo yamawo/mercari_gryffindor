@@ -23,7 +23,7 @@
     %main.step3-single_container__main
         %section.step3-single_container__main__section
             %h2.step3-single_container__main__section__registration 会員情報入力
-            = form_for @user, url: step4_users_path, method: :get, html: {class: "step3-single_container__main__section__form"} do |f|
+            = form_for @user, url: step4_users_path, builder: CustomFormBuilder, method: :get, html: {class: "step3-single_container__main__section__form"} do |f|
                 .step3-single_container__main__section__form__content
                     .step3-single_container__main__section__form__content__group
                         %label(for="nickname")ニックネーム
@@ -74,7 +74,10 @@
                                 %i.step3-single_container__main__section__form__content__group__birthday-wrap__select-wrap__icon.fas.fa-chevron-down
                                 = f.select :birthdate_day, @day, {prompt: "--"}, {class: "step3-single_container__main__section__form__content__group__birthday-wrap__select-wrap__select-default"}
                             %span 日
-                        .clearfix
+                        .birthday_error
+                            - if @user.errors.added?(:birthdate_year, :blank) || @user.errors.added?(:birthdate_month, :blank) || @user.errors.added?(:birthdate_day, :blank) 
+                                生年月日を正しく入力してください                             
+                            .clearfix
                     %p.step3-single_container__main__section__form__content__info
                         ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合がございます。
                 .step3-single_container__main__section__form__content

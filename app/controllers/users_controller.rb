@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
   require "payjp"
   before_action :set_year, :set_month, :set_day
-  # before_action :validates_step3, only: :step4
-  # before_action :validates_step6, only: :step7
+  before_action :validates_step3, only: :step4
+  before_action :validates_step6, only: :step7
   layout "users_layout"
-    
+
   def step3
     @user = User.new
   end
@@ -27,6 +27,10 @@ class UsersController < ApplicationController
   def step6
     @user = User.new
     @user.build_address
+  end
+
+  def step7
+    @user = User.new()
     session[:postal_code] = user_params[:postal_code]
     session[:address_prefecture] = user_params[:address_prefecture]
     session[:address_city] = user_params[:address_city]
@@ -37,23 +41,7 @@ class UsersController < ApplicationController
     session[:first_name_kana] = user_params[:first_name_kana]
     session[:address_building] = user_params[:address_building]
     session[:address_phone] = user_params[:address_phone]
-  end
-
-    def step7
-        @user = User.new
-        # ここにuserの情報を保持しながら、Pay.jpのデータベースにクレジットカードのformの入力情報を保存したい
-        session[:last_name] = user_params[:last_name]
-        session[:first_name] = user_params[:first_name]
-        session[:last_name_kana] = user_params[:last_name_kana]
-        session[:first_name_kana] = user_params[:first_name_kana]
-        session[:postal_code] = user_params[:postal_code]
-        session[:address_prefecture] = user_params[:address_prefecture]
-        session[:address_city] = user_params[:address_city]
-        session[:address_number] = user_params[:address_number]
-        session[:address_building] = user_params[:address_building]
-        session[:address_phone] = user_params[:address_phone]
-
-    #     #PayjpとCardのデータベースを作成
+    #     PayjpとCardのデータベースを作成
     #     Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
 
     #     if params['payjp-token'].blank?
@@ -73,16 +61,16 @@ class UsersController < ApplicationController
     #             render "/"
     #         end
     #     end
-    end
+  end
 
-    def set_year
-        years = []
-        for year in 1900..2019 do
-            years << year 
-        end
-        new_years = years.reverse
-        @year = new_years
-    end
+  def set_year
+      years = []
+      for year in 1900..2019 do
+          years << year 
+      end
+      new_years = years.reverse
+      @year = new_years
+  end
 
   def set_month
     months = []
@@ -143,7 +131,7 @@ class UsersController < ApplicationController
   end
 
   def step8
-    sign_in User.find(session[:id]) unless user_signed_in?
+    # sign_in User.find(session[:id]) unless user_signed_in?
   end
 
   def validates_step3
@@ -175,31 +163,43 @@ class UsersController < ApplicationController
     render "/users/step3" unless @user.valid?(:validates_step3)
   end
 
+  # def validates_step6
+  #   # @user = User.new
+  #   session[:last_name] = user_params[:last_name]
+  #   session[:first_name] = user_params[:first_name]
+  #   session[:first_name_kana] = user_params[:first_name_kana]
+  #   session[:last_name_kana] = user_params[:last_name_kana]
+  #   session[:postal_code] = user_params[:postal_code]
+  #   session[:address_prefecture] = user_params[:address_prefecture]
+  #   session[:address_city] = user_params[:address_city]
+  #   session[:address_number] = user_params[:address_number]
+  #   @user = User.new( 
+  #     last_name: session[:last_name],
+  #     first_name: session[:first_name],
+  #     first_name_kana: session[:first_name_kana],
+  #     last_name_kana: session[:last_name_kana],
+  #     postal_code: session[:postal_code],
+  #     address_prefecture: session[:address_prefecture],
+  #     address_city: session[:address_city],
+  #     address_number: session[:address_number]
+  #   )
+  #   render "/users/step6" unless @user.valid?(:validates_step6)
+  #   unless @user.valid?(:validates_step6)
+  #     @user = User.new
+  #     @user.build_address
+  #     render "/users/step6"
+  #   end  
+  # end
+
   def validates_step6
-    session[:last_name] = user_params[:last_name]
-    session[:first_name] = user_params[:first_name]
-    session[:first_name_kana] = user_params[:first_name_kana]
-    session[:last_name_kana] = user_params[:last_name_kana]
-    session[:postal_code] = user_params[:postal_code]
-    session[:address_prefecture] = user_params[:address_prefecture]
-    session[:address_city] = user_params[:address_city]
-    session[:address_number] = user_params[:address_number]
-    @address = Address.new( 
-      last_name: session[:last_name],
-      first_name: session[:first_name],
-      first_name_kana: session[:first_name_kana],
-      last_name_kana: session[:last_name_kana],
-      postal_code: session[:postal_code],
-      address_prefecture: session[:address_prefecture],
-      address_city: session[:address_city],
-      address_number: session[:address_number]
+    session[:user_params] = user_params[:address_attributes]
+    @user = User.new(
+      email: session[:email],
+      password: session[:password],
+      password_confirmation: session[:password_confirmation],
     )
-    puts @address.valid?
-    unless @address.valid?
-      @user = User.new
-      @user.build_address
-      render "/users/step6"
-    end  
+    @user.build_address(session[:user_params])
+    render "/users/step6" unless @user.valid?(:validates_step6)
   end
   private
 
