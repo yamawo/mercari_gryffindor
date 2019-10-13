@@ -75,7 +75,6 @@ gem 'devise'
 #haml-rails
 gem 'haml-rails'
 gem 'rails-i18n'
-gem "font-awesome-rails"
 gem 'bootsnap'
 
 # payjp
