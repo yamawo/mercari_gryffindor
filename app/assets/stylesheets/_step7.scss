@@ -236,34 +236,66 @@
             &__logo{
               margin: 8px 0 0;
               font-size: 0;
+              width: 100%;
+              height: 20px;
               &__visa{
                 margin: 0;
                 display: inline-block;
+                .image-visa {
+                  width: 49px;
+                  height: 20px;
+                  float: left;
+                  display: block;
+                }
               }
-            &__master-card{
-              display: inline-block;
-              margin: 0 0 0 8px;
-            }
-            &__saison-card{
-              display: inline-block;
-              margin: 0 0 0 8px;
-            }
-            &__jcb{
-              display: inline-block;
-              margin: 0 0 0 8px;
-            }
-            &__amex{
-              display: inline-block;
-              margin: 0 0 0 8px;
-            }
-            &__diners-card{
-              display: inline-block;
-              margin: 0 0 0 8px;
-            }
-            &__discover{
-              display: inline-block;
-              margin: 0 0 0 8px;
-            }
+              &__master-card{
+                display: inline-block;
+                margin: 0 0 0 5px;
+                .image-master {
+                  width: 45px;
+                  height: 20px;
+                }
+              }
+              &__saison-card{
+                display: inline-block;
+                margin: 0 0 0 5px;
+                .image-saison {
+                  width: 45px;
+                  height: 20px;
+                }
+              }
+              &__jcb{
+                display: inline-block;
+                margin: 0 0 0 5px;
+                .image-jcb {
+                  width: 40px;
+                  height: 20px;
+                }
+              }
+              &__amex{
+                display: inline-block;
+                margin: 0 0 0 7px;
+                .image-amex {
+                  width: 39px;
+                  height: 20px;
+                }
+              }
+              &__diners-card{
+                display: inline-block;
+                margin: 0 0 0 7px;
+                .image-diners {
+                  width: 43px;
+                  height: 20px;
+                }
+              }
+              &__discover{
+                display: inline-block;
+                margin: 0 0 0 5px;
+                .image-discover {
+                  width: 44px;
+                  height: 20px;
+                }
+              }
             }
           }
           &__expiration-date{
