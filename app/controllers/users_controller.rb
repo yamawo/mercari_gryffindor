@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   require "payjp"
   before_action :set_year, :set_month, :set_day
   before_action :validates_step3, only: :step4
@@ -134,5 +135,20 @@ class UsersController < ApplicationController
         :address_phone,
       ]
     )
+
+  def profile
   end
+    
+  def mypage
+
+  end
+
+  def logout
+    
+  end
+  
+  def confirmation
+    @address = Address.new
+  end
+    
 end

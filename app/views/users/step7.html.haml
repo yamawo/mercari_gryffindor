@@ -34,19 +34,19 @@
             = form.text_field :credit_number, type: 'text', placeholder: '半角数字のみ', maxlength: "16", class: 'step7-container__main__section__form__box__group__input'
             %ul.step7-container__main__section__form__box__group__logo
               %li.step7-container__main__section__form__box__group__logo__visa
-                %img{alt: "", height: "20", src: "//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?3466462615", width: "49"}/
+                = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?3466462615", size: "49×20", alt: ""
               %li.step7-container__main__section__form__box__group__logo__master-card
-                %img{alt: "", height: "20", src: "//www-mercari-jp.akamaized.net/assets/img/card/master-card.svg?3466462615", width: "34"}/
+                = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/master-card.svg?3466462615", size: "34×20", alt: ""
               %li.step7-container__main__section__form__box__group__logo__saison-card
-                %img{alt: "", height: "20", src: "//www-mercari-jp.akamaized.net/assets/img/card/saison-card.svg?3466462615", width: "30"}/
+                = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/saison-card.svg?3466462615", size: "30×20", alt: ""
               %li.step7-container__main__section__form__box__group__logo__jcb
-                %img{alt: "", height: "20", src: "//www-mercari-jp.akamaized.net/assets/img/card/jcb.svg?3466462615", width: "32"}/
+                = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/jcb.svg?3466462615", size: "32×20", alt: ""
               %li.step7-container__main__section__form__box__group__logo__amex
-                %img{alt: "", height: "20", src: "//www-mercari-jp.akamaized.net/assets/img/card/american_express.svg?3466462615", width: "21"}/
+                = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/american_express.svg?3466462615", size: "21×20", alt: ""
               %li.step7-container__main__section__form__box__group__logo__diners-card
-                %img{alt: "", height: "20", src: "//www-mercari-jp.akamaized.net/assets/img/card/dinersclub.svg?3466462615", width: "32"}/
+                = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/dinersclub.svg?3466462615", size: "32×20", alt: ""
               %li.step7-container__main__section__form__box__group__logo__discover
-                %img{alt: "", height: "20", src: "//www-mercari-jp.akamaized.net/assets/img/card/discover.svg?3466462615", width: "32"}/
+                = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/discover.svg?3466462615", size: "32×20", alt: ""
           .step7-container__main__section__form__box__expiration-date
             %label{for: "payment_card_expire"} 有効期限
             %span.form-require
