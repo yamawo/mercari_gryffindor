@@ -14,11 +14,11 @@ class User < ApplicationRecord
      #   validates :phone_number, on: :validates_step3
        validates :nickname, on: :validates_step3
        validates :password_confirmation, on: :validates_step3
+       validates :birthdate_year, on: :validates_step3
+       validates :birthdate_month, on: :validates_step3
+       validates :birthdate_day, on: :validates_step3
   end
-  validates :birthdate_year, :birthdate_month, :birthdate_day, presence: true, on: :validates_step3
-  # validates :birthdate_month, presence: true, on: :validates_step3
-  # validates :birthdate_day, presence: true, on: :validates_step3
-
+  
   enum prefecture: {
        "北海道": "北海道",
        "青森県": "青森県",

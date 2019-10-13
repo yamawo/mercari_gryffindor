@@ -28,17 +28,20 @@ class UsersController < ApplicationController
     @user = User.new
     # ここにはpostal_codeは入ってない
     session[:user_params] = user_params
+    
   end
 
   def step6
     @user = User.new
     @user.build_address
+    puts session[:user_params]
   end
 
   def step7
     @user = User.new
     # 下記の中にpostal_codeが入ってる
     session[:address_attributes1] = user_params[:address_attributes]
+    puts session[:user_params]
     # session[:postal_code] = user_params[:postal_code]
     # session[:address_prefecture] = user_params[:address_prefecture]
     # session[:address_city] = user_params[:address_city]
@@ -199,6 +202,7 @@ class UsersController < ApplicationController
     )
     @user.build_address(session[:address_attributes1])
     render "/users/step6" unless @user.valid?(:validates_step6)
+    puts session[:user_params]
   end
   private
 
