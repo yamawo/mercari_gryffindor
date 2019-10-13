@@ -21,7 +21,7 @@ document.addEventListener(
             $("#user_cvc").removeAttr("name");
             $("#user_exp_month").removeAttr("name");
             $("#user_exp_year").removeAttr("name"); //カード情報を自分のサーバーにpostせずに削除
-            $("#user_token_submit").append(
+            $("#token_submit").append(
               $('<input type="hidden" name="payjp-token">').val(response.id)
             ); //トークンを送信できるように隠しタグを生成
             document.inputForm.submit();
