@@ -24,9 +24,6 @@
     %section.l-single-container
       %h2.l-capter-head
         住所入力
-      -# = form_for @user do |ff|
-      -#   = ff.label :naze  
-      -#   = ff.submit "nande"
       = form_for @user, url: step7_users_path, builder: CustomFormBuilder, method: :GET do |f|
         = f.fields_for :address do |i|
           .l-capter-head__content
