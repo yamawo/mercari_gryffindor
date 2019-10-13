@@ -30,7 +30,7 @@
             .step4__main__content__form__field
               .step4__main__content__form__field__callnumber
                 = f.label :携帯電話の番号, class: "step4__main__content__form__field__callnumber__label"
-                = f.text_field :text, placeholder: "携帯電話の番号を入力", class: "step4__main__content__form__field__callnumber__input"
+                = f.text_field :phone_number, placeholder: "携帯電話の番号を入力", class: "step4__main__content__form__field__callnumber__input"
               %p.step4__main__content__form__field__text
                 本人確認のため、携帯電話のSMS(ショートメッセージサービス)を利用して認証を行います。
                 = f.submit "SMSを送信する", type: "submit", class: "step4__main__content__form__field__text__btn"
