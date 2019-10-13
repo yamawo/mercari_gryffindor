@@ -28,7 +28,6 @@ Rails.application.routes.draw do
       end
     end
   end
-end
 
  resources :users, only: [:mypage, :logout] do
    collection do
