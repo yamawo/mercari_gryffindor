@@ -1,10 +1,10 @@
 %main.products-show
   %section.products-show__product-details
-    %h1.products-show__product-details__item-name デニムワンピース シャツワンピース
+    %h1.products-show__product-details__item-name= @products.name
     .products-show__product-details__main
       .products-show__product-details__main__item-photo
         .products-show__product-details__main__item-photo__outer
-          = image_tag 'https://static.mercdn.net/item/detail/orig/photos/m49383992086_1.jpg?1569631728', class: 'products-show__product-details__main__item-photo__outer__top'
+          = image_tag @images.image, class: 'products-show__product-details__main__item-photo__outer__top'
         .products-show__product-details__main__item-photo__list
           .products-show__product-details__main__item-photo__list__one
             %span
@@ -35,17 +35,17 @@
           %tr
             %th 出品者
             %td
-              = link_to "ワンコロ",class: "exhibitor-name"
+              = link_to @users.nickname, class: "exhibitor-name"
               .item-user
                 .item-user-good
                   %i.fas.fa-laugh
-                  %span 123
+                  %span= @users.good
                 .item-use-normal
                   %i.fas.fa-meh
-                  %span 0
+                  %span= @users.normal
                 .item-user-bad
                   %i.fas.fa-frown
-                  %span 0
+                  %span= @users.bat
           %tr
             %th カテゴリー
             %td
@@ -70,36 +70,28 @@
             %td L
           %tr
             %th 商品の状態
-            %td 目立った傷や汚れなし
+            %td= @products.stage
           %tr
             %th 配送料の負担
-            %td 送料込み(出品者負担)
+            %td= @products.delivery_responsivility
           %tr
             %th 配送の方法
-            %td らくらくメルカリ便
+            %td= @products.delivery_way
           %tr
             %th 配送元地域
             %td
-              = link_to "千葉県"
+              = link_to @products.delivery_area
           %tr
             %th 発送日の目安
-            %td 2~3日で発送
+            %td= @products.delivery_day
     .products-show__product-details__price
-      %span.products-show__product-details__price__text ¥4,500
+      %span.products-show__product-details__price__text= number_to_currency(@products.price, :format => "%u%n", :unit => "￥")
       %span.products-show__product-details__price__tax （税込）
       %span.products-show__product-details__price__postage 送料込み
     %a.products-show__product-details__btn 購入画面に進む
     .products-show__product-details__text
       %p.products-show__product-details__text__inner
-        昨年購入した NIKO AND の デニムシャツワンピースです。
-        %br
-        サイズは表記3のL サイズで 1～2回しか着ていないのでキレイな状態です。
-        %br
-        着丈は101㎝、胸囲106㎝。
-        素人採寸ですのでおよそになります。
-        ご了承下さい。
-        %br
-        あくまでも中古品ですので気になる方はご遠慮下さいませ。
+        = @products.text
     .products-show__product-details__other
     .products-show__product-details__other__left
       %button.products-show__product-details__other__left__like
