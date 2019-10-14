@@ -35,13 +35,13 @@ class User < ApplicationRecord
           user_id: user.id
           )
       else
-        user = User.create(
+        @user = User.new(
           nickname: auth.info.name,
           email:    auth.info.email,
           password: Devise.friendly_token[0, 20],
           phone_number: "08000000000"
-          
           )
+        render template: "usres/step3"
         SnsCredential.create(
           uid: uid,
           provider: provider,
