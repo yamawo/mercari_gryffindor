@@ -24,7 +24,6 @@ class UsersController < ApplicationController
   def step7
     @user = User.new
     session[:address_attributes1] = user_params[:address_attributes]
-    puts session[:user_params]
   end
 
   def set_year
