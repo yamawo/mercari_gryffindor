@@ -15,7 +15,11 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :products, only: [:index]
+  resources :products, only: [:index] do
+    collection do
+      get 'privacy_policy'
+    end
+  end  
   
   resources :users do
     collection do
