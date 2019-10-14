@@ -32,5 +32,5 @@ for doc.search(".category-list-individual-box-inner-box:has(.category-list-indiv
   for doc.search(".category-list-individual-box-sub-sub-category-box:has(.category-list-individual-box-sub-sub-category-name)") in 0..num do 
     puts smallbox.search(".category-list-individual-box-sub-sub-category-name").length
   end
-  
+
 end
