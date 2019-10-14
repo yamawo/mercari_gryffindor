@@ -1,0 +1,121 @@
+.signup{
+  padding-bottom: 40px;
+  &__header{
+    background-color: $main_color;
+    height: 128px;
+    text-align: center;
+    h1 {
+      margin: 40px 0 0;
+      display: inline-block;
+      a {
+        width: 185px;
+        height: 49px;
+        line-height: 49px;
+        display: inline-block;
+        margin: 0 8px 0 0;
+        &__title{
+          height: 49px;
+          width: 185px;
+          display: flex;
+          margin: auto;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+  .signup__main{
+    font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
+    min-height: 100%;
+    display: block;
+    &__box{
+      width: 700px;
+      background-color: #fff;
+      margin: 0 auto;  
+      h2{
+        line-height: 1.5;
+        font-size: 22px;
+        padding: 32px;
+        text-align: center;
+        border-bottom: 1px solid $main_color; 
+      }
+      &__form{
+        padding: 40px 40px 64px;
+        &__link{
+          max-width: 343px;
+          margin: 0 auto;
+          &__btn-default{
+            border-radius: 4px;
+            display: block;
+            width: 100%;
+            line-height: 48px;
+            font-size: 14px;
+            border: 1px solid transparent;
+            text-decoration: none;
+            transition: all ease-out .3s;
+            cursor: pointer;
+            text-align: center;
+            .fa-envelope-o{
+              font-size: 20px;
+              position: absolute;
+              top: 30%;
+              left: 20px;
+            }
+          }
+          &__btn-mail{
+            color: #fff;
+            background-color: $header_list_active_color;
+            position: relative;
+          }
+          &__btn-sns-facebook{
+            margin: 16px 0 0;
+            background: #385185;
+            color: #fff;
+            height: 50px;
+          }
+          &__btn-sns{
+            position: relative;
+            line-height: 48px;
+            i{
+              transform: translate(0, -50%);
+              display: inline-block;
+              font-style: normal;
+              font-weight: 400;
+            }
+            .fa-facebook-square{
+              font-size: 25px;
+              position: absolute;
+              top: 50%;
+              right: 16px;
+              width: 590px;
+              height: 26px;
+              p {
+                position: absolute;
+                bottom: 3px;
+                left: 375px;
+                font-size: 13px;
+                display: inline-block;
+                
+              }
+            }
+          }
+          &__btn-sns-google{
+            margin: 16px 0 0;
+            background: #fff;
+            border: #979797 1px solid;
+            color: #333333;
+            img{
+              float: left;
+            }
+            p{
+              position: absolute;
+              left: 0;
+              right: 0;
+              margin: auto;
+              line-height: 3.3;
+             }
+          }
+        }
+      }
+    }
+  }
+}

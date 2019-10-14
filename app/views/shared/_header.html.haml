@@ -23,8 +23,27 @@
                 = fa_icon "tag", class: "icon-list fa-rotate-315"
                 ブランドから探す
       %nav.l-right
-        %ul.pc-header__login-nav
+        %ul.pc-header__login-nav  
+        - if user_signed_in?
+          %li.sp-header-iine
+            %a.sp-header-iine-link{href: "/jp/mypage/like/history/"}
+              %i.fa.fa-heart-o
+              いいね！一覧
+          %li.sp-header-notice
+            %a.sp-header-notice-link{href: "/jp/mypage/notification/"}
+              %i.fa.fa-bell-o
+              お知らせ
+          %li.sp-header-todolist
+            %a.sc-RefOD.jwHbWf{href: "/jp/mypage/todo/"}
+              %i.fa.fa-check
+              やることリスト
+          %li.sp-header-mypage
+            %a.sp-header-mypage-link{href: "/jp/mypage/"}
+              %img.sp-header-mypage-img{alt: "", src: "https://static.mercdn.net/images/member_photo_noimage_thumb.png"}>/
+              マイページ     
+        - else
           %li
-            = link_to "新規会員登録", "/", class: "sp-header-btn"
+            = link_to "新規会員登録", new_user_registration_path, class: "sp-header-btn"
           %li
             = link_to "ログイン", "/", class: "sp-header-btn header-login"
+          

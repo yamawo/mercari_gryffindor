@@ -1,4 +1,5 @@
-@import "./reset";
+@import "./reset.scss";
+@import "./variable.scss";
 @import "mypage";
 @import "products_index";
 @import "logout";
@@ -7,9 +8,5 @@
 @import "sell-btn";
 @import "confirmation";
 @import "font-awesome";
+@import "products_index";
 @import "app";
-
-
-
-
-
