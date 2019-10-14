@@ -25,7 +25,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
             name: data['name'],
             facebook_uid: data['id']
         }
-      endect_to new_user_registration_url
+      redirect_to step3_users_path
     end
   end
 
