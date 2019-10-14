@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :omniauthable
+         :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:facebook]
   has_one :address
   has_one :credit
   accepts_nested_attributes_for :address
@@ -18,6 +18,52 @@ class User < ApplicationRecord
        validates :birthdate_year, on: :validates_step3
        validates :birthdate_month, on: :validates_step3
        validates :birthdate_day, on: :validates_step3
+  end
+
+#   def self.from_omniauth(auth)
+#     # どのSNSで認証したかをproviderで判定
+#     if auth.provider == 'facebook'
+#       where(facebook_uid: auth.uid).first
+#     # twitterの判定も先取って記述しておきます
+#     elsif auth.provider == 'twitter'
+#       where(twitter_uid: auth.uid).first
+#     end
+#   end
+
+#   def self.new_with_session(_, session)
+#     super.tap do |user|
+#       if (data = session['devise.omniauth_data'])
+#         user.email = data['email'] if user.email.blank?
+#         user.username = data['name'] if user.username.blank?
+#         user.facebook_uid = data['facebook_uid'] if data['facebook_uid'] && user.facebook_uid.blank?
+#         # twitterの判定も先取って記述しておきます
+#         user.twitter_uid = data['twitter_uid'] if data['twitter_uid'] && user.twitter_uid.blank?
+#         user.skip_confirmation!
+#       end
+#     end
+#   end  
+  def self.from_omniauth(auth)
+    # どのSNSで認証したかをproviderで判定
+    if auth.provider == 'facebook'
+      where(facebook_uid: auth.uid).first
+    # twitterの判定も先取って記述しておきます
+    elsif auth.provider == 'twitter'
+      where(twitter_uid: auth.uid).first
+    end
+  end
+
+  # ユーザー登録に渡すデータを設定
+  def self.new_with_session(_, session)
+    super.tap do |user|
+      if (data = session['devise.omniauth_data'])
+        user.email = data['email'] if user.email.blank?
+        user.username = data['name'] if user.username.blank?
+        user.facebook_uid = data['facebook_uid'] if data['facebook_uid'] && user.facebook_uid.blank?
+        # twitterの判定も先取って記述しておきます
+        user.twitter_uid = data['twitter_uid'] if data['twitter_uid'] && user.twitter_uid.blank?
+        user.skip_confirmation!
+      end
+    end
   end
   
   enum prefecture: {
