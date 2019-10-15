@@ -41,9 +41,9 @@ class User < ApplicationRecord
           password: Devise.friendly_token[0, 20],
           phone_number: "08000000000"
           )
-        snscredential = SnsCredential.new(  
-          session[:uid] = auth.uid
-          session[:provider] = auth.provider
+        @snscredential = SnsCredential.new(  
+          uid: auth.uid,
+          provider: auth.provider
         )
       end
     end

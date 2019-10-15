@@ -57,7 +57,7 @@ class UsersController < ApplicationController
     if @user.save
         session[:id] = @user.id
         if session[:uid].present? && session[:provider].present?
-          SnsCredential.create(
+          @snscredential.create(
             uid: session[:uid],
             provider: session[:provider],
             user_id: @user.id
