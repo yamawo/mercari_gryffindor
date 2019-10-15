@@ -32,11 +32,12 @@
                     .selling__main__sec__content__form__write__upload__box__items
                       %ul
                     .selling__main__sec__content__form__write__upload__box__drop
-                      = f.file_field :image, class: "selling__main__sec__content__form__write__upload__box__drop__input", type: "file" 
-                      %pre.selling__main__sec__content__form__write__upload__box__drop__input__select
-                        ドラッグアンドドロップ
-                        またはクリックしてファイルをアップロード
-                      %i.selling__main__sec__content__form__write__upload__box__drop__icon
+                      = f.fields_for :product_images do |i|
+                        = i.file_field :image, class: "selling__main__sec__content__form__write__upload__box__drop__input", type: "file" 
+                        %pre.selling__main__sec__content__form__write__upload__box__drop__input__select
+                          ドラッグアンドドロップ
+                          またはクリックしてファイルをアップロード
+                        %i.selling__main__sec__content__form__write__upload__box__drop__icon
 
                 .selling__main__sec__content__form__write__content
                   .selling__main__sec__content__form__write__content__group
