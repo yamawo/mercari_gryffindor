@@ -6,6 +6,7 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    @product.product_images.build
     render layout: "selling"
   end
 
@@ -20,7 +21,7 @@ class ProductsController < ApplicationController
 
   private 
   def product_params
-    params.require(:user).permit(:image, :name, :text, :category_id, :status, :delivery_responsivility, :delivery_way, :delivery_area, :delivery_day, :price)
+    params.require(:product).permit(:name, :price, :text, :status, :stage, :delivery_responsivility, :delivery_way, :delivery_area, :delivery_day)
   end
   
 end

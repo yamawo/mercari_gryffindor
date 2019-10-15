@@ -87,6 +87,11 @@
                 display: block;
                 clear: both;
               }
+              &__items{
+                ul{
+                  display: block;
+                }
+              }
               &__drop{
                 width: 100%;
                 margin-left: 0;

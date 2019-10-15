@@ -19,7 +19,7 @@
             %h2.selling__main__sec__content__form__heading
               商品の情報を入力
             %form.selling__main__sec__content__form__write
-              = form_for [@product] do |f|
+              = form_for @product, html: {multipart: true, class: "dropzone"} do |f|
                 .selling__main__sec__content__form__write__upload
                   %h3.selling__main__sec__content__form__write__upload__heading
                     出品画像
@@ -28,9 +28,11 @@
                   %p.selling__main__sec__content__form__write__upload__p
                     最大10枚までアップロードできます
                   .selling__main__sec__content__form__write__upload__box
+                    -# メルカリ本物はここにもう一個箱あるっぽい
                     .selling__main__sec__content__form__write__upload__box__items
+                      %ul
                     .selling__main__sec__content__form__write__upload__box__drop
-                      = f.file_field :image, class: "selling__main__sec__content__form__write__upload__box__drop__input", type: "file"
+                      = f.file_field :image, class: "selling__main__sec__content__form__write__upload__box__drop__input", type: "file" 
                       %pre.selling__main__sec__content__form__write__upload__box__drop__input__select
                         ドラッグアンドドロップ
                         またはクリックしてファイルをアップロード

@@ -80,3 +80,5 @@ gem "font-awesome-rails"
 gem 'bootsnap'
 #レコードを階層構造として編成
 gem "ancestry"
+#dropzone
+gem 'dropzonejs-rails'
