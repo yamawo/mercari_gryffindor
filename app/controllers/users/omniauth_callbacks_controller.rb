@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  layout "users_layout"
 
   def facebook
     callback_for(:facebook)
@@ -17,7 +18,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       set_flash_message(:notice, :success, kind: "#{provider}".capitalize) if is_navigational_format?
     else
       session["devise.#{provider}_data"] = request.env["omniauth.auth"].except("extra")
-      redirect_to signup_registration_path
+      @year = User.set_year()
+      @month = User.set_month()
+      @day = User.set_day()
+      render "users/facebook_step3"
     end
   end
 

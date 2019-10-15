@@ -56,6 +56,13 @@ class UsersController < ApplicationController
     @user.build_address(session[:address_attributes1])
     if @user.save
         session[:id] = @user.id
+        if session[:uid].present? && session[:provider].present?
+          SnsCredential.create(
+            uid: session[:uid],
+            provider: session[:provider],
+            user_id: @user.id
+          )
+        end  
         # PayjpとCardのデータベースを作成
         Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
 
@@ -84,7 +91,14 @@ class UsersController < ApplicationController
   def validates_step3
     session[:user_params] = user_params
     @user = User.new(session[:user_params])
-    render "/users/step3" unless @user.valid?(:validates_step3)
+    # if request.referer&.include?('/facebook/')
+    if params[:sns_authentication] = "on"
+      render "/users/facebook_step3" unless @user.valid?(:validates_step3)
+    else
+      render "/users/step3" unless @user.valid?(:validates_step3)
+    end
+    puts @user.errors.details
+    puts session["devise.facebook_data"]
   end
 
   def validates_step6

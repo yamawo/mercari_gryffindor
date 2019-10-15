@@ -35,22 +35,45 @@ class User < ApplicationRecord
           user_id: user.id
           )
       else
-        @user = User.new(
+        user = User.new(
           nickname: auth.info.name,
           email:    auth.info.email,
           password: Devise.friendly_token[0, 20],
           phone_number: "08000000000"
           )
-        render template: "usres/step3"
-        SnsCredential.create(
-          uid: uid,
-          provider: provider,
-          user_id: user.id
-          )
+        snscredential = SnsCredential.new(  
+          session[:uid] = auth.uid
+          session[:provider] = auth.provider
+        )
       end
     end
     return user
   end
+
+  def self.set_year
+      years = []
+      for year in 1900..2019 do
+          years << year 
+      end
+      new_years = years.reverse
+      @year = new_years
+  end  
+
+  def self.set_month
+    months = []
+    for month in 1..12 do
+        months << month
+    end
+    @month = months
+  end
+
+  def self.set_day
+    days = []
+    for day in 1..31 do
+        days << day
+    end
+    @day = days
+  end  
   # def self.from_omniauth(auth)
   #   # どのSNSで認証したかをproviderで判定
   #   if auth.provider == 'facebook'
