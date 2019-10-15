@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
   has_one :address
   has_one :credit
+  has_many :sns_credentials
   accepts_nested_attributes_for :address
 
   with_options presence: true do
@@ -41,13 +42,22 @@ class User < ApplicationRecord
           password: Devise.friendly_token[0, 20],
           phone_number: "08000000000"
           )
-        @snscredential = SnsCredential.new(  
-          uid: auth.uid,
-          provider: auth.provider
-        )
       end
     end
     return user
+  end
+
+  def self.sns(auth)
+    uid = auth.uid
+    provider = auth.provider
+    snscredential = SnsCredential.where(uid: uid, provider: provider).first
+    unless snscredential.present?
+      snscredential = {
+        uid: auth.uid,
+        provider: auth.provider
+      }
+    end
+    return snscredential
   end
 
   def self.set_year
@@ -74,29 +84,7 @@ class User < ApplicationRecord
     end
     @day = days
   end  
-  # def self.from_omniauth(auth)
-  #   # どのSNSで認証したかをproviderで判定
-  #   if auth.provider == 'facebook'
-  #     where(uid: auth.uid).first
-  #   # twitterの判定も先取って記述しておきます
-  #   elsif auth.provider == 'twitter'
-  #     where(twitter_uid: auth.uid).first
-  #   end
-  # end
 
-  # # ユーザー登録に渡すデータを設定
-  # def self.new_with_session(_, session)
-  #   super.tap do |user|
-  #     if (data = session['devise.omniauth_data'])
-  #       user.email = data['email'] if user.email.blank?
-  #       user.nickname = data['name'] if user.nickname.blank?
-  #       user.uid = data['facebook_uid'] if data['facebook_uid'] && user.uid.blank?
-  #       # twitterの判定も先取って記述しておきます
-  #       user.twitter_uid = data['twitter_uid'] if data['twitter_uid'] && user.twitter_uid.blank?
-  #       # user.skip_confirmation!
-  #     end
-  #   end
-  # end
   
   enum prefecture: {
        "北海道": "北海道",

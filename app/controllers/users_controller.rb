@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   require "payjp"
+  after_action :sns_create, only: :step8
   before_action :set_year, :set_month, :set_day
   before_action :validates_step3, only: :step4
   before_action :validates_step6, only: :step7
@@ -56,13 +57,6 @@ class UsersController < ApplicationController
     @user.build_address(session[:address_attributes1])
     if @user.save
         session[:id] = @user.id
-        if session[:uid].present? && session[:provider].present?
-          @snscredential.create(
-            uid: session[:uid],
-            provider: session[:provider],
-            user_id: @user.id
-          )
-        end  
         # PayjpとCardのデータベースを作成
         Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
 
@@ -86,6 +80,12 @@ class UsersController < ApplicationController
     else 
       render "/"
     end
+  end
+
+  def sns_create
+  session[:sns_data][:user_id] = @user.id
+  # @snscredential.merge!(user)
+  SnsCredential.create(session[:sns_data])
   end
 
   def validates_step3
