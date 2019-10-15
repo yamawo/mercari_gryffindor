@@ -103,6 +103,13 @@
                 text-align: center;
                 cursor: pointer;
                 &__input{
+                  position: absolute;
+                  left: 0;
+                  opacity: 0;
+                  width: 622px;
+                  height: 164px;
+                  cursor: pointer;
+                  z-index: 2;
                   &__select{
                     position: absolute;
                     top: 40%;
@@ -111,6 +118,7 @@
                     text-align: center;
                     font-size: 14px;
                     line-height: 1.5;
+                    z-index: 1;
                   }
                 }
                 &__icon{
