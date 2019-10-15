@@ -24,4 +24,8 @@ $(function(){
     $(html).insertAfter("#responsivility");
       
   })
+  const option1 = document.getElementById("product_delivery_responsivility").value;
+  if(option1 == "---") {
+    $("#product_delivery_responsivility").eq(1).remove();
+  }
 });

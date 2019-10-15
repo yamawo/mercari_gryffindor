@@ -11,26 +11,273 @@ file = File.open("カテゴリー一覧 - メルカリ スマホでかん�
 doc = Nokogiri::HTML(file)
 
 
-# doc.search(".category-list-individual-box-root-category-name")[0..12].each do |ele|
-#   genre = Category.create(name: "#{ele.content}")
-#   doc.search(".category-list-individual-box-inner-box:has(.category-list-individual-box-sub-category-name)")[0..12].each do |box|
-#     num = box.search(".category-list-individual-box-sub-category-name").length
-#     doc.search(".category-list-individual-box-sub-category-name h4")[0..num].each do |item|
-#       genre2 = genre.children.create(name: "#{item.content}")
-#       doc.search(".category-list-individual-box-sub-sub-category-box:has(.category-list-individual-box-sub-sub-category-name)")[0..num].each do |smallbox|
-#         count = smallbox.search(".category-list-individual-box-sub-sub-category-name").length
-#         doc.search(".category-list-individual-box-sub-category-name a")[0..count].each do |cate|
-#           genre2.children.create(name: "#{cate.content}")
-#         end
-#       end
-#     end
-#   end
-# end
-  
-for doc.search(".category-list-individual-box-inner-box:has(.category-list-individual-box-sub-category-name)") in 0..12 do
-  num = box.search(".category-list-individual-box-sub-category-name").length
-  for doc.search(".category-list-individual-box-sub-sub-category-box:has(.category-list-individual-box-sub-sub-category-name)") in 0..num do 
-    puts smallbox.search(".category-list-individual-box-sub-sub-category-name").length
-  end
 
+
+
+
+parent_category_blocks = doc.search(".category-list-individual-box")
+category_id = 1
+parent_category_blocks.each_with_index do |parent_category_block,i| 
+  parent_category = parent_category_block.at("h3").inner_text
+  genre = Category.create(name: "#{parent_category}")#レディース
+  category_id += 1
+  child_category_blocks = parent_category_block.search(".category-list-individual-box-sub-sub-category-box")
+  child_category_names = parent_category_block.search(".category-list-individual-box-sub-category-name")
+  child_category_blocks.each_with_index do |child_category_block, i|
+    child_category = child_category_names[i].at("h4").inner_text
+    genre2 = genre.children.create(name: "#{child_category}")
+    category_id += 1
+    grandchild_category_blocks = child_category_block.search(".category-list-individual-box-sub-sub-category-name")
+    grandchild_category_blocks.each do |grandchild_category_block|
+      grandchild_category = grandchild_category_block.at("a").inner_text
+      next if grandchild_category.squish == "すべて"
+      genre2.children.create(name: "#{grandchild_category}")
+      category_id += 1
+    end
+  end
 end
+
+
+file = File.open("レディース ブランド一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
+doc = Nokogiri::HTML(file)
+
+brand_blocks = doc.search(".brand-list-initial-box-brand-name")
+
+brand_id = 1
+brand_blocks.each do |brand_block|
+  brand = brand_block.at("p").inner_text
+  Brand.create(name: "#{brand}")
+  brand_id += 1
+end
+
+
+
+file = File.open("メンズ ブランド一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
+doc = Nokogiri::HTML(file)
+
+brand_blocks = doc.search(".brand-list-initial-box-brand-name")
+
+brand_id = 1
+brand_blocks.each do |brand_block|
+  brand = brand_block.at("p").inner_text
+  unless Brand.find_by(name: "#{brand}")
+    Brand.create(name: "#{brand}")
+    brand_id += 1
+  end
+end
+
+
+
+file = File.open("ベビー・キッズ ブランド一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
+doc = Nokogiri::HTML(file)
+
+brand_blocks = doc.search(".brand-list-initial-box-brand-name")
+
+brand_id = 1
+brand_blocks.each do |brand_block|
+  brand = brand_block.at("p").inner_text
+  unless Brand.find_by(name: "#{brand}")
+    Brand.create(name: "#{brand}")
+    brand_id += 1
+  end
+end
+
+
+file = File.open("インテリア・住まい・雑貨 ブランド一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
+doc = Nokogiri::HTML(file)
+
+brand_blocks = doc.search(".brand-list-initial-box-brand-name")
+
+brand_id = 1
+brand_blocks.each do |brand_block|
+  brand = brand_block.at("p").inner_text
+  unless Brand.find_by(name: "#{brand}")
+    Brand.create(name: "#{brand}")
+    brand_id += 1
+  end
+end
+
+
+file = File.open("キッチン・食器 ブランド一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
+doc = Nokogiri::HTML(file)
+
+brand_blocks = doc.search(".brand-list-initial-box-brand-name")
+
+brand_id = 1
+brand_blocks.each do |brand_block|
+  brand = brand_block.at("p").inner_text
+  unless Brand.find_by(name: "#{brand}")
+    Brand.create(name: "#{brand}")
+    brand_id += 1
+  end
+end
+
+
+file = File.open("時計 ブランド一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
+doc = Nokogiri::HTML(file)
+
+brand_blocks = doc.search(".brand-list-initial-box-brand-name")
+
+brand_id = 1
+brand_blocks.each do |brand_block|
+  brand = brand_block.at("p").inner_text
+  unless Brand.find_by(name: "#{brand}")
+    Brand.create(name: "#{brand}")
+    brand_id += 1
+  end
+end
+
+
+
+file = File.open("コスメ・香水・美容 ブランド一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
+doc = Nokogiri::HTML(file)
+
+brand_blocks = doc.search(".brand-list-initial-box-brand-name")
+
+brand_id = 1
+brand_blocks.each do |brand_block|
+  brand = brand_block.at("p").inner_text
+  unless Brand.find_by(name: "#{brand}")
+    Brand.create(name: "#{brand}")
+    brand_id += 1
+  end
+end
+
+
+file = File.open("テレビゲーム ブランド一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
+doc = Nokogiri::HTML(file)
+
+brand_blocks = doc.search(".brand-list-initial-box-brand-name")
+
+brand_id = 1
+brand_blocks.each do |brand_block|
+  brand = brand_block.at("p").inner_text
+  unless Brand.find_by(name: "#{brand}")
+    Brand.create(name: "#{brand}")
+    brand_id += 1
+  end
+end
+
+
+
+file = File.open("スポーツ・レジャー ブランド一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
+doc = Nokogiri::HTML(file)
+
+brand_blocks = doc.search(".brand-list-initial-box-brand-name")
+
+brand_id = 1
+brand_blocks.each do |brand_block|
+  brand = brand_block.at("p").inner_text
+  unless Brand.find_by(name: "#{brand}")
+    Brand.create(name: "#{brand}")
+    brand_id += 1
+  end
+end
+
+
+file = File.open("スマートフォン・携帯電話 ブランド一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
+doc = Nokogiri::HTML(file)
+
+brand_blocks = doc.search(".brand-list-initial-box-brand-name")
+
+brand_id = 1
+brand_blocks.each do |brand_block|
+  brand = brand_block.at("p").inner_text
+  unless Brand.find_by(name: "#{brand}")
+    Brand.create(name: "#{brand}")
+    brand_id += 1
+  end
+end
+
+
+
+file = File.open("バイク ブランド一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
+doc = Nokogiri::HTML(file)
+
+brand_blocks = doc.search(".brand-list-initial-box-brand-name")
+
+brand_id = 1
+brand_blocks.each do |brand_block|
+  brand = brand_block.at("p").inner_text
+  unless Brand.find_by(name: "#{brand}")
+    Brand.create(name: "#{brand}")
+    brand_id += 1
+  end
+end
+
+
+
+file = File.open("楽器 ブランド一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
+doc = Nokogiri::HTML(file)
+
+brand_blocks = doc.search(".brand-list-initial-box-brand-name")
+
+brand_id = 1
+brand_blocks.each do |brand_block|
+  brand = brand_block.at("p").inner_text
+  unless Brand.find_by(name: "#{brand}")
+    Brand.create(name: "#{brand}")
+    brand_id += 1
+  end
+end
+
+
+file = File.open("自動車パーツ ブランド一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
+doc = Nokogiri::HTML(file)
+
+brand_blocks = doc.search(".brand-list-initial-box-brand-name")
+
+brand_id = 1
+brand_blocks.each do |brand_block|
+  brand = brand_block.at("p").inner_text
+  unless Brand.find_by(name: "#{brand}")
+    Brand.create(name: "#{brand}")
+    brand_id += 1
+  end
+end
+
+
+file = File.open("食品 ブランド一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
+doc = Nokogiri::HTML(file)
+
+brand_blocks = doc.search(".brand-list-initial-box-brand-name")
+
+brand_id = 1
+brand_blocks.each do |brand_block|
+  brand = brand_block.at("p").inner_text
+  unless Brand.find_by(name: "#{brand}")
+    Brand.create(name: "#{brand}")
+    brand_id += 1
+  end
+end
+
+
+file = File.open("国内自動車本体 ブランド一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
+doc = Nokogiri::HTML(file)
+
+brand_blocks = doc.search(".brand-list-initial-box-brand-name")
+
+brand_id = 1
+brand_blocks.each do |brand_block|
+  brand = brand_block.at("p").inner_text
+  unless Brand.find_by(name: "#{brand}")
+    Brand.create(name: "#{brand}")
+    brand_id += 1
+  end
+end
+
+
+file = File.open("外国自動車本体 ブランド一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
+doc = Nokogiri::HTML(file)
+
+brand_blocks = doc.search(".brand-list-initial-box-brand-name")
+
+brand_id = 1
+brand_blocks.each do |brand_block|
+  brand = brand_block.at("p").inner_text
+  unless Brand.find_by(name: "#{brand}")
+    Brand.create(name: "#{brand}")
+    brand_id += 1
+  end
+end
+
