@@ -6,11 +6,13 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+
     parents = Category.where(ancestry: nil)
     @parents = [["---", "---"]]
     parents.each do |parent|
       @parents << [parent.name, parent.id]
     end
+    @product.product_images.build
     render layout: "selling"
   end
 
@@ -31,8 +33,10 @@ class ProductsController < ApplicationController
   
 
   def creare
-    product = Product.new(product_params)
-    product.save
+    @product = Product.new(product_params)
+    @product.product_images.build(product_params[:product_images_attributes])
+    if @product.save
+    end
   end
 
   def privacy_policy
@@ -43,7 +47,7 @@ class ProductsController < ApplicationController
 
   private 
   def product_params
-    params.require(:product).permit(:image, :name, :text, :category_id, :status, :delivery_responsivility, :delivery_way, :delivery_area, :delivery_day, :price)
+    params.require(:product).permit(:name, :price, :text, :status, :stage, :delivery_responsivility, :delivery_way, :delivery_area, :delivery_day, :category_id, :brand_id, product_images_attributes: [:id, :image, :product_id])
   end
   
 end
