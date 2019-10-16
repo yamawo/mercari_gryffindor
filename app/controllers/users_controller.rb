@@ -26,31 +26,6 @@ class UsersController < ApplicationController
     session[:address_attributes1] = user_params[:address_attributes]
   end
 
-  def set_year
-      years = []
-      for year in 1900..2019 do
-          years << year 
-      end
-      new_years = years.reverse
-      @year = new_years
-  end
-
-  def set_month
-    months = []
-    for month in 1..12 do
-        months << month
-    end
-    @month = months
-  end
-
-  def set_day
-    days = []
-    for day in 1..31 do
-        days << day
-    end
-    @day = days
-  end
-
   def step8
     @user = User.new(session[:user_params])
     @user.build_address(session[:address_attributes1])
@@ -81,6 +56,31 @@ class UsersController < ApplicationController
     end
   end
 
+  def set_year
+      years = []
+      for year in 1900..2019 do
+          years << year 
+      end
+      new_years = years.reverse
+      @year = new_years
+  end
+
+  def set_month
+    months = []
+    for month in 1..12 do
+        months << month
+    end
+    @month = months
+  end
+
+  def set_day
+    days = []
+    for day in 1..31 do
+        days << day
+    end
+    @day = days
+  end
+
   def validates_step3
     session[:user_params] = user_params
     @user = User.new(session[:user_params])
@@ -97,6 +97,23 @@ class UsersController < ApplicationController
     @user.build_address(session[:address_attributes1])
     render "/users/step6" unless @user.valid?(:validates_step6)
   end
+
+  def profile
+  end
+
+  def mypage
+  end
+
+  def logout
+  end
+  
+  def confirmation
+    @address = Address.new
+  end
+  
+  def card
+  end
+
 
   private
 
@@ -133,21 +150,5 @@ class UsersController < ApplicationController
         :address_phone,
       ]
     )
-  end
-
-  def profile
-  end
-
-  def mypage
-  end
-
-  def logout
-  end
-  
-  def confirmation
-    @address = Address.new
-  end
-  
-  def card_registration
   end
 end
