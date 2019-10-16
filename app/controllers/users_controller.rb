@@ -147,5 +147,7 @@ class UsersController < ApplicationController
   def confirmation
     @address = Address.new
   end
-
+  
+  def card_registration
+  end
 end

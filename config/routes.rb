@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       get "mypage"
       get "confirmation"
       get "logout"
+      get "card_registration"
     end
   end
 end
