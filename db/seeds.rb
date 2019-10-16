@@ -7,19 +7,28 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require "nokogiri"
-file = File.open("カテゴリー一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
+
+#サイズデータ取得
+file = File.open("商品検索結果【メルカリ】No.1フリマアプリ.html")
 doc = Nokogiri::HTML(file)
 
+size_blocks = doc.search(".checkbox-default")
+size_id = 1
+size_blocks[1168..1297].each_with_index do |size_block, i|
+  size_name = size_block.at("label").inner_text
+  size = Size.create(name: "#{size_name}")
+  size_id += 1
+end
 
-
-
-
+#カテゴリーデータ取得
+file = File.open("カテゴリー一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
+doc = Nokogiri::HTML(file)
 
 parent_category_blocks = doc.search(".category-list-individual-box")
 category_id = 1
 parent_category_blocks.each_with_index do |parent_category_block,i| 
   parent_category = parent_category_block.at("h3").inner_text
-  genre = Category.create(name: "#{parent_category}")#レディース
+  genre = Category.create(name: "#{parent_category}")
   category_id += 1
   child_category_blocks = parent_category_block.search(".category-list-individual-box-sub-sub-category-box")
   child_category_names = parent_category_block.search(".category-list-individual-box-sub-category-name")
@@ -37,7 +46,7 @@ parent_category_blocks.each_with_index do |parent_category_block,i|
   end
 end
 
-
+#ブランド取得
 file = File.open("レディース ブランド一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
 doc = Nokogiri::HTML(file)
 

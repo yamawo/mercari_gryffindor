@@ -1,12 +1,23 @@
 $(function(){
-  $("#product_name:first").change(function(){
-    var input = $("#product_name").val;
+  $("#product_category_id:first").change(function(){
+    var input = $("#product_category_id:first").value;
     if (input !== "---")
-    
-      $ajax({
-        url: "post/new",
-        type: "GET",
-        
+      $.ajax({
+        action: "create_category",
+        data: { keyword: input },
+        dataType: "json"
+      })
+      .done(function(children){
+        var html = `<div class="selling__main__sec__content__form__write__content__box__group__select" id="category2">
+                      <i class="fas fa-chevron-down selling__main__sec__content__form__write__content__box__group__select__icon">
+                      </i>
+                      <select value="category_id" class="selling__main__sec__content__form__write__content__box__group__select__list" id="children">
+                        <option value="---">---</option>
+                        ${children}.each do |${child}|
+                          <option value=${name}>${id}</option>
+                      </select>
+                    </div>`
+        $(html).insertAfter("#category");
       })
   })
 })

@@ -18,10 +18,5 @@ class ApplicationController < ActionController::Base
     @products = @q.result(distinct: true)
   end
 
-  # def category
-  #   @parents = Category.all.order("id ASC").limit(13)
-  #   @child_category = 
-  #   @grandchild_category = 
-  # end
-
+  
 end
