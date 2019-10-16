@@ -1,51 +1,32 @@
 %main.products-show
   %section.products-show__product-details
-    %h1.products-show__product-details__item-name= @products.name
+    %h1.products-show__product-details__item-name= @product.name
     .products-show__product-details__main
       .products-show__product-details__main__item-photo
         .products-show__product-details__main__item-photo__outer
-          = image_tag @images.image, class: 'products-show__product-details__main__item-photo__outer__top'
+          = image_tag @product_images.image, class: 'products-show__product-details__main__item-photo__outer__top'
         .products-show__product-details__main__item-photo__list
+        -@product.product_images.each do |product|
           .products-show__product-details__main__item-photo__list__one
             %span
             .products-show__product-details__main__item-photo__list__one__inner
-              = image_tag 'https://static.mercdn.net/item/detail/orig/photos/m49383992086_1.jpg?1569631728', class: 'products-show__product-details__main__item-photo__list__one__inner__img'
-          .products-show__product-details__main__item-photo__list__one
-            %span
-            .products-show__product-details__main__item-photo__list__one_i_nner
-              = image_tag 'https://static.mercdn.net/item/detail/orig/photos/m49383992086_2.jpg?1569631728', class: 'products-show__product-details__main__item-photo__list__one__inner__img'
-          .products-show__product-details__main__item-photo__list__one
-            %span
-            .products-show__product-details__main__item-photo__list__one__inner
-              = image_tag 'https://static.mercdn.net/item/detail/orig/photos/m49383992086_3.jpg?1569631728', class: 'products-show__product-details__main__item-photo__list__one__inner__img'
-          .products-show__product-details__main__item-photo__list__one
-            %span
-            .products-show__product-details__main__item-photo__list__one__inner
-              = image_tag 'https://static.mercdn.net/item/detail/orig/photos/m49383992086_4.jpg?1569631728', class: 'products-show__product-details__main__item-photo__list__one__inner__img'
-          .products-show__product-details__main__item-photo__list__one
-            %span
-            .products-show__product-details__main__item-photo__list__one_i_nner
-              = image_tag 'https://static.mercdn.net/item/detail/orig/photos/m49383992086_5.jpg?1569631728', class: 'products-show__product-details__main__item-photo__list__one__inner__img'
-          .products-show__product-details__main__item-photo__list__one
-            %span
-            .products-show__product-details__main__item-photo__list__one__inner
-              = image_tag 'https://static.mercdn.net/item/detail/orig/photos/m49383992086_6.jpg?1569631728', class: 'products-show__product-details__main__item-photo__list__one__inner__img'
+              = image_tag product.image, class: 'products-show__product-details__main__item-photo__list__one__inner__img'
       %table.products-show__product-details__main__table
         %tbody
           %tr
             %th 出品者
             %td
-              = link_to @users.nickname, class: "exhibitor-name"
+              = link_to @product.user.nickname, class: "exhibitor-name"
               .item-user
                 .item-user-good
                   %i.fas.fa-laugh
-                  %span= @users.good
+                  %span= @product.user.good
                 .item-use-normal
                   %i.fas.fa-meh
-                  %span= @users.normal
+                  %span= @product.user.normal
                 .item-user-bad
                   %i.fas.fa-frown
-                  %span= @users.bat
+                  %span= @product.user.bat
           %tr
             %th カテゴリー
             %td
@@ -70,28 +51,28 @@
             %td L
           %tr
             %th 商品の状態
-            %td= @products.stage
+            %td= @product.stage
           %tr
             %th 配送料の負担
-            %td= @products.delivery_responsivility
+            %td= @product.delivery_responsivility
           %tr
             %th 配送の方法
-            %td= @products.delivery_way
+            %td= @product.delivery_way
           %tr
             %th 配送元地域
             %td
-              = link_to @products.delivery_area
+              = link_to @product.delivery_area
           %tr
             %th 発送日の目安
-            %td= @products.delivery_day
+            %td= @product.delivery_day
     .products-show__product-details__price
-      %span.products-show__product-details__price__text= number_to_currency(@products.price, :format => "%u%n", :unit => "￥")
+      %span.products-show__product-details__price__text= number_to_currency(@product.price, :format => "%u%n", :unit => "￥")
       %span.products-show__product-details__price__tax （税込）
       %span.products-show__product-details__price__postage 送料込み
     %a.products-show__product-details__btn 購入画面に進む
     .products-show__product-details__text
       %p.products-show__product-details__text__inner
-        = @products.text
+        = @product.text
     .products-show__product-details__other
     .products-show__product-details__other__left
       %button.products-show__product-details__other__left__like
