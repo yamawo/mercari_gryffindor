@@ -1,0 +1,43 @@
+%body
+  .step4
+    %header.step4__header
+      %h1
+        = link_to image_tag('https://www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?2296184308', alt: 'mercari',height: '49', width: '185', class: 'step4__header__logo'), "https://www.mercari.com/jp/"
+      %nav.step4__header__progress-bar.step4__header__signup-bar
+        %ol.clearfix
+          %li.step4__header__progress-bar__active
+            会員情報
+            .step4__header__progress-bar__active__status
+          %li.step4__header__progress-bar__second-active
+            電話番号認証
+            .step4__header__progress-bar__second-active__status
+          %li.step4__header__progress-bar__not-active
+            お届け先住所入力
+            .step4__header__progress-bar__not-active__status
+          %li.step4__header__progress-bar__not-active
+            支払い方法
+            .step4__header__progress-bar__not-active__status
+          %li.step4__header__progress-bar__not-active-last
+            完了
+            .step4__header__progress-bar__not-active-last__status-last
+          .clearfix
+    %main.step4__main
+      %section.step4__main__content
+        %h2.step4__main__content__registration
+          電話番号の確認
+        .step4__main__content__form
+          = form_for @user, url: step6_users_path, method: :get do |f|
+            .step4__main__content__form__field
+              .step4__main__content__form__field__callnumber
+                = f.label :携帯電話の番号, class: "step4__main__content__form__field__callnumber__label"
+                = f.text_field :phone_number, placeholder: "携帯電話の番号を入力", class: "step4__main__content__form__field__callnumber__input"
+              %p.step4__main__content__form__field__text
+                本人確認のため、携帯電話のSMS(ショートメッセージサービス)を利用して認証を行います。
+                = f.submit "SMSを送信する", type: "submit", class: "step4__main__content__form__field__text__btn"
+                %p.step4__main__content__form__field__text2
+                  ※電話番号は本人確認や不正利用防止のために利用します。他のユーザーに公開されることはありません。
+              .step4__main__content__form__field__reason
+                = link_to "/" , class: "step4__main__content__form__field__reason__link" do
+                  電話番号の確認が必要な理由
+                  %i.icon-arrow-right
+    = render "footer"

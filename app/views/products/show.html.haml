@@ -1,0 +1,175 @@
+%main.products-show
+  %section.products-show__product-details
+    %h1.products-show__product-details__item-name デニムワンピース シャツワンピース
+    .products-show__product-details__main
+      .products-show__product-details__main__item-photo
+        .products-show__product-details__main__item-photo__outer
+          = image_tag 'https://static.mercdn.net/item/detail/orig/photos/m49383992086_1.jpg?1569631728', class: 'products-show__product-details__main__item-photo__outer__top'
+        .products-show__product-details__main__item-photo__list
+          .products-show__product-details__main__item-photo__list__one
+            %span
+            .products-show__product-details__main__item-photo__list__one__inner
+              = image_tag 'https://static.mercdn.net/item/detail/orig/photos/m49383992086_1.jpg?1569631728', class: 'products-show__product-details__main__item-photo__list__one__inner__img'
+          .products-show__product-details__main__item-photo__list__one
+            %span
+            .products-show__product-details__main__item-photo__list__one_i_nner
+              = image_tag 'https://static.mercdn.net/item/detail/orig/photos/m49383992086_2.jpg?1569631728', class: 'products-show__product-details__main__item-photo__list__one__inner__img'
+          .products-show__product-details__main__item-photo__list__one
+            %span
+            .products-show__product-details__main__item-photo__list__one__inner
+              = image_tag 'https://static.mercdn.net/item/detail/orig/photos/m49383992086_3.jpg?1569631728', class: 'products-show__product-details__main__item-photo__list__one__inner__img'
+          .products-show__product-details__main__item-photo__list__one
+            %span
+            .products-show__product-details__main__item-photo__list__one__inner
+              = image_tag 'https://static.mercdn.net/item/detail/orig/photos/m49383992086_4.jpg?1569631728', class: 'products-show__product-details__main__item-photo__list__one__inner__img'
+          .products-show__product-details__main__item-photo__list__one
+            %span
+            .products-show__product-details__main__item-photo__list__one_i_nner
+              = image_tag 'https://static.mercdn.net/item/detail/orig/photos/m49383992086_5.jpg?1569631728', class: 'products-show__product-details__main__item-photo__list__one__inner__img'
+          .products-show__product-details__main__item-photo__list__one
+            %span
+            .products-show__product-details__main__item-photo__list__one__inner
+              = image_tag 'https://static.mercdn.net/item/detail/orig/photos/m49383992086_6.jpg?1569631728', class: 'products-show__product-details__main__item-photo__list__one__inner__img'
+      %table.products-show__product-details__main__table
+        %tbody
+          %tr
+            %th 出品者
+            %td
+              = link_to "ワンコロ",class: "exhibitor-name"
+              .item-user
+                .item-user-good
+                  %i.fas.fa-laugh
+                  %span 123
+                .item-use-normal
+                  %i.fas.fa-meh
+                  %span 0
+                .item-user-bad
+                  %i.fas.fa-frown
+                  %span 0
+          %tr
+            %th カテゴリー
+            %td
+              %a
+                = link_to "レディース"
+              %a
+                .item-detail-table-sub-category
+                  %i.fas.fa-angle-right
+                  = link_to "ワンピース"
+              %a
+                .item-detail-table-sub-sub-category
+                  %i.fas.fa-angle-right
+                  = link_to "ひざ丈ワンピース"
+          %tr
+            %th ブランド
+            %td
+              %a
+                %div
+                  = link_to "ニコアンド"
+          %tr
+            %th 商品のサイズ
+            %td L
+          %tr
+            %th 商品の状態
+            %td 目立った傷や汚れなし
+          %tr
+            %th 配送料の負担
+            %td 送料込み(出品者負担)
+          %tr
+            %th 配送の方法
+            %td らくらくメルカリ便
+          %tr
+            %th 配送元地域
+            %td
+              = link_to "千葉県"
+          %tr
+            %th 発送日の目安
+            %td 2~3日で発送
+    .products-show__product-details__price
+      %span.products-show__product-details__price__text ¥4,500
+      %span.products-show__product-details__price__tax （税込）
+      %span.products-show__product-details__price__postage 送料込み
+    %a.products-show__product-details__btn 購入画面に進む
+    .products-show__product-details__text
+      %p.products-show__product-details__text__inner
+        昨年購入した NIKO AND の デニムシャツワンピースです。
+        %br
+        サイズは表記3のL サイズで 1～2回しか着ていないのでキレイな状態です。
+        %br
+        着丈は101㎝、胸囲106㎝。
+        素人採寸ですのでおよそになります。
+        ご了承下さい。
+        %br
+        あくまでも中古品ですので気になる方はご遠慮下さいませ。
+    .products-show__product-details__other
+    .products-show__product-details__other__left
+      %button.products-show__product-details__other__left__like
+        %i.far.fa-heart
+        %span いいね!
+        %span.fade-in-down 2
+      %a.products-show__product-details__other__left__report
+        %i.far.fa-flag
+        %span 不適切な商品の報告
+    .products-show__product-details__other__right
+      %a.products-show__product-details__other__right__report
+        = link_to ""
+        %i.fas.fa-lock.products-show__product-details__other__right__report__icon
+        %span.products-show__product-details__other__right__report__link あんしん・あんぜんへの取り組み
+  %ul.products-show__products-ide-link
+    %li.products-show__products-ide-link__back
+      = link_to "",class: "products-show__products-ide-link__back__link" do
+        %p HUAWEI nova lite 3 コーラルレッド 32 GB SIMフリ
+        %p ー
+      %i.fas.fa-angle-left.products-show__products-ide-link__back__icon
+    %li.products-show__products-ide-link__next
+      = link_to "",class: "products-show__products-ide-link__next__link" do
+        %p ヤマハ RMX リミックス 216 ドライバー カスタム
+        %p シャフトTourAD
+      %i.fas.fa-angle-right.products-show__products-ide-link__next__icon
+  .products-show__link-box
+    %ul.products-show__link-box__media
+      %li.products-show__link-box__media__list
+        = link_to "",class: "products-show__link-box__media__list__face-book" do
+          %i.fab.fa-facebook-square.products-show__link-box__media__list__face-book__icon
+      %li.products-show__link-box__media__list
+        = link_to "",class: "products-show__link-box__media__list__twitter" do
+          %i.fab.fa-twitter.products-show__link-box__media__list__twitter__icon
+      %li.products-show__link-box__media__list
+        = link_to "",class: "products-show__link-box__media__list__pinterest" do
+          %i.fab.fa-pinterest.products-show__link-box__media__list__pinterest__icon
+      .clearfix
+  .products-show__other-products
+    %section.products-show__other-products__item-box
+      %h2.products-show__other-products__item-box__head
+        = link_to "ワンコロさんのその他の出品"
+      .products-show__other-products__item-box__content
+        %section.products-show__other-products__item-box__content__one
+          = link_to '', class: "products-show__other-products__item-box__content__one__link" do
+            .products-show__other-products__item-box__content__one__link__photo
+              = image_tag 'https://static.mercdn.net/thumb/photos/m72906416377_1.jpg?1568861493', class: "products-show__other-products__item-box__content__one__link__photo__img"
+            .products-show__other-products__item-box__content__one__link__body
+              %h3.products-show__other-products__item-box__content__one__link__body__title LAVA H2 Balm
+              .products-show__other-products__item-box__content__one__link__body__price
+                .products-show__other-products__item-box__content__one__link__body__price__text ¥3,800
+                %i.far.fa-heart.products-show__other-products__item-box__content__one__link__body__price__icon
+                  %span 4
+        %section.products-show__other-products__item-box__content__one
+          = link_to '', class: "products-show__other-products__item-box__content__one__link" do
+            .products-show__other-products__item-box__content__one__link__photo
+              = image_tag 'https://static.mercdn.net/thumb/photos/m72906416377_1.jpg?1568861493', class: "products-show__other-products__item-box__content__one__link__photo__img"
+            .products-show__other-products__item-box__content__one__link__body
+              %h3.products-show__other-products__item-box__content__one__link__body__title LAVA H2 Balm
+              .products-show__other-products__item-box__content__one__link__body__price
+                .products-show__other-products__item-box__content__one__link__body__price__text ¥3,800
+                %i.far.fa-heart.products-show__other-products__item-box__content__one__link__body__price__icon
+                  %span 4
+        %section.products-show__other-products__item-box__content__one
+          = link_to '', class: "products-show__other-products__item-box__content__one__link" do
+            .products-show__other-products__item-box__content__one__link__photo
+              = image_tag 'https://static.mercdn.net/thumb/photos/m72906416377_1.jpg?1568861493', class: "products-show__other-products__item-box__content__one__link__photo__img"
+            .products-show__other-products__item-box__content__one__link__body
+              %h3.products-show__other-products__item-box__content__one__link__body__title LAVA H2 Balm
+              .products-show__other-products__item-box__content__one__link__body__price
+                .products-show__other-products__item-box__content__one__link__body__price__text ¥3,800
+                %i.far.fa-heart.products-show__other-products__item-box__content__one__link__body__price__icon
+                  %span 4
+  = render "shared/download-ad"
