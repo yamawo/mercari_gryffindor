@@ -87,42 +87,83 @@
                 display: block;
                 clear: both;
               }
-              &__items{
-                ul{
-                  display: block;
-                }
-              }
-              &__drop{
+              #preview{
+                display: block;
+                float: left;
                 width: 100%;
-                margin-left: 0;
+              }
+              .selling__main__sec__content__form__write__upload__box__items{
+                width: 100%;
+                display: block;
                 float: right;
-                position: relative;
-                min-height: 162px;
-                background: #f5f5f5;
-                border: 1px dashed #ccc;
-                text-align: center;
-                cursor: pointer;
-                &__input{
-                  position: absolute;
-                  left: 0;
-                  opacity: 0;
-                  width: 622px;
-                  height: 164px;
+                &__input-area{
+                  padding: 40px;
+                  margin-left: 0;
+                  position: relative;
+                  min-height: 162px;
+                  background: #f5f5f5;
+                  border: 1px dashed #cccccc;
+                  font-size: 0;
+                  text-align: center;
                   cursor: pointer;
+                  transition: box-shadow ease-out .3s, -webkit-box-shadow ease-out .3s;
                   z-index: 2;
-                  &__select{
+                  &__field{
                     position: absolute;
-                    top: 40%;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 244px;
+                    z-index: 1;
+                  }
+                }
+                &__description{
+                  display: block;
+                  position: absolute;
+                  top: 0;
+                  left: 16px;
+                  right: 16px;
+                  text-align: center;
+                  font-size: 14px;
+                  line-height: 1.5;
+                  z-index: 2;
+                  &__text{
+                    display: block;
+                    position: absolute;
+                    top: 50%;
                     left: 16px;
                     right: 16px;
                     text-align: center;
                     font-size: 14px;
                     line-height: 1.5;
-                    z-index: 1;
+                    transform: translate(0, -50%);
+                    pointer-events: none;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
                   }
                 }
-                &__icon{
-                  display: none;
+              }
+            }
+            &__box2{
+              display: none;
+              &::after{
+                content: "";
+                display: none;
+                clear: both;
+              }
+              #preview2{
+                display: block;
+              }
+              .selling__main__sec__content__form__write__upload__box2__items2{
+                float: left;
+                display: block;
+                &__input-area{
+                  &__field{
+                  }
+                }
+                &__description{
+                  &__text{
+                  }
                 }
               }
             }
@@ -138,7 +179,7 @@
               &__label{
                 @include label;
                 &__need{
-                 @include need;
+                  @include need;
                 }
               }
               &__input{
