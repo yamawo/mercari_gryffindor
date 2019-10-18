@@ -114,11 +114,40 @@
               #preview{
                 display: block;
                 float: left;
+                .add_img:first-child{
+                  margin-left: 0;
+                }
                 .add_img{
-                  margin: 0;
+                  margin: 0 0 10px 10px;
                   padding: 0;
-                  width: calc(100% - 80%);
-                  img{
+                  display: inline-block;
+                  border: 1px solid #eeeeee;
+                  .img_area{
+                    height: 116px;
+                    img{
+                      width: 114px;
+                      height: 116px;
+                    }
+                  }
+                  .btn_wrapper{
+                    font-size: 14px;
+                    a{
+                      display: inline-block;
+                      background: #f5f5f5;
+                      width: calc(50% - 0.5px);
+                      line-height: 44px;
+                      text-align: center;
+                      color: #0099e8;
+                      text-decoration: none;
+                      cursor: pointer;
+                    }
+                    a:last-child{
+                      border-left: 1px solid #eeeeee;
+                    }
+                    .btn_edit{
+                      .btn_delete{
+                      }
+                    }
                   }
                 }
               }
@@ -176,6 +205,9 @@
             }
             &__box2{
               display: none;
+              width: 620px;
+              margin: 16px auto 0;
+              height: 162px;
               &::after{
                 content: "";
                 display: none;
@@ -183,16 +215,92 @@
               }
               #preview2{
                 display: block;
+                float: left;
+                .add_img:first-child{
+                  margin-left: 0;
+                }
+                .add_img{
+                  margin: 0 0 10px 10px;
+                  padding: 0;
+                  display: inline-block;
+                  border: 1px solid #eeeeee;
+                  .img_area{
+                    height: 116px;
+                    img{
+                      width: 114px;
+                      height: 116px;
+                    }
+                  }
+                  .btn_wrapper{
+                    font-size: 14px;
+                    a{
+                      display: inline-block;
+                      background: #f5f5f5;
+                      width: calc(50% - 0.5px);
+                      line-height: 44px;
+                      text-align: center;
+                      color: #0099e8;
+                      text-decoration: none;
+                      cursor: pointer;
+                    }
+                    a:last-child{
+                      border-left: 1px solid #eeeeee;
+                    }
+                    .btn_edit{
+                      .btn_delete{
+                      }
+                    }
+                  }
+                }
               }
               .selling__main__sec__content__form__write__upload__box2__items2{
-                float: left;
+                width: 100%;
+                height: 100%;
                 display: block;
-                &__input-area{
+                float: right;
+                position: relative;
+                .selling__main__sec__content__form__write__upload__box__items__input-area{
+                  width: 100%;
+                  margin-left: 0;
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  min-height: 162px;
+                  background: #f5f5f5;
+                  border: 1px dashed #cccccc;
+                  font-size: 0;
+                  text-align: center;
+                  cursor: pointer;
+                  transition: box-shadow ease-out .3s, -webkit-box-shadow ease-out .3s;
+                  z-index: 1;
                   &__field{
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    display: none;
                   }
                 }
                 &__description{
+                  position: absolute;
+                  top: 43%;
+                  right: 0;
+                  left: 0;
+                  display: block;
+                  text-align: center;
+                  font-size: 14px;
+                  line-height: 1.5;
+                  z-index: 1;
+                  height: 40px;
                   &__text{
+                    display: block;
+                    text-align: center;
+                    font-size: 14px;
+                    line-height: 1.5;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                    pointer-events: none;
                   }
                 }
               }
