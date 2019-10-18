@@ -77,6 +77,7 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.json
     end
+    .binding.pry
   end
   
   
