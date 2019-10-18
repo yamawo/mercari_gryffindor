@@ -9,5 +9,4 @@ $(function(){
     var profit = Math.floor(value * 0.9);
     $output2.text('¥' + profit);
   })
-  
 })
