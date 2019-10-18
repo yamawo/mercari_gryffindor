@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable
   has_many :products
+  has_many :product_images
   has_many :likes
   has_one :address
   has_one :credit

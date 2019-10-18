@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   end
   
   resources :products, only: [:index, :show]
-  
+      
   resources :users do
     collection do
       scope :sign_up do           # ディレクトリの階層の変更はなし
@@ -38,4 +38,7 @@ Rails.application.routes.draw do
       get "logout"
     end
   end
+  
+  post "likes/:product_id/create", to: "likes#create", constraints: {product_id: /\d+/}, as: :likes_create
+  post "likes/:product_id/delete", to: "likes#delete", constraints: {product_id: /\d+/}, as: :likes_delete
 end

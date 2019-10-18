@@ -5,3 +5,29 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require "nokogiri"
+#カテゴリーデータ取得
+file = File.open("カテゴリー一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
+doc = Nokogiri::HTML(file)
+
+parent_category_blocks = doc.search(".category-list-individual-box")
+category_id = 1
+parent_category_blocks.each_with_index do |parent_category_block,i| 
+  parent_category = parent_category_block.at("h3").inner_text
+  genre = Category.create(name: "#{parent_category}")
+  category_id += 1
+  child_category_blocks = parent_category_block.search(".category-list-individual-box-sub-sub-category-box")
+  child_category_names = parent_category_block.search(".category-list-individual-box-sub-category-name")
+  child_category_blocks.each_with_index do |child_category_block, i|
+    child_category = child_category_names[i].at("h4").inner_text
+    genre2 = genre.children.create(name: "#{child_category}")
+    category_id += 1
+    grandchild_category_blocks = child_category_block.search(".category-list-individual-box-sub-sub-category-name")
+    grandchild_category_blocks.each do |grandchild_category_block|
+      grandchild_category = grandchild_category_block.at("a").inner_text
+      next if grandchild_category.squish == "すべて"
+      genre2.children.create(name: "#{grandchild_category}")
+      category_id += 1
+    end
+  end
+end

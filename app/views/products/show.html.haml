@@ -4,7 +4,8 @@
     .products-show__product-details__main
       .products-show__product-details__main__item-photo
         .products-show__product-details__main__item-photo__outer
-          = image_tag @product_images.image, class: 'products-show__product-details__main__item-photo__outer__top'
+        -@product.product_images.limit(1).each do |product|
+          = image_tag product.image, class: 'products-show__product-details__main__item-photo__outer__top'
         .products-show__product-details__main__item-photo__list
         -@product.product_images.each do |product|
           .products-show__product-details__main__item-photo__list__one
@@ -31,21 +32,21 @@
             %th カテゴリー
             %td
               %a
-                = link_to "レディース"
+                = link_to @product.category.parent.parent.name
               %a
                 .item-detail-table-sub-category
                   %i.fas.fa-angle-right
-                  = link_to "ワンピース"
+                  = link_to @product.category.parent.name
               %a
                 .item-detail-table-sub-sub-category
                   %i.fas.fa-angle-right
-                  = link_to "ひざ丈ワンピース"
+                  = link_to @product.category.name
           %tr
             %th ブランド
             %td
               %a
                 %div
-                  = link_to "ニコアンド"
+                  = link_to @product.brand.name
           %tr
             %th 商品のサイズ
             %td L
@@ -78,7 +79,7 @@
       %button.products-show__product-details__other__left__like
         %i.far.fa-heart
         %span いいね!
-        %span.fade-in-down 2
+        %span.fade-in-down= @product.likes.count
       %a.products-show__product-details__other__left__report
         %i.far.fa-flag
         %span 不適切な商品の報告
@@ -89,14 +90,14 @@
         %span.products-show__product-details__other__right__report__link あんしん・あんぜんへの取り組み
   %ul.products-show__products-ide-link
     %li.products-show__products-ide-link__back
-      = link_to "",class: "products-show__products-ide-link__back__link" do
-        %p HUAWEI nova lite 3 コーラルレッド 32 GB SIMフリ
-        %p ー
+      - if @product.previous.present?
+        = link_to product_path(@product.previous),class: "products-show__products-ide-link__back__link" do
+          = @product.previous.name
       %i.fas.fa-angle-left.products-show__products-ide-link__back__icon
     %li.products-show__products-ide-link__next
-      = link_to "",class: "products-show__products-ide-link__next__link" do
-        %p ヤマハ RMX リミックス 216 ドライバー カスタム
-        %p シャフトTourAD
+      - if @product.next.present?
+        = link_to product_path(@product.next),class: "products-show__products-ide-link__next__link" do
+          = @product.next.name
       %i.fas.fa-angle-right.products-show__products-ide-link__next__icon
   .products-show__link-box
     %ul.products-show__link-box__media
@@ -113,36 +114,20 @@
   .products-show__other-products
     %section.products-show__other-products__item-box
       %h2.products-show__other-products__item-box__head
-        = link_to "ワンコロさんのその他の出品"
+        = link_to "#{@product.user.nickname}さんのその他の出品"
       .products-show__other-products__item-box__content
-        %section.products-show__other-products__item-box__content__one
-          = link_to '', class: "products-show__other-products__item-box__content__one__link" do
-            .products-show__other-products__item-box__content__one__link__photo
-              = image_tag 'https://static.mercdn.net/thumb/photos/m72906416377_1.jpg?1568861493', class: "products-show__other-products__item-box__content__one__link__photo__img"
-            .products-show__other-products__item-box__content__one__link__body
-              %h3.products-show__other-products__item-box__content__one__link__body__title LAVA H2 Balm
-              .products-show__other-products__item-box__content__one__link__body__price
-                .products-show__other-products__item-box__content__one__link__body__price__text ¥3,800
-                %i.far.fa-heart.products-show__other-products__item-box__content__one__link__body__price__icon
-                  %span 4
-        %section.products-show__other-products__item-box__content__one
-          = link_to '', class: "products-show__other-products__item-box__content__one__link" do
-            .products-show__other-products__item-box__content__one__link__photo
-              = image_tag 'https://static.mercdn.net/thumb/photos/m72906416377_1.jpg?1568861493', class: "products-show__other-products__item-box__content__one__link__photo__img"
-            .products-show__other-products__item-box__content__one__link__body
-              %h3.products-show__other-products__item-box__content__one__link__body__title LAVA H2 Balm
-              .products-show__other-products__item-box__content__one__link__body__price
-                .products-show__other-products__item-box__content__one__link__body__price__text ¥3,800
-                %i.far.fa-heart.products-show__other-products__item-box__content__one__link__body__price__icon
-                  %span 4
-        %section.products-show__other-products__item-box__content__one
-          = link_to '', class: "products-show__other-products__item-box__content__one__link" do
-            .products-show__other-products__item-box__content__one__link__photo
-              = image_tag 'https://static.mercdn.net/thumb/photos/m72906416377_1.jpg?1568861493', class: "products-show__other-products__item-box__content__one__link__photo__img"
-            .products-show__other-products__item-box__content__one__link__body
-              %h3.products-show__other-products__item-box__content__one__link__body__title LAVA H2 Balm
-              .products-show__other-products__item-box__content__one__link__body__price
-                .products-show__other-products__item-box__content__one__link__body__price__text ¥3,800
-                %i.far.fa-heart.products-show__other-products__item-box__content__one__link__body__price__icon
-                  %span 4
+      -@products.limit(6).each do |product|
+        - if product.id != params[:id].to_i
+          %section.products-show__other-products__item-box__content__one
+            = link_to product, class: "products-show__other-products__item-box__content__one__link" do
+              .products-show__other-products__item-box__content__one__link__photo
+                = image_tag "https://d13krdvwknzmgv.cloudfront.net/files/topics/5323996_ext_col_03_0.jpg?v=1552636675", class: "products-show__other-products__item-box__content__one__link__photo__img"
+              .products-show__other-products__item-box__content__one__link__body
+                %h3.products-show__other-products__item-box__content__one__link__body__title #{product.name}
+                .products-show__other-products__item-box__content__one__link__body__price
+                  .products-show__other-products__item-box__content__one__link__body__price__text= number_to_currency(product.price, :format => "%u%n", :unit => "￥")
+                  %i.far.fa-heart.products-show__other-products__item-box__content__one__link__body__price__icon
+                    %span= product.likes.count
   = render "shared/download-ad"
+  = render "shared/like"
+  

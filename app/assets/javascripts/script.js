@@ -1,4 +1,4 @@
-$(function() {
+$(document).on('turbolinks:load',function() {
   $('img.products-show__product-details__main__item-photo__list__one__inner__img').mouseover(function(){
   // "_thumb"を削った画像ファイル名を取得
   var selectedSrc = $(this).attr('src').replace(/^(.+)_thumb(\.gif|\.jpg|\.png+)$/, "$1"+"$2");
