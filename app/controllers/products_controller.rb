@@ -73,7 +73,7 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @brand = Brand.all.order(like)
+    @brand = Brand.all.where("name LIKE(?)", "%#{params[:keyword]}%")
     respond_to do |format|
       format.json
     end
