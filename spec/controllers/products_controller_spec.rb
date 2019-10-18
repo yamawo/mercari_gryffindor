@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe ProductsController do
+  let(:product){ FactoryBot.create(:product) }
 
   describe 'GET #show' do
     
