@@ -19,9 +19,14 @@ ActiveRecord::Schema.define(version: 2019_10_15_111803) do
     t.string "address_number", null: false
     t.string "address_building"
     t.string "address_phone"
-    t.integer "prefecture_id"
-    t.string "country"
+    t.bigint "user_id"
+    t.string "last_name", null: false
+    t.string "first_name", null: false
+    t.string "last_name_kana", null: false
+    t.string "first_name_kana", null: false
+    t.index ["user_id"], name: "index_addresses_on_user_id"
   end
+  
 
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -41,7 +46,21 @@ ActiveRecord::Schema.define(version: 2019_10_15_111803) do
     t.index ["product_id"], name: "index_product_images_on_product_id"
   end
 
-  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "credits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "card_id", null: false
+    t.string "customer_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_credits_on_user_id"
+  end
+
+  create_table "prefectures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "products", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.integer "price", null: false
     t.text "text", null: false
@@ -61,6 +80,15 @@ ActiveRecord::Schema.define(version: 2019_10_15_111803) do
 
   create_table "sizes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "sns_credentials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "provider"
+    t.string "uid"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sns_credentials_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -91,4 +119,7 @@ ActiveRecord::Schema.define(version: 2019_10_15_111803) do
   add_foreign_key "product_images", "products"
   add_foreign_key "products", "brands"
   add_foreign_key "products", "categories"
+  add_foreign_key "addresses", "users"
+  add_foreign_key "credits", "users"
+  add_foreign_key "sns_credentials", "users"
 end

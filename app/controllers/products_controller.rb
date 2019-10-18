@@ -117,4 +117,10 @@ class ProductsController < ApplicationController
     params.require(:product_images).permit({images: []})
   end
   
+  def privacy_policy
+
+  end
+
+  def show
+  end
 end

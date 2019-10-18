@@ -84,3 +84,13 @@ gem 'ancestry'
 gem 'dropzonejs-rails'
 #jsfileにコントローラーの変数を持ってこれるようにする
 gem 'gon'
+gem 'rails-i18n'
+gem 'bootsnap'
+# payjp
+gem 'payjp'
+# omniauth
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'active_hash'
+gem 'omniauth-google-oauth2'
+gem 'recaptcha', require: "recaptcha/rails"

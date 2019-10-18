@@ -1,21 +1,20 @@
-%h2 Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
-    %br/
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Sign up"
-= render "devise/shared/links"
+.signup
+  %header.signup__header
+    %h1
+      = link_to image_tag("//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?3761641567", alt: "mercari", class: "signup__header__title"), root_path
+  %main.signup__main
+    %section.signup__main__box
+      %h2.signup__main__box__registration 新規会員登録
+      .signup__main__box__form
+        .signup__main__box__form__link
+          %a.signup__main__box__form__link__btn-default.signup__main__box__form__link__btn-mail{href: step3_users_path}
+            %i.fa.fa-envelope-o
+            メールアドレスで登録する
+            -# = link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, class: "post"
+          %a#facebook-login.signup__main__box__form__link__btn-default.signup__main__box__form__link__btn-sns.signup__main__box__form__link__btn-sns-facebook{href: user_facebook_omniauth_authorize_path}
+            %i.fab.fa-facebook-square
+              %p Facebookで登録する
+          %a#google-login.signup__main__box__form__link__btn-default.signup__main__box__form__link__btn-sns.signup__main__box__form__link__btn-sns-google{href: user_google_oauth2_omniauth_authorize_path}
+            = image_tag '/images/google.svg', alt: 'Flower'
+            %p Googleで登録する
+= render 'users/footer'

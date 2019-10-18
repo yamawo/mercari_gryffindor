@@ -1,0 +1,251 @@
+body {
+  font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
+  background-color: #f5f5f5;
+}
+p {
+  margin: 8px 0 0;
+  line-height: 1.5;
+}
+.icon-arrow-right { 
+  height: 10px;
+  width: 10px;
+  content: "";
+  position: absolute;
+  right: 7px;
+  top: 3px;
+  border-bottom: 2px solid rgb(0, 149, 238);
+  border-right: 2px solid rgb(0, 149, 238);
+  margin: auto;
+  box-sizing: border-box;
+  transform: rotate(-45deg);
+}
+
+
+.step4{
+  padding: 0 0 220px;
+  &__header {
+    height: 128px;
+    text-align: center;
+    h1 {
+      margin: 40px 0 0;
+      display: inline-block;
+      a {
+        width: 185px;
+        height: 49px;
+        line-height: 49px;
+        display: inline-block;
+        margin: 0 8px 0 0;
+        img {
+            vertical-align: middle;
+        }
+      }
+    }
+    &__progress-bar, &__signup-bar {
+      padding: 40px 0 0 44px;
+      border: 0;
+    }
+    &__progress-bar {
+      display: inline-block;
+      vertical-align: top;
+      font-size: 0;
+      text-align: center;
+      ol {
+        margin: 0;
+        list-style: none;
+        li{
+          margin: 0 40px 0 0;
+          min-width: 60px;
+          position: relative;
+          z-index: 1;
+          display: inline-block;
+          font-size: 12px;
+          color: #888888;
+        }
+        .step4__header__progress-bar__active {
+          font-weight: 600;
+          color: $header_list_active_color;
+          &__status {
+            background: $header_list_active_color;
+            width: 12px;
+            height: 12px;
+            margin: 8px auto 0;
+            border-radius: 50%;
+            &::after {
+              left: 50%;
+              position: absolute;
+              bottom: 5px;
+              z-index: -1;
+              display: block;
+              content: "";
+              width: 100%;
+              height: 2px;
+              background: $header_list_active_color;
+            }
+          }
+        }
+        .step4__header__progress-bar__second-active {
+          font-weight: 600;
+          color: $header_list_active_color;
+          &__status {
+            background: $header_list_active_color;
+            width: 12px;
+            height: 12px;
+            margin: 8px auto 0;
+            border-radius: 50%;
+            &::before {
+              right: 50%;
+              position: absolute;
+              bottom: 5px;
+              z-index: -1;
+              display: block;
+              content: "";
+              width: 100%;
+              height: 2px;
+              background: $header_list_active_color;
+            }
+            &::after {
+              left: 50%;
+              position: absolute;
+              bottom: 5px;
+              z-index: -1;
+              display: block;
+              content: "";
+              width: 100%;
+              height: 2px;
+              background: $header_list_not_active_color;
+            }
+          }
+        }
+        .step4__header__progress-bar__not-active {
+          font-weight: 600;
+          color: $header_list_not_active_color;
+          &__status {
+            background: $header_list_not_active_color;
+            width: 12px;
+            height: 12px;
+            margin: 8px auto 0;
+            border-radius: 50%;
+            &::before {
+              right: 50%;
+              position: absolute;
+              bottom: 5px;
+              z-index: -1;
+              display: block;
+              content: "";
+              width: 100%;
+              height: 2px;
+              background: $header_list_not_active_color;
+            }
+            &::after {
+              left: 50%;
+              position: absolute;
+              bottom: 5px;
+              z-index: -1;
+              display: block;
+              content: "";
+              width: 100%;
+              height: 2px;
+              background: $header_list_not_active_color;
+            }
+          }
+        }
+        .step4__header__progress-bar__not-active-last {
+          font-weight: 600;
+          color: $header_list_not_active_color;
+          &__status-last {
+            background: $header_list_not_active_color;
+            width: 12px;
+            height: 12px;
+            margin: 8px auto 0;
+            border-radius: 50%;
+            &::before {
+              right: 50%;
+              position: absolute;
+              bottom: 5px;
+              z-index: -1;
+              display: block;
+              content: "";
+              width: 100%;
+              height: 2px;
+              background: $header_list_not_active_color;
+            }
+          }
+        }
+        .clearfix::after {
+          content: "";
+          display: block;
+          clear: both;
+        }
+      }
+    }
+  }
+  &__main{
+    &__content{
+      margin: 0 auto;
+      width: 700px;
+      &__registration{
+        padding: 32px;
+        font-size: 22px;
+        border-bottom: 1px solid #f5f5f5;
+        text-align: center;
+        font-weight: bold;
+        background-color: white;
+      }
+      &__form{
+        padding: 24px 16px 40px;
+        background-color: white;
+        &__field{
+          max-width: 348px;
+          margin: 0 auto; 
+          &__callnumber{
+            &__label{
+              display: block;
+              font-weight: 600;
+            }
+            &__input{
+              width: 316px;
+              margin: 8px 0 0;
+              height: 28px;
+              padding: 10px 16px 8px;
+              border-radius: 4px;
+              border: 1px solid #ccc;
+              background: #fff;
+              line-height: 1.5;
+              font-size: 16px;
+            }
+          }
+          &__text{
+            max-width: 348px;
+            margin: 0 auto;
+            &__btn{
+              margin: 24px 0 0;
+              background: #ea352d;
+              border: 1px solid #ea354d;
+              color: #fff;
+              display: block;
+              width: 100%;
+              line-height: 48px;
+              font-size: 14px;
+              cursor: pointer;
+              text-align: center; 
+            }
+          }
+          &__text2{
+            margin-top: 8px;
+            max-width: 348px;
+          }
+          &__reason{
+            text-align: right;
+            margin-top: 24px;
+            position: relative;
+            padding-right: 14px;
+            &__link{
+              color: #0099e8;
+              text-decoration: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
