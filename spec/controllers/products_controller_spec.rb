@@ -1,13 +1,15 @@
 require 'rails_helper'
 
 describe ProductsController do
-  let(:product){ FactoryBot.create(:product) }
-
   describe 'GET #show' do
-    
-    it "renders the :show template" do
-      get :show, params: {  id: 2 }  
-      expect(response).to render_template :new
+    # it "assigns the requested puroduct to @product" do
+    #   get :show, params: { id: product }
+    #   expect(assigns(:product)).to eq product
+    # end
+
+    it "showアクションで正しくビューが設定されているか" do
+      get :show, params: {  id: 1 }
+      expect(response).to render_template :show
     end
   end
 end
