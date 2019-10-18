@@ -19,15 +19,14 @@ class ProductsController < ApplicationController
     render layout: "selling"
   end
 
-  def search
+  def create_category_children
     @children = Category.where(ancestry: params[:value])#親カテゴリーのvalue
     respond_to do |format|
       format.json
     end
   end
-    
-  def create_category_children
 
+  def create_category_grandchildren
     @grandchildren = Category.where(ancestry: params[:value])#"親カテゴリー/子カテゴリー"のようにvalueを送る
     respond_to do |format|
       format.json
@@ -70,6 +69,13 @@ class ProductsController < ApplicationController
     
     
     
+  end
+
+  def search
+    @brand = Brand.all.order()
+    respond_to do |format|
+      format.json
+    end
   end
   
   
