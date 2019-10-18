@@ -5,11 +5,11 @@ Rails.application.routes.draw do
 
   resources :products, only: [:new, :create] do
     collection do
-      get "create_category_children"
+      get "create_category"
       get 'privacy_policy'
-      get "create_category_grandchildren"
-      get "search_size"
       get "search"
+      get "search2"
+      get "search_size"
     end
   end
 

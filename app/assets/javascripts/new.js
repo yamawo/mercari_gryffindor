@@ -36,7 +36,7 @@ $(function(){
                     <span class="selling__main__sec__content__form__write__content__box__group__label__free">任意</span>
                   </label>
                   <div class="selling__main__sec__content__form__write__content__box__group__select">
-                    <input class="selling__main__sec__content__form__write__content__box__group__select__input" placeholder="例）シャネル", id="brand">
+                    <input class="selling__main__sec__content__form__write__content__box__group__select__input" placeholder="例）シャネル">
                     </input>
                   </div>
                 </div>`
@@ -46,12 +46,11 @@ $(function(){
     var input = $('#product_category_id').val();
     if(input == "---"){
       $("#category2").remove();
-      
+      $("#category3").remove();
     }else if(document.getElementById("category2") != null){
       $("#children").empty();
-      $("#category3").remove();
       $.ajax({
-        url: "/products/create_category_children",
+        url: "/products/search",
         data: { value: input },
         dataType: "json"
       })
@@ -67,9 +66,10 @@ $(function(){
           document.getElementById("children").appendChild(option);
         }
       })
+      $("#category3").remove();
     }else{
       $.ajax({
-        url: "/products/create_category_children",
+        url: "/products/search",
         data: { value: input },
         dataType: "json"
       })
@@ -90,7 +90,7 @@ $(function(){
             }else if(document.getElementById("category3") != null){
               $("#grandchildren").empty();
               $.ajax({
-                url: "/products/create_category_grandchildren",
+                url: "/products/search2",
                 data: { value: val },
                 dataType: "json"
               })
@@ -105,6 +105,7 @@ $(function(){
                   option.text = grandchildren[i].name;
                   document.getElementById("grandchildren").appendChild(option);
                 }
+                
               })
             }else if(input2 == 1325){
               return;
@@ -131,17 +132,13 @@ $(function(){
             }
             else{
               $.ajax({
-                url: "/products/create_category_grandchildren",
+                url: "/products/search2",
                 data: { value: val },
                 dataType: "json"
               })
               .done(function(grandchildren){
                 var html = buildgrandchildrenHTML(grandchildren);
                 $(html).insertAfter("#category2");
-                var option = document.createElement("option");
-                option.value = "---";
-                option.text = "---";
-                document.getElementById("grandchildren").appendChild(option);
                 for(var i=0; i<grandchildren.length; i++) {
                   var option = document.createElement("option");
                   option.value = grandchildren[i].id;
