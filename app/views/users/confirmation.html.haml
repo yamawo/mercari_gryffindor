@@ -20,7 +20,7 @@
       %nav.main__l-side__nav
         %ul.main__l-side__nav__list
           %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
+            = link_to "/users/mypage", class: "main__l-side__nav__list__item" do
               マイページ
               %span.main__l-side__nav__list__item__number
               %i.icon-arrow-right
@@ -107,7 +107,7 @@
               メール/パスワード
               %i.icon-arrow-right
           %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
+            = link_to "/users/confirmation", class: "main__l-side__nav__list__item" do
               本人情報
               %i.icon-arrow-right
           %li
@@ -147,8 +147,8 @@
           %labe.confirmation-content__main__form-group__labell{for: "prefecture"} 都道府県
           %span.confirmation-content__main__form-group__any 任意
           .confirmation-content__main__form-group__select
-            = form_for @address, url: confirmation_users_path do |f|
-              = f.collection_select :address_prefecture,Prefecture.all, :id, :name, prompt: "大阪府", class: 'box'
+            = form_for "", url: confirmation_users_path do |f|
+              = f.collection_select :address_prefecture,Prefecture.all, :id, :name, prompt: "大阪府"
         .confirmation-content__main__form-group
           %label.confirmation-content__main__form-group__label{for: "city"} 市区町村
           %span.confirmation-content__main__form-group__any 任意
