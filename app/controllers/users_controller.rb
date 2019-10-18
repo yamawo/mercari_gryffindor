@@ -11,76 +11,76 @@ class UsersController < ApplicationController
     @user = User.new
     render layout: "users_layout"
   end
-
+  
   def step4
     session[:user_params] = user_params
     @user = User.new
     render layout: "users_layout"
   end
-
+  
   def step6
     session[:user_params][:phone_number] = user_params[:phone_number]
     @user = User.new
     @user.build_address
     render layout: "users_layout"
   end
-
+  
   def step7
     @user = User.new
     session[:address_attributes1] = user_params[:address_attributes]
     render layout: "users_layout"
   end
-
+  
   def set_year
-      years = []
-      for year in 1900..2019 do
-          years << year 
-      end
-      new_years = years.reverse
-      @year = new_years
+    years = []
+    for year in 1900..2019 do
+      years << year 
+    end
+    new_years = years.reverse
+    @year = new_years
   end
-
+  
   def set_month
     months = []
     for month in 1..12 do
-        months << month
+      months << month
     end
     @month = months
   end
-
+  
   def set_day
     days = []
     for day in 1..31 do
-        days << day
+      days << day
     end
     @day = days
   end
-
+  
   def step8
     @user = User.new(session[:user_params])
     @user.build_address(session[:address_attributes1])
     if @user.save
-        session[:id] = @user.id
-        # PayjpとCardのデータベースを作成
-        Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
-
-        if params['payjp-token'].blank?
-            redirect_to "/"
+      session[:id] = @user.id
+      # PayjpとCardのデータベースを作成
+      Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
+      
+      if params['payjp-token'].blank?
+        redirect_to "/"
+      else
+        # トークンが正常に発行されていたら、顧客情報をPAY.JPに登録する
+        customer = Payjp::Customer.create(
+          description: 'test', # 書かなくてもいい。PAY.JPの顧客情報に表示する概要
+          email: @user.email,
+          card: params['payjp-token'], # 直前のnewアクションで発行され、送られてくるトークンをここで顧客に紐づけて永久保存する
+          metadata: {user_id: @user.id}
+        )
+        @card = Credit.new(user_id: @user.id, customer_id: customer.id, card_id: customer.default_card)
+        if @card.save
+          sign_in User.find(session[:id]) unless user_signed_in?
         else
-            # トークンが正常に発行されていたら、顧客情報をPAY.JPに登録する
-            customer = Payjp::Customer.create(
-                description: 'test', # 書かなくてもいい。PAY.JPの顧客情報に表示する概要
-                email: @user.email,
-                card: params['payjp-token'], # 直前のnewアクションで発行され、送られてくるトークンをここで顧客に紐づけて永久保存する
-                metadata: {user_id: @user.id}
-            )
-            @card = Credit.new(user_id: @user.id, customer_id: customer.id, card_id: customer.default_card)
-            if @card.save
-                sign_in User.find(session[:id]) unless user_signed_in?
-            else
-                render "/"
-            end
+          render "/"
         end
+      end
     else 
       render "/"
     end
@@ -170,5 +170,7 @@ class UsersController < ApplicationController
   def confirmation
     @address = Address.new
   end
-
+  
+  def card_registration
+  end
 end
