@@ -7,6 +7,7 @@ class ProductsController < ApplicationController
   def show
     @user = @product.user
     @products = @user.products
+    
   end
   
   private

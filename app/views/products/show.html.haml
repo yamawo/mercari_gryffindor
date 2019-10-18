@@ -121,7 +121,8 @@
           %section.products-show__other-products__item-box__content__one
             = link_to product, class: "products-show__other-products__item-box__content__one__link" do
               .products-show__other-products__item-box__content__one__link__photo
-                = image_tag "https://d13krdvwknzmgv.cloudfront.net/files/topics/5323996_ext_col_03_0.jpg?v=1552636675", class: "products-show__other-products__item-box__content__one__link__photo__img"
+                -# TODO
+                = image_tag product.product_images.first.image, class: "products-show__other-products__item-box__content__one__link__photo__img"
               .products-show__other-products__item-box__content__one__link__body
                 %h3.products-show__other-products__item-box__content__one__link__body__title #{product.name}
                 .products-show__other-products__item-box__content__one__link__body__price
@@ -129,5 +130,5 @@
                   %i.far.fa-heart.products-show__other-products__item-box__content__one__link__body__price__icon
                     %span= product.likes.count
   = render "shared/download-ad"
-  = render "shared/like"
+  -# = render "shared/like"
   
