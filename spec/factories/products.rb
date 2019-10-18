@@ -15,6 +15,6 @@ FactoryBot.define do
     user_id                    { '2' }
     category_id                { '2' }
     brand_id                   { '2' }
-
+    size_id                    { '2' }
   end
 end
