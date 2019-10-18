@@ -9,9 +9,8 @@
     %link{crossorigin:"anonymous", href: "https://use.fontawesome.com/releases/v5.2.0/css/all.css", integrity: "sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ", rel: "stylesheet"}
   %body.selling
     %header.selling__header
-      %h1.selling__header__head
-        = link_to "/", class: "selling__header__heading__link" do
-          = image_tag "", class: "selling__header__heading__link__image"
+      %h1
+        = link_to image_tag("//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?3761641567", alt: "mercari", class: "selling__header__title"), root_path
     %main.selling__main
       %section.selling__main__sec
         .selling__main__sec__content
@@ -32,7 +31,7 @@
                       #preview
                         -# ここにプレビューを入れていく（１枚目〜５枚目）
                       .selling__main__sec__content__form__write__upload__box__items
-                        =i.label :image, for: "selling__main__sec__content__form__write__upload__box__items__input-area__field", class: "selling__main__sec__content__form__write__upload__box__items__input-area" do
+                        = i.label :image, for: "selling__main__sec__content__form__write__upload__box__items__input-area__field", class: "selling__main__sec__content__form__write__upload__box__items__input-area" do
                           = i.file_field :image, multiple: true, id: "selling__main__sec__content__form__write__upload__box__items__input-area__field", class: "selling__main__sec__content__form__write__upload__box__items__input-area__field", type: "file", "data-image": 0
                           .selling__main__sec__content__form__write__upload__box__items__description
                             %pre.selling__main__sec__content__form__write__upload__box__items__description__text
@@ -43,7 +42,7 @@
                       #preview2
                         -# ここにプレビューを入れていく（6枚目〜10枚目）
                       .selling__main__sec__content__form__write__upload__box2__items2
-                        =i.label :image, for: "selling__main__sec__content__form__write__upload__box2__items2__input-area__field", class: "selling__main__sec__content__form__write__upload__box__items__input-area" do
+                        = i.label :image, for: "selling__main__sec__content__form__write__upload__box2__items2__input-area__field", class: "selling__main__sec__content__form__write__upload__box__items__input-area" do
                           = i.file_field :image, multiple: true, id: "selling__main__sec__content__form__write__upload__box__items__input-area__field", class: "selling__main__sec__content__form__write__upload__box__items__input-area__field", type: "file", "data-image": 0
                           .selling__main__sec__content__form__write__upload__box2__items2__description
                             %pre.selling__main__sec__content__form__write__upload__box2__items2__description__text
@@ -105,7 +104,7 @@
                           必須
                       .selling__main__sec__content__form__write__content__box__group__select
                         %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
-                        = f.select :delivery_area, [["---"], ["北海道"], ["青森県"], ["岩手県"], ["宮城県"], ["秋田県"], ["山形県"], ["福島県"], ["茨城県"], ["栃木県"], ["群馬県"], ["埼玉県"], ["千葉県"], ["東京都"], ["神奈川県"], ["新潟県"], ["富山県"], ["石川県"], ["福井県"], ["山梨県"], ["長野県"], ["岐阜県"], ["静岡県"], ["愛知県"], ["三重県"], ["滋賀県"], ["京都府"], ["大阪府"], ["兵庫県"], ["奈良県"], ["和歌山県"], ["鳥取県"], ["島根県"], ["岡山県"], ["広島県"], ["山口県"], ["徳島県"], ["香川県"], ["愛媛県"], ["高知県"], ["福岡県"], ["佐賀県"], ["長崎県"], ["熊本県"], ["大分県"], ["宮崎県"], ["鹿児島県"], ["沖縄県"]], {}, class: "selling__main__sec__content__form__write__content__box__group__select__list"
+                        = f.collection_select :delivery_area, Prefecture.all, :id, :name, {prompt:"---"}, {class: "selling__main__sec__content__form__write__content__box__group__select__list"}
                     .selling__main__sec__content__form__write__content__box__group
                       %label.selling__main__sec__content__form__write__content__box__group__label
                         発送までの日数
@@ -166,3 +165,4 @@
                   = f.submit "出品する", class: "selling__main__sec__content__form__write__btn-box__btn", disable_with: "出品中です..."
                   = link_to "/", class: "selling__main__sec__content__form__write__btn-box__link" do
                     もどる
+= render "/users/footer"

@@ -17,6 +17,7 @@ class ProductsController < ApplicationController
     
     @product.product_images.build
     render layout: "selling"
+    
   end
 
   def create_category_children
@@ -72,7 +73,7 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @brand = Brand.all.order()
+    @brand = Brand.all.order(like)
     respond_to do |format|
       format.json
     end
