@@ -100,7 +100,7 @@ $(window).on("turbolinks:load", function(){
     // 削除ボタン
     $(".selling__main__sec__content__form__write__upload__box, .selling__main__sec__content__form__write__upload__box2").on("click", ".btn_delete", function(){
         // 削除ボタンを押した画像を取得する
-        let target_image = $(this).parent().parent(); // #FIX_ME 削除できないときはここの要素で取得する階層間違ってるかも
+        let target_image = $(this).parent().parent();
         //削除画像のカスタムデータ属性data-image番号を取得
         let target_image_num =target_image.data("image");
         // 対象画像をビュー上で削除する処理
@@ -125,7 +125,7 @@ $(window).on("turbolinks:load", function(){
         // 削除した後の中身の数でCSSの処理を分岐
         // 画像が４枚以下の場合
         if (images.length <= 4){
-            $("#preview"),empty();
+            $("#preview").empty();
             $.each(images, function(index, image){
                 image.data("image", index);
                 preview.append(image);
