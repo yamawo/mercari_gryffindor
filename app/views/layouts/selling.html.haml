@@ -19,7 +19,7 @@
             %h2.selling__main__sec__content__form__heading
               商品の情報を入力
             %form.selling__main__sec__content__form__write
-              = form_for @product, html: {multipart: true, class: "dropzone"} do |f|
+              = form_for [@product] do |f|
                 .selling__main__sec__content__form__write__upload
                   %h3.selling__main__sec__content__form__write__upload__heading
                     出品画像
@@ -28,16 +28,13 @@
                   %p.selling__main__sec__content__form__write__upload__p
                     最大10枚までアップロードできます
                   .selling__main__sec__content__form__write__upload__box
-                    -# メルカリ本物はここにもう一個箱あるっぽい
                     .selling__main__sec__content__form__write__upload__box__items
-                      %ul
                     .selling__main__sec__content__form__write__upload__box__drop
-                      = f.fields_for :product_images do |i|
-                        = i.file_field :image, class: "selling__main__sec__content__form__write__upload__box__drop__input", type: "file" 
-                        %pre.selling__main__sec__content__form__write__upload__box__drop__input__select
-                          ドラッグアンドドロップ
-                          またはクリックしてファイルをアップロード
-                        %i.selling__main__sec__content__form__write__upload__box__drop__icon
+                      = f.file_field :image, class: "selling__main__sec__content__form__write__upload__box__drop__input", type: "file"
+                      %pre.selling__main__sec__content__form__write__upload__box__drop__input__select
+                        ドラッグアンドドロップ
+                        またはクリックしてファイルをアップロード
+                      %i.selling__main__sec__content__form__write__upload__box__drop__icon
 
                 .selling__main__sec__content__form__write__content
                   .selling__main__sec__content__form__write__content__group
@@ -63,7 +60,7 @@
                           必須
                       .selling__main__sec__content__form__write__content__box__group__select#category
                         %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
-                        = f.select :category_id, @parents, {}, class: "selling__main__sec__content__form__write__content__box__group__select__list"
+                        = f.select :category_id, options_for_select(@parents, @parent), {}, {class: "selling__main__sec__content__form__write__content__box__group__select__list"}
                     .selling__main__sec__content__form__write__content__box__group
                       %label.selling__main__sec__content__form__write__content__box__group__label
                         商品の状態
