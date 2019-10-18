@@ -104,5 +104,17 @@ describe User do
             user.valid?
             expect(user.errors[:nickname]).to include("can't be blank")
         end
+
+        it "はカタカナで入力して下さい。" do
+            user = build(:user, last_name_kana: "めるかり")
+            user.valid?
+            expect(user.errors[:last_name_kana]).to include('はカタカナで入力して下さい。')
+        end
+
+        it "はカタカナで入力して下さい。" do
+            user = build(:user, first_name_kana: "めるかり")
+            user.valid?
+            expect(user.errors[:first_name_kana]).to include('はカタカナで入力して下さい。')
+        end
     end
 end

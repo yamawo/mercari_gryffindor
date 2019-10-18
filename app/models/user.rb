@@ -6,10 +6,11 @@ class User < ApplicationRecord
   has_one :address
   has_one :credit
   has_many :sns_credentials
+
   accepts_nested_attributes_for :address
 
   with_options presence: true do
-       validates :last_name, on: :validates_step3 
+       validates :last_name, on: :validates_step3
        validates :first_name, on: :validates_step3
        validates :last_name_kana, on: :validates_step3
        validates :first_name_kana, on: :validates_step3
@@ -20,6 +21,10 @@ class User < ApplicationRecord
        validates :birthdate_month, on: :validates_step3
        validates :birthdate_day, on: :validates_step3
   end
+
+  validates :last_name_kana, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。' }, on: :validates_step3
+  validates :first_name_kana, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。' }, on: :validates_step3
+  validates :phone_number, format: { with: /\A\d{11}\z/ }, on: :validates_step4
 
   def self.find_oauth(auth)
     uid = auth.uid

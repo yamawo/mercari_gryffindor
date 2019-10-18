@@ -24,6 +24,11 @@ Rails.application.routes.draw do
   
   resources :users do
     collection do
+      get "profile"
+      get "mypage"
+      get "confirmation"
+      get "logout"
+      get "card_registration"
       scope :sign_up do           # ディレクトリの階層の変更はなし
         get 'step3'
         get 'step4'
@@ -31,15 +36,6 @@ Rails.application.routes.draw do
         get 'step7'
         post 'step8'
       end
-    end
-  end
-
-  resources :users, only: [:mypage, :logout] do
-    collection do
-      get "profile"
-      get "mypage"
-      get "confirmation"
-      get "logout"
     end
   end
 end

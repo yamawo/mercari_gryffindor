@@ -8,12 +8,12 @@
         %p アカウントをお持ちでない方はこちら
         = link_to "新規会員登録", new_user_registration_path
       .signin-main__box__link
-        %button#facebook-login
+        #facebook-login
           %i.fab.fa-facebook-square
-          %p Facebookでログイン
-        %button#google-login
+            = link_to "Facebookでログイン", user_facebook_omniauth_authorize_path, class: "sns-text"
+        #google-login
           = image_tag "/images/google.svg", alt: "Flower"
-          %p Googleでログイン
+          = link_to "Googleでログイン", user_google_oauth2_omniauth_authorize_path, class: "sns-text", id: "sns-text-google"
       %form{action: "/users/sign_up/", method: "POST", novalidate: "novalidate"}
         .signin-main__box__block__form  
           .signin-main__box__block__form__mail
@@ -28,9 +28,4 @@
           %button.login-submit.btn-default.btn-red{type: "submit"} ログイン
           %input{name: "login_callback", type: "hidden", value: ""}/
           =link_to "パスワードをお忘れの方"
-
-          
-  
-    
 = render 'users/footer'
-      
