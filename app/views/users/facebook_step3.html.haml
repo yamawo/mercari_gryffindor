@@ -1,7 +1,7 @@
 .step3-single_container
     %header.step3-single_container__header
         %h1
-            = link_to image_tag('https://www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?2296184308', alt: 'mercari',height: '49', width: '185', class: 'step3-single_container__header__logo'), "/"
+            = link_to image_tag('https://www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?2296184308', alt: 'mercari',height: '49', width: '185', class: 'step3-single_container__header__logo'), "https://www.mercari.com/jp/"
         %nav.step3-single_container__header__progress-bar.step3-single_container__header__signup-bar
             %ol.clearfix
                 %li.step3-single_container__header__progress-bar__active
@@ -24,7 +24,9 @@
         %section.step3-single_container__main__section
             %h2.step3-single_container__main__section__registration 会員情報入力
             = form_for @user, url: step4_users_path, builder: CustomFormBuilder, method: :get, html: {class: "step3-single_container__main__section__form"} do |f|
-                = hidden_field_tag :sns_authentication, "off"
+                = f.hidden_field :password, value: @user.password
+                = f.hidden_field :password_confirmation, value: @user.password
+                = hidden_field_tag :sns_authentication, "on"
                 .step3-single_container__main__section__form__content
                     .step3-single_container__main__section__form__content__group
                         %label(for="nickname")ニックネーム
@@ -34,14 +36,14 @@
                         %label(for="email")メールアドレス
                         %span.step3-single_container__main__section__form__content__group__require 必須
                         = f.email_field :email, placeholder: "PC・携帯どちらでも可", class: "step3-single_container__main__section__form__content__group__default"
-                    .step3-single_container__main__section__form__content__group
-                        %label(for="password")パスワード
-                        %span.step3-single_container__main__section__form__content__group__require 必須
-                        = f.password_field :password, placeholder: "7文字以上", class: "step3-single_container__main__section__form__content__group__default"
-                    .step3-single_container__main__section__form__content__group
-                        %label(for="password_confirmation")パスワード (確認)
-                        %span.step3-single_container__main__section__form__content__group__require 必須
-                        = f.password_field :password_confirmation, placeholder: "7文字以上", class: "step3-single_container__main__section__form__content__group__default"
+                    -# .step3-single_container__main__section__form__content__group
+                    -#     %label(for="password")パスワード
+                    -#     %span.step3-single_container__main__section__form__content__group__require 必須
+                    -#     = f.password_field :password, placeholder: "7文字以上", class: "step3-single_container__main__section__form__content__group__default"
+                    -# .step3-single_container__main__section__form__content__group
+                    -#     %label(for="password_confirmation")パスワード (確認)
+                    -#     %span.step3-single_container__main__section__form__content__group__require 必須
+                    -#     = f.password_field :password_confirmation, placeholder: "7文字以上", class: "step3-single_container__main__section__form__content__group__default"
                     .step3-single_container__main__section__form__content__group
                         %h3.step3-single_container__main__section__form__content__group__sub-head.text-left 本人確認
                         %p.step3-single_container__main__section__form__content__group__text
@@ -88,7 +90,7 @@
                                 %div
                                     = recaptcha_tags
                                 .has-error
-                                    = flash[:recaptcha_error]
+                                    = flash[:recaptcha_error]                              
                     .step3-single_container__main__section__form__content__group
                         %p.step3-single_container__main__section__form__content__group__text.step3-single_container__main__section__form__content__group__center
                             「次へ進む」のボタンを押すことにより

@@ -2,13 +2,15 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :omniauthable
+         :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
   has_one :address
   has_one :credit
+  has_many :sns_credentials
+
   accepts_nested_attributes_for :address
 
   with_options presence: true do
-       validates :last_name, on: :validates_step3 
+       validates :last_name, on: :validates_step3
        validates :first_name, on: :validates_step3
        validates :last_name_kana, on: :validates_step3
        validates :first_name_kana, on: :validates_step3
@@ -19,6 +21,75 @@ class User < ApplicationRecord
        validates :birthdate_month, on: :validates_step3
        validates :birthdate_day, on: :validates_step3
   end
+
+  validates :last_name_kana, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。' }, on: :validates_step3
+  validates :first_name_kana, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。' }, on: :validates_step3
+  validates :phone_number, format: { with: /\A\d{11}\z/ }, on: :validates_step4
+
+  def self.find_oauth(auth)
+    uid = auth.uid
+    provider = auth.provider
+    snscredential = SnsCredential.where(uid: uid, provider: provider).first
+    if snscredential.present?
+      user = User.where(id: snscredential.user_id).first
+    else
+      user = User.where(email: auth.info.email).first
+      if user.present?
+        SnsCredential.create(
+          uid: uid,
+          provider: provider,
+          user_id: user.id
+          )
+      else
+        user = User.new(
+          nickname: auth.info.name,
+          email:    auth.info.email,
+          password: Devise.friendly_token[0, 20],
+          phone_number: "08000000000"
+          )
+      end
+    end
+    return user
+  end
+
+  def self.sns(auth)
+    uid = auth.uid
+    provider = auth.provider
+    snscredential = SnsCredential.where(uid: uid, provider: provider).first
+    unless snscredential.present?
+      snscredential = {
+        uid: auth.uid,
+        provider: auth.provider
+      }
+    end
+    return snscredential
+  end
+
+  def self.set_year
+      years = []
+      for year in 1900..2019 do
+          years << year 
+      end
+      new_years = years.reverse
+      @year = new_years
+  end  
+
+  def self.set_month
+    months = []
+    for month in 1..12 do
+        months << month
+    end
+    @month = months
+  end
+
+  def self.set_day
+    days = []
+    for day in 1..31 do
+        days << day
+    end
+    @day = days
+  end  
+
   
   enum prefecture: {
        "北海道": "北海道",

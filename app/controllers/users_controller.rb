@@ -1,18 +1,20 @@
 class UsersController < ApplicationController
 
   require "payjp"
+  after_action :sns_create, only: :step8
   before_action :set_year, :set_month, :set_day
   before_action :validates_step3, only: :step4
+  before_action :validates_step4, only: :step6
   before_action :validates_step6, only: :step7
-  
+
   def step3
     @user = User.new
     render layout: "users_layout"
   end
   
   def step4
-    @user = User.new
     session[:user_params] = user_params
+    @user = User.new
     render layout: "users_layout"
   end
   
@@ -85,10 +87,29 @@ class UsersController < ApplicationController
     render layout: "users_layout"
   end
 
+  def sns_create
+    unless session[:sns_data].nil?
+      session[:sns_data][:user_id] = @user.id
+      SnsCredential.create(session[:sns_data])
+    end
+  end
+
+  private
+  
   def validates_step3
     session[:user_params] = user_params
     @user = User.new(session[:user_params])
-    render "/users/step3" unless @user.valid?(:validates_step3)
+    if params[:sns_authentication] == "on"
+      render "/users/facebook_step3" unless @user.valid?(:validates_step3) && verify_recaptcha
+    else
+      render "/users/step3" unless @user.valid?(:validates_step3) && verify_recaptcha
+    end
+  end
+
+  def validates_step4
+    session[:user_params][:phone_number] = user_params[:phone_number]
+    @user = User.new(session[:user_params])
+    render "users/step4" unless @user.valid?(:validates_step4)
   end
 
   def validates_step6
@@ -101,8 +122,6 @@ class UsersController < ApplicationController
     @user.build_address(session[:address_attributes1])
     render "/users/step6" unless @user.valid?(:validates_step6)
   end
-
-  private
 
   def user_params
     params.require(:user).permit(
