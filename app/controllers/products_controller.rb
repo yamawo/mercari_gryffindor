@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
       @parents << [parent.name, parent.id]
     end
     
-    # @product.product_images.build
+    @product.product_images.build
     render layout: "selling"
   end
 
