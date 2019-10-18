@@ -1,27 +1,34 @@
 Rails.application.routes.draw do
   root to: "products#index"
-  
+ 
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  resources :products, only: [:new, :create, :index] do
+    collection do
+      get "create_category_children"
+      get 'privacy_policy'
+      get "create_category_grandchildren"
+      get "search_size"
+      get "search"
+    end
+  end
+
+  resources :address 
+
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions',
     omniauth_callbacks: 'users/omniauth_callbacks'
   } 
+
   
-  resources :address 
   
-  resources :credits, only: [:new, :show] do
-    collection do
-      post 'show', to: 'credits#show'
-      post 'pay', to: 'credits#pay'
-      post 'delete', to: 'credits#delete'
-    end
-  end
   
-  resources :products, only: [:index] do
-    collection do
-      get 'privacy_policy'
-    end
-  end  
+  
+  
+  
+  
+  
   
   resources :users do
     collection do
