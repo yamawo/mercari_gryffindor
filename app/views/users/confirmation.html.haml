@@ -147,7 +147,7 @@
           %labe.confirmation-content__main__form-group__labell{for: "prefecture"} 都道府県
           %span.confirmation-content__main__form-group__any 任意
           .confirmation-content__main__form-group__select
-            = form_for @address, url: confirmation_users_path do |f|
+            = form_for "", url: confirmation_users_path do |f|
               = f.collection_select :address_prefecture,Prefecture.all, :id, :name, prompt: "大阪府", class: 'box'
         .confirmation-content__main__form-group
           %label.confirmation-content__main__form-group__label{for: "city"} 市区町村
