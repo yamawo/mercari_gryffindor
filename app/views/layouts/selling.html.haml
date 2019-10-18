@@ -19,7 +19,7 @@
             %h2.selling__main__sec__content__form__heading
               商品の情報を入力
             %form.selling__main__sec__content__form__write
-              = form_for [@product] do |f|
+              = form_for @product, html: {class: "dropzone"} do |f|
                 .selling__main__sec__content__form__write__upload
                   %h3.selling__main__sec__content__form__write__upload__heading
                     出品画像
@@ -27,15 +27,28 @@
                       必須
                   %p.selling__main__sec__content__form__write__upload__p
                     最大10枚までアップロードできます
-                  .selling__main__sec__content__form__write__upload__box
-                    .selling__main__sec__content__form__write__upload__box__items
-                    .selling__main__sec__content__form__write__upload__box__drop
-                      = f.file_field :image, class: "selling__main__sec__content__form__write__upload__box__drop__input", type: "file"
-                      %pre.selling__main__sec__content__form__write__upload__box__drop__input__select
-                        ドラッグアンドドロップ
-                        またはクリックしてファイルをアップロード
-                      %i.selling__main__sec__content__form__write__upload__box__drop__icon
-
+                  = f.fields_for :product_images do |i|  # input area
+                    .selling__main__sec__content__form__write__upload__box.clearfix
+                      #preview
+                        -# ここにプレビューを入れていく（１枚目〜５枚目）
+                      .selling__main__sec__content__form__write__upload__box__items
+                        .selling__main__sec__content__form__write__upload__box__items__input-area
+                          = i.file_field :image, multiple: true, id: "selling__main__sec__content__form__write__upload__box__items__input-area__field", class: "selling__main__sec__content__form__write__upload__box__items__input-area__field", type: "file", "data-image": 0
+                        .selling__main__sec__content__form__write__upload__box__items__description
+                          %pre.selling__main__sec__content__form__write__upload__box__items__description__text
+                            ドラッグアンドドロップ
+                            またはクリックしてファイルをアップロード
+                    -# ここから２段目のプレビューとドロップエリア
+                    .selling__main__sec__content__form__write__upload__box2.clearfix
+                      #preview2
+                        -# ここにプレビューを入れていく（１枚目〜５枚目）
+                      .selling__main__sec__content__form__write__upload__box2__items2
+                        .selling__main__sec__content__form__write__upload__box2__items2__input-area
+                          = i.file_field :image, multiple: true, id: "selling__main__sec__content__form__write__upload__box__items__input-area__field", class: "selling__main__sec__content__form__write__upload__box__items__input-area__field", type: "file", "data-image": 0
+                        .selling__main__sec__content__form__write__upload__box2__items2__description
+                          %pre.selling__main__sec__content__form__write__upload__box2__items2__description__text
+                            ドラッグアンドドロップ
+                            またはクリックしてファイルをアップロード
                 .selling__main__sec__content__form__write__content
                   .selling__main__sec__content__form__write__content__group
                     %label.selling__main__sec__content__form__write__content__group__label
@@ -148,6 +161,6 @@
                       = link_to "/", class: "selling__main__sec__content__form__write__btn-box__explain__line__link", target: "_blank" do
                         加盟店規約
                       に同意したことになります。
-                  = f.submit "出品する", class: "selling__main__sec__content__form__write__btn-box__btn"
+                  = f.submit "出品する", class: "selling__main__sec__content__form__write__btn-box__btn", disable_with: "出品中です..."
                   = link_to "/", class: "selling__main__sec__content__form__write__btn-box__link" do
                     もどる
