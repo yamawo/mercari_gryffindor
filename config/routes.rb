@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   end
   
   resources :products, only: [:index, :show]
-  
+
   resources :users do
     collection do
       get "profile"
@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       get "confirmation"
       get "logout"
       get "card_registration"
+      get "card_registration_create"
       scope :sign_up do           # ディレクトリの階層の変更はなし
         get 'step3'
         get 'step4'
