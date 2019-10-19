@@ -1,0 +1,75 @@
+.main__r-content{
+  float: right;
+  width: 700px;
+  display: block;
+  &__card{
+    margin: 0;
+    background-color: #fff;
+    &__head{
+      font-size: 24px;
+      padding: 8px 24px;
+      border-bottom: 1px solid #fff;
+      text-align: center;
+    }
+    &__inner{
+      padding: 64px;
+      border-top: 1px solid #f5f5f5;
+      &__content{
+        max-width: 320px;
+        margin: 0 auto;
+        &__sub-head{
+          font-size: 16px;
+        }
+        &__btn{
+          margin-bottom: 8px !important;
+          background-color: #ea352d;
+          border: 1px solid #ea352d;
+          color: #fff;
+          display: block;
+          width: 100%;
+          line-height: 48px;
+          font-size: 14px;
+          cursor: pointer;
+          text-align: center;
+        }
+      }
+      &__settings{
+        padding: 24px 0;
+        border-bottom: 1px solid #eee;
+      }
+      &__settings-about{
+        position: relative;
+        display: block;
+        margin: 40px 0 0;
+        text-align: right;
+        color: #0099e8;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+#iconcard{
+  margin-right: 16px;
+  color: #fff;
+}
+
+#payment-about{
+  vertical-align: middle;
+}
+
+#payment-arrow-right{
+  margin: 0 0 0 8px;
+  font-size: 18px;
+  line-height: 1;
+  height: 10px;
+  width: 10px;
+  content: "";
+  position: absolute;
+  right: -10px;
+  top: 3px;
+  border-bottom: 2px solid #0099e8;
+  border-right: 2px solid #0099e8;
+  box-sizing: border-box;
+  transform: rotate(-45deg);
+}
