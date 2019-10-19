@@ -53,7 +53,7 @@
 ### Association
 - belongs_to :user, dependent: :delete
 
-## productsテーブル
+## puroductsテーブル
 
 |Column|Type|Option|
 |------|----|------|
