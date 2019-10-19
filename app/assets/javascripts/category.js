@@ -36,9 +36,14 @@ $(function(){
                     <span class="selling__main__sec__content__form__write__content__box__group__label__free">任意</span>
                   </label>
                   <div class="selling__main__sec__content__form__write__content__box__group__select">
-                    <input class="selling__main__sec__content__form__write__content__box__group__select__input" placeholder="例）シャネル", id="brand">
+                    <input class="selling__main__sec__content__form__write__content__box__group__select__input" placeholder="例）シャネル" id="brand_list">
                     </input>
+                    <div>
+                      <ul class="selling__main__sec__content__form__write__content__box__group__select__search">
+                      </ul>
+                    </div>
                   </div>
+                  
                 </div>`
       return html;
     }
