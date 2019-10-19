@@ -4,23 +4,21 @@ class UsersController < ApplicationController
   before_action :set_year, :set_month, :set_day
   before_action :validates_step3, only: :step4
   before_action :validates_step6, only: :step7
+  layout "users_layout"
   
   def step3
     @user = User.new
-    render layout: "users_layout"
   end
   
   def step4
     @user = User.new
     session[:user_params] = user_params
-    render layout: "users_layout"
   end
   
   def step6
     session[:user_params][:phone_number] = user_params[:phone_number]
     @user = User.new
     @user.build_address
-    render layout: "users_layout"
   end
   
   def step7
@@ -82,13 +80,12 @@ class UsersController < ApplicationController
     else 
       render "/"
     end
-    render layout: "users_layout"
   end
 
   def validates_step3
     session[:user_params] = user_params
     @user = User.new(session[:user_params])
-    render "/users/step3" unless @user.valid?(:validates_step3)
+    render "step3" unless @user.valid?(:validates_step3)
   end
 
   def validates_step6
@@ -154,4 +151,8 @@ class UsersController < ApplicationController
   
   def card_registration
   end
+
+  def card_registration_create
+  end
 end
+
