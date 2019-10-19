@@ -3,11 +3,11 @@ class ProductsController < ApplicationController
   def index
     @product = Product.new
   end
-
+  
   def new
-    require "base64"
+    require "base64"                          #バイナリーデータ化（しないとJSで画像表示できない）
     @product = Product.new
-
+    
     parents = Category.where(ancestry: nil)
     @parents = [["---", "---"]]
     @parent = "---"
@@ -18,6 +18,21 @@ class ProductsController < ApplicationController
     @product.product_images.build
     render layout: "selling"
     
+  end
+  
+  def creare
+    require "base64"                          #バイナリーデータ化（しないとJSで画像表示できない）
+    @product = Product.new(product_params)    #保存できたかどうかで分岐させたいのでnew
+    if @product.save
+      product_images_params[:images].each do |image|
+        @product.product_images.build         #buildをすることで、saveした際にアソシエーションした先にも値を保存する
+        product_image = @product.product_images.new(image: image)
+        product_image.save
+      end
+      respond_to do |format|
+        format.json
+      end
+    end
   end
 
   def create_category_children
@@ -67,9 +82,6 @@ class ProductsController < ApplicationController
       respond_to do |format|
         format.json
       end
-    
-    
-    
   end
 
   def search
@@ -77,26 +89,8 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.json
     end
-    .binding.pry
   end
   
-  
-  
-  def creare
-    require "base64"
-    @product = Product.new(product_params)
-    if @product.save
-      product_images_params[:images].each do |image|
-        @product.product_images.build   # buildをすることで、saveした際にアソシエーションした先にも値を保存する
-        product_image = @product.product_images.new(image: image)
-        product_image.save
-      end
-      respond_to do |format|
-        format.json
-      end
-    end
-  end
-
   def edit
     require "base64"
   end
@@ -104,9 +98,12 @@ class ProductsController < ApplicationController
   def privacy_policy
   end
   
+  def show
+  end
 
 
   private 
+
   def product_params
     params.require(:product).permit(:name, :price, :text, :status, :stage, :delivery_responsivility, :delivery_way, :delivery_area, :delivery_day, :category_id, :brand_id)
   end
@@ -119,10 +116,4 @@ class ProductsController < ApplicationController
     params.require(:product_images).permit({images: []})
   end
   
-  def privacy_policy
-
-  end
-
-  def show
-  end
 end
