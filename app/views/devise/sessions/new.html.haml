@@ -14,7 +14,7 @@
         %button#google-login
           = image_tag "/images/google.svg", alt: "Flower"
           %p Googleでログイン
-      %form{action: "/users/sign_up/", method: "POST", novalidate: "novalidate"}
+      %form{action: "/users/sign_in", method: "POST", novalidate: "novalidate"}
         .signin-main__box__block__form  
           .signin-main__box__block__form__mail
             %input.login-input-text.input-default{name: "email", placeholder: "メールアドレス", type: "email"}/

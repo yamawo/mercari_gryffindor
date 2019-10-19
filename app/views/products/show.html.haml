@@ -1,0 +1,135 @@
+%main.products-show
+  %section.products-show__product-details
+    %h1.products-show__product-details__item-name= @product.name
+    .products-show__product-details__main
+      .products-show__product-details__main__item-photo
+        .products-show__product-details__main__item-photo__outer
+        -@product.product_images.limit(1).each do |product|
+          -# TODO 出品ページからDBに保存した商品の画像を表示したい時は下記のproduct.imageの後に.urlを追記してください
+          = image_tag product.image, class: 'products-show__product-details__main__item-photo__outer__top'
+        .products-show__product-details__main__item-photo__list
+        -@product.product_images.each do |product|
+          .products-show__product-details__main__item-photo__list__one
+            %span
+            .products-show__product-details__main__item-photo__list__one__inner
+              -# TODO 出品ページからDBに保存した商品の画像を表示したい時は下記のproduct.imageの後に.urlを追記してください
+              = image_tag product.image, class: 'products-show__product-details__main__item-photo__list__one__inner__img'
+      %table.products-show__product-details__main__table
+        %tbody
+          %tr
+            %th 出品者
+            %td
+              = link_to @product.user.nickname, class: "exhibitor-name"
+              .item-user
+                .item-user-good
+                  %i.fas.fa-laugh
+                  %span= @product.user.good
+                .item-use-normal
+                  %i.fas.fa-meh
+                  %span= @product.user.normal
+                .item-user-bad
+                  %i.fas.fa-frown
+                  %span= @product.user.bat
+          %tr
+            %th カテゴリー
+            %td
+              %a
+                = link_to @product.category.parent.parent.name
+              %a
+                .item-detail-table-sub-category
+                  %i.fas.fa-angle-right
+                  = link_to @product.category.parent.name
+              %a
+                .item-detail-table-sub-sub-category
+                  %i.fas.fa-angle-right
+                  = link_to @product.category.name
+          %tr
+            %th ブランド
+            %td
+              %a
+                %div
+                  = link_to @product.brand.name
+          %tr
+            %th 商品のサイズ
+            %td= @product.size.name
+          %tr
+            %th 商品の状態
+            %td= @product.stage
+          %tr
+            %th 配送料の負担
+            %td= @product.delivery_responsivility
+          %tr
+            %th 配送の方法
+            %td= @product.delivery_way
+          %tr
+            %th 配送元地域
+            %td
+              = link_to @product.delivery_area
+          %tr
+            %th 発送日の目安
+            %td= @product.delivery_day
+    .products-show__product-details__price
+      %span.products-show__product-details__price__text= number_to_currency(@product.price, :format => "%u%n", :unit => "￥")
+      %span.products-show__product-details__price__tax （税込）
+      %span.products-show__product-details__price__postage 送料込み
+    %a.products-show__product-details__btn 購入画面に進む
+    .products-show__product-details__text
+      %p.products-show__product-details__text__inner
+        = @product.text
+    .products-show__product-details__other
+    .products-show__product-details__other__left
+      %button.products-show__product-details__other__left__like
+        %i.far.fa-heart
+        %span いいね!
+        %span.fade-in-down= @product.likes.count
+      %a.products-show__product-details__other__left__report
+        %i.far.fa-flag
+        %span 不適切な商品の報告
+    .products-show__product-details__other__right
+      %a.products-show__product-details__other__right__report
+        = link_to ""
+        %i.fas.fa-lock.products-show__product-details__other__right__report__icon
+        %span.products-show__product-details__other__right__report__link あんしん・あんぜんへの取り組み
+  %ul.products-show__products-ide-link
+    %li.products-show__products-ide-link__back
+      - if @product.previous.present?
+        = link_to product_path(@product.previous),class: "products-show__products-ide-link__back__link" do
+          = @product.previous.name
+      %i.fas.fa-angle-left.products-show__products-ide-link__back__icon
+    %li.products-show__products-ide-link__next
+      - if @product.next.present?
+        = link_to product_path(@product.next),class: "products-show__products-ide-link__next__link" do
+          = @product.next.name
+      %i.fas.fa-angle-right.products-show__products-ide-link__next__icon
+  .products-show__link-box
+    %ul.products-show__link-box__media
+      %li.products-show__link-box__media__list
+        = link_to "",class: "products-show__link-box__media__list__face-book" do
+          %i.fab.fa-facebook-square.products-show__link-box__media__list__face-book__icon
+      %li.products-show__link-box__media__list
+        = link_to "",class: "products-show__link-box__media__list__twitter" do
+          %i.fab.fa-twitter.products-show__link-box__media__list__twitter__icon
+      %li.products-show__link-box__media__list
+        = link_to "",class: "products-show__link-box__media__list__pinterest" do
+          %i.fab.fa-pinterest.products-show__link-box__media__list__pinterest__icon
+      .clearfix
+  .products-show__other-products
+    %section.products-show__other-products__item-box
+      %h2.products-show__other-products__item-box__head
+        = link_to "#{@product.user.nickname}さんのその他の出品"
+      .products-show__other-products__item-box__content
+      -@products.limit(7).each do |product|
+        - if product.id != params[:id].to_i
+          %section.products-show__other-products__item-box__content__one
+            = link_to product, class: "products-show__other-products__item-box__content__one__link" do
+              .products-show__other-products__item-box__content__one__link__photo
+                -# TODO 出品ページからDBに保存した商品の画像を表示したい時は下記のproduct.product_images.first.imageの後に.urlを追記してください
+                = image_tag product.product_images.first.image, class: "products-show__other-products__item-box__content__one__link__photo__img"
+              .products-show__other-products__item-box__content__one__link__body
+                %h3.products-show__other-products__item-box__content__one__link__body__title #{product.name}
+                .products-show__other-products__item-box__content__one__link__body__price
+                  .products-show__other-products__item-box__content__one__link__body__price__text= number_to_currency(product.price, :format => "%u%n", :unit => "￥")
+                  %i.far.fa-heart.products-show__other-products__item-box__content__one__link__body__price__icon
+                    %span= product.likes.count
+  = render "shared/download-ad"
+  

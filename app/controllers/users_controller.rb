@@ -1,11 +1,16 @@
 class UsersController < ApplicationController
-
+  protect_from_forgery
+  
   require "payjp"
   before_action :set_year, :set_month, :set_day
   before_action :validates_step3, only: :step4
   before_action :validates_step6, only: :step7
   layout "users_layout"
-
+  
+  def show
+    redirect_to "/"
+  end
+  
   def step3
     @user = User.new
   end
@@ -147,5 +152,6 @@ class UsersController < ApplicationController
   def confirmation
     @address = Address.new
   end
+
 
 end

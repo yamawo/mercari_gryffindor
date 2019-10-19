@@ -48,6 +48,8 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     airbrussh (1.3.4)
       sshkit (>= 1.6.1, != 1.7.0)
+    ancestry (3.0.7)
+      activerecord (>= 3.2.0)
     arel (9.0.0)
     bcrypt (3.1.13)
     bindex (0.8.1)
@@ -234,6 +236,10 @@ GEM
       bundler (>= 1.3.0)
       railties (= 5.2.3)
       sprockets-rails (>= 2.0.0)
+    rails-controller-testing (1.0.4)
+      actionpack (>= 5.0.1.x)
+      actionview (>= 5.0.1.x)
+      activesupport (>= 5.0.1.x)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -347,6 +353,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_hash
+  ancestry
   bootsnap
   byebug
   capistrano
@@ -366,12 +373,14 @@ DEPENDENCIES
   listen (~> 3.0.5)
   mini_magick
   mysql2 (>= 0.3.18, < 0.6.0)
+  nokogiri
   omniauth
   omniauth-facebook
   payjp
   pry-rails
   puma (~> 3.0)
   rails (= 5.2.3)
+  rails-controller-testing
   rails-i18n
   ransack
   rspec-rails

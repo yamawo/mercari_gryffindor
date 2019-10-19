@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: "products#index"
+  
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions'
@@ -15,8 +16,8 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :products, only: [:index]
-  
+  resources :products, only: [:index, :show]
+      
   resources :users do
     collection do
       scope :sign_up do           # ディレクトリの階層の変更はなし
@@ -28,7 +29,7 @@ Rails.application.routes.draw do
       end
     end
   end
-
+  
   resources :users, only: [:mypage, :logout] do
     collection do
       get "profile"
@@ -37,4 +38,7 @@ Rails.application.routes.draw do
       get "logout"
     end
   end
+  
+  post "likes/:product_id/create", to: "likes#create", constraints: {product_id: /\d+/}, as: :likes_create
+  post "likes/:product_id/delete", to: "likes#delete", constraints: {product_id: /\d+/}, as: :likes_delete
 end
