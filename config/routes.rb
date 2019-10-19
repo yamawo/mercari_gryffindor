@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: "products#index"
+<<<<<<< Updated upstream
  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
@@ -15,6 +16,9 @@ Rails.application.routes.draw do
 
   resources :address 
 
+=======
+  
+>>>>>>> Stashed changes
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions',
@@ -29,7 +33,12 @@ Rails.application.routes.draw do
   
   
   
+<<<<<<< Updated upstream
   
+=======
+  resources :products, only: [:index, :show]
+      
+>>>>>>> Stashed changes
   resources :users do
     collection do
       get "profile"
@@ -46,4 +55,19 @@ Rails.application.routes.draw do
       end
     end
   end
+<<<<<<< Updated upstream
+=======
+  
+  resources :users, only: [:mypage, :logout] do
+    collection do
+      get "profile"
+      get "mypage"
+      get "confirmation"
+      get "logout"
+    end
+  end
+  
+  post "likes/:product_id/create", to: "likes#create", constraints: {product_id: /\d+/}, as: :likes_create
+  post "likes/:product_id/delete", to: "likes#delete", constraints: {product_id: /\d+/}, as: :likes_delete
+>>>>>>> Stashed changes
 end

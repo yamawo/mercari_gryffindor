@@ -1,12 +1,22 @@
 class UsersController < ApplicationController
-
+  protect_from_forgery
+  
   require "payjp"
   after_action :sns_create, only: :step8
   before_action :set_year, :set_month, :set_day
   before_action :validates_step3, only: :step4
   before_action :validates_step4, only: :step6
   before_action :validates_step6, only: :step7
+<<<<<<< Updated upstream
 
+=======
+  layout "users_layout"
+  
+  def show
+    redirect_to "/"
+  end
+  
+>>>>>>> Stashed changes
   def step3
     @user = User.new
     render layout: "users_layout"
@@ -173,7 +183,13 @@ class UsersController < ApplicationController
   def confirmation
     @address = Address.new
   end
+<<<<<<< Updated upstream
   
   def card_registration
   end
 end
+=======
+
+
+end
+>>>>>>> Stashed changes

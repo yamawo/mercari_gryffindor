@@ -1,0 +1,6 @@
+.like_button_on
+  = link_to "いいね済み",  likes_delete_path(product_id: @product.id), {method: "post", remote: true}
+  = @product.likes.count
+.like_button
+  = link_to "いいね", likes_create_path(product_id: @product.id), {method: "post", remote: true}
+  = @product.likes.count

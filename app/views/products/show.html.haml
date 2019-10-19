@@ -1,5 +1,6 @@
 %main.products-show
   %section.products-show__product-details
+<<<<<<< Updated upstream
     %h1.products-show__product-details__item-name デニムワンピース シャツワンピース
     .products-show__product-details__main
       .products-show__product-details__main__item-photo
@@ -30,11 +31,28 @@
             %span
             .products-show__product-details__main__item-photo__list__one__inner
               = image_tag 'https://static.mercdn.net/item/detail/orig/photos/m49383992086_6.jpg?1569631728', class: 'products-show__product-details__main__item-photo__list__one__inner__img'
+=======
+    %h1.products-show__product-details__item-name= @product.name
+    .products-show__product-details__main
+      .products-show__product-details__main__item-photo
+        .products-show__product-details__main__item-photo__outer
+        -@product.product_images.limit(1).each do |product|
+          -# TODO 出品ページからDBに保存した商品の画像を表示したい時は下記のproduct.imageの後に.urlを追記してください
+          = image_tag product.image, class: 'products-show__product-details__main__item-photo__outer__top'
+        .products-show__product-details__main__item-photo__list
+        -@product.product_images.each do |product|
+          .products-show__product-details__main__item-photo__list__one
+            %span
+            .products-show__product-details__main__item-photo__list__one__inner
+              -# TODO 出品ページからDBに保存した商品の画像を表示したい時は下記のproduct.imageの後に.urlを追記してください
+              = image_tag product.image, class: 'products-show__product-details__main__item-photo__list__one__inner__img'
+>>>>>>> Stashed changes
       %table.products-show__product-details__main__table
         %tbody
           %tr
             %th 出品者
             %td
+<<<<<<< Updated upstream
               = link_to "ワンコロ",class: "exhibitor-name"
               .item-user
                 .item-user-good
@@ -46,10 +64,24 @@
                 .item-user-bad
                   %i.fas.fa-frown
                   %span 0
+=======
+              = link_to @product.user.nickname, class: "exhibitor-name"
+              .item-user
+                .item-user-good
+                  %i.fas.fa-laugh
+                  %span= @product.user.good
+                .item-use-normal
+                  %i.fas.fa-meh
+                  %span= @product.user.normal
+                .item-user-bad
+                  %i.fas.fa-frown
+                  %span= @product.user.bat
+>>>>>>> Stashed changes
           %tr
             %th カテゴリー
             %td
               %a
+<<<<<<< Updated upstream
                 = link_to "レディース"
               %a
                 .item-detail-table-sub-category
@@ -59,11 +91,23 @@
                 .item-detail-table-sub-sub-category
                   %i.fas.fa-angle-right
                   = link_to "ひざ丈ワンピース"
+=======
+                = link_to @product.category.parent.parent.name
+              %a
+                .item-detail-table-sub-category
+                  %i.fas.fa-angle-right
+                  = link_to @product.category.parent.name
+              %a
+                .item-detail-table-sub-sub-category
+                  %i.fas.fa-angle-right
+                  = link_to @product.category.name
+>>>>>>> Stashed changes
           %tr
             %th ブランド
             %td
               %a
                 %div
+<<<<<<< Updated upstream
                   = link_to "ニコアンド"
           %tr
             %th 商品のサイズ
@@ -86,11 +130,36 @@
             %td 2~3日で発送
     .products-show__product-details__price
       %span.products-show__product-details__price__text ¥4,500
+=======
+                  = link_to @product.brand.name
+          %tr
+            %th 商品のサイズ
+            %td= @product.size.name
+          %tr
+            %th 商品の状態
+            %td= @product.stage
+          %tr
+            %th 配送料の負担
+            %td= @product.delivery_responsivility
+          %tr
+            %th 配送の方法
+            %td= @product.delivery_way
+          %tr
+            %th 配送元地域
+            %td
+              = link_to @product.delivery_area
+          %tr
+            %th 発送日の目安
+            %td= @product.delivery_day
+    .products-show__product-details__price
+      %span.products-show__product-details__price__text= number_to_currency(@product.price, :format => "%u%n", :unit => "￥")
+>>>>>>> Stashed changes
       %span.products-show__product-details__price__tax （税込）
       %span.products-show__product-details__price__postage 送料込み
     %a.products-show__product-details__btn 購入画面に進む
     .products-show__product-details__text
       %p.products-show__product-details__text__inner
+<<<<<<< Updated upstream
         昨年購入した NIKO AND の デニムシャツワンピースです。
         %br
         サイズは表記3のL サイズで 1～2回しか着ていないのでキレイな状態です。
@@ -100,12 +169,19 @@
         ご了承下さい。
         %br
         あくまでも中古品ですので気になる方はご遠慮下さいませ。
+=======
+        = @product.text
+>>>>>>> Stashed changes
     .products-show__product-details__other
     .products-show__product-details__other__left
       %button.products-show__product-details__other__left__like
         %i.far.fa-heart
         %span いいね!
+<<<<<<< Updated upstream
         %span.fade-in-down 2
+=======
+        %span.fade-in-down= @product.likes.count
+>>>>>>> Stashed changes
       %a.products-show__product-details__other__left__report
         %i.far.fa-flag
         %span 不適切な商品の報告
@@ -116,6 +192,7 @@
         %span.products-show__product-details__other__right__report__link あんしん・あんぜんへの取り組み
   %ul.products-show__products-ide-link
     %li.products-show__products-ide-link__back
+<<<<<<< Updated upstream
       = link_to "",class: "products-show__products-ide-link__back__link" do
         %p HUAWEI nova lite 3 コーラルレッド 32 GB SIMフリ
         %p ー
@@ -124,6 +201,16 @@
       = link_to "",class: "products-show__products-ide-link__next__link" do
         %p ヤマハ RMX リミックス 216 ドライバー カスタム
         %p シャフトTourAD
+=======
+      - if @product.previous.present?
+        = link_to product_path(@product.previous),class: "products-show__products-ide-link__back__link" do
+          = @product.previous.name
+      %i.fas.fa-angle-left.products-show__products-ide-link__back__icon
+    %li.products-show__products-ide-link__next
+      - if @product.next.present?
+        = link_to product_path(@product.next),class: "products-show__products-ide-link__next__link" do
+          = @product.next.name
+>>>>>>> Stashed changes
       %i.fas.fa-angle-right.products-show__products-ide-link__next__icon
   .products-show__link-box
     %ul.products-show__link-box__media
@@ -140,6 +227,7 @@
   .products-show__other-products
     %section.products-show__other-products__item-box
       %h2.products-show__other-products__item-box__head
+<<<<<<< Updated upstream
         = link_to "ワンコロさんのその他の出品"
       .products-show__other-products__item-box__content
         %section.products-show__other-products__item-box__content__one
@@ -173,3 +261,22 @@
                 %i.far.fa-heart.products-show__other-products__item-box__content__one__link__body__price__icon
                   %span 4
   = render "shared/download-ad"
+=======
+        = link_to "#{@product.user.nickname}さんのその他の出品"
+      .products-show__other-products__item-box__content
+      -@products.limit(7).each do |product|
+        - if product.id != params[:id].to_i
+          %section.products-show__other-products__item-box__content__one
+            = link_to product, class: "products-show__other-products__item-box__content__one__link" do
+              .products-show__other-products__item-box__content__one__link__photo
+                -# TODO 出品ページからDBに保存した商品の画像を表示したい時は下記のproduct.product_images.first.imageの後に.urlを追記してください
+                = image_tag product.product_images.first.image, class: "products-show__other-products__item-box__content__one__link__photo__img"
+              .products-show__other-products__item-box__content__one__link__body
+                %h3.products-show__other-products__item-box__content__one__link__body__title #{product.name}
+                .products-show__other-products__item-box__content__one__link__body__price
+                  .products-show__other-products__item-box__content__one__link__body__price__text= number_to_currency(product.price, :format => "%u%n", :unit => "￥")
+                  %i.far.fa-heart.products-show__other-products__item-box__content__one__link__body__price__icon
+                    %span= product.likes.count
+  = render "shared/download-ad"
+  
+>>>>>>> Stashed changes
