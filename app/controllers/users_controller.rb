@@ -1,12 +1,17 @@
 class UsersController < ApplicationController
-
+  protect_from_forgery
+  
   require "payjp"
   after_action :sns_create, only: :step8
   before_action :set_year, :set_month, :set_day
   before_action :validates_step3, only: :step4
   before_action :validates_step4, only: :step6
   before_action :validates_step6, only: :step7
-
+  
+  def show
+    redirect_to "/"
+  end
+  
   def step3
     @user = User.new
     render layout: "users_layout"
