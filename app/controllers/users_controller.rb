@@ -174,13 +174,7 @@ class UsersController < ApplicationController
   def confirmation
     @address = Address.new
   end
-<<<<<<< Updated upstream
   
   def card_registration
   end
 end
-=======
-
-
-end
->>>>>>> Stashed changes
