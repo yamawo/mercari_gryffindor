@@ -38,9 +38,9 @@
               %i.fa.fa-check
               やることリスト
           %li.sp-header-mypage
-            %a.sp-header-mypage-link{ href: "/users/mypage/" }
-              %img.sp-header-mypage-img{alt: "", src: "https://static.mercdn.net/images/member_photo_noimage_thumb.png"}>/
-              マイページ     
+            = link_to mypage_users_path, class: "sp-header-mypage-link" do
+              = image_tag "https://static.mercdn.net/images/member_photo_noimage_thumb.png", class: "sp-header-mypage-img"
+              マイページ
         - else
           %li
             = link_to "新規会員登録", new_user_registration_path, class: "sp-header-btn"
