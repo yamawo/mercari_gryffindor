@@ -60,9 +60,9 @@ gem 'fog-aws'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem "mini_magick"
+gem 'mini_magick'
 gem 'ransack'
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
 
 group :production do
   gem 'unicorn', '5.4.1'
@@ -74,6 +74,16 @@ gem 'pry-rails'
 gem 'devise'
 #haml-rails
 gem 'haml-rails'
+#nokogiri
+gem 'nokogiri'
+#bootsnap
+gem 'bootsnap'
+#レコードを階層構造として編成
+gem 'ancestry'
+#dropzone
+gem 'dropzonejs-rails'
+#jsfileにコントローラーの変数を持ってこれるようにする
+gem 'gon'
 gem 'rails-i18n'
 gem 'bootsnap'
 # payjp
@@ -82,3 +92,5 @@ gem 'payjp'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'active_hash'
+gem 'omniauth-google-oauth2'
+gem 'recaptcha', require: "recaptcha/rails"

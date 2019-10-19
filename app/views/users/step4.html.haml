@@ -2,7 +2,7 @@
   .step4
     %header.step4__header
       %h1
-        = link_to image_tag('https://www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?2296184308', alt: 'mercari',height: '49', width: '185', class: 'step4__header__logo'), "https://www.mercari.com/jp/"
+        = link_to image_tag('https://www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?2296184308', alt: 'mercari',height: '49', width: '185', class: 'step4__header__logo'), "/"
       %nav.step4__header__progress-bar.step4__header__signup-bar
         %ol.clearfix
           %li.step4__header__progress-bar__active
@@ -26,7 +26,7 @@
         %h2.step4__main__content__registration
           電話番号の確認
         .step4__main__content__form
-          = form_for @user, url: step6_users_path, method: :get do |f|
+          = form_for @user, url: step6_users_path, builder: CustomFormBuilder, method: :get do |f|
             .step4__main__content__form__field
               .step4__main__content__form__field__callnumber
                 = f.label :携帯電話の番号, class: "step4__main__content__form__field__callnumber__label"
