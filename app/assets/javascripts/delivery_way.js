@@ -7,7 +7,7 @@ $(function(){
                   <div class="selling__main__sec__content__form__write__content__box__group__select">
                     <i class="fas fa-chevron-down selling__main__sec__content__form__write__content__box__group__select__icon">
                     </i>
-                    <select class="selling__main__sec__content__form__write__content__box__group__select__list" value="delivery_responsivility">
+                    <select class="selling__main__sec__content__form__write__content__box__group__select__list" name="product[delivery_way]">
                       <option value="---">---</option>
                       <option value="未定">未定</option>
                       <option value="らくらくメルカリ便">らくらくメルカリ便</option>

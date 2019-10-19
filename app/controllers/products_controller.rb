@@ -20,13 +20,13 @@ class ProductsController < ApplicationController
   end
   
   def create
-    
-    require "base64"                          #バイナリーデータ化（しないとJSで画像表示できない）
-    @product = Product.new(product_params)    #保存できたかどうかで分岐させたいのでnew
+    require "base64"                  #バイナリーデータ化（しないとJSで画像表示できない）
+    @product = Product.new(product_params)   #保存できたかどうかで分岐させたいのでnew
     if @product.save
-      product_images_params[:images].each do |image|
+      product_images_params.each do |image|
         @product.product_images.build         #buildをすることで、saveした際にアソシエーションした先にも値を保存する
         product_image = @product.product_images.new(image: image)
+       
         product_image.save
       end
       respond_to do |format|
@@ -113,7 +113,7 @@ class ProductsController < ApplicationController
   end
 
   def product_images_params
-    params.require(:product_images).permit({images: []})
+    params.require(:product).require(:product_image).permit(:image)
   end
   
 end
