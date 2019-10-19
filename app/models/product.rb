@@ -1,9 +1,5 @@
-class Product < ApplicationRecord
-<<<<<<< Updated upstream
-  belongs_to :category
-  has_many :product_images
-  accepts_nested_attributes_for :product_images
-=======
+class Product < ApplicationRecord￥
+  # accepts_nested_attributes_for :product_images
   belongs_to :user, dependent: :delete
   belongs_to :category
   belongs_to :brand
@@ -24,5 +20,4 @@ class Product < ApplicationRecord
   def liked? (like_user_id, like_product_id)
     likes.where(user_id: like_user_id, product_id: like_product_id).exists?
   end
->>>>>>> Stashed changes
 end

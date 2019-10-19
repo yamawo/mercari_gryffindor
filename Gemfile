@@ -93,10 +93,5 @@ gem 'payjp'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'active_hash'
-<<<<<<< Updated upstream
 gem 'omniauth-google-oauth2'
 gem 'recaptcha', require: "recaptcha/rails"
-=======
-gem 'ancestry'
-gem 'nokogiri'
->>>>>>> Stashed changes

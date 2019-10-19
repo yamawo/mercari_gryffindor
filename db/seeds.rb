@@ -5,7 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-<<<<<<< Updated upstream
 
 require "nokogiri"
 
@@ -21,9 +20,6 @@ size_blocks[1168..1297].each_with_index do |size_block, i|
   size_id += 1
 end
 
-=======
-require "nokogiri"
->>>>>>> Stashed changes
 #カテゴリーデータ取得
 file = File.open("カテゴリー一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
 doc = Nokogiri::HTML(file)
@@ -50,7 +46,6 @@ parent_category_blocks.each_with_index do |parent_category_block,i|
   end
 end
 
-<<<<<<< Updated upstream
 #ブランド取得
 file = File.open("レディース ブランド一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
 doc = Nokogiri::HTML(file)
@@ -295,7 +290,6 @@ brand_blocks.each do |brand_block|
   end
 end
 
-=======
 
 Brand.create!(name: "シャネル")
 Brand.create!(name: "おやつカンパニー")
@@ -381,4 +375,3 @@ end
 10.times do |index|
   ProductImage.create!(image: "https://static.mercdn.net/item/detail/orig/photos/m74030307902_1.jpg?1568375848", product_id: "10")  
 end
->>>>>>> Stashed changes

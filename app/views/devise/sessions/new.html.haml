@@ -13,13 +13,8 @@
             = link_to "Facebookでログイン", user_facebook_omniauth_authorize_path, class: "sns-text"
         #google-login
           = image_tag "/images/google.svg", alt: "Flower"
-<<<<<<< Updated upstream
           = link_to "Googleでログイン", user_google_oauth2_omniauth_authorize_path, class: "sns-text", id: "sns-text-google"
       %form{action: "/users/sign_up/", method: "POST", novalidate: "novalidate"}
-=======
-          %p Googleでログイン
-      %form{action: "/users/sign_in", method: "POST", novalidate: "novalidate"}
->>>>>>> Stashed changes
         .signin-main__box__block__form  
           .signin-main__box__block__form__mail
             %input.login-input-text.input-default{name: "email", placeholder: "メールアドレス", type: "email"}/
