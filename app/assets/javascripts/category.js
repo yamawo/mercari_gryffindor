@@ -13,7 +13,7 @@ $(function(){
     var html = `<div class="selling__main__sec__content__form__write__content__box__group__select" id="category3">
                   <i class="fas fa-chevron-down selling__main__sec__content__form__write__content__box__group__select__icon">
                   </i>
-                  <select value="category_id" class="selling__main__sec__content__form__write__content__box__group__select__list" id="grandchildren">
+                  <select value="category_id" class="selling__main__sec__content__form__write__content__box__group__select__list" id="grandchildren" name="product[category_id]">
                   </select>
                 </div>`
     return html;

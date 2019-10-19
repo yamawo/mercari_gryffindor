@@ -22,11 +22,17 @@ $(function() {
       if(brands.length !== 0){
         brands.forEach(function(brand){
           appendBrand(brand);
-          
         })
         
       }
       })
     }
+  })
+  $(document).on("click", ".selling__main__sec__content__form__write__content__box__group__select__search__ele", function() {
+    var add_result = $("selling__main__sec__content__form__write__content__box__group__select__input");
+    var content = this.innerText
+    console.log(content)
+    add_result.html(content);
+
   })
 })
