@@ -48,13 +48,6 @@ ActiveRecord::Schema.define(version: 2019_10_18_041223) do
     t.index ["user_id"], name: "index_credits_on_user_id"
   end
 
-  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "product_id"
-    t.bigint "user_id"
-    t.index ["product_id"], name: "index_likes_on_product_id"
-    t.index ["user_id"], name: "index_likes_on_user_id"
-  end
-
   create_table "prefectures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

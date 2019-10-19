@@ -101,9 +101,7 @@
           gap: 6px 6px;
           
           &__link{
-            background-color: white;
-            height: 252px;
-            width: 188px;
+            width: 100%;
             cursor: pointer;
             display: inline-block;
             position: relative;
@@ -111,12 +109,11 @@
             vertical-align: top;
             &__detail{
               font-family: Arial, "YuGothic", "Meiryo", sans-serif;
-              // width: 100%;
+              width: 100%;
               display: flex;
               align-items: center;
-              // background-color: gray;
+              background-color: gray;
               margin: 0;
-              position: relative;
               &__caption{
                 box-sizing: border-box;
                 color: #222;
@@ -127,26 +124,7 @@
                 white-space: normal;
                 word-break: break-word;
               }
-              &__price{
-                position: absolute;
-                top: 150px;
-                width: 80px;
-                height: 25px;
-                line-height: 25px;
-                color: white;
-                background: rgba(0, 0, 0, 0.4);
-                border-radius: 0 14px 14px 0;
-                text-align: center;
-              }
-              &__image{
-                position: relative;
-              }
-              &__text{
-                padding: 5px 12px 12px 10px;
-                font-size: 13px;
-                height: 30px;
-                overflow: hidden;
-              }
+
             }
           }
         }

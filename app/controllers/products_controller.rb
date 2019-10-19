@@ -1,11 +1,7 @@
 class ProductsController < ApplicationController
-  before_action :find_product, only: [:show]
   
   def index
-    ladies = Category.find_by(name: "レディース")
-    @ladies = Product.where(category_id: ladies.indirects.ids).limit(10)
-    chanel = Brand.find_by(name: "シャネル")
-    @chanel = Product.where(brand_id: chanel.id).limit(10)
+    @product = Product.new
   end
 
   def new
@@ -22,11 +18,6 @@ class ProductsController < ApplicationController
     @product.product_images.build
     render layout: "selling"
     
-  end
-
-  def show
-    @user = @product.user
-    @products = @user.products
   end
 
   def create_category_children
@@ -76,6 +67,9 @@ class ProductsController < ApplicationController
       respond_to do |format|
         format.json
       end
+    
+    
+    
   end
 
   def search
@@ -84,6 +78,8 @@ class ProductsController < ApplicationController
       format.json
     end
   end
+  
+  
   
   def creare
     require "base64"
@@ -107,6 +103,8 @@ class ProductsController < ApplicationController
   def privacy_policy
   end
   
+
+
   private 
   def product_params
     params.require(:product).permit(:name, :price, :text, :status, :stage, :delivery_responsivility, :delivery_way, :delivery_area, :delivery_day, :category_id, :brand_id)
@@ -121,10 +119,9 @@ class ProductsController < ApplicationController
   end
   
   def privacy_policy
+
   end
 
-  def find_product
-    @product = Product.find(params[:id])
+  def show
   end
-
 end
