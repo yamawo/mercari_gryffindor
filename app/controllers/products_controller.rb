@@ -20,15 +20,16 @@ class ProductsController < ApplicationController
     
   end
   
-  def creare
+  def create
+    binding.pry
     require "base64"                          #バイナリーデータ化（しないとJSで画像表示できない）
     @product = Product.new(product_params)    #保存できたかどうかで分岐させたいのでnew
     if @product.save
-      product_images_params[:images].each do |image|
-        @product.product_images.build         #buildをすることで、saveした際にアソシエーションした先にも値を保存する
-        product_image = @product.product_images.new(image: image)
-        product_image.save
-      end
+      # product_images_params[:images].each do |image|
+      #   @product.product_images.build         #buildをすることで、saveした際にアソシエーションした先にも値を保存する
+      #   product_image = @product.product_images.new(image: image)
+      #   product_image.save
+      # end
       respond_to do |format|
         format.json
       end
@@ -105,7 +106,7 @@ class ProductsController < ApplicationController
   private 
 
   def product_params
-    params.require(:product).permit(:name, :price, :text, :status, :stage, :delivery_responsivility, :delivery_way, :delivery_area, :delivery_day, :category_id, :brand_id)
+    params.require(:product).permit(:name, :price, :text, :status, :stage, :delivery_responsivility, :delivery_way, :delivery_area, :delivery_day, :category_id, :brand_id, product_images_attributes: [:image, :id, :destroy])
   end
 
   def registered_image_params
@@ -113,7 +114,7 @@ class ProductsController < ApplicationController
   end
 
   def product_images_params
-    params.require(:product_images).permit({images: []})
+    params.require(:product_images).require(:"0").permit({images: []})
   end
   
 end

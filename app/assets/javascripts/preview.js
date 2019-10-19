@@ -91,11 +91,12 @@ $(window).on("turbolinks:load", function(){
                 });
             }
         }
-        // 複数画像を投稿するためにinputタグを複数設置
+        // 複数画像を投稿するためにinputタグを複数設置  // #FIXME ２段目は分岐させて２段目だけにlabelをつけるようにさせる（IDとかでつける）
         let new_image = $(
-            `<input multiple="multiple" name="product_images[image][]" class="selling__main__sec__content__form__write__upload__box__items__input-area__field" data-image=${images.length} type="file" id="selling__main__sec__content__form__write__upload__box__items__input-area__field">`
+            `<input id="product_product_images_attributes_${images.length}_image" class="selling__main__sec__content__form__write__upload__box__items__input-area__field" data-image="${images.length}" type="file" name="product[product_images_attributes][${images.length}][image]">`
         );
         input_area.append(new_image);
+        $(`label.selling__main__sec__content__form__write__upload__box__items__input-area`).attr("for", `product_product_images_attributes_${images.length}_image`)
     });
     // 削除ボタン
     $(".selling__main__sec__content__form__write__upload__box, .selling__main__sec__content__form__write__upload__box2").on("click", ".btn_delete", function(){
@@ -177,34 +178,36 @@ $(window).on("turbolinks:load", function(){
             })
         }
     })
-    $(".selling__main__sec__content__form__write__upload__box__items__input-area__field").on("submit", function(e){
+    console.log(new_image_files);
+    $(".selling__main__sec__content__form__write").on("submit", function(e){
         // 場合分け等してsubmitしたい為、通常のsubmitイベントを止める
         e.preventDefault();
         // images以外のform情報をformDataに入れる。 get() = getElementById()
-        let formData = new FormData($(this).get(0));
+        let formData = new FormData(this);
         // 登録済み画像が残っていない場合は便宜的に０を入れる
-        if (registered_images_ids.length == 0){
-            formData.append("registered_images_ids[ids][]", 0)
-        // 登録済み画像で、まだ残っているものがあればidをformDataに追加していく
-        } else {
-            registered_images_ids.forEach(function(registered_image){
-                formData.append("registered_images_ids[ids][]", registered_image)
-            });
-        }
+        // if (registered_images_ids.length == 0){
+        //     formData.append("registered_images_ids[ids][]", 0)
+        // // 登録済み画像で、まだ残っているものがあればidをformDataに追加していく
+        // } else {
+        //     registered_images_ids.forEach(function(registered_image){
+        //         formData.append("registered_images_ids[ids][]", registered_image)
+        //     });
+        // }
         // 新しく追加したimagesがない場合は便宜的に空の文字列を入れる
-        if (new_image_files.length == 0){
-            formData.append("new_images[images][]", "")
-        // 新しく追加したimagesがある場合はformDataに追加する
-        } else {
-            new_image_files.forEach(function(file){
-                formData.append("new_images[images][]", file)
-            });
-        }
+        // if (new_image_files.length == 0){
+        //     formData.append("new_images[images][]", "")
+        // // 新しく追加したimagesがある場合はformDataに追加する
+        // } else {
+        //     new_image_files.forEach(function(file){
+        //         formData.append("new_images[images][]", file)
+        //     });
+        // }
         // ajax
         $.ajax({
             url: "/products",
             type: "POST",
             data: formData,
+            dataType: 'json',
             contentType: false,
             processData: false,
         })
