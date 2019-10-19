@@ -1,5 +1,6 @@
 = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
 %body
+  = render "shared/header"
   %nav.navbar
     %ul.navbar__list
       %li.navbar__list__ele
@@ -73,8 +74,7 @@
           %ul.main__r-content__tab__content__list
             %li.main__r-content__tab__content__list__element
               取引中の商品がありません
-    
 
-
-  = render "shared/sell-btn"
   = render "shared/download-ad"
+  = render "shared/sell-btn"
+= render "shared/footer"
