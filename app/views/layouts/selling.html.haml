@@ -160,7 +160,7 @@
                       = link_to "/", class: "selling__main__sec__content__form__write__btn-box__explain__line__link", target: "_blank" do
                         加盟店規約
                       に同意したことになります。
-                  = f.submit "出品する", class: "selling__main__sec__content__form__write__btn-box__btn", disable_with: "出品中です..."
+                  = f.submit "出品する",  name: "", formaction: products_path, formmethod: "POST", class: "selling__main__sec__content__form__write__btn-box__btn", disable_with: "出品中です..."
                   = link_to "/", class: "selling__main__sec__content__form__write__btn-box__link" do
                     もどる
 = render "/users/footer"

@@ -17,10 +17,10 @@ class ProductsController < ApplicationController
     
     @product.product_images.build
     render layout: "selling"
-    
   end
   
-  def creare
+  def create
+    
     require "base64"                          #バイナリーデータ化（しないとJSで画像表示できない）
     @product = Product.new(product_params)    #保存できたかどうかで分岐させたいのでnew
     if @product.save
