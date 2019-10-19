@@ -45,6 +45,7 @@ group :development, :test do
   gem 'capistrano3-unicorn'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
 end
 
 group :development do
@@ -82,3 +83,5 @@ gem 'payjp'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'active_hash'
+gem 'ancestry'
+gem 'nokogiri'

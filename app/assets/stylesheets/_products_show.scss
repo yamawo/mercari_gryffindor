@@ -1,0 +1,403 @@
+.products-show{
+  &__product-details{
+    padding: 24px 40px 80px;
+    background: #fff;
+    margin: 40px auto 0;
+    width: 620px;
+    font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
+      &__item-name{
+        font-size: 24px;
+        text-align: center;
+        word-wrap: break-word;
+        line-height: 1.4;
+        font-weight: 700;
+      }
+      &__main{
+        margin: 16px 0 0;
+        height: 430px;
+        position: relative;
+        &__item-photo{
+          float: left;
+          min-width: 300px;
+          max-width: 300px;
+          min-height: 375px;
+          position: relative;
+          margin: 0 auto;
+          background-color: #f5f5f5;
+          &__outer{
+            &__top{
+              width: 100%;
+              min-height: 300px;
+              max-height: 300px;
+            }
+          }
+        &__list{
+          line-height: 0;
+          &__one{
+            max-height: none;
+            display: inline-block;
+            padding: 0;
+            margin: 0;
+            cursor: pointer;
+            width: 60px;
+            height: 60px;
+            float: left;
+            &__inner{
+              position: static;
+              width: auto;
+              height: auto;
+              padding: 0;
+                &__img{
+                  width: 60px;
+                  height: 60px;
+                  opacity: 0.50;
+                  transition-delay:0.3s;
+                  margin: 0;
+                  padding: 0;
+                  float: left;
+                  display: block;
+                }
+                img:hover {
+                  opacity: 1;
+                }
+            }
+          }
+        }
+      }
+      &__table{
+        max-width: 300px;
+        height: 420px;
+        position: absolute;
+        left: 320px;
+        font-size: 14px;
+        width: 400px;
+        tbody{
+          tr{
+            th{
+              width: 39%;
+              text-align: left;
+              font-weight: 400;
+              background: #fafafa;
+              padding: 8px;
+              border-collapse: collapse;
+              border: 1px solid #f5f5f5;
+              font-size: 14px;
+            }
+            td{
+              width: 61%;
+              background: #fff;
+              padding: 8px;
+              border-collapse: collapse;
+              border: 1px solid #f5f5f5;
+              a{
+                color: #0099e8;
+                i{
+                  color: #0099e8;
+                }
+              }
+              .item-user{
+                .item-user-good{
+                  display: inline-block;
+                  i{
+                    color: #ef5185;
+                  }
+                }
+                .item-use-normal{
+                  display: inline-block;
+                  margin: 8px 0 0 0;
+                  i{
+                    color: #fba933;
+                  }
+                }
+                .item-user-bad{
+                  display: inline-block;
+                  margin: 8px 0 0 0;
+                  i{
+                    color: #6ab5d8;
+                  }
+                }
+                span{
+                  font-size: 10px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    &__price{
+      margin: 24px 0 0;
+      text-align: center;
+      &__text{
+        margin: 0 16px 0 0;
+        font-size: 50px;
+      }
+      &__tax{
+        font-size: 10px;
+      }
+      &__postage{
+        display: inline-block;
+        font-size: 16px;
+      }
+    }
+    &__btn{
+      font-size: 24px;
+      line-height: 60px;
+      display: block;
+      margin-top: 16px;
+      background: #ea352d;
+      color: #fff;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+    }
+    &__text{
+      padding: 32px 0 0;
+      line-height: 1;
+      font-size: 18px;
+      &__inner{
+        white-space: pre-wrap;
+      }
+    }
+    &__other{
+      margin: 16px 0 0;
+      &__left{
+        float: left;
+        &__like{
+          color: #333;
+          border: 1px solid #f5f5f5;
+          background: #f5f5f5;
+          display: inline-block;
+          padding: 8px 16px;
+          border-radius: 40px;
+          cursor: pointer; 
+          i{
+            font-size: 14px;
+            vertical-align: middle;
+            color: #ccc;
+          }
+          span{
+            font-size: 14px;
+            display: inline-block;
+            margin: 1px 0 0 8px;
+            vertical-align: middle;
+          }
+        }
+        &__report{
+          margin: 0 0 0 16px;
+          color: #333;
+          background: #f5f5f5;
+          display: inline-block;
+          padding: 8px 16px;
+          border-radius: 40px;
+          i{
+            font-size: 14px;
+            vertical-align: middle;
+            color: #333;
+          }
+          span{
+            font-size: 14px;
+            margin: 1px 0 0 8px;
+          }
+        }
+      }
+      &__right{
+        margin: 8px 0 0;
+        float: right;
+        color: #0099e8;
+        &__report{
+          &__icon{
+            font-size: 14px;
+            color: #0099e8;
+          }
+          &__link{
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+  &__products-ide-link{
+    position: relative;
+    margin: 24px auto 0;
+    width: 750px;
+    height: 40px;
+    &__back{
+      width: 45%;
+      float: left;
+      padding: 0 0 0 14px;
+      &__link{
+        font-size: 12PX;
+        color: #0099e8;
+        position: absolute;
+        left: 40px;
+      }
+      &__icon{
+        color: #0099e8;
+        float: left;
+        position: absolute;
+        top: 10px;
+      }
+    }
+    &__next{
+      font-size: 12px;
+      width: 45%;
+      float: right;
+      padding: 0 14px 0 0;
+      text-align: right;
+      &__link{
+        color: #0099e8;
+        position: absolute;
+        right: 40px;
+      }
+      &__icon{ 
+        color: #0099e8;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+    }
+  }
+  &__link-box{
+    margin: 24px auto;
+    padding: 40px 0 32px;
+    width: 700px;
+    background: #fff;
+    &__media{
+      margin: 16px 0 0;
+      text-align: center;
+      width: 700px;  
+      &__list{
+        width: 44px;
+        display: inline-block;
+        height: 44px;
+        &__face-book{
+          margin: 0 8px 8px 0;
+          text-align: center;
+          &__icon{
+            width: 44px;
+            height: 44px;
+            border-radius: 4px;
+            line-height: 44px;
+            color: #fff;
+            background: #385185;
+            font-size: 33px;
+          }
+          .fab {
+            line-height: 44px;
+          }
+        }
+        &__twitter{
+          margin: 0 8px 8px 0;
+          text-align: center;
+          &__icon{
+            width: 44px;
+            height: 44px;
+            border-radius: 4px;
+            line-height: 44px;
+            color: #fff;
+            background-color: #5d9dc9;
+            font-size: 33px;
+          }
+          .fab {
+            line-height: 44px;
+          }
+        }
+        &__pinterest{
+          display: inline-block;
+          margin: 0 0 8px;
+          &__icon{
+            width: 44px;
+            height: 44px;
+            border-radius: 4px;
+            line-height: 44px;
+            color: #fff;
+            background: #aa262a;
+            font-size: 33px;
+          }
+          .fab {
+            line-height: 44px;
+          }
+        }
+      }
+    }
+  }
+  .clearfix::after {
+    content:  "";
+    display: block;
+    clear: both;
+  }
+  &__other-products{
+    width: 760px;
+    margin: 0 auto;
+    &__item-box{
+      &__head{
+        font-size: 22px;
+        margin: 24px 0 8px;
+        a{
+          color: #0099e8;
+        }
+      }
+      &__content{
+        width: auto;
+        margin: 0 auto;
+        display: flex;
+        &__one{
+          width: 220px;
+          margin: 0 13px 20px 15px;
+          background-color: #fafafa;
+          display: inline-block;
+          &__link{
+            display: block;
+            color: #333;
+            &__photo{
+              width: 220px;
+              height: 220px;
+              position: relative;
+              &__img{
+                width: 220px;
+                height: 220px;
+              }
+            }
+            &__body{
+              padding: 16px;
+              height: 110px;
+              position: relative;
+              &__title{
+                position: relative;
+                font-weight: 400;
+                height: 3em;
+                line-height: 1.5;
+                font-size: 16px;
+              }  
+              &__price{
+                margin: 8px 0 0;
+                &__text{
+                  font-size: 17px;
+                  font-weight: 600;
+                  position: absolute;
+                  bottom: 10px;
+                }
+                &__icon{
+                  position: absolute;
+                  right: 10px;
+                  bottom: 10px;
+                  span{
+                    color: black;
+                  }
+                }
+              }  
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.like_button{
+  background-color: #BDBDBD;
+}
+
+.like_button_on{
+  background-color: #FE2E2E;
+}
