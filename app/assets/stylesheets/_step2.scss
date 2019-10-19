@@ -101,12 +101,13 @@
           &__btn-sns-google{
             margin: 16px 0 0;
             background: #fff;
-            border: #979797 1px solid;
             color: #333333;
             img{
               float: left;
             }
             p{
+              border-radius: 3px;
+              border: #979797 1px solid;
               position: absolute;
               left: 0;
               right: 0;

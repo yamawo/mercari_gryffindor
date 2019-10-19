@@ -10,10 +10,11 @@
           %a.signup__main__box__form__link__btn-default.signup__main__box__form__link__btn-mail{href: step3_users_path}
             %i.fa.fa-envelope-o
             メールアドレスで登録する
-          %button#facebook-login.signup__main__box__form__link__btn-default.signup__main__box__form__link__btn-sns.signup__main__box__form__link__btn-sns-facebook
+            -# = link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, class: "post"
+          %a#facebook-login.signup__main__box__form__link__btn-default.signup__main__box__form__link__btn-sns.signup__main__box__form__link__btn-sns-facebook{href: user_facebook_omniauth_authorize_path}
             %i.fab.fa-facebook-square
               %p Facebookで登録する
-          %button#google-login.signup__main__box__form__link__btn-default.signup__main__box__form__link__btn-sns.signup__main__box__form__link__btn-sns-google
+          %a#google-login.signup__main__box__form__link__btn-default.signup__main__box__form__link__btn-sns.signup__main__box__form__link__btn-sns-google{href: user_google_oauth2_omniauth_authorize_path}
             = image_tag '/images/google.svg', alt: 'Flower'
             %p Googleで登録する
 = render 'users/footer'
