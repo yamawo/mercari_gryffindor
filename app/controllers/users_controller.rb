@@ -132,7 +132,7 @@ class UsersController < ApplicationController
   end
 
   def card_registration
-    card = Credit.where(user_id: current_user.id).first
+    card = current_user.credit
     unless card.blank?
       Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
       customer = Payjp::Customer.retrieve(card.customer_id)
@@ -143,7 +143,7 @@ class UsersController < ApplicationController
   end
 
   def card_delete #PayjpとCardデータベースを削除します
-    card = Credit.where(user_id: current_user.id).first
+    card = current_user.credit
     Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
     customer = Payjp::Customer.retrieve(card.customer_id)
     customer.delete
