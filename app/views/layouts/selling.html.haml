@@ -53,14 +53,13 @@
                     商品名
                     %span.selling__main__sec__content__form__write__content__group__label__need
                       必須
-<<<<<<< HEAD
-                  = f.text_field :name, placeholder: "商品名（必須40文字まで）", class: "selling__main__sec__content__form__write__content__group__input"
+                  = f.text_field :name, placeholder: "商品名（必須40文字まで）", class: "selling__main__sec__content__form__write__content__group__input", required: "required"
                 .selling__main__sec__content__form__write__content__group
                   %label.selling__main__sec__content__form__write__content__group__label
                     商品の説明
                     %span.selling__main__sec__content__form__write__content__group__label__need
                       必須
-                  = f.text_area :text, placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", class: "selling__main__sec__content__form__write__content__group__textarea"
+                  = f.text_area :text, placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", class: "selling__main__sec__content__form__write__content__group__textarea", required: "required"
               .selling__main__sec__content__form__write__content.clearfix
                 %h3.selling__main__sec__content__form__write__content__heading
                   商品の詳細
@@ -72,7 +71,7 @@
                         必須
                     .selling__main__sec__content__form__write__content__box__group__select#category
                       %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
-                      = f.select :category_id, options_for_select(@parents, @parent), {}, {class: "selling__main__sec__content__form__write__content__box__group__select__list"}
+                      = f.select :category_id, options_for_select(@parents, @parent), {}, {class: "selling__main__sec__content__form__write__content__box__group__select__list"} 
                   .selling__main__sec__content__form__write__content__box__group
                     %label.selling__main__sec__content__form__write__content__box__group__label
                       商品の状態
@@ -127,7 +126,7 @@
                         .selling__main__sec__content__form__write__content__box__list__group__clearfix__price
                           ¥
                           .selling__main__sec__content__form__write__content__box__list__group__clearfix__price__input
-                            = f.text_field :price, placeholder: "例）300", class: "selling__main__sec__content__form__write__content__box__list__group__clearfix__price__input__form"
+                            = f.text_field :price, placeholder: "例）300", class: "selling__main__sec__content__form__write__content__box__list__group__clearfix__price__input__form", required: "required"
                     %li.selling__main__sec__content__form__write__content__box__list__per
                       .selling__main__sec__content__form__write__content__box__list__per__clearfix
                         .selling__main__sec__content__form__write__content__box__list__per__clearfix__left
@@ -160,148 +159,7 @@
                     = link_to "/", class: "selling__main__sec__content__form__write__btn-box__explain__line__link", target: "_blank" do
                       加盟店規約
                     に同意したことになります。
-                = f.submit "出品する", formaction: products_path, formmethod: "POST", class: "selling__main__sec__content__form__write__btn-box__btn", disable_with: "出品中です..."
+                = f.submit "出品する",  name: "", formaction: products_path, formmethod: "POST", class: "selling__main__sec__content__form__write__btn-box__btn", disable_with: "出品中です..."
                 = link_to "/", class: "selling__main__sec__content__form__write__btn-box__link" do
                   もどる
-=======
-                  %p.selling__main__sec__content__form__write__upload__p
-                    最大10枚までアップロードできます
-                  = f.fields_for @product.product_images do |i|  # input area
-                    .selling__main__sec__content__form__write__upload__box.clearfix
-                      #preview
-                        -# ここにプレビューを入れていく（１枚目〜５枚目）
-                      .selling__main__sec__content__form__write__upload__box__items
-                        = i.label :image, for: "selling__main__sec__content__form__write__upload__box__items__input-area__field", class: "selling__main__sec__content__form__write__upload__box__items__input-area" do
-                          = i.file_field :image, multiple: true, id: "selling__main__sec__content__form__write__upload__box__items__input-area__field", class: "selling__main__sec__content__form__write__upload__box__items__input-area__field", type: "file", "data-image": 0, required: "required"
-                          .selling__main__sec__content__form__write__upload__box__items__description
-                            %pre.selling__main__sec__content__form__write__upload__box__items__description__text
-                              ドラッグアンドドロップ
-                              またはクリックしてファイルをアップロード
-                    -# ここから２段目のプレビューとドロップエリア
-                    .selling__main__sec__content__form__write__upload__box2.clearfix
-                      #preview2
-                        -# ここにプレビューを入れていく（6枚目〜10枚目）
-                      .selling__main__sec__content__form__write__upload__box2__items2
-                        = i.label :image, for: "selling__main__sec__content__form__write__upload__box__items__input-area__field", class: "selling__main__sec__content__form__write__upload__box__items__input-area" do
-                          = i.file_field :image, multiple: true, id: "selling__main__sec__content__form__write__upload__box__items__input-area__field", class: "selling__main__sec__content__form__write__upload__box__items__input-area__field", type: "file", "data-image": 0, required: "required"
-                          .selling__main__sec__content__form__write__upload__box2__items2__description
-                            %pre.selling__main__sec__content__form__write__upload__box2__items2__description__text
-                              ドラッグアンドドロップ
-                              またはクリックしてファイルをアップロード
-                .selling__main__sec__content__form__write__content
-                  .selling__main__sec__content__form__write__content__group
-                    %label.selling__main__sec__content__form__write__content__group__label
-                      商品名
-                      %span.selling__main__sec__content__form__write__content__group__label__need
-                        必須
-                    = f.text_field :name, placeholder: "商品名（必須40文字まで）", class: "selling__main__sec__content__form__write__content__group__input", required: "required"
-                  .selling__main__sec__content__form__write__content__group
-                    %label.selling__main__sec__content__form__write__content__group__label
-                      商品の説明
-                      %span.selling__main__sec__content__form__write__content__group__label__need
-                        必須
-                    = f.text_area :text, placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", class: "selling__main__sec__content__form__write__content__group__textarea", required: "required"
-                .selling__main__sec__content__form__write__content.clearfix
-                  %h3.selling__main__sec__content__form__write__content__heading
-                    商品の詳細
-                  .selling__main__sec__content__form__write__content__box
-                    .selling__main__sec__content__form__write__content__box__group#group1
-                      %label.selling__main__sec__content__form__write__content__box__group__label
-                        カテゴリー
-                        %span.selling__main__sec__content__form__write__content__box__group__label__need
-                          必須
-                      .selling__main__sec__content__form__write__content__box__group__select#category
-                        %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
-                        = f.select :category_id, options_for_select(@parents, @parent), {}, {class: "selling__main__sec__content__form__write__content__box__group__select__list"} 
-                    .selling__main__sec__content__form__write__content__box__group
-                      %label.selling__main__sec__content__form__write__content__box__group__label
-                        商品の状態
-                        %span.selling__main__sec__content__form__write__content__box__group__label__need
-                          必須
-                      .selling__main__sec__content__form__write__content__box__group__select
-                        %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
-                        = f.select :status, [["---"], ["新品"], ["未使用に近い"], ["目立った傷や汚れなし"], ["やや傷や汚れあり"], ["傷や汚れあり"], ["全体的に状態が悪い"]], {}, class: "selling__main__sec__content__form__write__content__box__group__select__list", type: "status"
-                .selling__main__sec__content__form__write__content.clearfix
-                  %h3.selling__main__sec__content__form__write__content__heading
-                    配送について
-                  = link_to "/", target: "_blank", class: "selling__main__sec__content__form__write__content__link" do
-                    ?
-                  .selling__main__sec__content__form__write__content__box
-                    .selling__main__sec__content__form__write__content__box__group#responsivility
-                      %label.selling__main__sec__content__form__write__content__box__group__label
-                        配送料の負担
-                        %span.selling__main__sec__content__form__write__content__box__group__label__need
-                          必須
-                      .selling__main__sec__content__form__write__content__box__group__select
-                        %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
-                        = f.select :delivery_responsivility, [["---"], ["送料込み（出品負担）"], ["着払い（購入者負担）"]], {}, class: "selling__main__sec__content__form__write__content__box__group__select__list", type: "delivery_responsivility"
-                    .selling__main__sec__content__form__write__content__box__group
-                      %label.selling__main__sec__content__form__write__content__box__group__label
-                        発送元の地域
-                        %span.selling__main__sec__content__form__write__content__box__group__label__need
-                          必須
-                      .selling__main__sec__content__form__write__content__box__group__select
-                        %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
-                        = f.collection_select :delivery_area, Prefecture.all, :id, :name, {prompt:"---"}, {class: "selling__main__sec__content__form__write__content__box__group__select__list"}
-                    .selling__main__sec__content__form__write__content__box__group
-                      %label.selling__main__sec__content__form__write__content__box__group__label
-                        発送までの日数
-                        %span.selling__main__sec__content__form__write__content__box__group__label__need
-                          必須
-                      .selling__main__sec__content__form__write__content__box__group__select
-                        %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
-                        = f.select :delivery_day, [["---"], ["1~2日で発送"], ["2~3日で発送"], ["4~7日で発送"]], {}, class: "selling__main__sec__content__form__write__content__box__group__select__list"
-                .selling__main__sec__content__form__write__content.clearfix
-                  %h3.selling__main__sec__content__form__write__content__heading
-                    販売価格(300〜9,999,999)
-                  = link_to "/", target: "_blank", class: "selling__main__sec__content__form__write__content__link" do
-                    ?
-                  .selling__main__sec__content__form__write__content__box
-                    %ul.selling__main__sec__content__form__write__content__box__list
-                      %li.selling__main__sec__content__form__write__content__box__list__group
-                        .selling__main__sec__content__form__write__content__box__list__group__clearfix
-                          %label.selling__main__sec__content__form__write__content__box__list__group__clearfix__label
-                            価格
-                            %span.selling__main__sec__content__form__write__content__box__list__group__clearfix__label__need
-                              必須
-                          .selling__main__sec__content__form__write__content__box__list__group__clearfix__price
-                            ¥
-                            .selling__main__sec__content__form__write__content__box__list__group__clearfix__price__input
-                              = f.text_field :price, placeholder: "例）300", class: "selling__main__sec__content__form__write__content__box__list__group__clearfix__price__input__form", required: "required"
-                      %li.selling__main__sec__content__form__write__content__box__list__per
-                        .selling__main__sec__content__form__write__content__box__list__per__clearfix
-                          .selling__main__sec__content__form__write__content__box__list__per__clearfix__left
-                            販売手数料（10%）
-                          .selling__main__sec__content__form__write__content__box__list__per__clearfix__right#fee
-                            −
-                      %li.selling__main__sec__content__form__write__content__box__list__profit
-                        .selling__main__sec__content__form__write__content__box__list__profit__clearfix
-                          .selling__main__sec__content__form__write__content__box__list__profit__clearfix__left
-                            販売利益
-                          .selling__main__sec__content__form__write__content__box__list__profit__clearfix__right#profit
-                            −
-                .selling__main__sec__content__form__write__modal
-                .selling__main__sec__content__form__write__btn-box
-                  .selling__main__sec__content__form__write__btn-box__explain
-                    %p.selling__main__sec__content__form__write__btn-box__explain__line
-                      = link_to "/", class: "selling__main__sec__content__form__write__btn-box__explain__line__link", target: "_blank" do
-                        禁止されている出品
-                      、
-                      = link_to "/", class: "selling__main__sec__content__form__write__btn-box__explain__line__link", target: "_blank" do
-                        行為
-                      を必ずご確認ください。
-                    %p.selling__main__sec__content__form__write__btn-box__explain__line
-                      またブランド品でシリアルナンバー等がある場合はご記載ください。
-                      = link_to "/", class: "selling__main__sec__content__form__write__btn-box__explain__line__link", target: "_blank" do
-                        偽ブランドの販売
-                      は犯罪であり処罰される可能性があります。
-                    %p.selling__main__sec__content__form__write__btn-box__explain__line
-                      また、出品をもちまして
-                      = link_to "/", class: "selling__main__sec__content__form__write__btn-box__explain__line__link", target: "_blank" do
-                        加盟店規約
-                      に同意したことになります。
-                  = f.submit "出品する",  name: "", formaction: products_path, formmethod: "POST", class: "selling__main__sec__content__form__write__btn-box__btn", disable_with: "出品中です..."
-                  = link_to "/", class: "selling__main__sec__content__form__write__btn-box__link" do
-                    もどる
->>>>>>> fd7c92c587f979a4f8be88b52cbad24cf924690c
 = render "/users/footer"

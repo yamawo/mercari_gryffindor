@@ -20,8 +20,7 @@ class ProductsController < ApplicationController
   end
   
   def create
-<<<<<<< HEAD
-    binding.pry
+
     require "base64"                          #バイナリーデータ化（しないとJSで画像表示できない）
     @product = Product.new(product_params)    #保存できたかどうかで分岐させたいのでnew
     if @product.save
@@ -30,21 +29,9 @@ class ProductsController < ApplicationController
       #   product_image = @product.product_images.new(image: image)
       #   product_image.save
       # end
-=======
-    require "base64"                  #バイナリーデータ化（しないとJSで画像表示できない）
-    @product = Product.new(product_params)   #保存できたかどうかで分岐させたいのでnew
-    if @product.save
-      product_images_params.each do |image|
-        @product.product_images.build         #buildをすることで、saveした際にアソシエーションした先にも値を保存する
-        product_image = @product.product_images.new(image: image)
-       
-        product_image.save
-      end
->>>>>>> fd7c92c587f979a4f8be88b52cbad24cf924690c
-      respond_to do |format|
-        format.json
-      end
+      
     end
+    redirect_to action: :index
   end
 
   def create_category_children
@@ -125,11 +112,7 @@ class ProductsController < ApplicationController
   end
 
   def product_images_params
-<<<<<<< HEAD
-    params.require(:product_images).require(:"0").permit({images: []})
-=======
     params.require(:product).require(:product_image).permit(:image)
->>>>>>> fd7c92c587f979a4f8be88b52cbad24cf924690c
   end
   
 end
