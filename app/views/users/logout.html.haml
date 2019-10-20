@@ -1,4 +1,6 @@
+= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
 %body
+  = render "shared/header"
   %nav.navbar
     %ul.navbar__list
       %li.navbar__list__ele
@@ -15,7 +17,6 @@
         = link_to "", class: "navbar__list__ele__link" do
           %span.navbar__list__ele__link__name
             ログアウト
-
   %main.main
     .main__l-side
       %nav.main__l-side__nav
@@ -123,8 +124,6 @@
       .main__r-content__block
         .main__r-content__block__form
           = link_to "ログアウト", "/users/sign_out", method: :delete, class: "main__r-content__block__form__btn"
-
-
-
-= render "shared/download-ad"
-= render "shared/sell-btn"
+  = render "shared/download-ad"
+  = render "shared/sell-btn"
+= render "shared/footer"
