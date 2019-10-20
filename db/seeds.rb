@@ -289,4 +289,5 @@ brand_blocks.each do |brand_block|
     brand_id += 1
   end
 end
+# 消していいよ
 
