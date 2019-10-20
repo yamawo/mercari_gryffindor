@@ -50,7 +50,7 @@
                 .main__r-content__card__inner__content__deadline  
                   = @exp_month + " / " + @exp_year
                 .main__r-content__card__inner__content__delete-card
-                  = link_to "削除する"
+                  = link_to "削除する", card_delete_users_path, method: :delete
             .main__r-content__card__inner__settings-about
               = link_to "/", target: "_blank" do
                 %span#payment-about

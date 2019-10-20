@@ -119,6 +119,15 @@ class UsersController < ApplicationController
     end  
   end
 
+  def card_delete #PayjpとCardデータベースを削除します
+    card = Credit.where(user_id: current_user.id).first
+    Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
+    customer = Payjp::Customer.retrieve(card.customer_id)
+    customer.delete
+    card.delete
+    redirect_to action: "card_registration"
+  end
+
   private
   
   def validates_step3
