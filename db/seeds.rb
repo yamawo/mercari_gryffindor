@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require "nokogiri"
+require 'base64'
 
 #サイズデータ取得
 file = File.open("商品検索結果【メルカリ】No.1フリマアプリ.html")
@@ -304,69 +305,78 @@ end
 end
 
 
-ProductImage.create!(image: open("#{Rails.root}/app/assets/images/シャネル1.jpg"), product_id: "1")
+ProductImage.create!(image: open("#{Rails.root}/public/images/シャネル1.jpg"), product_id: "1")
 
-ProductImage.create!(image: open("#{Rails.root}/app/assets/images/シャネル1.jpg"), product_id: "1")
+# ProductImage.create!(image: open("#{Rails.root}/app/assets/images/シャネル1.jpg"), product_id: "1")
 
-ProductImage.create!(image: open("#{Rails.root}/app/assets/images/シャネル1.jpg"), product_id: "1")
+# ProductImage.create!(image: open("#{Rails.root}/app/assets/images/シャネル1.jpg"), product_id: "1")
 
-ProductImage.create!(image: open("#{Rails.root}/app/assets/images/シャネル1.jpg"), product_id: "1")
+# ProductImage.create!(image: open("#{Rails.root}/app/assets/images/シャネル1.jpg"), product_id: "1")
 
-ProductImage.create!(image: open("#{Rails.root}/app/assets/images/シャネル1.jpg"), product_id: "1")
+# ProductImage.create!(image: open("#{Rails.root}/app/assets/images/シャネル1.jpg"), product_id: "1")
 
-ProductImage.create!(image: open("#{Rails.root}/app/assets/images/シャネル1.jpg"), product_id: "1")
+# ProductImage.create!(image: open("#{Rails.root}/app/assets/images/シャネル1.jpg"), product_id: "1")
 
-ProductImage.create!(image: open("#{Rails.root}/app/assets/images/レディース1.jpg"), product_id: "11")
+ProductImage.create!(image: open("#{Rails.root}/public/images/レディース1.jpg"), product_id: "11")
+ProductImage.create!(image: open("#{Rails.root}/public/images/レディース1.jpg"), product_id: "12")
+ProductImage.create!(image: open("#{Rails.root}/public/images/レディース1.jpg"), product_id: "13")
+ProductImage.create!(image: open("#{Rails.root}/public/images/レディース1.jpg"), product_id: "14")
+ProductImage.create!(image: open("#{Rails.root}/public/images/レディース1.jpg"), product_id: "15")
+ProductImage.create!(image: open("#{Rails.root}/public/images/レディース1.jpg"), product_id: "16")
+ProductImage.create!(image: open("#{Rails.root}/public/images/レディース1.jpg"), product_id: "17")
+ProductImage.create!(image: open("#{Rails.root}/public/images/レディース1.jpg"), product_id: "18")
+ProductImage.create!(image: open("#{Rails.root}/public/images/レディース1.jpg"), product_id: "19")
+ProductImage.create!(image: open("#{Rails.root}/public/images/レディース1.jpg"), product_id: "20")
 
-ProductImage.create!(image: open("#{Rails.root}/app/assets/images/レディース1.jpg"), product_id: "12")
+# ProductImage.create!(image: open("#{Rails.root}/app/assets/images/レディース1.jpg"), product_id: "12")
 
-ProductImage.create!(image: open("#{Rails.root}/app/assets/images/レディース1.jpg"), product_id: "13")
+# ProductImage.create!(image: open("#{Rails.root}/app/assets/images/レディース1.jpg"), product_id: "13")
 
-ProductImage.create!(image: open("#{Rails.root}/app/assets/images/レディース1.jpg"), product_id: "14")
+# ProductImage.create!(image: open("#{Rails.root}/app/assets/images/レディース1.jpg"), product_id: "14")
 
-ProductImage.create!(image: open("#{Rails.root}/app/assets/images/レディース1.jpg"), product_id: "15")
+# ProductImage.create!(image: open("#{Rails.root}/app/assets/images/レディース1.jpg"), product_id: "15")
 
-ProductImage.create!(image: open("#{Rails.root}/app/assets/images/レディース1.jpg"), product_id: "16")
+# ProductImage.create!(image: open("#{Rails.root}/app/assets/images/レディース1.jpg"), product_id: "16")
 
-ProductImage.create!(image: open("#{Rails.root}/app/assets/images/レディース1.jpg"), product_id: "17")
+# ProductImage.create!(image: open("#{Rails.root}/app/assets/images/レディース1.jpg"), product_id: "17")
 
-ProductImage.create!(image: open("#{Rails.root}/app/assets/images/レディース1.jpg"), product_id: "18")
+# ProductImage.create!(image: open("#{Rails.root}/app/assets/images/レディース1.jpg"), product_id: "18")
 
-ProductImage.create!(image: open("#{Rails.root}/app/assets/images/レディース1.jpg"), product_id: "19")
+# ProductImage.create!(image: open("#{Rails.root}/app/assets/images/レディース1.jpg"), product_id: "19")
 
-ProductImage.create!(image: open("#{Rails.root}/app/assets/images/レディース1.jpg"), product_id: "20")
+# ProductImage.create!(image: open("#{Rails.root}/app/assets/images/レディース1.jpg"), product_id: "20")
 
-10.times do |index|
-  ProductImage.create!(image: open("#{Rails.root}/app/assets/images/シャネル1.jpg"), product_id: "2")  
-end
+# 10.times do |index|
+#   ProductImage.create!(image: open("#{Rails.root}/app/assets/images/シャネル1.jpg"), product_id: "2")  
+# end
 
-10.times do |index|
-  ProductImage.create!(image: open("#{Rails.root}/app/assets/images/シャネル1.jpg"), product_id: "3")  
-end
+# 10.times do |index|
+#   ProductImage.create!(image: open("#{Rails.root}/app/assets/images/シャネル1.jpg"), product_id: "3")  
+# end
 
-10.times do |index|
-  ProductImage.create!(image: open("#{Rails.root}/app/assets/images/シャネル1.jpg"), product_id: "4")  
-end
+# 10.times do |index|
+#   ProductImage.create!(image: open("#{Rails.root}/app/assets/images/シャネル1.jpg"), product_id: "4")  
+# end
 
-10.times do |index|
-  ProductImage.create!(image: open("#{Rails.root}/app/assets/images/シャネル1.jpg"), product_id: "5")  
-end
+# 10.times do |index|
+#   ProductImage.create!(image: open("#{Rails.root}/app/assets/images/シャネル1.jpg"), product_id: "5")  
+# end
 
-10.times do |index|
-  ProductImage.create!(image: open("#{Rails.root}/app/assets/images/シャネル1.jpg"), product_id: "6")  
-end
-10.times do |index|
-  ProductImage.create!(image: open("#{Rails.root}/app/assets/images/シャネル1.jpg"), product_id: "7")  
-end
+# 10.times do |index|
+#   ProductImage.create!(image: open("#{Rails.root}/app/assets/images/シャネル1.jpg"), product_id: "6")  
+# end
+# 10.times do |index|
+#   ProductImage.create!(image: open("#{Rails.root}/app/assets/images/シャネル1.jpg"), product_id: "7")  
+# end
 
-10.times do |index|
-  ProductImage.create!(image: open("#{Rails.root}/app/assets/images/シャネル1.jpg"), product_id: "8")  
-end
+# 10.times do |index|
+#   ProductImage.create!(image: open("#{Rails.root}/app/assets/images/シャネル1.jpg"), product_id: "8")  
+# end
 
-10.times do |index|
-  ProductImage.create!(image: open("#{Rails.root}/app/assets/images/シャネル1.jpg"), product_id: "9")  
-end
+# 10.times do |index|
+#   ProductImage.create!(image: open("#{Rails.root}/app/assets/images/シャネル1.jpg"), product_id: "9")  
+# end
 
-10.times do |index|
-  ProductImage.create!(image: open("#{Rails.root}/app/assets/images/シャネル1.jpg"), product_id: "10")  
-end
+# 10.times do |index|
+#   ProductImage.create!(image: open("#{Rails.root}/app/assets/images/シャネル1.jpg"), product_id: "10")  
+# end

@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
   before_action :find_product, only: [:show]
 
   def index
+    require 'base64'
     ladies = Category.find_by(name: "レディース")
     @ladies = Product.where(category_id: ladies.indirects.ids).limit(10)
     chanel = Brand.find_by(name: "シャネル")
