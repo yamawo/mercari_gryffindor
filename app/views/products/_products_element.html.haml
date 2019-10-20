@@ -1,9 +1,12 @@
 %div
   %a.contents__content__category-list__box__elements__element__link
     %figure.contents__content__category-list__box__elements__element__link__detail
-      %figcaption.contents__content__category-list__box__elements__element__link__detail__caption
+      -# %figcaption.contents__content__category-list__box__elements__element__link__detail__caption
         %span
       .contents__content__category-list__box__elements__element__link__detail__image
+        = image_tag products_element.product_images.first.image.url, size: "188x188"
         %span{"aria-label" => "Price"}
-          ¥23,000
-        %img
+        .contents__content__category-list__box__elements__element__link__detail__price
+          = "¥#{products_element.price}"
+    .contents__content__category-list__box__elements__element__link__detail__text
+      = products_element.name
