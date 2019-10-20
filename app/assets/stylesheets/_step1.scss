@@ -88,8 +88,8 @@
       }
       &__block{
         &__form{
-          padding: 24px 64px 32px;
           &__mail{
+            padding-bottom: 20px;
             input{
               width: 297px;
               height: 28px;
@@ -102,7 +102,6 @@
             }
           }
           &__password{
-            margin: 24px 0 0;
             input{
               width: 297px;
               height: 28px;
@@ -116,13 +115,16 @@
           }
           &__robot{
             margin: 24px 0 0;
+            &__captcha{
+              margin-left: 10%;
+            }
           }
-          button{
-            margin: 24px 0 40px;
+          .login-submit{
+            margin: 30px 0 40px;
             background: #ea352d;
             border: 1px solid #ea352d;
             color: #fff;
-            width: 100%;
+            width: 90%;
             line-height: 48px;
             font-size: 14px;
           }
