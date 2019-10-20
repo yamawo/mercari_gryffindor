@@ -28,7 +28,7 @@ Rails.application.routes.draw do
       get "confirmation"
       get "logout"
       get "card_registration"
-      get "card_registration_create"
+      get "card_registration_form"
       scope :sign_up do           # ディレクトリの階層の変更はなし
         get 'step3'
         get 'step4'
