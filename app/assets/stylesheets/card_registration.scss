@@ -17,6 +17,24 @@
       &__content{
         max-width: 320px;
         margin: 0 auto;
+        position: relative;
+        &__brand{
+          padding-bottom: 10px;
+        }
+        &__number{
+          padding-bottom: 10px;
+        }
+        &__delete-card{
+          color: red;
+          border: 1px solid red;
+          padding: 5px;
+          width: 60px;
+          text-align: center;
+          border-radius: 4px;
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
         &__sub-head{
           font-size: 16px;
         }

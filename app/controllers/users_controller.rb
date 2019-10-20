@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   before_action :validates_step3, only: :step4
   before_action :validates_step4, only: :step6
   before_action :validates_step6, only: :step7
+  
   layout "users_layout"
   
   def step3
@@ -91,6 +92,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def card_registration
+    card = Credit.where(user_id: current_user.id).first
+    unless card.blank?
+      Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
+      customer = Payjp::Customer.retrieve(card.customer_id)
+      @default_card_information = customer.cards.retrieve(card.card_id)
+      @exp_month = @default_card_information.exp_month.to_s
+      @exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+    end  
+  end
+
   private
   
   def validates_step3
@@ -171,8 +183,7 @@ class UsersController < ApplicationController
     @address = Address.new
   end
   
-  def card_registration
-  end
+
 
   def card_registration_create
   end
