@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       get "logout"
       get "card_registration"
       get "card_registration_form"
+      post "card_registration_create"
       delete "card_delete"
       scope :sign_up do           # ディレクトリの階層の変更はなし
         get 'step3'
