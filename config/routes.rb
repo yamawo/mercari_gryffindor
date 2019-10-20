@@ -38,7 +38,4 @@ Rails.application.routes.draw do
       end
     end
   end
-
-  # post "likes/:product_id/create", to: "likes#create", constraints: {product_id: /\d+/}, as: :likes_create
-  # post "likes/:product_id/delete", to: "likes#delete", constraints: {product_id: /\d+/}, as: :likes_delete
 end

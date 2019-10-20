@@ -1,4 +1,4 @@
-class Product < ApplicationRecord￥
+class Product < ApplicationRecord
   # accepts_nested_attributes_for :product_images
   belongs_to :user, dependent: :delete
   belongs_to :category
