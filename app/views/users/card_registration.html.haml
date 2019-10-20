@@ -1,4 +1,6 @@
+= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
 %body
+  = render "shared/header"
   %nav.navbar
     %ul.navbar__list
       %li.navbar__list__ele
@@ -16,112 +18,28 @@
           %span.navbar__list__ele__link__name__active
             支払い方法
   %main.main
-    .main__l-side
-      %nav.main__l-side__nav
-        %ul.main__l-side__nav__list
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              マイページ
-              %span.main__l-side__nav__list__item__number
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              お知らせ
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              やることリスト
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              いいね！一覧
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              出品する
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              出品した商品 - 出品中
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              出品した商品 - 取引中
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              出品した商品 - 売却済み
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              購入した商品 - 取引中
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              購入した商品 - 過去の取引
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              ニュース一覧
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              評価一覧
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              ガイド
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              お問い合わせ
-              %i.icon-arrow-right
-        %h3.main__l-side__nav__head
-          メルペイ
-        %ul.main__l-side__nav__list
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              売り上げ・振込申請
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              ポイント
-              %i.icon-arrow-right
-        %h3.main__l-side__nav__head
-          設定
-        %ul.main__l-side__nav__list
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              プロフィール
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              発送元・お届け先住所変更
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item__active" do
-              支払い方法
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              メール/パスワード
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              本人情報
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              電話番号の確認
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              ログアウト
-              %i.icon-arrow-right
+    = render "shared/mypage-sidebar"
+    .main__r-content
+      %section.main__r-content__card
+        %h2.main__r-content__card__head
+          支払い方法
+        .main__r-content__card__inner
+          %section
+            .main__r-content__card__inner__content
+              %h3.main__r-content__card__inner__content__sub-head
+                クレジットカード一覧
+            %ul.main__r-content__card__inner__payment-list
+          %section.main__r-content__card__inner__settings
+            .main__r-content__card__inner__content
+              = link_to "/users/card_registration_create", class: "main__r-content__card__inner__content__btn" do
+                %i#iconcard.far.fa-credit-card
+                クレジットカードを追加する
+          .main__r-content__card__inner__settings-about
+            = link_to "/", target: "_blank" do
+              %span#payment-about
+                支払い方法について
+              %i#payment-arrow-right
 
-    
-      
-
-
-= render "shared/download-ad"
-= render "shared/sell-btn"
+  = render "shared/download-ad"
+  = render "shared/sell-btn"
+= render "shared/footer"
