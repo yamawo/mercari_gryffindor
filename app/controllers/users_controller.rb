@@ -105,8 +105,7 @@ class UsersController < ApplicationController
     @address = Address.new
   end
 
-  def card_registration_create
-    
+  def card_registration_form
   end
 
   def card_registration
