@@ -11,9 +11,14 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    if verify_recaptcha
+      super
+    else 
+      # redirect_back(fallback_location: root_path)
+      render "devise/sessions/new"
+    end   
+  end
 
   # DELETE /resource/sign_out
   # def destroy
