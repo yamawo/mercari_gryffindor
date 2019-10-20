@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-
+  protect_from_forgery
+  
   require "payjp"
   after_action :sns_create, only: :step8
   before_action :set_year, :set_month, :set_day
@@ -7,6 +8,10 @@ class UsersController < ApplicationController
   before_action :validates_step4, only: :step6
   before_action :validates_step6, only: :step7
   layout "users_layout"
+  
+  def show
+    redirect_to "/"
+  end
   
   def step3
     @user = User.new
@@ -26,7 +31,6 @@ class UsersController < ApplicationController
   def step7
     @user = User.new
     session[:address_attributes1] = user_params[:address_attributes]
-    render layout: "users_layout"
   end
   
   def set_year

@@ -1,13 +1,17 @@
 class ProductsController < ApplicationController
-  
+  before_action :find_product, only: [:show]
+
   def index
-    @product = Product.new
+    ladies = Category.find_by(name: "レディース")
+    @ladies = Product.where(category_id: ladies.indirects.ids).limit(10)
+    chanel = Brand.find_by(name: "シャネル")
+    @chanel = Product.where(brand_id: chanel.id).limit(10)
   end
+  
 
   def new
     require "base64"
     @product = Product.new
-
     parents = Category.where(ancestry: nil)
     @parents = [["---", "---"]]
     @parent = "---"
@@ -18,6 +22,11 @@ class ProductsController < ApplicationController
     @product.product_images.build
     render layout: "selling"
     
+  end
+
+  def show
+    @user = @product.user
+    @products = @user.products
   end
 
   def create_category_children
@@ -114,6 +123,10 @@ class ProductsController < ApplicationController
     params.require(:registered_images_ids).permit({ids: []})
   end
 
+  def find_product
+    @product = Product.find(params[:id])
+  end
+
   def product_images_params
     params.require(:product_images).permit({images: []})
   end
@@ -122,6 +135,7 @@ class ProductsController < ApplicationController
 
   end
 
-  def show
-  end
+  
+
+
 end

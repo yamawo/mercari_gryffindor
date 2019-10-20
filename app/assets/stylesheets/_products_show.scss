@@ -27,6 +27,8 @@
           &__outer{
             &__top{
               width: 100%;
+              min-height: 300px;
+              max-height: 300px;
             }
           }
         &__list{
@@ -326,7 +328,7 @@
     clear: both;
   }
   &__other-products{
-    width: 750px;
+    width: 760px;
     margin: 0 auto;
     &__item-box{
       &__head{
