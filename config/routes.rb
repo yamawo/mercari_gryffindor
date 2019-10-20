@@ -3,7 +3,7 @@ Rails.application.routes.draw do
  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :products, only: [:new, :create, :index] do
+  resources :products, only: [:new, :create, :index, :show] do
     collection do
       get "create_category_children"
       get 'privacy_policy'
@@ -21,16 +21,6 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   } 
 
-  
-  
-  
-  
-  
-  
-  
-  
-  resources :products, only: [:index, :show]
-      
   resources :users do
     collection do
       get "profile"
@@ -38,6 +28,7 @@ Rails.application.routes.draw do
       get "confirmation"
       get "logout"
       get "card_registration"
+      get "card_registration_create"
       scope :sign_up do           # ディレクトリの階層の変更はなし
         get 'step3'
         get 'step4'
@@ -47,7 +38,4 @@ Rails.application.routes.draw do
       end
     end
   end
-  
-  # post "likes/:product_id/create", to: "likes#create", constraints: {product_id: /\d+/}, as: :likes_create
-  # post "likes/:product_id/delete", to: "likes#delete", constraints: {product_id: /\d+/}, as: :likes_delete
 end

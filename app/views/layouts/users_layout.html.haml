@@ -1,13 +1,12 @@
 !!!
 %html
-    %head
-        %meta{content: "text/html; charset=UTF-8", http: { equiv: "Content-Type"}}/
-        %title 会員情報入力
-        %script{src: "https://js.pay.jp/", type: "text/javascript"}
-        = csrf_meta_tags
-        = stylesheet_link_tag 'users_application', media: 'all', 'data-turbolinks-track': 'reload'
-        = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-        %script{crossorigin: "anonymous", src: "https://kit.fontawesome.com/d9739e52df.js"}
-        
-    %body
-        = yield
+  %head
+    %meta{content: "text/html; charset=UTF-8", http: { equiv: "Content-Type"}}/
+    %title 会員情報入力
+    %script{src: "https://js.pay.jp/", type: "text/javascript"}
+    = csrf_meta_tags
+    = stylesheet_link_tag 'users_application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    %script{crossorigin: "anonymous", src: "https://kit.fontawesome.com/d9739e52df.js"}
+  %body
+    = yield
