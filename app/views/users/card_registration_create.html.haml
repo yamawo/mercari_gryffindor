@@ -1,4 +1,4 @@
-= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
 %body
   = render "shared/header"
   %nav.navbar
@@ -22,7 +22,7 @@
     %main.step7-container__main
       %section.step7-container__main__section
         %h2.step7-container__main__section__registration
-          支払い方法
+          クレジットカード情報入力
         = form_with model: @user, url: step8_users_path, local: true, method: :post, class: 'step7-container__main__section__form', html: { name: "inputForm"}  do |form|
           = form.hidden_field :payjpToken
           .step7-container__main__section__form__box
