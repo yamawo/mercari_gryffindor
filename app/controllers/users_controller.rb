@@ -177,4 +177,8 @@ class UsersController < ApplicationController
   
   def card_registration
   end
+
+  def card_registration_create
+  end
 end
+
