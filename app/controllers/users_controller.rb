@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   before_action :validates_step3, only: :step4
   before_action :validates_step4, only: :step6
   before_action :validates_step6, only: :step7
+  layout "users_layout"
   
   def show
     redirect_to "/"
@@ -14,26 +15,22 @@ class UsersController < ApplicationController
   
   def step3
     @user = User.new
-    render layout: "users_layout"
   end
   
   def step4
     session[:user_params] = user_params
     @user = User.new
-    render layout: "users_layout"
   end
   
   def step6
     session[:user_params][:phone_number] = user_params[:phone_number]
     @user = User.new
     @user.build_address
-    render layout: "users_layout"
   end
   
   def step7
     @user = User.new
     session[:address_attributes1] = user_params[:address_attributes]
-    render layout: "users_layout"
   end
   
   def set_year
@@ -89,7 +86,6 @@ class UsersController < ApplicationController
     else 
       render "/"
     end
-    render layout: "users_layout"
   end
 
   def sns_create
@@ -181,4 +177,8 @@ class UsersController < ApplicationController
   
   def card_registration
   end
+
+  def card_registration_create
+  end
 end
+
