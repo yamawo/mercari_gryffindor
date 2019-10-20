@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
-  # before_action :configure_sign_in_params, only: [:create]
   layout "users_layout"
   
   # GET /resource/sign_in
@@ -15,7 +14,6 @@ class Users::SessionsController < Devise::SessionsController
     if verify_recaptcha
       super
     else 
-      # redirect_back(fallback_location: root_path)
       render "devise/sessions/new"
     end   
   end
