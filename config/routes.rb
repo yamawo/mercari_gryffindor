@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root to: "products#index"
- 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :products, only: [:new, :create, :index, :show] do
@@ -28,7 +27,9 @@ Rails.application.routes.draw do
       get "confirmation"
       get "logout"
       get "card_registration"
-      get "card_registration_create"
+      get "card_registration_form"
+      post "card_registration_create"
+      delete "card_delete"
       scope :sign_up do           # ディレクトリの階層の変更はなし
         get 'step3'
         get 'step4'
