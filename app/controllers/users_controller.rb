@@ -92,6 +92,22 @@ class UsersController < ApplicationController
     end
   end
 
+  def profile
+  end
+
+  def mypage
+  end
+
+  def logout
+  end
+
+  def confirmation
+    @address = Address.new
+  end
+
+  def card_registration_form
+  end
+
   def card_registration
     card = Credit.where(user_id: current_user.id).first
     unless card.blank?
@@ -176,25 +192,5 @@ class UsersController < ApplicationController
     )
   end
 
-  def profile
-
-  end
-
-
-
-  def mypage
-  end
-
-  def logout
-  end
-
-  def confirmation
-    @address = Address.new
-  end
-  
-
-
-  def card_registration_create
-  end
 end
 
