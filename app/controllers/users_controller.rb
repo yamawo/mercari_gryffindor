@@ -106,7 +106,8 @@ class UsersController < ApplicationController
   end
 
   def confirmation
-    @address = Address.new
+    @user = current_user
+    @address = @user.address
   end
 
   def card_registration_form

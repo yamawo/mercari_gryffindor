@@ -1,123 +1,12 @@
+= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
 %body
+  = render "shared/header"
   %nav.navbar
     %ul.navbar__list
-      %li.navbar__list__ele
-        = link_to "", class: "navbar__list__ele__link" do
-          %span.navbar__list__ele__link__name
-            メルカリ
-        %i.fa.fa-angle-right
-      %li.navbar__list__ele
-        = link_to "", class: "navbar__list__ele__link" do
-          %span.navbar__list__ele__link__name
-            マイページ
-        %i.fa.fa-angle-right
-      %li.navbar__list__ele
-        = link_to "", class: "navbar__list__ele__link" do
-          %span.navbar__list__ele__link__name__active
-            本人情報の登録
+      - breadcrumb :confirmation
+      = render "shared/breadcrumbs"
   %main.main
-    .main__l-side
-      %nav.main__l-side__nav
-        %ul.main__l-side__nav__list
-          %li
-            = link_to "/users/mypage", class: "main__l-side__nav__list__item" do
-              マイページ
-              %span.main__l-side__nav__list__item__number
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              お知らせ
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              やることリスト
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              いいね！一覧
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              出品する
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              出品した商品 - 出品中
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              出品した商品 - 取引中
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              出品した商品 - 売却済み
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              購入した商品 - 取引中
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              購入した商品 - 過去の取引
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              ニュース一覧
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              評価一覧
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              ガイド
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              お問い合わせ
-              %i.icon-arrow-right
-        %h3.main__l-side__nav__head
-          メルペイ
-        %ul.main__l-side__nav__list
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              売り上げ・振込申請
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              ポイント
-              %i.icon-arrow-right
-        %h3.main__l-side__nav__head
-          設定
-        %ul.main__l-side__nav__list
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              プロフィール
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              発送元・お届け先住所変更
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              支払い方法
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              メール/パスワード
-              %i.icon-arrow-right
-          %li
-            = link_to "/users/confirmation", class: "main__l-side__nav__list__item" do
-              本人情報
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              電話番号の確認
-              %i.icon-arrow-right
-          %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
-              ログアウト
-              %i.icon-arrow-right
+    = render "shared/mypage-sidebar"
     .confirmation-content
       %h2.confirmation-content__title 本人情報の登録
       .confirmation-content__main
@@ -132,42 +21,48 @@
               %i.fa.fa-angle-right
         .confirmation-content__main__form-group
           %label.confirmation-content__main__form-group__label お名前
-          %p.confirmation-content__main__form-group__text 朝比奈 彩
+          %p.confirmation-content__main__form-group__text 
+            = @user.last_name
+            = @user.first_name
         .confirmation-content__main__form-group
           %label.confirmation-content__main__form-group__label お名前カナ
-          %p.confirmation-content__main__form-group__text アサヒナ アヤ
+          %p.confirmation-content__main__form-group__text
+            = @user.last_name_kana
+            = @user.first_name_kana
         .confirmation-content__main__form-group
           %label.confirmation-content__main__form-group__label{for: "birthday"} 生年月日
-          %p.confirmation-content__main__form-group__text 1993/10/06
-        .confirmation-content__main__form-group
-          %label.confirmation-content__main__form-group__label{for: "zip_code"} 郵便番号
-          %span.confirmation-content__main__form-group__any 任意
-          %input.confirmation-content__main__form-group__input{name: "zip_code", placeholder: "例）1234567", type: "text", value: "5630041"}/
-        .confirmation-content__main__form-group
-          %labe.confirmation-content__main__form-group__labell{for: "prefecture"} 都道府県
-          %span.confirmation-content__main__form-group__any 任意
-          .confirmation-content__main__form-group__select
-            = form_for "", url: confirmation_users_path do |f|
-              = f.collection_select :address_prefecture,Prefecture.all, :id, :name, prompt: "大阪府"
-        .confirmation-content__main__form-group
-          %label.confirmation-content__main__form-group__label{for: "city"} 市区町村
-          %span.confirmation-content__main__form-group__any 任意
-          %input.confirmation-content__main__form-group__input{name: "city", placeholder: "例) 横浜市緑区", type: "text", value: "池田市満寿美町"}/
-        .confirmation-content__main__form-group
-          %label.confirmation-content__main__form-group__label{for: "address1_label"} 番地
-          %span.confirmation-content__main__form-group__any 任意
-          %input.confirmation-content__main__form-group__input{name: "address1", placeholder: "例) 青山1−1−1", type: "text", value: "8‐25"}/
-        .confirmation-content__main__form-group
-          %label.confirmation-content__main__form-group__label{for: "address2_label"} 建物名
-          %span.confirmation-content__main__form-group__any 任意
-          %input.confirmation-content__main__form-group__input{name: "address2", placeholder: "例) 柳ビル103", type: "text", value: ""}/
-        %button.confirmation-content__main__btn{type: "submit"} 登録する
-        .confirmation-content__main__text-right
-          %p.confirmation-content__main__text-right__p
-            %a.confirmation-content__main__text-right__p__a{href: "/jp/help_center/article/423/", target: "_blank"}
-              本人情報の登録について
-              %i.fa.fa-angle-right
+          %p.confirmation-content__main__form-group__text
+            = "#{@user.birthdate_year}/#{@user.birthdate_month}/#{@user.birthdate_day}"
+            = form_for @address, url: confirmation_users_path do |f|
+              .confirmation-content__main__form-group
+                = f.label "郵便番号"
+                = f.label "任意", class: "confirmation-content__main__form-group__any"
+                = f.text_field :postal_code, class: "confirmation-content__main__form-group__input"
+              .confirmation-content__main__form-group
+                = f.label "都道府県"
+                = f.label "任意", class: "confirmation-content__main__form-group__any"
+                .confirmation-content__main__form-group__select
+                  = f.select :address_prefecture, User.prefectures.keys
+                  -# = f.collection_select :address_prefecture,Prefecture.all, :id, :name, prompt: "大阪府"
+              .confirmation-content__main__form-group
+                = f.label "市区町村"
+                = f.label "任意", class: "confirmation-content__main__form-group__any"
+                = f.text_field :address_city, class: "confirmation-content__main__form-group__input"
+              .confirmation-content__main__form-group
+                = f.label "番地"
+                = f.label "任意", class: "confirmation-content__main__form-group__any"
+                = f.text_field :address_number, class: "confirmation-content__main__form-group__input"
+              .confirmation-content__main__form-group
+                = f.label "建物名"
+                = f.label "任意", class: "confirmation-content__main__form-group__any"
+                = f.text_field :address_building, class: "confirmation-content__main__form-group__input"
+                = f.submit "登録する", class: "confirmation-content__main__btn"
+              .confirmation-content__main__text-right
+                %p.confirmation-content__main__text-right__p
+                  %a.confirmation-content__main__text-right__p__a{href: "/jp/help_center/article/423/", target: "_blank"}
+                    本人情報の登録について
+                    %i.fa.fa-angle-right
         %input{name: "__csrf_value", type: "hidden", value: "fc020c457bd6c31d1180b69c4bfb4eeb06c300eaeafaf5dde2e5c06df644f978370bcbba341a03fbef0eaee213d6d715f9cd82d06f111ac28aeb5b2b5f0763fe8"}/
   = render "shared/sell-btn"
   = render "shared/download-ad"
-  
+  = render "shared/footer"
