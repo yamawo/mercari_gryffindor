@@ -88,7 +88,7 @@ class ProductsController < ApplicationController
     end
   end
   
-  def confirmation
+  def buy_confirmation
   end
   
   def creare
