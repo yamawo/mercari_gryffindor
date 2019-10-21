@@ -13,7 +13,7 @@ CarrierWave.configure do |config|
       region: 'ap-northeast-1'
     }
   else
-    config.storage :file
+    config.storage = :file
     # テスト環境では画像のアップロード処理をスキップ
     config.enable_processing = false if Rails.env.test?
   end
