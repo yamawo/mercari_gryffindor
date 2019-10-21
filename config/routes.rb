@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :address 
+  resources :addresses, only: [:update]
 
   resources :users do
     collection do
