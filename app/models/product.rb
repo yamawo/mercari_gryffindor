@@ -1,10 +1,10 @@
 class Product < ApplicationRecord
   # accepts_nested_attributes_for :product_images
-  belongs_to :user, dependent: :delete
+  belongs_to :user
   belongs_to :category
   belongs_to :brand
   belongs_to :size
-  has_many :product_images
+  has_many :product_images, dependent: :destroy
   has_many :likes, dependent: :destroy
   
 

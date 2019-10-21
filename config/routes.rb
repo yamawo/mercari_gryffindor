@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get "create_category_grandchildren"
       get "search_size"
       get "search"
+      delete  ':id'  => 'products#destroy'
     end
   end
 
@@ -20,7 +21,6 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     omniauth_callbacks: 'users/omniauth_callbacks'
   } 
-
   resources :users do
     collection do
       get "profile"

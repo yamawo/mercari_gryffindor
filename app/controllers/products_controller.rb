@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :find_product, only: [:show]
+  before_action :find_product, only: [:show, :destory]
 
   def index
     require 'base64'
@@ -28,6 +28,13 @@ class ProductsController < ApplicationController
   def show
     @user = @product.user
     @products = @user.products
+  end
+
+  def destroy
+    product = Product.find(params[:id])
+    if product.user_id == current_user.id
+      product.destroy
+    end
   end
 
   def create_category_children
