@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   root to: "products#index"
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions',
+    omniauth_callbacks: 'users/omniauth_callbacks'
+  } 
 
   resources :products, only: [:new, :create, :index, :show] do
     collection do
@@ -12,13 +16,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :address 
-
-  devise_for :users, controllers: {
-    registrations: 'users/registrations',
-    sessions: 'users/sessions',
-    omniauth_callbacks: 'users/omniauth_callbacks'
-  } 
+  resources :addresses, only: [:update]
 
   resources :users do
     collection do

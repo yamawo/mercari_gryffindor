@@ -51,6 +51,6 @@
               もっと見る
           .contents__content__brand-list__box__elements
             .contents__content__brand-list__box__elements__element
-              = render partial: "products_element", collection: @chanel
+              = render partial: "products_element", collection: @chanel unless @chanel.nil?
   = render "shared/download-ad"
   = render "shared/sell-btn"
