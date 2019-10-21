@@ -74,15 +74,15 @@
         width: 100%;
       }
       &__select{
+        width: 100%;
         margin: 8px 0 0;
         position: relative;
         background: #fff;
-        #address_prefecture{
-          width: 100%;
+        #address_address_prefecture{
+          width: 105%;
           position: relative;
           z-index: 2;
           height: 48px;
-          padding: 0 16px;
           border-radius: 4px;
           border: 1px solid #ccc;
           background: 0;

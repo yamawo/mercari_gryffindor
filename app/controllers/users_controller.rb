@@ -14,11 +14,6 @@ class UsersController < ApplicationController
     redirect_to "/"
   end
   
-  # def update
-  #   Address.update(user_params[:address_attributes])
-  #   # redirect_to "/"
-  # end
-
   def step3
     @user = User.new
   end
