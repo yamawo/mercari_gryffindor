@@ -88,7 +88,8 @@ class ProductsController < ApplicationController
     end
   end
   
-  
+  def confirmation
+  end
   
   def creare
     require "base64"
