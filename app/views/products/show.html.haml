@@ -77,9 +77,9 @@
     .products-show__product-details__other
   .products-show__white-box
     %a.products-show__white-box__edit 商品の編集
+    = link_to '商品の編集', edit_product_path(params[:id]), class: "products-show__white-box__edit"
     %p.products-show__white-box__or or
     %p.products-show__white-box__stop 出品をいったん停止する
-    %p.products-show__white-box__delete この出品を削除する
     = link_to 'この出品を削除する', "/products/#{@product.id}", method: :delete, class: "products-show__white-box__delete"
 - else
   %section.products-show__product-details
