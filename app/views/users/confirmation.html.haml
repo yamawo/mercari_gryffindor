@@ -34,7 +34,6 @@
           %p.confirmation-content__main__form-group__text
             = "#{@user.birthdate_year}/#{@user.birthdate_month}/#{@user.birthdate_day}"
             = form_for @address do |f|
-              = f.hidden_field :last_name, value: @address.last_name
               .confirmation-content__main__form-group
                 = f.label "郵便番号"
                 = f.label "任意", class: "confirmation-content__main__form-group__any"
