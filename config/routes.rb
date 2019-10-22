@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: "products#index"
-  devise_for :users, controllers: {
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+    devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions',
     omniauth_callbacks: 'users/omniauth_callbacks'
@@ -13,6 +14,9 @@ Rails.application.routes.draw do
       get "create_category_grandchildren"
       get "search_size"
       get "search"
+      get "product_confirmation"
+      post "product_pay"
+      get "product_done"
     end
   end
 
