@@ -13,8 +13,6 @@ $(window).on("turbolinks:load", function(){
     // 新規追加画像データのみが格納される配列（DB送る用）
     let new_image_files = [];
 
-    // TODO すでに登録されている画像を表示する処理追記する
-
 
     // 新規画像投稿の場合の処理
     $(".selling__main__sec__content__form__write__upload__box, .selling__main__sec__content__form__write__upload__box2").on("change", 'input[type="file"].selling__main__sec__content__form__write__upload__box__items__input-area__field', function(){
@@ -178,12 +176,13 @@ $(window).on("turbolinks:load", function(){
             })
         }
     })
-    console.log(new_image_files);
     $(".selling__main__sec__content__form__write").on("submit", function(e){
         // 場合分け等してsubmitしたい為、通常のsubmitイベントを止める
         // e.preventDefault();
         // images以外のform情報をformDataに入れる。 get() = getElementById()
         let formData = new FormData(this);
+        // TODO Edit実装時にいるかどうか実装者が判断すること
+
         // 登録済み画像が残っていない場合は便宜的に０を入れる
         // if (registered_images_ids.length == 0){
         //     formData.append("registered_images_ids[ids][]", 0)

@@ -3,6 +3,7 @@
   %head
     %meta{content: "text/html; charset=UTF-8", http: { equiv: "Content-Type"}}
     %title Mercari
+    = include_gon
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
@@ -17,7 +18,7 @@
           .selling__main__sec__content__form
             %h2.selling__main__sec__content__form__heading
               商品の情報を入力
-            = form_for @product, url: products_path, html: {class: "selling__main__sec__content__form__write", method: "POST"} do |f|
+            = form_for @edit_product, url: product_path(params[:id]), html: {class: "selling__main__sec__content__form__write", method: "PATCH"} do |f|
               .selling__main__sec__content__form__write__upload
                 %h3.selling__main__sec__content__form__write__upload__heading
                   出品画像
@@ -81,7 +82,7 @@
                         必須
                     .selling__main__sec__content__form__write__content__box__group__select
                       %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
-                      = f.select :status, Product.statuses.keys.to_a, {}, class: "selling__main__sec__content__form__write__content__box__group__select__list", type: "status"
+                      = f.select :status, [["---"], ["新品"], ["未使用に近い"], ["目立った傷や汚れなし"], ["やや傷や汚れあり"], ["傷や汚れあり"], ["全体的に状態が悪い"]], {}, class: "selling__main__sec__content__form__write__content__box__group__select__list", type: "status"
               .selling__main__sec__content__form__write__content.clearfix
                 %h3.selling__main__sec__content__form__write__content__heading
                   配送について
@@ -161,7 +162,7 @@
                     = link_to "/", class: "selling__main__sec__content__form__write__btn-box__explain__line__link", target: "_blank" do
                       加盟店規約
                     に同意したことになります。
-                = f.submit "出品する",  name: "", formaction: products_path, formmethod: "POST", class: "selling__main__sec__content__form__write__btn-box__btn", disable_with: "出品中です..."
-                = link_to "/", class: "selling__main__sec__content__form__write__btn-box__link" do
+                = f.submit "変更する",  name: "", class: "selling__main__sec__content__form__write__btn-box__btn", disable_with: "出品中です..."
+                = link_to "/products", class: "selling__main__sec__content__form__write__btn-box__link" do
                   もどる
 = render "/users/footer"

@@ -65,7 +65,6 @@ ActiveRecord::Schema.define(version: 2019_10_20_120011) do
     t.string "name", null: false
     t.integer "price", null: false
     t.text "text", null: false
-    t.integer "status", null: false
     t.string "delivery_responsivility", null: false
     t.string "delivery_way", null: false
     t.string "delivery_area", null: false

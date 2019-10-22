@@ -7,7 +7,6 @@ class ProductsController < ApplicationController
   def new
     require "base64"                          #バイナリーデータ化（しないとJSで画像表示できない）
     @product = Product.new
-    
     parents = Category.where(ancestry: nil)
     @parents = [["---", "---"]]
     @parent = "---"
@@ -23,13 +22,70 @@ class ProductsController < ApplicationController
     require "base64"                          #バイナリーデータ化（しないとJSで画像表示できない）
     
     @product = Product.new(product_params)    #保存できたかどうかで分岐させたいのでnew
-    if @product.save
-      # product_images_params[:images].each do |image|
-      #   @product.product_images.build         #buildをすることで、saveした際にアソシエーションした先にも値を保存する
-      #   product_image = @product.product_images.new(image: image)
-      #   product_image.save
-      # end
+    @product.save
+    redirect_to controller: :products, action: :index
+  end
+  
+  def edit
+    require "base64"
+    parents = Category.where(ancestry: nil)    # categoryを引っ張ってくるためのインスタンス作成
+    @parents = [["---", "---"]]
+    @parent = "---"
+    parents.each do |parent|
+      @parents << [parent.name, parent.id]
+    end
+
+    @edit_product = Product.find(params[:id])  # 既存のproductレコードを取得
+    gon.product = @edit_product
+    gon.edit_product_images = @edit_product.product_images
+    gon.edit_product_images_binary_datas = []
+    # FIXME binarydata化するしかないのか, gonを使わず保守性の高いスマートな書き方が出来ないか
+    if Rails.env.production?
+      client = Aws::S3::Client.new(
+        region: "ap-northeast-1",
+        access_key_id: Rails.application.credentials[:aws][:access_key_id],
+        secret_access_key: Rails.application.credentials[:aws][:secret_access_key]
+      )
+      @edit_product.product_images.each do |image|
+        binary_data = client.get_object(bucket: 'mercari-gryffindor', key: image.image.file.path).body.read
+        gon.edit_product_images_binary_datas << Base64.strict_encode64(binary_data)
+      end
+    else 
+      @edit_product.product_images.each do |image|
+        binary_data = File.read(image.image.file.file)
+        gon.edit_product_images_binary_datas << Base64.strict_encode64(binary_data)
+      end
+    end
+    render layout: false
+  end
+
+  def update
+    @update_product = Product.find(params[:id])
+    
+    #登録済み画像の配列を作成
+    ids = @update_product.product_images.map{|image| image.id}
+    #登録済み画像の内、編集後もまだ残っている画像のidの配列を生成（文字列から数値に変換作業）
+    exist_ids = registered_image_params[:ids].map(&:to_i)
+    #登録済み画像が残っていない場合（配列に０が格納されている）、配列を空にする
+    exist_ids.clear if exist_ids[0] == 0
+    
+    if (exist_ids.length != 0 || new_image_params[:images][0] != " ") && @update_product.update(product_params)
       
+      #登録済み画像の内、削除ボタンを押したものを削除
+      unless ids.length == exist_ids.length
+        #削除する画像のidの配列を生成
+        delete_ids = ids - exist_ids
+        delete_ids.each do |id|
+          @update_product.product_images.find(id).destroy
+        end
+      end
+
+      #新規画像があればcreate
+      unless new_image_params[:images][0] == " "
+        new_image_params[:images].each do |image|
+          @update_product.product_images.create(image: image, product_id: @update_product.id)
+        end
+      end
     end
     redirect_to action: :index
   end
@@ -90,9 +146,6 @@ class ProductsController < ApplicationController
     end
   end
   
-  def edit
-    require "base64"
-  end
 
   def privacy_policy
   end
