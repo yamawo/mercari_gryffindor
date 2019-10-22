@@ -202,13 +202,13 @@ $(window).on("turbolinks:load", function(){
         //     });
         // }
         // ajax
-        $.ajax({
-            url: "/products",
-            type: "POST",
-            data: formData,
-            dataType: 'json',
-            contentType: false,
-            processData: false,
-        })
+        // $.ajax({
+        //     url: "/products",
+        //     type: "POST",
+        //     data: formData,
+        //     dataType: 'json',
+        //     contentType: false,
+        //     processData: false,
+        // })
     });
 });

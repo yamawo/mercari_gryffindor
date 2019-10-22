@@ -86,6 +86,7 @@ class ProductsController < ApplicationController
         end
       end
     end
+    redirect_to action: :index
   end
 
   def create_category_children
