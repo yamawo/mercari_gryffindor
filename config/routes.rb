@@ -6,16 +6,14 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   } 
 
-  resources :products, only: [:new, :create, :index, :show, :edit] do
+  resources :products, only: [:new, :create, :index, :show, :edit, :destroy] do
     collection do
       get "create_category_children"
       get 'privacy_policy'
       get "create_category_grandchildren"
       get "search_size"
       get "search"
-      delete  ':id'  => 'products#destroy'
     end
-    delete  ':id'  => 'products#destroy'
   end
 
   resources :addresses, only: [:update]
