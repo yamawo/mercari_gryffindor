@@ -73,11 +73,13 @@ ActiveRecord::Schema.define(version: 2019_10_20_120011) do
     t.datetime "updated_at", null: false
     t.bigint "category_id"
     t.bigint "brand_id"
+    t.integer "status", default: 0, null: false
     t.bigint "user_id", null: false
     t.bigint "size_id"
     t.index ["brand_id"], name: "index_products_on_brand_id"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["size_id"], name: "index_products_on_size_id"
+    t.index ["status"], name: "index_products_on_status"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 

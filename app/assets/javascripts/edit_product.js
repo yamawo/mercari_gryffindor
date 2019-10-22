@@ -15,24 +15,24 @@ $(window).on("turbolinks:load", function(){
 
 
     // 登録済み画像のプレビュー表示
-    gon.edit_product_images.forEach(function(image, index){
-        let img = $(`<div class="add_img"><div class="img_area"><img class="image"></div></div>`);
+    // gon.edit_product_images.forEach(function(image, index){
+    //     let img = $(`<div class="add_img"><div class="img_area"><img class="image"></div></div>`);
 
-        // カスタムデータ属性を付与
-        img.data("image", index)
-        // 画像につける編集・削除ボタン
-        let btn_wrapper = $('<div class="btn_wrapper"><a class="btn_edit">編集</a><a class="btn_delete">削除</a></div>');
-        // 画像に編集・削除ボタンをつける
-        img.append(btn_wrapper);
+    //     // カスタムデータ属性を付与
+    //     img.data("image", index)
+    //     // 画像につける編集・削除ボタン
+    //     let btn_wrapper = $('<div class="btn_wrapper"><a class="btn_edit">編集</a><a class="btn_delete">削除</a></div>');
+    //     // 画像に編集・削除ボタンをつける
+    //     img.append(btn_wrapper);
         
-        binary_data = gon.edit_product_images_binary_datas[index]
+    //     binary_data = gon.edit_product_images_binary_datas[index]
 
-        img.find("img").attr({
-            src: "data:image/jpeg;bese64," + binary_data
-        });
-        // 登録済み画像のビューをimagesに格納
-        images.push(img)
-        registered_images_ids.push(image.id)    
+    //     img.find("img").attr({
+    //         src: "data:image/jpeg;bese64," + binary_data
+    //     });
+    //     // 登録済み画像のビューをimagesに格納
+    //     images.push(img)
+    //     registered_images_ids.push(image.id)
     })
     // 画像が４枚以下のとき
     if (images.length <= 4){
