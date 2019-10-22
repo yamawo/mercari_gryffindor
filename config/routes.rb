@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       get "create_category_grandchildren"
       get "search_size"
       get "search"
-      get "buy_confirmation"
+      get "product_confirmation"
     end
   end
 
