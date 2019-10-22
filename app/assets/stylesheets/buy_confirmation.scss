@@ -1,4 +1,6 @@
 .confirmation {
+  // font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
+  // min-height: 100%;
   padding: 40px;
   &__header {
     background-color: #f5f5f5;
@@ -24,8 +26,6 @@
     }
   }
   &__main {
-    font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
-    min-height: 100%;
     display: block;
     &__box {
       width: 700px;

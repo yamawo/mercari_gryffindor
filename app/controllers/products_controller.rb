@@ -89,6 +89,14 @@ class ProductsController < ApplicationController
   end
   
   def buy_confirmation
+    # card = Credit.where(user_id: current_user.id).first
+    # unless card.blank?
+    #   Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
+    #   customer = Payjp::Customer.retrieve(card.customer_id)
+    #   @default_card_information = customer.cards.retrieve(card.card_id)
+    #   @exp_month = @default_card_information.exp_month.to_s
+    #   @exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+    # end
   end
   
   def creare
@@ -133,10 +141,6 @@ class ProductsController < ApplicationController
   end
   
   def privacy_policy
-
   end
-
-  
-
 
 end

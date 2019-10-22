@@ -1,4 +1,3 @@
-
 .confirmation
   %header.confirmation__header
     %h1
@@ -11,14 +10,19 @@
           %h3.confirmation__main__box__buy-item__inner__image
             = image_tag("https://upload.wikimedia.org/wikipedia/commons/3/3f/Cristiano_Ronaldo_Madrid.jpg", class: "confirmation__main__box__buy-item__inner__image__height")
           %p.confirmation__main__box__buy-item__inner__name クリスティアーノロナウド
-          = form_with local: true, method: :post, class: 'confirmation__main__box__buy-item__inner__form', novalidate: "novalidate" do |form|
-            %p.confirmation__main__box__buy-item__inner__form__price ¥3500
+          = form_with local: true, method: :post, class: 'confirmation__main__box__buy-item__inner__form', novalidate: "novalidate" do |f|
+            %p.confirmation__main__box__buy-item__inner__form__price
               %span.confirmation__main__box__buy-item__inner__form__price__fee 送料込み
             %ul.confirmation__main__box__buy-item__inner__form__accordion
-              %li.confirmation__main__box__buy-item__inner__form__accordion-parent
-                .confirmation__main__box__buy-item__inner__form__accordion-toggle ポイントはありません
-            %ul.confirmation__main__box__buy-item__inner__form__price-table
-              %li.confirmation__main__box__buy-item__inner__form__price-
+              %li.confirmation__main__box__buy-item__inner__form__accordion__parent
+                .confirmation__main__box__buy-item__inner__form__accordion__toggle ポイントはありません
+            %ul.confirmation__main__box__buy-item__inner__form__price__table
+              %li.confirmation__main__box__buy-item__inner__form__price__box
+                .confirmation__main__box__buy-item__inner__form__price-cell 支払い金額
+                .confirmation__main__box__buy-item__inner__form__price-cell
+                  %span.confirmation__main__box__buy-item__inner__form__price-cell__data ¥3,500
+            = f.button type: "submit", class: "confirmation__main__box__buy-item__inner__form__btn" do
+              購入する
       %sction.confirmation__main__box__buy-user-info
         .confirmation__main__box__buy-user-info__inner
           %h3 配送先
@@ -35,6 +39,19 @@
             %span 変更する
             %i.icon-arrow-right
       %sction.confirmation__main__box__buy-user-info
-        
+        .confirmation__main__box__buy-user-info__inner
+          %h3 支払い方法
+          %p.confirmation__main__box__buy-user-info__inner__text
+            = "**** **** **** 1234"
+            -# = "**** **** ****" + @default_card_information.last4
+            %br/
+            = "1 / 23"
+            -# = @exp_month + " / " + @exp_year
+          %figure
+            = image_tag "http://www-mercari-jp.akamaized.net/assets/img/card/visa.svg?3466462615", size: "49x15"
+          %p
+          = link_to "/", class: "confirmation__main__box__buy-user-info__inner__fix" do
+            %span 変更する
+            %i.icon-arrow-right
 
 = render 'users/footer'
