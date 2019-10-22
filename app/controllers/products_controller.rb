@@ -20,6 +20,7 @@ class ProductsController < ApplicationController
   
   def create
     require "base64"                          #バイナリーデータ化（しないとJSで画像表示できない）
+    
     @product = Product.new(product_params)    #保存できたかどうかで分岐させたいのでnew
     @product.save
     redirect_to controller: :products, action: :index
@@ -150,13 +151,28 @@ class ProductsController < ApplicationController
   end
   
   def show
+
+  end
+
+  def selling_stage
+    #商品情報
+    @products = Product.all.order("id ASC")
+    
+  end
+
+  def selling_stage
+   
+  end
+
+  def selling_stage
+   
   end
 
 
   private 
 
   def product_params
-    params.require(:product).permit(:name, :price, :text, :status, :stage, :delivery_responsivility, :delivery_way, :delivery_area, :delivery_day, :category_id, :brand_id, product_images_attributes: [:image, :id, :destroy])
+    params.require(:product).permit(:status, :name, :price, :text, :delivery_responsivility, :delivery_way, :delivery_area, :delivery_day, :category_id, :brand_id, :size_id, product_images_attributes: [:image, :id, :destroy]).merge(user_id: current_user.id)
   end
 
   def registered_image_params
