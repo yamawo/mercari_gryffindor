@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
- 
   resources :products, only: [:new, :create, :index, :show] do
     collection do
       get "create_category_children"
@@ -20,7 +19,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :address 
+  resources :addresses, only: [:update]
 
   resources :users do
     collection do
