@@ -2,7 +2,6 @@
   = render "shared/mypage-sidebar"
   .puroduct-destry__main
     %p.puroduct-destry__main__text 商品を削除しました
-    = link_to "/users/mypage", class: "puroduct-destry__main__go-mypage" do
-      マイページへ
+    = link_to 'マイページへ', mypage_users_path, class: "puroduct-destry__main__go-mypage"
 = render "shared/download-ad"
 = render "shared/sell-btn"

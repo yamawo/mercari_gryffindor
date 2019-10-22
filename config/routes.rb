@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       get "search"
       delete  ':id'  => 'products#destroy'
     end
+    delete  ':id'  => 'products#destroy'
   end
 
   resources :address 

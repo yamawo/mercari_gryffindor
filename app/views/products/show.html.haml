@@ -80,7 +80,7 @@
     = link_to '商品の編集', edit_product_path(params[:id]), class: "products-show__white-box__edit"
     %p.products-show__white-box__or or
     %p.products-show__white-box__stop 出品をいったん停止する
-    = link_to 'この出品を削除する', "/products/#{@product.id}", method: :delete, class: "products-show__white-box__delete"
+    = link_to 'この出品を削除する', product_path(params[:id]), method: :delete, class: "products-show__white-box__delete"
 - else
   %section.products-show__product-details
     %h1.products-show__product-details__item-name= @product.name
