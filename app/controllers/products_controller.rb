@@ -1,7 +1,8 @@
 class ProductsController < ApplicationController
-  before_action :find_product, only: [:show]
+  before_action :find_product, only: [:show, :destroy]
 
   def index
+    require 'base64'
     ladies = Category.find_by(name: "レディース")
     @ladies = Product.where(category_id: ladies.indirects.ids).limit(10)
     chanel = Brand.find_by(name: "シャネル")
@@ -26,6 +27,12 @@ class ProductsController < ApplicationController
   def show
     @user = @product.user
     @products = @user.products
+  end
+
+  def destroy
+    if @product.user_id == current_user.id
+       @product.destroy
+    end
   end
 
   def create_category_children

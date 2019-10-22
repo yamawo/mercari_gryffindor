@@ -5,8 +5,9 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     sessions: 'users/sessions',
     omniauth_callbacks: 'users/omniauth_callbacks'
-  }
-  resources :products, only: [:new, :create, :index, :show] do
+  } 
+
+  resources :products, only: [:new, :create, :index, :show, :edit, :destroy] do
     collection do
       get "create_category_children"
       get 'privacy_policy'

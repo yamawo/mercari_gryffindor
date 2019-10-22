@@ -1,4 +1,87 @@
 %main.products-show
+- if user_signed_in? && current_user.id == @user.id
+  %section.products-show__product-details
+    %h1.products-show__product-details__item-name= @product.name
+    .products-show__product-details__main
+      .products-show__product-details__main__item-photo
+        .products-show__product-details__main__item-photo__outer
+        -@product.product_images.limit(1).each do |product|
+          = image_tag product.image.url, class: 'products-show__product-details__main__item-photo__outer__top'
+        .products-show__product-details__main__item-photo__list
+        -@product.product_images.each do |product|
+          .products-show__product-details__main__item-photo__list__one
+            %span
+            .products-show__product-details__main__item-photo__list__one__inner
+              = image_tag product.image.url, class: 'products-show__product-details__main__item-photo__list__one__inner__img'
+      %table.products-show__product-details__main__table
+        %tbody
+          %tr
+            %th 出品者
+            %td
+              = link_to @product.user.nickname, class: "exhibitor-name"
+              .item-user
+                .item-user-good
+                  %i.fas.fa-laugh
+                  %span= @product.user.good
+                .item-use-normal
+                  %i.fas.fa-meh
+                  %span= @product.user.normal
+                .item-user-bad
+                  %i.fas.fa-frown
+                  %span= @product.user.bat
+          %tr
+            %th カテゴリー
+            %td
+              %a
+                = link_to @product.category.parent.parent.name
+              %a
+                .item-detail-table-sub-category
+                  %i.fas.fa-angle-right
+                  = link_to @product.category.parent.name
+              %a
+                .item-detail-table-sub-sub-category
+                  %i.fas.fa-angle-right
+                  = link_to @product.category.name
+          %tr
+            %th ブランド
+            %td
+              %a
+                %div
+                  = link_to @product.brand.name
+          %tr
+            %th 商品のサイズ
+            %td= @product.size.name
+          %tr
+            %th 商品の状態
+            %td= @product.stage
+          %tr
+            %th 配送料の負担
+            %td= @product.delivery_responsivility
+          %tr
+            %th 配送の方法
+            %td= @product.delivery_way
+          %tr
+            %th 配送元地域
+            %td
+              = link_to @product.delivery_area
+          %tr
+            %th 発送日の目安
+            %td= @product.delivery_day
+    .products-show__product-details__price
+      %span.products-show__product-details__price__text= number_to_currency(@product.price, :format => "%u%n", :unit => "￥")
+      %span.products-show__product-details__price__tax （税込）
+      %span.products-show__product-details__price__postage 送料込み
+    .products-show__product-details__text
+      %p.products-show__product-details__text__inner
+        = @product.text
+    .products-show__product-details__other
+  .products-show__white-box
+    %a.products-show__white-box__edit 商品の編集
+    = link_to '商品の編集', edit_product_path(params[:id]), class: "products-show__white-box__edit"
+    %p.products-show__white-box__or or
+    %p.products-show__white-box__stop 出品をいったん停止する
+    = link_to 'この出品を削除する', product_path(params[:id]), method: :delete, class: "products-show__white-box__delete"
+- else
   %section.products-show__product-details
     %h1.products-show__product-details__item-name= @product.name
     .products-show__product-details__main
@@ -76,13 +159,13 @@
         = @product.text
     .products-show__product-details__other
     .products-show__product-details__other__left
-      %button.products-show__product-details__other__left__like
-        %i.far.fa-heart
-        %span いいね!
-        %span.fade-in-down= @product.likes.count
-      %a.products-show__product-details__other__left__report
-        %i.far.fa-flag
-        %span 不適切な商品の報告
+    %button.products-show__product-details__other__left__like
+      %i.far.fa-heart
+      %span いいね!
+      %span.fade-in-down= @product.likes.count
+    %a.products-show__product-details__other__left__report
+      %i.far.fa-flag
+      %span 不適切な商品の報告
     .products-show__product-details__other__right
       %a.products-show__product-details__other__right__report
         = link_to ""
