@@ -88,16 +88,39 @@ class ProductsController < ApplicationController
     end
   end
   
-  def buy_confirmation
-    # card = Credit.where(user_id: current_user.id).first
-    # unless card.blank?
-    #   Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
-    #   customer = Payjp::Customer.retrieve(card.customer_id)
-    #   @default_card_information = customer.cards.retrieve(card.card_id)
-    #   @exp_month = @default_card_information.exp_month.to_s
-    #   @exp_year = @default_card_information.exp_year.to_s.slice(2,3)
-    # end
+  def product_confirmation
+    require 'payjp'
+
+    # テーブルからpayjpの顧客IDを検索
+    card = Credit.where(user_id: current_user.id).first
+    if card.blank?
+      # 登録された情報がない場合はカード登録画面に遷移
+      redirect_to card_registration_form_users_path
+    else
+      Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
+      # 保管した顧客IDでpayjpから情報取得
+      customer = Payjp.Customer.retrieve(card.customer_id)
+      # 保管したカードIDでpayjpから情報取得、カード情報表示のためにインスタンス変数に代入
+      @default_card_information = customer.cards.retrieve(card.card_id)
+    end
   end
+
+  def product_pay
+    require 'payjp'
+
+    card = Credit.where(user_id: current_user.id).first
+    Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
+    Payjp::Charge.create(
+      amount: 3500, #todo あとでproductテーブルと紐づける
+      customer: card.customer_id, #顧客ID
+      currency: 'jpy' #日本円
+    )
+    redirect_to action 'product_done'
+  end
+
+  def product_done
+  end
+
   
   def creare
     require "base64"
