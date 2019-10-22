@@ -3,7 +3,7 @@ Rails.application.routes.draw do
  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :products, only: [:new, :create, :index] do
+  resources :products, only: [:new, :create, :index, :edit, :update, :show] do
     collection do
       get "create_category_children"
       get 'privacy_policy'
