@@ -2,7 +2,7 @@
   %nav.main__l-side__nav
     %ul.main__l-side__nav__list
       %li
-        = link_to "/", class: "main__l-side__nav__list__item" do
+        = link_to mypage_users_path, class: "main__l-side__nav__list__item" do
           マイページ
           %span.main__l-side__nav__list__item__number
           %i.icon-arrow-right
@@ -73,7 +73,7 @@
       設定
     %ul.main__l-side__nav__list
       %li
-        = link_to "/", class: "main__l-side__nav__list__item" do
+        = link_to mypage_users_path, class: "main__l-side__nav__list__item" do
           プロフィール
           %i.icon-arrow-right
       %li
@@ -81,7 +81,7 @@
           発送元・お届け先住所変更
           %i.icon-arrow-right
       %li
-        = link_to card_registration_users_path, class: "main__l-side__nav__list__item__active" do
+        = link_to card_registration_users_path, class: "main__l-side__nav__list__item" do
           支払い方法
           %i.icon-arrow-right
       %li
@@ -89,7 +89,7 @@
           メール/パスワード
           %i.icon-arrow-right
       %li
-        = link_to "/", class: "main__l-side__nav__list__item" do
+        = link_to confirmation_users_path, class: "main__l-side__nav__list__item" do
           本人情報
           %i.icon-arrow-right
       %li
@@ -97,6 +97,6 @@
           電話番号の確認
           %i.icon-arrow-right
       %li
-        = link_to "/", class: "main__l-side__nav__list__item" do
+        = link_to logout_users_path, class: "main__l-side__nav__list__item" do
           ログアウト
           %i.icon-arrow-right

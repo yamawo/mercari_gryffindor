@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   before_action :validates_step3, only: :step4
   before_action :validates_step4, only: :step6
   before_action :validates_step6, only: :step7
+  
   layout "users_layout"
   
   def show
@@ -95,6 +96,66 @@ class UsersController < ApplicationController
     end
   end
 
+  def profile
+  end
+
+  def mypage
+  end
+
+  def logout
+  end
+
+  def confirmation
+    @user = current_user
+    @address = @user.address
+  end
+
+  def card_registration_form
+    @card = Credit.new
+  end
+
+  def card_registration_create #PayjpとCardのデータベースを作成
+    Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
+
+    if params['payjp-token'].blank?
+      redirect_to action: "card_registration_form"
+    else
+      # トークンが正常に発行されていたら、顧客情報をPAY.JPに登録する
+      customer = Payjp::Customer.create(
+        description: "test",
+        email: current_user.email,
+        card: params['payjp-token'],
+        metadata: {user_id: current_user.id}
+      )
+      @card = Credit.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
+      if @card.save
+        redirect_to action: "card_registration"
+      else
+        redirect_to aciton: "card_registration_create"
+      end
+    end
+  end
+
+  def card_registration
+    card = current_user.credit
+    unless card.blank?
+      Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
+      customer = Payjp::Customer.retrieve(card.customer_id)
+      @default_card_information = customer.cards.retrieve(card.card_id)
+      @exp_month = @default_card_information.exp_month.to_s
+      @exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+    end  
+  end
+
+  def card_delete #PayjpとCardデータベースを削除します
+    card = current_user.credit
+    Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
+    customer = Payjp::Customer.retrieve(card.customer_id)
+    customer.delete
+    card.delete
+    redirect_to action: "card_registration"
+  end
+
   private
   
   def validates_step3
@@ -158,27 +219,4 @@ class UsersController < ApplicationController
       ]
     )
   end
-
-  def profile
-
-  end
-
-
-
-  def mypage
-  end
-
-  def logout
-  end
-
-  def confirmation
-    @address = Address.new
-  end
-  
-  def card_registration
-  end
-
-  def card_registration_create
-  end
 end
-

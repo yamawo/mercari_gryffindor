@@ -290,6 +290,7 @@ brand_blocks.each do |brand_block|
     brand_id += 1
   end
 end
+# 消していいよ
 
 10.times do |index|
   User.create!(email: "#{index}divnari@gmail.com", password: "00000000", password_confirmation: "00000000",last_name: "プログラ", first_name: "ミング", last_name_kana: "プログラ", first_name_kana: "ミング", birthdate_year: "2000", birthdate_month: "5", birthdate_day: "5", phone_number: "012011711#{index}", nickname: "divなり#{index + 1}")
