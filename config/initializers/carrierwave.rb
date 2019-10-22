@@ -12,12 +12,12 @@ CarrierWave.configure do |config|
       aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
       region: 'ap-northeast-1'
     }
+    
+    config.fog_directory = 'mercari-gryffindor'
+    config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/mercari-gryffindor'
   else
-    config.storage :file
+    config.storage = :file
     # テスト環境では画像のアップロード処理をスキップ
     config.enable_processing = false if Rails.env.test?
   end
-
-  config.fog_directory = 'mercari-gryffindor'
-  config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/mercari-gryffindor'
 end
