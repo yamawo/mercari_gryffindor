@@ -4,7 +4,7 @@
       %h1
         = link_to "/" do
           = image_tag "logo.svg", size: '134x40'
-      = search_form_for @q do |f|
+      = search_form_for(@q, url:search_for_path) do |f|
         = f.search_field :name_cont, placeholder: "何かお探しですか?", class: "input-default"
         = f.submit id: "search_btn"
         %label.search_btn.search_icon

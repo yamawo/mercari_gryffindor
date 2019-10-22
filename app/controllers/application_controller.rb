@@ -20,8 +20,20 @@ class ApplicationController < ActionController::Base
     @products = @q.result(distinct: true)
   end
 
+  def search_for
+    @q = Product.search(search_params)
+    @products = @q.result(distinct: true)
+    @count = @products.count.to_s
+  end
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname])
   end
-  
+
+  private
+
+  def search_params
+    params.require(:q).permit(:name_cont)
+  end
+
 end

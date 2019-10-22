@@ -1,0 +1,40 @@
+.search_for-main{
+  position: relative;
+  width: 100％;
+  min-height: 100vh;
+  &__name{
+    font-size: 20px;
+    width: 700px;
+    padding: 20px 0 15px 0;
+  }
+  &__name_a{
+    font-size: 22px;
+    font-weight: 600;
+    display: inline-block;
+  }
+  &__name_b{
+    display: inline-block;
+  }
+  &__count{
+    font-size: 14px;
+    color: rgb(0, 128, 107);
+  }
+  &__products{
+    width: 800px;
+    margin: 0 auto;  
+  }
+  &__products-box{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px 10px;
+  }
+  &__breadcrumb{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    max-height: 50px;
+    border-top: solid 1px rgb(209, 205, 205);
+    margin-top: 100px;
+    padding: 20px;
+  }
+}
