@@ -181,7 +181,7 @@ $(window).on("turbolinks:load", function(){
     console.log(new_image_files);
     $(".selling__main__sec__content__form__write").on("submit", function(e){
         // 場合分け等してsubmitしたい為、通常のsubmitイベントを止める
-        e.preventDefault();
+        // e.preventDefault();
         // images以外のform情報をformDataに入れる。 get() = getElementById()
         let formData = new FormData(this);
         // 登録済み画像が残っていない場合は便宜的に０を入れる
@@ -203,13 +203,13 @@ $(window).on("turbolinks:load", function(){
         //     });
         // }
         // ajax
-        $.ajax({
-            url: "/products",
-            type: "POST",
-            data: formData,
-            dataType: 'json',
-            contentType: false,
-            processData: false,
-        })
+        // $.ajax({
+        //     url: "/products",
+        //     type: "POST",
+        //     data: formData,
+        //     dataType: 'json',
+        //     contentType: false,
+        //     processData: false,
+        // })
     });
 });

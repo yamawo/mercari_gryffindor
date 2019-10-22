@@ -26,7 +26,7 @@ $(function(){
                   <div class="selling__main__sec__content__form__write__content__box__group__select">
                     <i class="fas fa-chevron-down selling__main__sec__content__form__write__content__box__group__select__icon">
                     </i>
-                    <select value="status" class="selling__main__sec__content__form__write__content__box__group__select__list" id="size">
+                    <select class="selling__main__sec__content__form__write__content__box__group__select__list" name="product[size_id]" id="size">
                       <option value="---">---</option>
                     </select>
                   </div>
