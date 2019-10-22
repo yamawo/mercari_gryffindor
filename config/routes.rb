@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   root to: "products#index"
- 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions',
+    omniauth_callbacks: 'users/omniauth_callbacks'
+  } 
 
   resources :products, only: [:new, :create, :index, :show, :edit] do
     collection do
@@ -14,13 +17,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :address 
+  resources :addresses, only: [:update]
 
-  devise_for :users, controllers: {
-    registrations: 'users/registrations',
-    sessions: 'users/sessions',
-    omniauth_callbacks: 'users/omniauth_callbacks'
-  } 
   resources :users do
     collection do
       get "profile"
@@ -28,7 +26,9 @@ Rails.application.routes.draw do
       get "confirmation"
       get "logout"
       get "card_registration"
-      get "card_registration_create"
+      get "card_registration_form"
+      post "card_registration_create"
+      delete "card_delete"
       scope :sign_up do           # ディレクトリの階層の変更はなし
         get 'step3'
         get 'step4'

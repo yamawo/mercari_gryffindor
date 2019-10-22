@@ -74,15 +74,15 @@
         width: 100%;
       }
       &__select{
+        width: 100%;
         margin: 8px 0 0;
         position: relative;
         background: #fff;
-        #address_prefecture{
-          width: 100%;
+        #address_address_prefecture{
+          width: 105%;
           position: relative;
           z-index: 2;
           height: 48px;
-          padding: 0 16px;
           border-radius: 4px;
           border: 1px solid #ccc;
           background: 0;
@@ -99,6 +99,18 @@
       width: 100%;
       line-height: 45px;
       font-size: 14px;
+      cursor: pointer;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      -webkit-transition: all .3s;
+      transition: all .3s;
+    }
+    &__btn:hover{
+      background-color: transparent;
+      border: 1px solid #ff3030;
+      color: #ff2626 !important;
+      border-radius: 30px;
     }
     &__text-right{
       margin: 40px 0 0;

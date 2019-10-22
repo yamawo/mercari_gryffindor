@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2019_10_20_025931) do
   end
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name"
     t.string "ancestry"
     t.index ["ancestry"], name: "index_categories_on_ancestry"
   end
@@ -78,8 +78,8 @@ ActiveRecord::Schema.define(version: 2019_10_20_025931) do
     t.string "delivery_day", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
     t.bigint "brand_id"
+    t.bigint "user_id"
     t.bigint "size_id"
     t.bigint "category_id"
     t.index ["brand_id"], name: "index_products_on_brand_id"

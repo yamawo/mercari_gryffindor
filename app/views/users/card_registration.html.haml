@@ -3,20 +3,8 @@
   = render "shared/header"
   %nav.navbar
     %ul.navbar__list
-      %li.navbar__list__ele
-        = link_to "", class: "navbar__list__ele__link" do
-          %span.navbar__list__ele__link__name
-            メルカリ
-        %i.fa.fa-angle-right
-      %li.navbar__list__ele
-        = link_to "", class: "navbar__list__ele__link" do
-          %span.navbar__list__ele__link__name
-            マイページ
-        %i.fa.fa-angle-right
-      %li.navbar__list__ele
-        = link_to "", class: "navbar__list__ele__link" do
-          %span.navbar__list__ele__link__name__active
-            支払い方法
+      - breadcrumb :credit
+      = render "shared/breadcrumbs"
   %main.main
     = render "shared/mypage-sidebar"
     .main__r-content
@@ -29,17 +17,33 @@
               %h3.main__r-content__card__inner__content__sub-head
                 クレジットカード一覧
             %ul.main__r-content__card__inner__payment-list
-          %section.main__r-content__card__inner__settings
-            .main__r-content__card__inner__content
-              = link_to "/users/card_registration_create", class: "main__r-content__card__inner__content__btn" do
-                %i#iconcard.far.fa-credit-card
-                クレジットカードを追加する
-          .main__r-content__card__inner__settings-about
-            = link_to "/", target: "_blank" do
-              %span#payment-about
-                支払い方法について
-              %i#payment-arrow-right
-
+          - unless @default_card_information.present?
+            %section.main__r-content__card__inner__settings
+              .main__r-content__card__inner__content
+                = link_to card_registration_form_users_path, class: "main__r-content__card__inner__content__btn" do
+                  %i#iconcard.far.fa-credit-card
+                  クレジットカードを追加する
+            .main__r-content__card__inner__settings-about
+              = link_to "/", target: "_blank" do
+                %span#payment-about
+                  支払い方法について
+                %i#payment-arrow-right
+          - else
+            %section.main__r-content__card__inner__settings
+              .main__r-content__card__inner__content
+                .main__r-content__card__inner__content__brand
+                  = image_tag "http://www-mercari-jp.akamaized.net/assets/img/card/visa.svg?3466462615", size: "49x15"
+                .main__r-content__card__inner__content__number
+                  = "**** **** ****" + @default_card_information.last4
+                .main__r-content__card__inner__content__deadline  
+                  = @exp_month + " / " + @exp_year
+                .main__r-content__card__inner__content__delete-card
+                  = link_to "削除する", card_delete_users_path, method: :delete
+            .main__r-content__card__inner__settings-about
+              = link_to "/", target: "_blank" do
+                %span#payment-about
+                  支払い方法について
+                %i#payment-arrow-right
   = render "shared/download-ad"
   = render "shared/sell-btn"
 = render "shared/footer"

@@ -96,3 +96,6 @@ gem 'omniauth-facebook'
 gem 'active_hash'
 gem 'omniauth-google-oauth2'
 gem 'recaptcha', require: "recaptcha/rails"
+gem 'devise-i18n'
+gem 'devise-i18n-views'
+gem "gretel"

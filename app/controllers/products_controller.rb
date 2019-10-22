@@ -9,7 +9,6 @@ class ProductsController < ApplicationController
     @chanel = Product.where(brand_id: chanel.id).limit(10)
   end
   
-
   def new
     require "base64"
     @product = Product.new
