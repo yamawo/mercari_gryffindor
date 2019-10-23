@@ -17,9 +17,6 @@ Rails.application.routes.draw do
       get "create_category_grandchildren"
       get "search_size"
       get "search"
-      # get "product_confirmation"
-      # post "product_pay"
-      # get "product_done"
     end
   end
 
