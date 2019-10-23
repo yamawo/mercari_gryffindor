@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   require 'payjp'
-  before_action :find_product, only: [:show, :destroy]
+  before_action :find_product, only: [:show, :destroy, :product_confirmation, :product_pay, :product_done]
 
   def index
     require 'base64'
@@ -93,8 +93,8 @@ class ProductsController < ApplicationController
   end
   
   def product_confirmation
-    @product = Product.where(id: 1).first # todo 商品詳細ページのデータをここで渡す
-
+    @user = current_user
+    @address = @user.address
     # テーブルからpayjpの顧客IDを検索
     card = Credit.where(user_id: current_user.id).first
     if card.blank?
@@ -114,20 +114,19 @@ class ProductsController < ApplicationController
   end
 
   def product_pay
-    product = Product.where(id: 1).first # 商品詳細ページのデータをここで渡す
+    # product = Product.where(id: 1).first
 
     card = Credit.where(user_id: current_user.id).first
     Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
     Payjp::Charge.create(
-      amount: product.price, #todo あとでproductテーブルと紐づける
+      amount: @product.price, #todo あとでproductテーブルと紐づける
       customer: card.customer_id, #顧客ID
       currency: 'jpy' #日本円
     )
-    redirect_to product_done_products_path
+    redirect_to product_product_done_path
   end
 
   def product_done
-    @product = Product.where(id: 1).first #todo 購入した情報をここで取得してインスタンス変数に渡す
   end
 
   def creare
