@@ -10,15 +10,15 @@ Rails.application.routes.draw do
   get "search_for", to: "application#search_for"
 
   resources :products, only: [:new, :create, :index, :show, :edit, :destroy] do
+    get "product_confirmation"
+    post "product_pay"
+    get "product_done"
     collection do
       get "create_category_children"
       get 'privacy_policy'
       get "create_category_grandchildren"
       get "search_size"
       get "search"
-      get "product_confirmation"
-      post "product_pay"
-      get "product_done"
     end
   end
 

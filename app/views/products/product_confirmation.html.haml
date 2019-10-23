@@ -1,4 +1,4 @@
-= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
 .confirmation
   %header.confirmation__header
     %h1
@@ -9,11 +9,11 @@
       %sction.confirmation__main__box__buy-item
         .confirmation__main__box__buy-item__inner
           %h3.confirmation__main__box__buy-item__inner__image
-            = image_tag("https://upload.wikimedia.org/wikipedia/commons/3/3f/Cristiano_Ronaldo_Madrid.jpg", class: "confirmation__main__box__buy-item__inner__image__height", size: "64x100")
-          %p.confirmation__main__box__buy-item__inner__name クリスティアーノロナウド
-          = form_with local: true, method: :post, class: 'confirmation__main__box__buy-item__inner__form', novalidate: "novalidate" do |f|
+            = image_tag(@product.product_images.first.image.url, class: "confirmation__main__box__buy-item__inner__image__height", size: "64x100")
+          %p.confirmation__main__box__buy-item__inner__name= @product.name
+          = form_with url: product_product_pay_path, local: true, method: :post, class: 'confirmation__main__box__buy-item__inner__form', novalidate: "novalidate" do |f|
             %p.confirmation__main__box__buy-item__inner__form__price 
-              ¥3,500
+              = "¥" + @product.price.to_s
               %span.confirmation__main__box__buy-item__inner__form__price__fee 送料込み
             %ul.confirmation__main__box__buy-item__inner__form__accordion
               %li.confirmation__main__box__buy-item__inner__form__accordion__parent
@@ -22,20 +22,19 @@
               %li.confirmation__main__box__buy-item__inner__form__price__box
                 .confirmation__main__box__buy-item__inner__form__price-cell 支払い金額
                 .confirmation__main__box__buy-item__inner__form__price-cell
-                  %span.confirmation__main__box__buy-item__inner__form__price-cell__data ¥3,500
+                  %span.confirmation__main__box__buy-item__inner__form__price-cell__data= "¥" + @product.price.to_s
             = f.button type: "submit", class: "confirmation__main__box__buy-item__inner__form__btn" do
               購入する
       %sction.confirmation__main__box__buy-user-info
         .confirmation__main__box__buy-user-info__inner
           %h3 配送先
           %address.confirmation__main__box__buy-user-info__inner__address-text
-            〒530-0005
+            = "〒" + @address.postal_code
             %br/
-            大阪府大阪市北区
-            中之島6丁目1-38-2113
-            ザ・パークハウス中之島タワー
+            = @address.address_prefecture + @address.address_city
+            = @address.address_number
             %br/
-            寺田侑矢
+            = @user.last_name + @user.first_name
           %p.confirmation__main__box__buy-user-info__inner__text
           = link_to "/", class: "confirmation__main__box__buy-user-info__inner__fix" do
             %span 変更する
@@ -44,11 +43,9 @@
         .confirmation__main__box__buy-user-info__inner
           %h3 支払い方法
           %p.confirmation__main__box__buy-user-info__inner__text
-            = "**** **** **** 1234"
-            -# = "**** **** ****" + @default_card_information.last4
+            = "**** **** **** " + @default_card_information.last4
             %br/
-            = "1 / 23"
-            -# = @exp_month + " / " + @exp_year
+            = @exp_month + " / " + @exp_year
           .confirmation__main__box__buy-user-info__inner__card-brand
             = image_tag "http://www-mercari-jp.akamaized.net/assets/img/card/visa.svg?3466462615", size: "49x15"
           %p
