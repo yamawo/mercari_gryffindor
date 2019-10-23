@@ -114,8 +114,6 @@ class ProductsController < ApplicationController
   end
 
   def product_pay
-    # product = Product.where(id: 1).first
-
     card = Credit.where(user_id: current_user.id).first
     Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
     Payjp::Charge.create(
