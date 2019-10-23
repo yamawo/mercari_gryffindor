@@ -25,3 +25,7 @@ crumb :profile do
   link "プロフィール", profile_users_path
   parent :mypage
 end
+
+crumb :product do |q|
+  link "#{q.name_cont}", search_for_path
+end

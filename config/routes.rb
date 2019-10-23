@@ -5,7 +5,9 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     sessions: 'users/sessions',
     omniauth_callbacks: 'users/omniauth_callbacks'
-  } 
+  }
+
+  get "search_for", to: "application#search_for"
 
   resources :products, only: [:new, :create, :index, :show, :edit, :destroy] do
     collection do
