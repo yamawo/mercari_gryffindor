@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  require 'payjp'
   before_action :find_product, only: [:show, :destroy]
 
   def index
@@ -92,8 +93,8 @@ class ProductsController < ApplicationController
   end
   
   def product_confirmation
-    require 'payjp'
-    render layout: "users_layout"
+    @product = Product.where(id: 1).first # todo 商品詳細ページのデータをここで渡す
+
     # テーブルからpayjpの顧客IDを検索
     card = Credit.where(user_id: current_user.id).first
     if card.blank?
@@ -105,23 +106,28 @@ class ProductsController < ApplicationController
       customer = Payjp::Customer.retrieve(card.customer_id)
       # 保管したカードIDでpayjpから情報取得、カード情報表示のためにインスタンス変数に代入
       @default_card_information = customer.cards.retrieve(card.card_id)
+      @exp_month = @default_card_information.exp_month.to_s
+      @exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+
+      render layout: "users_layout"
     end
   end
 
   def product_pay
-    require 'payjp'
+    product = Product.where(id: 1).first # 商品詳細ページのデータをここで渡す
 
     card = Credit.where(user_id: current_user.id).first
     Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
     Payjp::Charge.create(
-      amount: 3500, #todo あとでproductテーブルと紐づける
+      amount: product.price, #todo あとでproductテーブルと紐づける
       customer: card.customer_id, #顧客ID
       currency: 'jpy' #日本円
     )
-    redirect_to action 'product_done'
+    redirect_to product_done_products_path
   end
 
   def product_done
+    @product = Product.where(id: 1).first #todo 購入した情報をここで取得してインスタンス変数に渡す
   end
 
   def creare
