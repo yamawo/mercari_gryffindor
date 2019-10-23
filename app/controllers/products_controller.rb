@@ -20,7 +20,6 @@ class ProductsController < ApplicationController
   
   def create
     require "base64"                          #バイナリーデータ化（しないとJSで画像表示できない）
-    
     @product = Product.new(product_params)    #保存できたかどうかで分岐させたいのでnew
     @product.save
     redirect_to controller: :products, action: :index
@@ -151,7 +150,6 @@ class ProductsController < ApplicationController
   end
   
   def show
-
   end
 
   def selling_stage
@@ -159,15 +157,6 @@ class ProductsController < ApplicationController
     @products = Product.all.order("id ASC")
     
   end
-
-  def selling_stage
-   
-  end
-
-  def selling_stage
-   
-  end
-
 
   private 
 
