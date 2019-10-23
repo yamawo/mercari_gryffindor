@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   before_action :basic_auth, if: :production?
   before_action :search_product
   
-  # private
 
   def production?
     Rails.env.production?
@@ -23,6 +22,7 @@ class ApplicationController < ActionController::Base
   def search_for
     @q = Product.search(search_params)
     @products = @q.result(distinct: true)
+    # binding.pry
     @count = @products.count.to_s
   end
 

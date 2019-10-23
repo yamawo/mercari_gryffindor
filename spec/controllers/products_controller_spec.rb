@@ -1,7 +1,11 @@
 require 'rails_helper'
 
 describe ProductsController do
+  
   describe 'GET #show' do
+    
+    
+    
     it "assigns the requested puroduct to @product" do
       create(:brand)
       create(:size)
@@ -31,7 +35,9 @@ describe ProductsController do
       get :show, params: {  id: product }
       expect(response).to render_template :show
     end
+
   end
+  
   let(:brand) { create(:brand) }
   let(:size) { create(:size) }
   let(:category) { create(:category) }
