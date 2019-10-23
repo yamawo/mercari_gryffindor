@@ -159,10 +159,7 @@
         = @product.text
     .products-show__product-details__other
     .products-show__product-details__other__left
-    %button.products-show__product-details__other__left__like
-      %i.far.fa-heart
-      %span いいね!
-      %span.fade-in-down= @product.likes.count
+    %span= render partial: 'likes/like_links'
     %a.products-show__product-details__other__left__report
       %i.far.fa-flag
       %span 不適切な商品の報告
@@ -199,17 +196,16 @@
       %h2.products-show__other-products__item-box__head
         = link_to "#{@product.user.nickname}さんのその他の出品"
       .products-show__other-products__item-box__content
-      -@products.limit(7).each do |product|
-        - if product.id != params[:id].to_i
-          %section.products-show__other-products__item-box__content__one
-            = link_to product, class: "products-show__other-products__item-box__content__one__link" do
-              .products-show__other-products__item-box__content__one__link__photo
-                = image_tag product.product_images.first.image.url, class: "products-show__other-products__item-box__content__one__link__photo__img"
-              .products-show__other-products__item-box__content__one__link__body
-                %h3.products-show__other-products__item-box__content__one__link__body__title #{product.name}
-                .products-show__other-products__item-box__content__one__link__body__price
-                  .products-show__other-products__item-box__content__one__link__body__price__text= number_to_currency(product.price, :format => "%u%n", :unit => "￥")
-                  %i.far.fa-heart.products-show__other-products__item-box__content__one__link__body__price__icon
-                    %span= product.likes.count
+      -@array.slice(0,6).each do |product|
+        -# - if other_products.id != params[:id].to_i
+        %section.products-show__other-products__item-box__content__one
+          = link_to product, class: "products-show__other-products__item-box__content__one__link" do
+            .products-show__other-products__item-box__content__one__link__photo
+              = image_tag product.product_images.first.image.url, class: "products-show__other-products__item-box__content__one__link__photo__img"
+            .products-show__other-products__item-box__content__one__link__body
+              %h3.products-show__other-products__item-box__content__one__link__body__title #{product.name}
+              .products-show__other-products__item-box__content__one__link__body__price
+                .products-show__other-products__item-box__content__one__link__body__price__text= number_to_currency(product.price, :format => "%u%n", :unit => "￥")
+                %i.far.fa-heart.products-show__other-products__item-box__content__one__link__body__price__icon
+                  %span= product.likes.count
   = render "shared/download-ad"
-  

@@ -1,0 +1,15 @@
+.products-show__product-details__other__left__like
+  - if current_user.likes.find_by(product_id: @product.id)
+    = link_to unlike_path(@product.id), method: :delete, remote: true do
+      %i.far.fa-heart
+      %span いいね!
+      %span.like-link{id: "like-link-#{@product.id}"}
+      %span.btn.btn-default.glyphicon.glyphicon-heart{id: "heart-#{@product.id}"}
+        = @product.likes.count.to_s
+  - else
+    = link_to like_path(@product.id), method: :post, remote: true do
+      %i.far.fa-heart
+      %span いいね!
+      %span.like-link{id: "like-link-#{@product.id}"}
+      %span.btn.btn-default.glyphicon.glyphicon-heart-empty{id: "heart-#{@product.id}"}
+        = @product.likes.count.to_s

@@ -27,6 +27,12 @@ class ProductsController < ApplicationController
   def show
     @user = @product.user
     @products = @user.products
+    array = []
+    other_products = @products.limit(7)
+    other_products.each do |product|
+      array << product if product.id != params[:id].to_i
+    end
+    @array = array
   end
 
   def destroy

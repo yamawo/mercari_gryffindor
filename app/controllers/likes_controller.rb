@@ -1,15 +1,22 @@
 class LikesController < ApplicationController
-  def create
-    @like = Like.new(user_id: @current_user.id, product_id: params[:product_id])
-    @like.save
-    @product = Product.find(id: @like.product_id)
-    @like_count = Like.where(product_id: params[:product_id]).count
+  before_action :set_variables
+
+  def like
+    like = current_user.likes.new(product_id: @product.id)
+    like.save
   end
-  
-  def delete
-    @like = Like.find_by(user_id: @current_user.id, product_id: params[:product_id])
-    @product = Product.find(id: @like.product_id)
-    @like.destroy
-    @like_count = Like.where(product_id: params[:product_id]).count
+
+  def unlike
+    like = current_user.likes.find_by(product_id: @product.id)
+    like.destroy
   end
+
+  private
+
+  def set_variables
+    @product = Product.find(params[:product_id])
+    @id_name = "#like-link-#{@product.id}"
+    @id_heart = "#heart-#{@product.id}"
+  end
+
 end
