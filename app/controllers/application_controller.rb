@@ -22,7 +22,6 @@ class ApplicationController < ActionController::Base
   def search_for
     @q = Product.search(search_params)
     @products = @q.result(distinct: true)
-    # binding.pry
     @count = @products.count.to_s
   end
 
