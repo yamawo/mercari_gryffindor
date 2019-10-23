@@ -4,9 +4,9 @@ class ProductsController < ApplicationController
   def index
     require 'base64'
     ladies = Category.find_by(name: "レディース")
-    @ladies = Product.where(category_id: ladies.indirects.ids).limit(10)
+    @ladies = Product.where(category_id: ladies.indirects.ids).last(10).sort{|a,b| b <=> a}
     chanel = Brand.find_by(name: "シャネル")
-    @chanel = Product.where(brand_id: chanel.id).limit(10)
+    @chanel = Product.where(brand_id: chanel.id).last(10).sort{|a,b| b <=> a}
   end
   
   def new
