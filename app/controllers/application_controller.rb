@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   before_action :basic_auth, if: :production?
   before_action :search_product
   
-
   def production?
     Rails.env.production?
   end
@@ -34,5 +33,4 @@ class ApplicationController < ActionController::Base
   def search_params
     params.require(:q).permit(:name_cont)
   end
-
 end
