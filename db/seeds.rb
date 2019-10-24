@@ -296,11 +296,11 @@ end
 end
 
 10.times do |index|
-  Product.create!(name: "アイテム#{index + 1}", price: "#{index + 1}000", text: "アイテム#{index}のテキスト",status: "0", stage: "新品・未使用", delivery_responsivility: "送料込み(出品者負担)", delivery_way: "ゆうゆうメルカリ便", delivery_area: "大阪府", delivery_day: "1~2日で発送", created_at: "0000000#{index}", updated_at: "0000000#{index}", user_id: "1", category_id: "#{index + 202 }",brand_id: "2447",size_id: "1")
+  Product.create!(name: "アイテム#{index + 1}", price: "#{index + 1}000", text: "アイテム#{index + 1 }のテキスト",status: "0", stage: "新品・未使用", delivery_responsivility: "送料込み(出品者負担)", delivery_way: "ゆうゆうメルカリ便", delivery_area: "大阪府", delivery_day: "1~2日で発送", created_at: "0000000#{index}", updated_at: "0000000#{index}", user_id: "1", category_id: "#{index + 202 }",brand_id: "2447",size_id: "1")
 end
 
 5.times do |index|
-  Product.create!(name: "アイテム#{index + 11}", price: "#{index + 11}000", text: "アイテム#{index}のテキスト",status: "0", stage: "新品・未使用", delivery_responsivility: "送料込み(出品者負担)", delivery_way: "ゆうゆうメルカリ便", delivery_area: "大阪府", delivery_day: "1~2日で発送", created_at: "0000000#{index}", updated_at: "0000000#{index}", user_id: "1", category_id: "#{index + 3 }",brand_id: "2",size_id: "1")
+  Product.create!(name: "アイテム#{index + 11}", price: "#{index + 11}000", text: "アイテム#{index + 11}のテキスト",status: "0", stage: "新品・未使用", delivery_responsivility: "送料込み(出品者負担)", delivery_way: "ゆうゆうメルカリ便", delivery_area: "大阪府", delivery_day: "1~2日で発送", created_at: "0000000#{index}", updated_at: "0000000#{index}", user_id: "1", category_id: "#{index + 3 }",brand_id: "2",size_id: "1")
 end
 
 Product.create!(name: "河野孝匡a.k.a.KT-KING", price: "0", text: "紫外線からしっかり守りながら日中の肌にうるおいと
@@ -315,7 +315,7 @@ Product.create!(name: "河野孝匡a.k.a.KT-KING", price: "0", text: "紫外線�
   気になる方はご購入をお控えください。",status: "0", stage: "傷や汚れあり", delivery_responsivility: "送料込み(出品者負担)", delivery_way: "未定", delivery_area: "大阪府", delivery_day: "1~2日で発送", created_at: "00000016", updated_at: "00000016", user_id: "1", category_id: "16",brand_id: "2",size_id: "1")
 
 4.times do |index|
-  Product.create!(name: "アイテム#{index + 11}", price: "#{index + 11}000", text: "アイテム#{index + 5 }のテキスト",status: "0", stage: "新品・未使用", delivery_responsivility: "送料込み(出品者負担)", delivery_way: "ゆうゆうメルカリ便", delivery_area: "大阪府", delivery_day: "1~2日で発送", created_at: "0000000#{index + 5}", updated_at: "0000000#{index}", user_id: "1", category_id: "#{index + 3 }",brand_id: "2",size_id: "1")
+  Product.create!(name: "アイテム#{index + 17}", price: "#{index + 11}000", text: "アイテム#{index + 17 }のテキスト",status: "0", stage: "新品・未使用", delivery_responsivility: "送料込み(出品者負担)", delivery_way: "ゆうゆうメルカリ便", delivery_area: "大阪府", delivery_day: "1~2日で発送", created_at: "0000000#{index + 5}", updated_at: "0000000#{index}", user_id: "1", category_id: "#{index + 3 }",brand_id: "2",size_id: "1")
 end
 
 ProductImage.create!(image: open("#{Rails.root}/public/images/シャネル1.jpg"), product_id: "1")
