@@ -226,4 +226,10 @@
                 .products-show__other-products__item-box__content__one__link__body__price__text= number_to_currency(product.price, :format => "%u%n", :unit => "￥")
                 %i.far.fa-heart.products-show__other-products__item-box__content__one__link__body__price__icon
                   %span= product.likes.count
+  .products-show__product-name
+    .products-show__product-name__main
+      %a.products-show__product-name__main__site メルカリ
+      %i.fas.fa-angle-right.products-show__product-name__main__icon
+      .products-show__product-name__main__product= @product.name 
   = render "shared/download-ad"
+      
