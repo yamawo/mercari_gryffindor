@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   require 'payjp'
-  before_action :find_product, only: [:show, :destroy]
+  before_action :set_product, only: [:show, :destroy]
 
   def index
     require 'base64'
@@ -161,7 +161,7 @@ class ProductsController < ApplicationController
     params.require(:registered_images_ids).permit({ids: []})
   end
 
-  def find_product
+  def set_product
     @product = Product.find(params[:id])
   end
 
