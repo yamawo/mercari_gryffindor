@@ -29,6 +29,10 @@ class ProductsController < ApplicationController
   
   def edit
     @edit_product = Product.find(params[:id])
+    render layout: false
+  end
+
+  def update
   end
 
   def create_category_children
