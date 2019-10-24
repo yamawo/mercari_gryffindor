@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   require 'payjp'
-  before_action :find_product, only: [:show, :destroy, :product_confirmation, :product_pay, :product_done]
+  before_action :find_product, only: [:show, :destroy]
 
   def index
     require 'base64'
@@ -93,6 +93,7 @@ class ProductsController < ApplicationController
   end
   
   def product_confirmation
+    @product = Product.find(params[:product_id])
     @user = current_user
     @address = @user.address
     # テーブルからpayjpの顧客IDを検索
@@ -114,6 +115,7 @@ class ProductsController < ApplicationController
   end
 
   def product_pay
+    @product = Product.find(params[:product_id])
     card = Credit.where(user_id: current_user.id).first
     Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
     Payjp::Charge.create(
@@ -125,6 +127,7 @@ class ProductsController < ApplicationController
   end
 
   def product_done
+     @product = Product.find(params[:product_id])
   end
 
   def creare
