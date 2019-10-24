@@ -39,10 +39,19 @@
     padding: 20px;
   }
   &__side-bar{
-    background-color: black;
+    background-color: white;
     margin: 50px 0 0 150px;
     width: 280px;
     height: 1000px;
     float: left;
+    &__category{
+      
+    }
+    #q_category_id{
+      display: block;
+      height: 40px;
+      width: 200px;
+      margin: 10px;
+    }
   }
 }

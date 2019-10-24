@@ -16,12 +16,19 @@ class ApplicationController < ActionController::Base
   def search_product
     @q = Product.ransack(params[:q])
     @products = @q.result(distinct: true)
+    @category = []
+    @category = Category.where(ancestry: nil)
   end
 
   def search_for
     @q = Product.search(search_params)
     @products = @q.result(distinct: true)
     @count = @products.count.to_s
+  end
+
+  def search_form_lv2
+   category = Category.find_by(id: params[:id])
+   @category_children_id = category.children
   end
 
   def configure_permitted_parameters

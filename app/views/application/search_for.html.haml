@@ -1,5 +1,17 @@
 .search_for-main
   .search_for-main__side-bar
+    = search_form_for(@q, url:search_for_path, class: "search_form_side") do |f|
+      .search_for-main__side-bar--soat
+      .search_for-main__side-bar--title
+        = f.label "詳細検索"
+      .search_for-main__side-bar--keyword
+        = f.label "＋ キーワードを追加する"
+        = f.search_field :name_cont
+      .search_for-main__side-bar--category
+        = f.label "カテゴリーを選択する"
+        = f.collection_select :category_id, @category, :id, :name, prompt: "全て"
+      
+
   
 
 

@@ -20,4 +20,5 @@ class Product < ApplicationRecord
   def liked? (like_user_id, like_product_id)
     likes.where(user_id: like_user_id, product_id: like_product_id).exists?
   end
+
 end

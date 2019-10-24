@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   }
 
   get "search_for", to: "application#search_for"
+  get "search_form_lv2", to: "application#search_form_lv2"
 
   resources :products, only: [:new, :create, :index, :show, :edit, :destroy] do
     collection do
