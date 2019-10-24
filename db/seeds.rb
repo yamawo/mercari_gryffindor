@@ -290,7 +290,6 @@ brand_blocks.each do |brand_block|
     brand_id += 1
   end
 end
-# 消していいよ
 
 10.times do |index|
   User.create!(email: "#{index}divnari@gmail.com", password: "00000000", password_confirmation: "00000000",last_name: "プログラ", first_name: "ミング", last_name_kana: "プログラ", first_name_kana: "ミング", birthdate_year: "2000", birthdate_month: "5", birthdate_day: "5", phone_number: "012011711#{index}", nickname: "divなり#{index + 1}")
@@ -313,7 +312,7 @@ Product.create!(name: "河野孝匡a.k.a.KT-KING", price: "0", text: "紫外線�
   
   写真３枚目でご確認いただきたいのですがキャップに
   擦れて剥がれた所があります。
-  気になる方はご購入をお控えください。",status: "0", stage: "新品・未使用", delivery_responsivility: "送料込み(出品者負担)", delivery_way: "ゆうゆうメルカリ便", delivery_area: "大阪府", delivery_day: "1~2日で発送", created_at: "00000016", updated_at: "00000016", user_id: "1", category_id: "16",brand_id: "2",size_id: "1")
+  気になる方はご購入をお控えください。",status: "0", stage: "傷や汚れあり", delivery_responsivility: "送料込み(出品者負担)", delivery_way: "未定", delivery_area: "大阪府", delivery_day: "1~2日で発送", created_at: "00000016", updated_at: "00000016", user_id: "1", category_id: "16",brand_id: "2",size_id: "1")
 
 4.times do |index|
   Product.create!(name: "アイテム#{index + 11}", price: "#{index + 11}000", text: "アイテム#{index + 5 }のテキスト",status: "0", stage: "新品・未使用", delivery_responsivility: "送料込み(出品者負担)", delivery_way: "ゆうゆうメルカリ便", delivery_area: "大阪府", delivery_day: "1~2日で発送", created_at: "0000000#{index + 5}", updated_at: "0000000#{index}", user_id: "1", category_id: "#{index + 3 }",brand_id: "2",size_id: "1")

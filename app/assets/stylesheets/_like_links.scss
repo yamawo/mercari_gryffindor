@@ -1,14 +1,20 @@
-.btn.btn-default.glyphicon.glyphicon-heart{
+.iine-status{
   font-size: 14px;
-  display: inline-block;
-  margin: 1px 0 0 8px;
   vertical-align: middle;
-  float: right;
+  color: red;
+  border-radius: 50%;
+  transition: all 1s ease 0s;
 }
-.btn.btn-default.glyphicon.glyphicon-heart-empty{
+.iine-status:hover {
+  cursor: pointer;
+  transform: scale(100, 100);
+}
+
+.iine-status-empty{
   font-size: 14px;
-  display: inline-block;
-  margin: 1px 0 0 8px;
   vertical-align: middle;
-  float: right;
+  color: #ccc;
+  transition: all 0.1s linear 0s;
+  border-radius: 50%;
+  cursor: pointer;
 }

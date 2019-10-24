@@ -75,6 +75,21 @@
       %p.products-show__product-details__text__inner
         = @product.text
     .products-show__product-details__other
+    .products-show__product-details__other__left
+    %span.products-show__product-details__other__left__like
+      .products-show__product-details__other__left__like__second
+        %i.far.fa-heart.iine-status-empty
+        %span いいね!
+        %span.like-link
+          = @product.likes.count.to_s
+    %a.products-show__product-details__other__left__report
+      %i.far.fa-flag
+      %span 不適切な商品の報告
+    .products-show__product-details__other__right
+      %a.products-show__product-details__other__right__report
+        = link_to ""
+        %i.fas.fa-lock.products-show__product-details__other__right__report__icon
+        %span.products-show__product-details__other__right__report__link あんしん・あんぜんへの取り組み
   .products-show__white-box
     %a.products-show__white-box__edit 商品の編集
     = link_to '商品の編集', edit_product_path(params[:id]), class: "products-show__white-box__edit"
@@ -193,6 +208,7 @@
       .clearfix
   .products-show__other-products
     %section.products-show__other-products__item-box
+    - if @array.length >= 2
       %h2.products-show__other-products__item-box__head
         = link_to "#{@product.user.nickname}さんのその他の出品"
       .products-show__other-products__item-box__content
