@@ -153,7 +153,7 @@
       %span.products-show__product-details__price__text= number_to_currency(@product.price, :format => "%u%n", :unit => "￥")
       %span.products-show__product-details__price__tax （税込）
       %span.products-show__product-details__price__postage 送料込み
-    = link_to product_product_confirmation_path, class: "products-show__product-details__btn" do
+    = link_to product_product_confirmation_path(params[:id]), class: "products-show__product-details__btn" do
       購入画面に進む
     .products-show__product-details__text
       %p.products-show__product-details__text__inner
