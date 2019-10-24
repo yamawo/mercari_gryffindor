@@ -183,17 +183,18 @@
         = link_to ""
         %i.fas.fa-lock.products-show__product-details__other__right__report__icon
         %span.products-show__product-details__other__right__report__link あんしん・あんぜんへの取り組み
-  %ul.products-show__products-ide-link
-    %li.products-show__products-ide-link__back
-      - if @product.previous.present?
-        = link_to product_path(@product.previous),class: "products-show__products-ide-link__back__link" do
-          = @product.previous.name
-      %i.fas.fa-angle-left.products-show__products-ide-link__back__icon
-    %li.products-show__products-ide-link__next
-      - if @product.next.present?
-        = link_to product_path(@product.next),class: "products-show__products-ide-link__next__link" do
-          = @product.next.name
-      %i.fas.fa-angle-right.products-show__products-ide-link__next__icon
+  - if @array.length >= 1
+    %ul.products-show__products-ide-link
+      %li.products-show__products-ide-link__back
+        - if @product.previous.present?
+          = link_to product_path(@product.previous),class: "products-show__products-ide-link__back__link" do
+            = @product.previous.name
+        %i.fas.fa-angle-left.products-show__products-ide-link__back__icon
+      %li.products-show__products-ide-link__next
+        - if @product.next.present?
+          = link_to product_path(@product.next),class: "products-show__products-ide-link__next__link" do
+            = @product.next.name
+        %i.fas.fa-angle-right.products-show__products-ide-link__next__icon
   .products-show__link-box
     %ul.products-show__link-box__media
       %li.products-show__link-box__media__list
@@ -208,7 +209,7 @@
       .clearfix
   .products-show__other-products
     %section.products-show__other-products__item-box
-    - if @array.length >= 2
+    - if @array.length >= 1
       %h2.products-show__other-products__item-box__head
         = link_to "#{@product.user.nickname}さんのその他の出品"
       .products-show__other-products__item-box__content
