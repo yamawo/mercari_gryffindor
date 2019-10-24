@@ -26,7 +26,7 @@
                                         必須
                                 %p.selling__main__sec__content__form__write__upload__p
                                     最大10枚までアップロードできます
-                                = f.label :image, for: "product_product_images_attributes_0_image", class: "selling__main__sec__content__form__write__uploads__input-area"
+                                = f.label :image, for: "product_product_images_attributes_0_image", class: "selling__main__sec__content__form__write__upload__input-area"
                                 = f.fields_for :product_images do |i|  # input area
                                     .selling__main__sec__content__form__write__upload__box.clearfix
                                         #preview

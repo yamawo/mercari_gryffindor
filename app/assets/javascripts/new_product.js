@@ -1,9 +1,9 @@
 if (window.location.href.match(/\/products+\/new/)){
     $(window).on("turbolinks:load", function(){
-        let dropzone = $(".selling__main__sec__content__form__write__upload__box__items");
+        let dropzone = $(".selling__main__sec__content__form__write__upload__input-area__box__items");
         let dropzone2 = $(".selling__main__sec__content__form__write__upload__box2__items2");
         let appendzone = $(".selling__main__sec__content__form__write__upload__box2");
-        let input_area = $(".selling__main__sec__content__form__write__upload__box__items__input-area");
+        let input_area = $(".selling__main__sec__content__form__write__upload__input-area");
         let preview = $("#preview");
         let preview2 = $("#preview2");
 
@@ -16,7 +16,7 @@ if (window.location.href.match(/\/products+\/new/)){
 
 
         // 新規画像投稿の場合の処理
-        $(".selling__main__sec__content__form__write__upload__box, .selling__main__sec__content__form__write__upload__box2").on("change", 'input[type="file"].selling__main__sec__content__form__write__upload__box__items__input-area__field', function(){
+        $(".selling__main__sec__content__form__write__upload__input-area__box, .selling__main__sec__content__form__write__upload__box2").on("change", 'input[type="file"].selling__main__sec__content__form__write__upload__input-area__box__items__field', function(){
             // dropされたファイルデータをpropで取って変数fileに入れ込む
             let file = $(this).prop("files")[0];
             // 配列に格納
@@ -92,13 +92,13 @@ if (window.location.href.match(/\/products+\/new/)){
             }
             // 複数画像を投稿するためにinputタグを複数設置  // #FIXME ２段目は分岐させて２段目だけにlabelをつけるようにさせる（IDとかでつける）
             let new_image = $(
-                `<input id="product_product_images_attributes_${images.length}_image" class="selling__main__sec__content__form__write__upload__box__items__input-area__field" data-image="${images.length}" type="file" name="product[product_images_attributes][${images.length}][image]">`
+                `<input id="product_product_images_attributes_${images.length}_image" class="selling__main__sec__content__form__write__upload__input-area__box__items__field" data-image="${images.length}" type="file" name="product[product_images_attributes][${images.length}][image]">`
             );
             input_area.append(new_image);
-            $(`label.selling__main__sec__content__form__write__upload__box__items__input-area`).attr("for", `product_product_images_attributes_${images.length}_image`)
+            $(`label.selling__main__sec__content__form__write__upload__input-area`).attr("for", `product_product_images_attributes_${images.length}_image`)
         });
         // 削除ボタン
-        $(".selling__main__sec__content__form__write__upload__box, .selling__main__sec__content__form__write__upload__box2").on("click", ".btn_delete", function(){
+        $(".selling__main__sec__content__form__write__upload__input-area__box, .selling__main__sec__content__form__write__upload__box2").on("click", ".btn_delete", function(){
             // 削除ボタンを押した画像を取得する
             let target_image = $(this).parent().parent();
             //削除画像のカスタムデータ属性data-image番号を取得
@@ -118,7 +118,7 @@ if (window.location.href.match(/\/products+\/new/)){
             }
 
             if (images.length == 0){
-                $('input[type="file"].selling__main__sec__content__form__write__upload__box__items__input-area__field').attr({
+                $('input[type="file"].selling__main__sec__content__form__write__upload__input-area__box__items__field').attr({
                     "data-image": 0
                 })
             }

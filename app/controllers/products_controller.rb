@@ -204,7 +204,6 @@ class ProductsController < ApplicationController
   end
   
   def show
-
   end
 
   def selling_stage
@@ -212,15 +211,6 @@ class ProductsController < ApplicationController
     @products = Product.all.order("id ASC")
     
   end
-
-  def selling_stage
-   
-  end
-
-  def selling_stage
-   
-  end
-
 
   private 
 
