@@ -20,11 +20,8 @@ class ProductsController < ApplicationController
   
   def create
     @product = Product.new(product_params)    #保存できたかどうかで分岐させたいのでnew
-    if @product.save
-      respond_to do |format|
-        format.json
-      end
-    end
+    @product.save
+    redirect_to controller: :products, action: :index
   end
   
   def edit
