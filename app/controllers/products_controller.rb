@@ -19,13 +19,74 @@ class ProductsController < ApplicationController
   end
   
   def create
-    @product = Product.new(product_params)    #保存できたかどうかで分岐させたいのでnew
+    @product = Product.new(product_params)
     @product.save
     redirect_to controller: :products, action: :index
   end
   
   def edit
     @edit_product = Product.find(params[:id])
+    
+    #孫カテゴリーを取得
+    grandchild = @edit_product.category_id
+    @grandchild = Category.find(grandchild)
+    grandchildren = Category.where(ancestry: @grandchild.ancestry)
+    @grandchildren = [["---", "---"]]
+    grandchildren.each do |grandchild|
+      @grandchildren << [grandchild.name, grandchild.id]
+    end
+    #子カテゴリーを取得
+    @child = @grandchild.parent
+    children = Category.where(ancestry: @child.ancestry)
+    @children = [["---", "---"]]
+    children.each do |child|
+      @children << [child.name, child.id]
+    end
+    #親カテゴリーを取得
+    @parent = @child.parent
+    parents = Category.where(ancestry: @parent.ancestry)
+    @parents = [["---", "---"]]
+    parents.each do |parent|
+      @parents << [parent.name, parent.id]
+    end
+    
+    respond_to do |format|
+      format.json
+      format.html
+    end
+    
+    #サイズを取得
+    g_id = @grandchild.id
+    p_id = @child.id
+    if p_id == 2 || p_id == 21 || p_id == 43 || p_id == 62 || p_id == 78 || p_id == 186 || p_id == 201 || p_id == 214 || p_id == 238 || p_id == 270 || g_id == 1045 || g_id == 1057
+      sizes = Size.where(id: 1..10)#服のサイズ
+    elsif p_id == 248 || g_id == 1042 || g_id == 1053
+      sizes = Size.where(id: 11..26)#メンズ靴サイズ
+    elsif p_id == 67 || g_id == 1043 || g_id == 1054
+      sizes = Size.where(id: 27..42)#レディース靴サイズ
+    elsif p_id == 346 || p_id == 358 || p_id == 367
+      sizes = Size.where(id: 62..67)#ベビー服~95cmサイズ
+    elsif p_id == 376 || p_id == 395 || p_id == 410 || g_id == 1047 || g_id == 1055
+      sizes = Size.where(id: 48..54)#キッズ服~100cmサイズ
+    elsif p_id == 419 || g_id == 1055 || g_id == 1044
+      sizes = Size.where(id: 55..62)#キッズ・ベビー靴サイズ
+    elsif g_id == 927
+      sizes = Size.where(id: 68..77)#テレビサイズ
+    elsif g_id == 1234
+      sizes = Size.where(id: 90..95)#オートバイサイズ
+    elsif g_id == 1254
+      sizes = Size.where(id: 96..103)#ヘルメットサイズ
+    elsif p_id == 1201
+      sizes = Size.where(id: 104..116)#タイヤサイズ
+    elsif g_id == 1052
+      sizes = Size.where(id: 117..123)#スキー板のサイズ
+    elsif g_id == 1040
+      sizes = Size.where(id: 124..130)#スノーボードのサイズ
+    end
+    @sizes = ["---"]
+    sizes.each do |size|
+      @sizes << [size.name, size.id]
+    end
     render layout: false
   end
 
