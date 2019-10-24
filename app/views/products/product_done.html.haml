@@ -1,5 +1,4 @@
 // ここに商品購入ができたページのフロント部分を実装する
-
 %h2 購入が完了しました！
-%p Apple MacBook Pro 13インチ
-%p ¥3,500(送料込み)
+%p= @product.name
+%p= @product.price

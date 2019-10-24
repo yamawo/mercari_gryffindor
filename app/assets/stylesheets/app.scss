@@ -11,11 +11,13 @@ h1{
   width: 100%;
   height: 100px;
   border-bottom: solid 1px rgb(244, 244, 253);
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
   &__inner{
   width: 1020px;
   margin: 0 auto;
   padding: 8px 0 0;   
   font-size: 14px; 
+  
   }
   &__top{
   display: flex;
@@ -181,7 +183,7 @@ div {
   position: relative;
   top: -10px;
   transition: 1.0s ;
-  .fa.fa-heart-o{
+  .far.fa-heart{
   color: rgb(204, 204, 204);
   font-size: 20px;
   margin-right: 6px;
@@ -191,7 +193,7 @@ div {
 .sp-header-iine:hover {
   color:rgb(0, 162, 255);
 }
-.fa.fa-heart-o:hover {
+.far.fa-heart:hover {
   color:rgb(0, 162, 255);
 }
 .sp-header-notice{
@@ -203,13 +205,13 @@ div {
 .sp-header-notice:hover {
   color:rgb(0, 162, 255);
 }
-.fa.fa-bell-o{
+.far.fa-bell{
   color: rgb(204, 204, 204);
   font-size: 20px;
   margin-right: 5px;
   transition: 1.0s ;
 }
-.fa.fa-bell-o:hover {
+.far.fa-bell:hover {
   color:rgb(0, 162, 255);
 }
 .sp-header-todolist{

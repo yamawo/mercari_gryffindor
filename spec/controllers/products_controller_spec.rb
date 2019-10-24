@@ -1,7 +1,11 @@
 require 'rails_helper'
 
 describe ProductsController do
+  
   describe 'GET #show' do
+    
+    
+    
     it "assigns the requested puroduct to @product" do
       create(:brand)
       create(:size)
@@ -31,7 +35,9 @@ describe ProductsController do
       get :show, params: {  id: product }
       expect(response).to render_template :show
     end
+
   end
+  
   let(:brand) { create(:brand) }
   let(:size) { create(:size) }
   let(:category) { create(:category) }
@@ -51,4 +57,21 @@ describe ProductsController do
       end
     end
   end
+
+  describe 'GET #product_confirmation' do
+    context 'log in' do
+      before do
+        login user
+      end
+      it "renders the :product_confirmation template" do
+        create(:brand)
+        create(:size)
+        create(:category)
+        create(:product)
+        get :product_confirmation, params: { product_id: 2, id: 2 }
+        expect(response).to redirect_to(card_registration_form_users_path)
+      end
+    end
+  end
+
 end

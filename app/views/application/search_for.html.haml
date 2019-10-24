@@ -1,0 +1,16 @@
+.search_for-main
+  .search_for-main__products
+    .search_for-main__name
+      .search_for-main__name_a
+        = @q.name_cont
+      .search_for-main__name_b
+        の検索結果
+    .search_for-main__count
+      = @count + "件表示"
+    .search_for-main__products-box
+      = render partial: "products/products_element", collection: @products
+  .search_for-main__breadcrumb
+    - breadcrumb :product, @q
+    = render "shared/breadcrumbs"
+= render "shared/download-ad"
+= render "shared/sell-btn"
