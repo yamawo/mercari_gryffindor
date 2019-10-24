@@ -22,7 +22,7 @@ size_blocks[1168..1297].each_with_index do |size_block, i|
 end
 
 #カテゴリーデータ取得
-file = File.open("カテゴリー一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
+file = File.open("category-index.htm")
 doc = Nokogiri::HTML(file)
 
 parent_category_blocks = doc.search(".category-list-individual-box")
