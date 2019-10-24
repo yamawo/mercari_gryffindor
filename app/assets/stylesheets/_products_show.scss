@@ -290,6 +290,7 @@
         color: #0099e8;
         position: absolute;
         left: 40px;
+        margin-top: 10px;
       }
       &__icon{
         color: #0099e8;
@@ -308,6 +309,7 @@
         color: #0099e8;
         position: absolute;
         right: 40px;
+        margin-top: 10px;
       }
       &__icon{ 
         color: #0099e8;
@@ -449,6 +451,33 @@
             }
           }
         }
+      }
+    }
+  }
+  &__product-name{
+    position: relative;
+    border-top: 1px solid #eee;
+    &__main{
+      width: 1000px;
+      margin: 0 auto;
+      padding: 16px 0;
+      &__site{
+        display: inline-block;
+        font-size: 12px;
+        line-height: 1.2;
+      }
+      &__icon{
+        margin: 0 8px;
+        font-size: 9px;
+        color: #888;
+        display: inline-block;
+        font-size: 16px;
+      }
+      &__product{
+        display: inline-block;
+        font-size: 12px;
+        line-height: 1.2;
+        font-weight: 600;
       }
     }
   }
