@@ -3,7 +3,7 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
         let dropzone = $(".selling__main__sec__content__form__write__upload__box__items");
         let dropzone2 = $(".selling__main__sec__content__form__write__upload__box2__items2");
         let appendzone = $(".selling__main__sec__content__form__write__upload__box2");
-        let input_area = $(".selling__main__sec__content__form__write__upload__box__items__input-area");
+        let input_area = $(".selling__main__sec__content__form__write__upload__input-area");
         let preview = $("#preview");
         let preview2 = $("#preview2");
 
@@ -22,7 +22,7 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
             // カスタムデータ属性を付与
             img.data("image", index)
             // 画像につける編集・削除ボタン
-            let btn_wrapper = $('<div class="btn_wrapper"><a class="btn_edit">編集</a><a class="btn_delete">削除</a></div>');
+            let btn_wrapper = $('<div class="btn_wrapper"><label class="btn_edit">編集</label><a class="btn_delete">削除</a></div>');
             // 画像に編集・削除ボタンをつける
             img.append(btn_wrapper);
             
@@ -46,6 +46,10 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
             })
             // dropエリアの大きさを可変
             dropzone.css({
+                "width": `calc(100% - (20% * ${images.length}))`
+            })
+            // inputareaも可変させる
+            input_area.css({
                 "width": `calc(100% - (20% * ${images.length}))`
             })
         // 画像が５枚の場合、１段目のdropエリアを削除して、２段目を出させる
@@ -118,7 +122,7 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
             let img = $(`<div class="add_img"><div class="img_area"><img class="image"></div></div>`);
 
             reader.onload = function(e){
-                let btn_wrapper = $('<div class="btn_wrapper"><a class="btn_edit">編集</a><a class="btn_delete">削除</a></div>');
+                let btn_wrapper = $('<div class="btn_wrapper"><label class="btn_edit">編集</label><a class="btn_delete">削除</a></div>');
                 // 画像に削除・編集ボタン付与
                 img.append(btn_wrapper);
                 // src取りたいのでattr
@@ -143,7 +147,7 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
                 })
                 // dropエリアの大きさを可変
                 dropzone.css({
-                    "width": `calc(100% - (20% * ${images.length}))`
+                    "width": `calc(620px - (20% * ${images.length}))`
                 })
             // 画像が５枚の場合、１段目のdropエリアを削除して、２段目を出させる
             } else if (images.length == 5){
@@ -172,7 +176,7 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
                     image.data("image", index + 5);
                     preview2.append(image);
                     dropzone2.css({
-                        "width": `calc(100% - (20% * ${images.length - 5}))`
+                        "width": `calc(620px - (20% * ${images.length - 5}))`
                     });
                 });
                 // 画像が１０枚になったら２段目のdropエリアを削除
