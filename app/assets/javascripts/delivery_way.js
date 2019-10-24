@@ -7,7 +7,7 @@ $(document).on("turbolinks:load", function(){
                   <div class="selling__main__sec__content__form__write__content__box__group__select">
                     <i class="fas fa-chevron-down selling__main__sec__content__form__write__content__box__group__select__icon">
                     </i>
-                    <select class="selling__main__sec__content__form__write__content__box__group__select__list" name="product[delivery_way]">
+                    <select class="selling__main__sec__content__form__write__content__box__group__select__list" name="product[delivery_way]" id="delivery_way">
                       <option value="---">---</option>
                       <option value="未定">未定</option>
                       <option value="らくらくメルカリ便">らくらくメルカリ便</option>
@@ -23,7 +23,7 @@ $(document).on("turbolinks:load", function(){
                 </div>`
   const option1 = document.getElementById("product_delivery_responsivility").value;
   if(option1 == "---") {
-    $("#delivery_method").remove();
+    $("#delivery_way").val("---");
   }else if(document.getElementById("delivery_method") != null){
     return
   }else{

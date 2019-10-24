@@ -11,24 +11,36 @@ describe ProductsController, type: :controller do
     
   end
   describe "#create" do 
-    # let(:product) {attributes_for(:product)}
-    # let(:product_image) {attributes_for(:product_image)}
-    # product["product_images_attributes"] = {"0" => product_image}
-    params = { product_images_attributes: [FactoryBot.attributes_for(:product_image)]}
+    fail_path = File.join(Rails.root, 'public/images/a15451168d02bf14fd28c9110b161f8d.jpg')
+    fail = Rack::Test::UploadedFile.new(fail_path)
+    binding.pry
+    image = { "product_images_attributes" => {"0" => {"image" => fail}} } 
+    let(:params) { { product: attributes_for(:product_with_images, :image) } }
+    
     context "log in" do
       before do
         login user
       end
 
       context "can save" do #保存できた時
+        category = FactoryBot.create(:category)
+        user = FactoryBot.create(:user)
+        size = FactoryBot.create(:size)
+        brand = FactoryBot.create(:brand)
         subject {
           post :create,
-          product: FactoryBot.build(:product, user_id: "1", category_id: "1", size_id: product.size.id, brand_id: product.brand.id, category: "メンズ", product_images_attributes: "sample")
+          params: params.merge(image)
         }
-
+        
         it "count up product" do #モデルのレコードの総数が1個増えたかどうかを確かめる
-          binding.pry
+          product = FactoryBot.build(:product_with_images)
           expect{ subject }.to change(Product, :count).by(1)
+        end
+       
+        it "count up product_image" do #モデルのレコードの総数が1個増えたかどうかを確かめる
+          product = create(:product_with_images)
+          hash = {product: params[:product].merge(image)}
+          expect{post :create, params: hash}.to change(ProductImage, :count).by(1)
         end
 
         it "redirects to root_path" do

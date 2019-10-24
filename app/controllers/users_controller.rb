@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  layout "users_layout"
   require "payjp"
   after_action :sns_create, only: :step8
   before_action :set_year, :set_month, :set_day
@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   
   def step3
     @user = User.new
+    
   end
   
   def step4

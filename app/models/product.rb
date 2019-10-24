@@ -3,7 +3,7 @@ class Product < ApplicationRecord
   has_many :product_images
   accepts_nested_attributes_for :product_images
   belongs_to :user, dependent: :delete
-  belongs_to :brand
+  belongs_to :brand, optional: true
   belongs_to :size
 
   with_options presence: true do
