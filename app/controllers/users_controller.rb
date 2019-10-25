@@ -100,6 +100,7 @@ class UsersController < ApplicationController
   end
 
   def mypage
+    @user = current_user
   end
 
   def logout
