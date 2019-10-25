@@ -1,6 +1,6 @@
 .search_for-main
   .search_for-main__side-bar
-    = search_form_for(@q, url:search_for_path, class: "search_form_side") do |f|
+    = search_form_for(@q, url:select_search_path, class: "search_form_side") do |f|
       .search_for-main__side-bar--soat
       .search_for-main__side-bar--title
         = f.label "詳細検索"
