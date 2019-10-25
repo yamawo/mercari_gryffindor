@@ -26,7 +26,9 @@ class ProductsController < ApplicationController
   
   def edit
     @edit_product = Product.find(params[:id])
-    
+    gon.edit_product = @edit_product
+    gon.edit_product_images = @edit_product.product_images
+
     #孫カテゴリーを取得
     grandchild = @edit_product.category_id
     @grandchild = Category.find(grandchild)
@@ -91,6 +93,7 @@ class ProductsController < ApplicationController
   end
 
   def update
+    # @product.update(params)←このparamsの中にhidden_fieldの値が入ってる
   end
 
   def create_category_children

@@ -202,6 +202,56 @@
                   }
                 }
               }
+              .selling__main__sec__content__form__write__upload__box__new_items{
+                width: 100%;
+                height: 100%;
+                display: block;
+                float: right;
+                &__input-area{
+                  width: 100%;
+                  margin-left: 0;
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  min-height: 162px;
+                  background: #f5f5f5;
+                  border: 1px dashed #cccccc;
+                  font-size: 0;
+                  text-align: center;
+                  cursor: pointer;
+                  transition: box-shadow ease-out .3s, -webkit-box-shadow ease-out .3s;
+                  z-index: 1;
+                  &__field{
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    display: none;
+                  }
+                }
+                &__description{
+                  position: absolute;
+                  top: 43%;
+                  right: 0;
+                  left: 0;
+                  display: block;
+                  text-align: center;
+                  font-size: 14px;
+                  line-height: 1.5;
+                  z-index: 1;
+                  height: 40px;
+                  &__text{
+                    display: block;
+                    text-align: center;
+                    font-size: 14px;
+                    line-height: 1.5;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                    pointer-events: none;
+                  }
+                }
+              }
             }
             &__box2{
               display: none;

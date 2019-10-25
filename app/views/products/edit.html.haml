@@ -3,6 +3,7 @@
   %head
     %meta{content: "text/html; charset=UTF-8", http: { equiv: "Content-Type"}}
     %title Mercari
+    = include_gon
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
@@ -30,10 +31,22 @@
                     #preview
                       -# ここにプレビューを入れていく（１枚目〜５枚目）
                     .selling__main__sec__content__form__write__upload__box__items
+                      -# このlabelはすでに登録済みの画像のinputに紐づいているlabel
                       = i.label :image, for: "product_product_images_attributes_0_image", class: "selling__main__sec__content__form__write__upload__box__items__input-area" do
+                        -# このinputはすでに登録済みの画像のinput
                         = i.file_field :image, class: "selling__main__sec__content__form__write__upload__box__items__input-area__field", "data-image": 0
                         .selling__main__sec__content__form__write__upload__box__items__description
                           %pre.selling__main__sec__content__form__write__upload__box__items__description__text
+                            ドラッグアンドドロップ
+                            またはクリックしてファイルをアップロード
+                        -# 新規画像追加用の箱
+                    .selling__main__sec__content__form__write__upload__box__new_items
+                      -# このlabelは新規画像追加用のinputに紐づいているlabel
+                      = i.label :image, for: "product_product_images_attributes_0_new_image", class: "selling__main__sec__content__form__write__upload__box__new_items__input-area" do
+                        -# このinputは新規画像追加用のinput
+                        = i.file_field :image, id: "product_product_images_attributes_0_new_image", class: "selling__main__sec__content__form__write__upload__box__new_items__input-area__field", "data-image": 0
+                        .selling__main__sec__content__form__write__upload__box__new_items__description
+                          %pre.selling__main__sec__content__form__write__upload__box__new_items__description__text
                             ドラッグアンドドロップ
                             またはクリックしてファイルをアップロード
                   -# -# ここから２段目のプレビューとドロップエリア

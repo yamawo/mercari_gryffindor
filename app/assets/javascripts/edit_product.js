@@ -1,17 +1,62 @@
-if (window.location.href.match(/\/products+\/new/)){
+if (window.location.href.match(/\/products\/\d+\/edit/)){
     $(window).on("turbolinks:load", function(){
         let dropzone = $(".selling__main__sec__content__form__write__upload__box__items");
+        let new_dropzone = $(".selling__main__sec__content__form__write__upload__box__new_items");
         let dropzone2 = $(".selling__main__sec__content__form__write__upload__box2__items2");
         let appendzone = $(".selling__main__sec__content__form__write__upload__box2");
         let input_area = $(".selling__main__sec__content__form__write__upload__box__items__input-area");
+        let new_input_area = $(".selling__main__sec__content__form__write__upload__box__new_items__input-area");
         let preview = $("#preview");
         let preview2 = $("#preview2");
 
         // 登録済み画像と新規追加画像を全て格納する配列（ビュー表示用）、削除編集で使用する
         let images = [];
 
+        // 登録済み画像のプレビュー表示
+        gon.edit_product_images.forEach(function(image){
+            let img = $(`<div class="add_img"><div class="img_area"><img class="image"></div></div>`);
+            // カスタムデータ属性付与
+            img.data("image")
+            let btn_wrapper = $('<div class="btn_wrapper"><a class="btn_edit">編集</a><a class="btn_delete">削除</a></div>');
+            // 画像に編集・削除ボタンをつける
+            img.append(btn_wrapper);
+            // 登録済みの画像をimagesに格納
+            images.push(img)
+        })
+
+        // 画像が４枚以下の場合
+        if (images.length <= 4){
+            $("#preview").empty();
+            $.each(images, function(image){
+                console.log(images);
+                image.data("image");
+                preview.append(image);
+            })
+            new_dropzone.css({
+                "width": `calc(100% - (20% * ${images.length}))`
+            })
+            // 画像が５枚のとき１段目の枠を消し、２段目の枠を出す
+        } else if (images.length == 5){
+            $("#preview").empty();
+            $.each(images, function(image){
+                image.data("image");
+                preview.append(image);
+            });
+            // TODO ２段目実装時にコメントアウト外すこと
+            // appendzone.css({
+            //     "display": "block"
+            // });
+            new_dropzone.css({
+                "display": "none"
+            });
+            preview2.empty();
+        } //else if (images.length >= 6){
+        //     // １〜５枚目の画像を抽出
+        // }
+
+        
         // 新規画像投稿の場合の処理
-        $(".selling__main__sec__content__form__write__upload__box, .selling__main__sec__content__form__write__upload__box2").on("change", 'input[type="file"].selling__main__sec__content__form__write__upload__box__items__input-area__field', function(){
+        $(".selling__main__sec__content__form__write__upload__input-area__box, .selling__main__sec__content__form__write__upload__box2").on("change", 'input[type="file"].selling__main__sec__content__form__write__upload__input-area__box__items__input-area__field', function(){
             // dropされたファイルデータをpropで取って変数fileに入れ込む
             let file = $(this).prop("files")[0];
             // ファイル読み取りを行えるようにするようにFileReaderに格納
