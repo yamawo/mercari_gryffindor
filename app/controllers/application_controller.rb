@@ -16,12 +16,13 @@ class ApplicationController < ActionController::Base
   def search_product
     @q = Product.ransack(params[:q])
     @products = @q.result(distinct: true)
-    @category = []
+    # @category = []
     @category = Category.where(ancestry: nil)
   end
 
   def search_for
     @q = Product.search(search_params)
+    # binding.pry
     @products = @q.result(distinct: true)
     @count = @products.count.to_s
   end
@@ -38,6 +39,10 @@ class ApplicationController < ActionController::Base
   private
 
   def search_params
-    params.require(:q).permit(:name_cont)
+    params.require(:q).permit(:name_cont, :category_id_eq)
+  end
+
+  def application
+    
   end
 end

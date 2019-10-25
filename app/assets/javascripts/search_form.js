@@ -1,12 +1,12 @@
 $(function(){
 
   let get_HTML = function(){
-  let html = `<select class="category_children" name="q[category_id]" id="q_category_id">`
+  let html = `<select class="category_children" name="q[category_id_eq]" id="q_category_id" >`
   return html;
   };
 
   let get_HTML_indirects = function(){
-  let html = `<select class="category_indirects" name="q[category_id]" id="q_category_id">`
+  let html = `<select class="category_indirects" name="q[category_id_eq]" id="q_category_id">`
   return html;
   };
   
@@ -26,6 +26,7 @@ $(function(){
     .done(function(datas){
         $(".category_children").remove();
         $(".search_for-main__side-bar--category").append(get_HTML)
+        $(".category_children").append(`<option value>全て</option>`)
           datas.forEach(function(data){
             option = get_option(data);
             $(".category_children").append(option)
@@ -44,7 +45,9 @@ $(function(){
       data: {id: id}
     })
     .done(function(datas){
+      $(".category_indirects").remove();
       $(".search_for-main__side-bar--category").append(get_HTML_indirects)
+      $(".category_indirects").append(`<option value>全て</option>`)
       datas.forEach(function(data){
         option = get_option(data);
         $(".category_indirects").append(option)
