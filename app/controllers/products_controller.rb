@@ -61,7 +61,6 @@ class ProductsController < ApplicationController
     @category = Category.find(params[:format])
     if @category.ancestry == nil
     @categories = Product.where(category_id: @category.indirects.ids)
-    # binding.pry
     elsif @category.ancestry.match(/\//)
     @categories = Product.where(category_id: @category.id)
     else 
