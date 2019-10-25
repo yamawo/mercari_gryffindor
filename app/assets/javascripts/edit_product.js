@@ -9,6 +9,11 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
         let preview = $("#preview");
         let preview2 = $("#preview2");
 
+        // まずnewページで使ってたdropzoneは消す（画像分出るので）
+        dropzone.css({
+            "display": "none"
+        })
+
         // 配列の要素数を数える
         let images = gon.edit_product_images.length
         
@@ -34,7 +39,7 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
         images = [];
         
         // 新規画像投稿の場合の処理
-        $(".selling__main__sec__content__form__write__upload__input-area__box, .selling__main__sec__content__form__write__upload__box2").on("change", 'input[type="file"].selling__main__sec__content__form__write__upload__input-area__box__items__input-area__field', function(){
+        $(".selling__main__sec__content__form__write__upload__box, .selling__main__sec__content__form__write__upload__box2").on("change", 'input[type="file"].selling__main__sec__content__form__write__upload__box__new_items__input-area__field', function(){
             // dropされたファイルデータをpropで取って変数fileに入れ込む
             let file = $(this).prop("files")[0];
             // ファイル読み取りを行えるようにするようにFileReaderに格納
