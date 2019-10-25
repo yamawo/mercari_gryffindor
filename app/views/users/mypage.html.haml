@@ -13,7 +13,7 @@
           %figure.main__r-content__mypage-icon__a__image
             = image_tag "member_photo.png", size: "60x60", class: "main__r-content__mypage-icon__a__image__src"
           %h2.main__r-content__mypage-icon__a__name
-            まこ
+            = current_user.nickname
           .main__r-content__mypage-icon__a__number
             .main__r-content__mypage-icon__a__number__review
               評価
