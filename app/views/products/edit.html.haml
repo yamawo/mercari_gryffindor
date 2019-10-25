@@ -26,29 +26,37 @@
                     必須
                 %p.selling__main__sec__content__form__write__upload__p
                   最大10枚までアップロードできます
-                = f.fields_for :product_images do |i|  # input area
+                = f.fields_for :product_images do |i|
                   .selling__main__sec__content__form__write__upload__box.clearfix
-                    #preview
-                      -# ここにプレビューを入れていく（１枚目〜５枚目）
-                    .selling__main__sec__content__form__write__upload__box__items
-                      -# このlabelはすでに登録済みの画像のinputに紐づいているlabel
-                      = i.label :image, for: "product_product_images_attributes_0_image", class: "selling__main__sec__content__form__write__upload__box__items__input-area" do
-                        -# このinputはすでに登録済みの画像のinput
-                        = i.file_field :image, class: "selling__main__sec__content__form__write__upload__box__items__input-area__field", "data-image": 0
-                        .selling__main__sec__content__form__write__upload__box__items__description
-                          %pre.selling__main__sec__content__form__write__upload__box__items__description__text
-                            ドラッグアンドドロップ
-                            またはクリックしてファイルをアップロード
-                        -# 新規画像追加用の箱
-                    .selling__main__sec__content__form__write__upload__box__new_items
-                      -# このlabelは新規画像追加用のinputに紐づいているlabel
-                      = i.label :image, for: "product_product_images_attributes_0_new_image", class: "selling__main__sec__content__form__write__upload__box__new_items__input-area" do
-                        -# このinputは新規画像追加用のinput
-                        = i.file_field :image, id: "product_product_images_attributes_0_new_image", class: "selling__main__sec__content__form__write__upload__box__new_items__input-area__field", "data-image": 0
-                        .selling__main__sec__content__form__write__upload__box__new_items__description
-                          %pre.selling__main__sec__content__form__write__upload__box__new_items__description__text
-                            ドラッグアンドドロップ
-                            またはクリックしてファイルをアップロード
+                    - @edit_product.product_images.each do |p_image|
+                      #preview
+                        .add_img
+                          .img_area
+                            = image_tag p_image.image.url, "data-id": p_image.id
+                          .btn_wrapper
+                            .btn_edit
+                              編集
+                            .btn_delete
+                              削除
+                      .selling__main__sec__content__form__write__upload__box__items
+                        -# このlabelはすでに登録済みの画像のinputに紐づいているlabel
+                        = i.label :image, for: "product_product_images_attributes_0_image", class: "selling__main__sec__content__form__write__upload__box__items__input-area" do
+                          -# このinputはすでに登録済みの画像のinput
+                          = i.file_field :image, class: "selling__main__sec__content__form__write__upload__box__items__input-area__field", "data-image": 0
+                          .selling__main__sec__content__form__write__upload__box__items__description
+                            %pre.selling__main__sec__content__form__write__upload__box__items__description__text
+                              ドラッグアンドドロップ
+                              またはクリックしてファイルをアップロード
+                          -# 新規画像追加用の箱
+                      .selling__main__sec__content__form__write__upload__box__new_items
+                        -# このlabelは新規画像追加用のinputに紐づいているlabel
+                        = i.label :image, for: "product_product_images_attributes_0_new_image", class: "selling__main__sec__content__form__write__upload__box__new_items__input-area" do
+                          -# このinputは新規画像追加用のinput
+                          = i.file_field :image, id: "product_product_images_attributes_0_new_image", class: "selling__main__sec__content__form__write__upload__box__new_items__input-area__field", "data-image": 0
+                          .selling__main__sec__content__form__write__upload__box__new_items__description
+                            %pre.selling__main__sec__content__form__write__upload__box__new_items__description__text
+                              ドラッグアンドドロップ
+                              またはクリックしてファイルをアップロード
                   -# -# ここから２段目のプレビューとドロップエリア
                   -# .selling__main__sec__content__form__write__upload__box2.clearfix
                   -#   #preview2

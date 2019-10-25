@@ -9,39 +9,16 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
         let preview = $("#preview");
         let preview2 = $("#preview2");
 
-        // 登録済み画像と新規追加画像を全て格納する配列（ビュー表示用）、削除編集で使用する
-        let images = [];
-
-        // 登録済み画像のプレビュー表示
-        gon.edit_product_images.forEach(function(image){
-            let img = $(`<div class="add_img"><div class="img_area"><img class="image"></div></div>`);
-            // カスタムデータ属性付与
-            img.data("image")
-            let btn_wrapper = $('<div class="btn_wrapper"><a class="btn_edit">編集</a><a class="btn_delete">削除</a></div>');
-            // 画像に編集・削除ボタンをつける
-            img.append(btn_wrapper);
-            // 登録済みの画像をimagesに格納
-            images.push(img)
-        })
-
+        // 配列の要素数を数える
+        let images = gon.edit_product_images.length
+        
         // 画像が４枚以下の場合
-        if (images.length <= 4){
-            $("#preview").empty();
-            $.each(images, function(image){
-                console.log(images);
-                image.data("image");
-                preview.append(image);
-            })
+        if (images <= 4){
             new_dropzone.css({
-                "width": `calc(100% - (20% * ${images.length}))`
-            })
+                "width": `calc(100% - (20% * ${images}))`
+            }); console.log(images);
             // 画像が５枚のとき１段目の枠を消し、２段目の枠を出す
-        } else if (images.length == 5){
-            $("#preview").empty();
-            $.each(images, function(image){
-                image.data("image");
-                preview.append(image);
-            });
+        } else if (images == 5){
             // TODO ２段目実装時にコメントアウト外すこと
             // appendzone.css({
             //     "display": "block"
@@ -49,11 +26,12 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
             new_dropzone.css({
                 "display": "none"
             });
-            preview2.empty();
         } //else if (images.length >= 6){
         //     // １〜５枚目の画像を抽出
         // }
 
+        // 新規画像を入れる配列
+        images = [];
         
         // 新規画像投稿の場合の処理
         $(".selling__main__sec__content__form__write__upload__input-area__box, .selling__main__sec__content__form__write__upload__box2").on("change", 'input[type="file"].selling__main__sec__content__form__write__upload__input-area__box__items__input-area__field', function(){
@@ -62,7 +40,7 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
             // ファイル読み取りを行えるようにするようにFileReaderに格納
             let reader = new FileReader();
             let img = $(`<div class="add_img"><div class="img_area"><img class="image"></div></div>`);
-
+            
             reader.onload = function(e){
                 let btn_wrapper = $('<div class="btn_wrapper"><a class="btn_edit">編集</a><a class="btn_delete">削除</a></div>');
                 // 画像に削除・編集ボタン付与
@@ -79,8 +57,6 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
 
             // 画像が４枚以下の場合の処理
             if (images.length <= 4){
-                // 一度空にする
-                $("#preview").empty();
                 // eachでそれぞれ追加する画像を処理
                 $.each(images, function(index, image){
                     // カスタムデータ属性を付与する
@@ -88,13 +64,11 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
                     preview.append(image);
                 })
                 // dropエリアの大きさを可変
-                dropzone.css({
+                new_dropzone.css({
                     "width": `calc(100% - (20% * ${images.length}))`
                 })
             // 画像が５枚の場合、１段目のdropエリアを削除して、２段目を出させる
             } else if (images.length == 5){
-                // ４枚以下の時と同じ
-                $("preview").empty();
                 $.each(images, function(index, image){
                     image.data("image", index);
                     preview.append(image);
@@ -104,11 +78,9 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
                     "display": "block"
                 });
                 // 1段目のdropエリアを削除
-                dropzone.css({
+                new_dropzone.css({
                     "display": "none"
                 });
-                // 画像は５枚なので２段目の画像は何もない状態を確認
-                preview2.empty();
             // 画像が６枚以上の場合
             } else if (images.length >= 6){
                 // 配列から０〜４枚目を抜き取って５枚目から抽出
@@ -155,12 +127,11 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
             // 削除した後の中身の数でCSSの処理を分岐
             // 画像が４枚以下の場合
             if (images.length <= 4){
-                $("#preview").empty();
                 $.each(images, function(index, image){
                     image.data("image", index);
                     preview.append(image);
                 })
-                dropzone.css({
+                new_dropzone.css({
                     "width": `calc(100% - (20% * ${images.length}))`,
                     "display": "block"
                 })
@@ -169,7 +140,6 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
                 })
             // 画像が５枚の場合は１段目のdropエリアを消して２段目のdropエリアを出す
             } else if (images.length == 5){
-                $("#preview").empty();
                 $.each(images, function(index, image){
                     image.data("image", index);
                     preview.append(image);
@@ -180,16 +150,13 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
                 dropzone2.css({
                     "width": "100%"
                 })
-                dropzone.css({
+                new_dropzone.css({
                     "display": "none"
                 })
-                preview2.empty();
             // 画像が６枚以上の場合
             } else {
                 // １〜５枚目の画像を抽出する
                 let pickup_images1 = images.slice(0, 5);
-                // １〜５枚目を１段目に表示させる
-                $("#preview").empty();
                 $.each(pickup_images1, function(index, image){
                     image.data("image", index);
                     preview.append(image);
