@@ -57,19 +57,20 @@ class ProductsController < ApplicationController
   end
 
   def category
-    # @product = Product.find(params[:id])
-    # @category = Product..where(category_id: @product.id.indirects.ids)
-    # @categorys = Category.where("ancestry LIKE ?", "@category.id")
     require 'base64'
-    category = Category.find_by(id: 2)
-    if category.ancestry == nil
-    @categories = Product.where(category_id: category.indirects.ids)
-    elsif category.ancestry =~ /3/
-    @categories = Product.where(category_id: category.id)
-    else 
-    @categories = Product.where(category_id: category.children.ids)
+    @category = Category.find(params[:format])
+    if @category.ancestry == nil
+    @categories = Product.where(category_id: @category.indirects.ids)
     # binding.pry
+    elsif @category.ancestry.match(/\//)
+    @categories = Product.where(category_id: @category.id)
+    else 
+    @categories = Product.where(category_id: @category.children.ids)
     end
+  end
+
+  def category_list
+    @parents = Category.where(ancestry: nil)
   end
 
   def search_size

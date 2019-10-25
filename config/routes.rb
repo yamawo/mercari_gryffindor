@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     get "product_done"
     collection do
       get "category"
+      get "category_list"
       get "create_category_children"
       get 'privacy_policy'
       get "create_category_grandchildren"
