@@ -21,6 +21,10 @@ class ApplicationController < ActionController::Base
   end
 
   def search_for
+
+    q = search_params[:category_id_eq] 
+    q = q.indirects
+    binding.pry
     @q = Product.search(search_params)
     # binding.pry
     @products = @q.result(distinct: true)
