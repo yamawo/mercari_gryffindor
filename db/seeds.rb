@@ -21,8 +21,22 @@ size_blocks[1168..1297].each_with_index do |size_block, i|
   size_id += 1
 end
 
+#ブランド取得
+file = File.open("レディース ブランド一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
+doc = Nokogiri::HTML(file)
+
+brand_blocks = doc.search(".brand-list-initial-box-brand-name")
+
+brand_id = 1
+brand_blocks.each do |brand_block|
+  brand = brand_block.at("p").inner_text
+  Brand.create(name: "#{brand}")
+  brand_id += 1
+end
+
 #カテゴリーデータ取得
-file = File.open("カテゴリー一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
+file = File.open("カテゴリー一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
+
 doc = Nokogiri::HTML(file)
 
 parent_category_blocks = doc.search(".category-list-individual-box")
@@ -46,21 +60,6 @@ parent_category_blocks.each_with_index do |parent_category_block,i|
     end
   end
 end
-
-#ブランド取得
-file = File.open("レディース ブランド一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
-doc = Nokogiri::HTML(file)
-
-brand_blocks = doc.search(".brand-list-initial-box-brand-name")
-
-brand_id = 1
-brand_blocks.each do |brand_block|
-  brand = brand_block.at("p").inner_text
-  Brand.create(name: "#{brand}")
-  brand_id += 1
-end
-
-
 
 file = File.open("メンズ ブランド一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
 doc = Nokogiri::HTML(file)

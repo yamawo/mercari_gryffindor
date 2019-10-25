@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   require 'payjp'
+  before_action :redirect_login, except: [:index, :show]
   before_action :set_product, only: [:show, :destroy]
 
   def index
@@ -193,6 +194,10 @@ class ProductsController < ApplicationController
   end
   
   def privacy_policy
+  end
+
+  def redirect_login
+    redirect_to new_user_session_path unless user_signed_in?
   end
 
 end
