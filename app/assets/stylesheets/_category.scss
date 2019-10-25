@@ -1,0 +1,38 @@
+.category-page{
+  margin: 40px auto 0;
+  width: 1020px;
+  height: 1000px;
+  display: block;
+  &__main{
+    &__list{
+      width: 100%;
+      &__one{
+        float: left;
+        margin: 16px 16px 0 0;
+        color: #0099e8;
+        &__text{
+        }
+      }
+    }
+    &__oll{
+      margin: 0 auto;
+      padding: 30px 0px 60px;
+      width: 1000px;
+      display: block;
+      &__heading{
+        font-size: 22px;
+        margin: 24px 0 8px;
+        line-height: 1.4;
+      }
+      &__contents{
+        display: flex;
+        flex-wrap: wrap;
+        &__element{
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          gap: 6px 6px;
+        }
+      }
+    }
+  }
+}
