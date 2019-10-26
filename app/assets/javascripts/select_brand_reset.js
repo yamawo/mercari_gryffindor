@@ -15,15 +15,11 @@ $(function(){
 
   //   })
   // })
-  
-  var brand_id = "aaa"
+
 
   $(".search_form_side").on("submit", function(){
     brand_name = $("#q_brand_id_eq").val();
-    console.log(brand_id);
-    brand_id = brand_name
-    console.log(brand_id);
-    $.cookie('brand_name',brand_id);
+    $.cookie('brand_name',brand_name);
   })
 
   // function get_brand_name()
@@ -33,8 +29,8 @@ $(function(){
 
   window.onload = function(){
     // console.log(brand_id);
-    var brand_id = $.cookie('brand_name');
-    $("#q_brand_id_eq").val(brand_id);
+    var brand = $.cookie('brand_name');
+    $("#q_brand_id_eq").val(brand);
    }
   
   })
