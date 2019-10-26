@@ -1,0 +1,8 @@
+%main.category-list
+  .category-list__main
+    .category-list__main__heading
+      %h.category-list__main__heading__txet カテゴリー一覧
+    .category-list__main__parents-box
+      - @parents.each do |parent|
+        = link_to category_products_path(parent.id),class: "category-list__main__parents-box__one" do
+          .category-list__main__parents-box__one__name=parent.name

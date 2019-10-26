@@ -1,0 +1,13 @@
+%main.category-page
+  .category-page__main
+    .category-page__main__list
+      - @category.children.limit(7).each do |child|   
+        .category-page__main__list__one
+          = link_to category_products_path(child.id), class: ".category-page__main__list__one__text" do
+            =child.name                  
+    .category-page__main__oll
+      %h1.category-page__main__oll__heading 
+        = "#{@category.name}の商品一覧"
+      .category-page__main__oll__contents
+        .category-page__main__oll__contents__element
+          = render partial: "products_element", collection: @categories

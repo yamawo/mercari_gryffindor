@@ -57,6 +57,22 @@ class ProductsController < ApplicationController
     end
   end
 
+  def category
+    require 'base64'
+    @category = Category.find(params[:format])
+    if @category.ancestry == nil
+    @categories = Product.where(category_id: @category.indirects.ids)
+    elsif @category.ancestry.match(/\//)
+    @categories = Product.where(category_id: @category.id)
+    else 
+    @categories = Product.where(category_id: @category.children.ids)
+    end
+  end
+
+  def category_list
+    @parents = Category.where(ancestry: nil)
+  end
+
   def search_size
     id = params[:value]
     category = Category.find(id)
@@ -172,6 +188,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
+  
   def product_images_params
     params.require(:product_images).permit({images: []})
   end
