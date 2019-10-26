@@ -1,9 +1,9 @@
 if (window.location.href.match(/\/products\/\d+\/edit/)){
     $(window).on("turbolinks:load", function(){
-        let dropzone = $(".selling__main__sec__content__form__write__upload__box__items");
-        let new_dropzone = $(".selling__main__sec__content__form__write__upload__box__new_items");
-        let dropzone2 = $(".selling__main__sec__content__form__write__upload__box2__items2");
-        let appendzone = $(".selling__main__sec__content__form__write__upload__box2");
+        let dropzone = $(".js-items");
+        let new_dropzone = $(".js-new_items");
+        let dropzone2 = $(".js-items2");
+        let appendzone = $(".js-box2");
         let input_area = $(".selling__main__sec__content__form__write__upload__box__items__input-area");
         let new_input_area = $(".selling__main__sec__content__form__write__upload__box__new_items__input-area");
         let preview = $("#preview");
@@ -14,16 +14,17 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
             "display": "none"
         })
 
-        // 配列の要素数を数える
-        let images = gon.edit_product_images.length
-        
+        // ビューで使う全ての画像が入った配列（dropzone可変で使用）
+        let images = gon.edit_product_images
+        // 新しい画像のみが入った配列（DBに保存させる用）
+        let new_images = []
         // 画像が４枚以下の場合
-        if (images <= 4){
+        if (images.length <= 4){
             new_dropzone.css({
-                "width": `calc(100% - (20% * ${images}))`
-            }); console.log(images);
+                "width": `calc(100% - (20% * ${images.length}))`
+            });
             // 画像が５枚のとき１段目の枠を消し、２段目の枠を出す
-        } else if (images == 5){
+        } else if (images.length == 5){
             // TODO ２段目実装時にコメントアウト外すこと
             // appendzone.css({
             //     "display": "block"
@@ -34,14 +35,17 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
         } //else if (images.length >= 6){
         //     // １〜５枚目の画像を抽出
         // }
-
-        // 新規画像を入れる配列
-        images = [];
         
         // 新規画像投稿の場合の処理
-        $(".selling__main__sec__content__form__write__upload__box, .selling__main__sec__content__form__write__upload__box2").on("change", 'input[type="file"].selling__main__sec__content__form__write__upload__box__new_items__input-area__field', function(){
+        $(".js-box, .js-box2").on("change", 'input[type="file"].selling__main__sec__content__form__write__upload__box__new_items__input-area__field', function(){
+            // ビューに表示するために、一時的に画像を入れる配列
+            let temporary_images = [];
+            // 2回目以降前のが残ってるので初期化
+            temporary_images.length = 0
             // dropされたファイルデータをpropで取って変数fileに入れ込む
             let file = $(this).prop("files")[0];
+
+            // 新規追加画像を保存
             // ファイル読み取りを行えるようにするようにFileReaderに格納
             let reader = new FileReader();
             let img = $(`<div class="add_img"><div class="img_area"><img class="image"></div></div>`);
@@ -58,24 +62,25 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
             // FileReaderに使うオブジェクト。fileオブジェクトを読み込んでresultにdataをキーとするURL文字列が格納される
             reader.readAsDataURL(file);
             // ビュー用に格納
+            temporary_images.push(img)
+            // DBに送るための配列（ajaxでjs定義の配列を送れるかどうか謎）
+            new_images.push(img)
+            // 条件分岐, dropzone可変に使用
             images.push(img);
 
             // 画像が４枚以下の場合の処理
             if (images.length <= 4){
                 // eachでそれぞれ追加する画像を処理
-                $.each(images, function(index, image){
-                    // カスタムデータ属性を付与する
-                    image.data("image", index);
+                $.each(temporary_images, function(index, image){
                     preview.append(image);
                 })
                 // dropエリアの大きさを可変
                 new_dropzone.css({
                     "width": `calc(100% - (20% * ${images.length}))`
-                })
+                });
             // 画像が５枚の場合、１段目のdropエリアを削除して、２段目を出させる
             } else if (images.length == 5){
-                $.each(images, function(index, image){
-                    image.data("image", index);
+                $.each(temporary_images, function(index, image){
                     preview.append(image);
                 });
                 // 2段目のdropエリア
@@ -87,24 +92,24 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
                     "display": "none"
                 });
             // 画像が６枚以上の場合
-            } else if (images.length >= 6){
-                // 配列から０〜４枚目を抜き取って５枚目から抽出
-                let pickup_images = images.slice(5);
-                $.each(pickup_images, function(index, image){
-                    // indexは何枚目かの番号を数えてる
-                    image.data("image", index + 5);
-                    preview2.append(image);
-                    dropzone2.css({
-                        "width": `calc(100% - (20% * ${images.length - 5}))`
-                    });
-                });
-                // 画像が１０枚になったら２段目のdropエリアを削除
-                if (images.length == 10) {
-                    dropzone2.css({
-                        "display": "none"
-                    });
-                }
-            }
+            } // else if (images.length >= 6){
+            //     // 配列から０〜４枚目を抜き取って５枚目から抽出
+            //     let pickup_images = images.slice(5);
+            //     $.each(pickup_images, function(index, image){
+            //         // indexは何枚目かの番号を数えてる
+            //         image.data("image", index + 5);
+            //         preview2.append(image);
+            //         dropzone2.css({
+            //             "width": `calc(100% - (20% * ${images.length - 5}))`
+            //         });
+            //     });
+            //     // 画像が１０枚になったら２段目のdropエリアを削除
+            //     if (images.length == 10) {
+            //         dropzone2.css({
+            //             "display": "none"
+            //         });
+            //     }
+            // }
             // 複数画像を投稿するためにinputタグを複数設置  // #FIXME ２段目は分岐させて２段目だけにlabelをつけるようにさせる（IDとかでつける）
             let new_image = $(
                 `<input id="product_product_images_attributes_${images.length}_image" class="selling__main__sec__content__form__write__upload__box__items__input-area__field" data-image="${images.length}" type="file" name="product[product_images_attributes][${images.length}][image]">`
