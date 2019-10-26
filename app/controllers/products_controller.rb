@@ -139,18 +139,23 @@ class ProductsController < ApplicationController
 
   def product_pay
     @product = Product.find(params[:product_id])
-    card = Credit.where(user_id: current_user.id).first
-    Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
-    Payjp::Charge.create(
-      amount: @product.price, #todo あとでproductテーブルと紐づける
-      customer: card.customer_id, #顧客ID
-      currency: 'jpy' #日本円
-    )
-    redirect_to product_product_done_path
+    if @product.status == 0
+      card = Credit.where(user_id: current_user.id).first
+      Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
+      Payjp::Charge.create(
+        amount: @product.price, #todo あとでproductテーブルと紐づける
+        customer: card.customer_id, #顧客ID
+        currency: 'jpy' #日本円
+      )
+      redirect_to product_product_done_path
+    else
+      redirect_to root_path
+    end
   end
 
   def product_done
      @product = Product.find(params[:product_id])
+     @product.update(status: 1)
   end
 
   def creare
