@@ -15,13 +15,15 @@ $(function(){
 
   //   })
   // })
-  let brand_id = "あああ"
   
+  var brand_id = "aaa"
 
-  $(".search_form_side").on("submit", function(brand_id){
-    let brand_name = $("#q_brand_id_eq").val();
+  $(".search_form_side").on("submit", function(){
+    brand_name = $("#q_brand_id_eq").val();
     console.log(brand_id);
-    return brand_name
+    brand_id = brand_name
+    console.log(brand_id);
+    $.cookie('brand_name',brand_id);
   })
 
   // function get_brand_name()
@@ -29,9 +31,11 @@ $(function(){
 
   // let brand_id = brand_name
 
-  window.onload = function(brand_id){
-    $("#q_brand_id_eq").val("シャネル");
+  window.onload = function(){
+    // console.log(brand_id);
+    var brand_id = $.cookie('brand_name');
+    $("#q_brand_id_eq").val(brand_id);
    }
-
+  
   })
 })

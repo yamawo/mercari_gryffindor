@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
     @count = @products.count.to_s
     render "application/search_for"
     session[:search_params] = ""
-    binding.pry
+    # binding.pry
   end
 
   def select_ancestry
