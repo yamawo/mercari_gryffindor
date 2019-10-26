@@ -91,6 +91,7 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
                 new_dropzone.css({
                     "display": "none"
                 });
+            // TODO ２段目実装時に編集すること
             // 画像が６枚以上の場合
             } // else if (images.length >= 6){
             //     // 配列から０〜４枚目を抜き取って５枚目から抽出
@@ -112,23 +113,21 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
             // }
             // 複数画像を投稿するためにinputタグを複数設置  // #FIXME ２段目は分岐させて２段目だけにlabelをつけるようにさせる（IDとかでつける）
             let new_image = $(
-                `<input id="product_product_images_attributes_${images.length}_image" class="selling__main__sec__content__form__write__upload__box__items__input-area__field" data-image="${images.length}" type="file" name="product[product_images_attributes][${images.length}][image]">`
+                `<input id="product_product_images_attributes_${images.length}_image" class="selling__main__sec__content__form__write__upload__box__new_items__input-area__field" data-image="${images.length}" type="file" name="product[product_images_attributes][${images.length}][image]">`
             );
-            input_area.append(new_image);
-            $(`label.selling__main__sec__content__form__write__upload__box__items__input-area`).attr("for", `product_product_images_attributes_${images.length}_image`)
+            new_input_area.append(new_image);
+            $(`label.selling__main__sec__content__form__write__upload__box__new_items__input-area`).attr("for", `product_product_images_attributes_${images.length}_image`)
         });
         // 削除ボタン
-        $(".selling__main__sec__content__form__write__upload__box, .selling__main__sec__content__form__write__upload__box2").on("click", ".btn_delete", function(){
+        $(".js-box, .js-box2").on("click", ".btn_delete", function(){
             // 削除ボタンを押した画像を取得する
             let target_image = $(this).parent().parent();
             //削除画像のカスタムデータ属性data-image番号を取得
-            let target_image_num =target_image.data("image");
+            let target_image_num =target_image.data("id");
             // 対象画像をビュー上で削除する処理
             target_image.remove();
-
-            // 対象画像を削除したあとの新たな配列を生成(start番号, 個数)
-            images.splice(target_image_num, 1);
-
+            // DBに送る用の配列から画像を削除
+            new_images.slice
             if (images.length == 0){
                 $('input[type="file"].selling__main__sec__content__form__write__upload__box__items__input-area__field').attr({
                     "data-image": 0
