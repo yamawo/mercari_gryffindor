@@ -1,11 +1,12 @@
+$(document).on('turbolinks:load',function() {
 $(function(){
 
-  let select_main = function(){
+  let select_children = function(){
   let html = `<select class="category_children" name="q[category_id_eq]" id="q_category_id" >`
   return html;
   };
 
-  let get_HTML_indirects = function(){
+  let select_indirects = function(){
   let html = `<select class="category_indirects" name="q[category_id_eq]" id="q_category_id">`
   return html;
   };
@@ -22,7 +23,6 @@ $(function(){
   
   $(".category_select").change(function(){
     let id = $(this).val();
-
     if (id[0] == undefined){
       $(".category_children").remove();
       $(".category_indirects").remove();
@@ -36,7 +36,7 @@ $(function(){
     .done(function(datas){
       $(".category_children").remove();
       $(".category_indirects").remove();
-      $(".search_for-main__side-bar--category").append(select_main)
+      $(".search_for-main__side-bar--category").append(select_children)
       d_option = defoult_option(id)
       $(".category_children").append(d_option)
         datas.forEach(function(data){
@@ -66,7 +66,7 @@ $(function(){
       }
       else{
       $(".category_indirects").remove();
-      $(".search_for-main__side-bar--category").append(get_HTML_indirects)
+      $(".search_for-main__side-bar--category").append(select_indirects)
       d_option = defoult_option(id)
       $(".category_indirects").append(d_option)
       datas.forEach(function(data){
@@ -77,5 +77,5 @@ $(function(){
     .fail(function(){
     })
   });
-  
+})
 })
