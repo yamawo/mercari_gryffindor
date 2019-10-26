@@ -10,6 +10,22 @@
       .search_for-main__side-bar--category
         = f.label "カテゴリーを選択する"
         = f.collection_select :category_id_eq, @category, :id, :name,{include_blank: "全て"}, {class: "category_select", id: "q_category_id"}
+      .search_for-main__side-bar--brand
+        = f.label "ブランド名から探す"
+        = f.search_field :brand_id_eq
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
       = f.submit
 
   

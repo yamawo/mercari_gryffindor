@@ -26,28 +26,43 @@ class ApplicationController < ActionController::Base
   end
 
   def select_search
+    session[:search_params] = search_params
     if search_params[:category_id_eq].present? && search_params[:category_id_eq] != "0"
-      q = Category.find(search_params[:category_id_eq]) 
-      q_indirects = q.indirects
-      q_children = q.children
-      session[:search_params] = search_params
-      session[:search_params].delete(:category_id_eq)
-      if q_indirects.present?
-        session[:search_params][:category_id_eq_any] = q_indirects.ids
-      elsif q_children.present?
-        session[:search_params][:category_id_eq_any] = q_children.ids
-      else
-        session[:search_params][:category_id_eq_any] = q.id
-      end
+      select_ancestry()
     end
+    select_brand()
     @q = Product.ransack(session[:search_params])
-    @q = Product.ransack(search_params) if session[:search_params].empty?
+    # @q = Product.ransack(search_params) if session[:search_params].empty?
     @products = @q.result(distinct: true)
     @count = @products.count.to_s
     render "application/search_for"
     session[:search_params] = ""
+    binding.pry
   end
 
+  def select_ancestry
+    q = Category.find(search_params[:category_id_eq]) 
+    q_indirects = q.indirects
+    q_children = q.children
+    session[:search_params] = search_params
+    session[:search_params].delete(:category_id_eq)
+    if q_indirects.present?
+      session[:search_params][:category_id_eq_any] = q_indirects.ids
+    elsif q_children.present?
+      session[:search_params][:category_id_eq_any] = q_children.ids
+    else
+      session[:search_params][:category_id_eq_any] = q.id
+    end
+    return session[:search_params]
+  end
+  
+  def select_brand
+    if search_params[:brand_id_eq].present?
+      brand = Brand.find_by(name: search_params[:brand_id_eq])
+      session[:search_params][:brand_id_eq] = brand.id
+      return session[:search_params]
+    end
+  end
 
 
 
@@ -63,7 +78,7 @@ class ApplicationController < ActionController::Base
   private
 
   def search_params
-    params.require(:q).permit(:name_cont, :category_id_eq)
+    params.require(:q).permit(:name_cont, :category_id_eq, :brand_id_eq)
   end
 
   def application

@@ -51,9 +51,6 @@ $(function(){
     $(document).on("change",".category_children", function(){
     let id = $(this).val();
     let ids = $(this).children(':selected').text();
-    if (ids == "全て"){
-      $(".category_indirects").remove();
-    }
     $.ajax({
       url: "/search_form_lv2",
       type: "get",
