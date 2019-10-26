@@ -1,6 +1,6 @@
 $(function(){
 
-  let get_HTML = function(){
+  let select_main = function(){
   let html = `<select class="category_children" name="q[category_id_eq]" id="q_category_id" >`
   return html;
   };
@@ -11,7 +11,7 @@ $(function(){
   };
 
   function defoult_option(id){
-    let html = `<option value="${id}">全て</option>`
+    let html = `<option value="${id}" class="d_option">全て</option>`
     return html;
   }
 
@@ -22,6 +22,11 @@ $(function(){
   
   $(".category_select").change(function(){
     let id = $(this).val();
+
+    if (id[0] == undefined){
+      $(".category_children").remove();
+      $(".category_indirects").remove();
+    }
     $.ajax({
       url: "/search_form_lv2",
       type: "get",
@@ -30,7 +35,8 @@ $(function(){
     })
     .done(function(datas){
       $(".category_children").remove();
-      $(".search_for-main__side-bar--category").append(get_HTML)
+      $(".category_indirects").remove();
+      $(".search_for-main__side-bar--category").append(select_main)
       d_option = defoult_option(id)
       $(".category_children").append(d_option)
         datas.forEach(function(data){
@@ -44,6 +50,10 @@ $(function(){
 
     $(document).on("change",".category_children", function(){
     let id = $(this).val();
+    let ids = $(this).children(':selected').text();
+    if (ids == "全て"){
+      $(".category_indirects").remove();
+    }
     $.ajax({
       url: "/search_form_lv2",
       type: "get",
@@ -51,6 +61,10 @@ $(function(){
       data: {id: id}
     })
     .done(function(datas){
+      if (ids == "全て"){
+      $(".category_indirects").remove();
+      }
+      else{
       $(".category_indirects").remove();
       $(".search_for-main__side-bar--category").append(get_HTML_indirects)
       d_option = defoult_option(id)
@@ -58,7 +72,7 @@ $(function(){
       datas.forEach(function(data){
         option = get_option(data);
         $(".category_indirects").append(option)
-      })
+      })}
     })
     .fail(function(){
     })
