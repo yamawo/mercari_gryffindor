@@ -27,7 +27,6 @@ class ApplicationController < ActionController::Base
 
   def select_search
     if search_params[:category_id_eq].present? && search_params[:category_id_eq] != "0"
-      # binding.pry
       q = Category.find(search_params[:category_id_eq]) 
       q_indirects = q.indirects
       q_children = q.children
@@ -42,9 +41,11 @@ class ApplicationController < ActionController::Base
       end
     end
     @q = Product.ransack(session[:search_params])
+    @q = Product.ransack(search_params) if session[:search_params].empty?
     @products = @q.result(distinct: true)
     @count = @products.count.to_s
     render "application/search_for"
+    session[:search_params] = ""
   end
 
 
