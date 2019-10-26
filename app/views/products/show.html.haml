@@ -1,5 +1,5 @@
 %main.products-show
-- if user_signed_in? && current_user.id == @user.id
+- if current_user_id_has?(@user)
   %section.products-show__product-details
     %h1.products-show__product-details__item-name= @product.name
     .products-show__product-details__main
