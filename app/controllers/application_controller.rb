@@ -26,18 +26,22 @@ class ApplicationController < ActionController::Base
   end
 
   def select_search
-    q = Category.find(search_params[:category_id_eq]) 
-    q_indirects = q.indirects
-    q_children = q.children
-    # if q_indirects.present?
-    session[:search_params] = search_params
-    session[:search_params].delete(:category_id_eq)
-    session[:search_params][:category_id_eq_any] = q_indirects.ids
-    
-
-    # end
+    if search_params[:category_id_eq].present? && search_params[:category_id_eq] != "0"
+      # binding.pry
+      q = Category.find(search_params[:category_id_eq]) 
+      q_indirects = q.indirects
+      q_children = q.children
+      session[:search_params] = search_params
+      session[:search_params].delete(:category_id_eq)
+      if q_indirects.present?
+        session[:search_params][:category_id_eq_any] = q_indirects.ids
+      elsif q_children.present?
+        session[:search_params][:category_id_eq_any] = q_children.ids
+      else
+        session[:search_params][:category_id_eq_any] = q.id
+      end
+    end
     @q = Product.ransack(session[:search_params])
-    # binding.pry
     @products = @q.result(distinct: true)
     @count = @products.count.to_s
     render "application/search_for"
@@ -47,8 +51,8 @@ class ApplicationController < ActionController::Base
 
 
   def search_form_lv2
-   category = Category.find_by(id: params[:id])
-   @category_children_id = category.children
+   @category = Category.find_by(id: params[:id])
+   @category_children_id = @category.children
   end
 
   def configure_permitted_parameters
