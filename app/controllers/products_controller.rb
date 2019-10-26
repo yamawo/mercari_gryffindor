@@ -117,23 +117,27 @@ class ProductsController < ApplicationController
   
   def product_confirmation
     @product = Product.find(params[:product_id])
-    @user = current_user
-    @address = @user.address
-    # テーブルからpayjpの顧客IDを検索
-    card = Credit.where(user_id: current_user.id).first
-    if card.blank?
-      # 登録された情報がない場合はカード登録画面に遷移
-      redirect_to card_registration_form_users_path
-    else
-      Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
-      # 保管した顧客IDでpayjpから情報取得
-      customer = Payjp::Customer.retrieve(card.customer_id)
-      # 保管したカードIDでpayjpから情報取得、カード情報表示のためにインスタンス変数に代入
-      @default_card_information = customer.cards.retrieve(card.card_id)
-      @exp_month = @default_card_information.exp_month.to_s
-      @exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+    if @product.status == 0
+      @user = current_user
+      @address = @user.address
+      # テーブルからpayjpの顧客IDを検索
+      card = Credit.where(user_id: current_user.id).first
+      if card.blank?
+        # 登録された情報がない場合はカード登録画面に遷移
+        redirect_to card_registration_form_users_path
+      else
+        Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
+        # 保管した顧客IDでpayjpから情報取得
+        customer = Payjp::Customer.retrieve(card.customer_id)
+        # 保管したカードIDでpayjpから情報取得、カード情報表示のためにインスタンス変数に代入
+        @default_card_information = customer.cards.retrieve(card.card_id)
+        @exp_month = @default_card_information.exp_month.to_s
+        @exp_year = @default_card_information.exp_year.to_s.slice(2,3)
 
-      render layout: "users_layout"
+        render layout: "users_layout"
+      end
+    else
+      redirect_to root_path
     end
   end
 
