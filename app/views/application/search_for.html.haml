@@ -47,7 +47,14 @@
         .search_for-main__side-bar--delivery-responsivility--box
           = f.check_box :delivery_responsivility_in, { multiple: true }, "着払い(購入者負担)", nil
           = "着払い(購入者負担)"
-     
+      .search_for-main__side-bar--status
+        = "販売状況"
+        .search_for-main__side-bar--status--box
+          = f.check_box :status_in, { multiple: true }, 0, nil
+          = "販売中"
+        .search_for-main__side-bar--status--box
+          = f.check_box :status_in, { multiple: true }, 1, nil
+          = "売り切れ"
      
      
      
