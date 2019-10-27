@@ -17,8 +17,10 @@
         = f.search_field :brand_id_eq
       .search_for-main__side-bar--price
         = f.label "価格"
-        = f.search_field :price_gteq, placeholder: "¥ Min"
-        = f.search_field :price_lteq, placeholder: "¥ Max"
+        .search_for-main__side-bar--price--box
+          = f.search_field :price_gteq, placeholder: "¥ Min"
+          = "〜"
+          = f.search_field :price_lteq, placeholder: "¥ Max"
       .search_for-main__side-bar--stage
         = f.label "商品の状態"
         .search_for-main__side-bar--stage--box

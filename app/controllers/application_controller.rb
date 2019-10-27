@@ -32,7 +32,6 @@ class ApplicationController < ActionController::Base
     @q = Product.ransack(session[:search_params])
     @products = @q.result(distinct: true)
     @count = @products.count.to_s
-    # binding.pry
     render "application/search_for"
   end
 
