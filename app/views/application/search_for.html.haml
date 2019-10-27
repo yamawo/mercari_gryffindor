@@ -39,8 +39,14 @@
         .search_for-main__side-bar--stage--box
           = f.check_box :stage_in, { multiple: true }, "全体的に状態が悪い", nil
           = "全体的に状態が悪い"
-     
-     
+      .search_for-main__side-bar--delivery-responsivility
+        = "配送料の負担"
+        .search_for-main__side-bar--delivery-responsivility--box
+          = f.check_box :delivery_responsivility_in, { multiple: true }, "送料込み(出品者負担)", nil
+          = "送料込み(出品者負担)"
+        .search_for-main__side-bar--delivery-responsivility--box
+          = f.check_box :delivery_responsivility_in, { multiple: true }, "着払い(購入者負担)", nil
+          = "着払い(購入者負担)"
      
      
      

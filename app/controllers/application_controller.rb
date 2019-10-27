@@ -73,7 +73,7 @@ class ApplicationController < ActionController::Base
   private
 
   def search_params
-    params.require(:q).permit(:name_cont, :category_id_eq, :brand_id_eq, :price_gteq, :price_lteq, stage_in: [])
+    params.require(:q).permit(:name_cont, :category_id_eq, :brand_id_eq, :price_gteq, :price_lteq, stage_in: [], delivery_responsivility_in: [] )
   end
 
   def application
