@@ -44,8 +44,6 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
             temporary_images.length = 0
             // dropされたファイルデータをpropで取って変数fileに入れ込む
             let file = $(this).prop("files")[0];
-
-            // 新規追加画像を保存
             // ファイル読み取りを行えるようにするようにFileReaderに格納
             let reader = new FileReader();
             let img = $(`<div class="add_img"><div class="img_area"><img class="image"></div></div>`);
@@ -113,7 +111,7 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
             // }
             // 複数画像を投稿するためにinputタグを複数設置  // #FIXME ２段目は分岐させて２段目だけにlabelをつけるようにさせる（IDとかでつける）
             let new_image = $(
-                `<input id="product_product_images_attributes_${images.length}_image" class="selling__main__sec__content__form__write__upload__box__new_items__input-area__field" data-image="${images.length}" type="file" name="product[product_images_attributes][${images.length}][image]">`
+                `<input id="product_product_images_attributes_${images.length}_image" class="selling__main__sec__content__form__write__upload__box__new_items__input-area__field" data-id="${images.length}" type="file" name="product[product_images_attributes][${images.length}][image]">`
             );
             new_input_area.append(new_image);
             $(`label.selling__main__sec__content__form__write__upload__box__new_items__input-area`).attr("for", `product_product_images_attributes_${images.length}_image`)
@@ -126,8 +124,11 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
             let target_image_num =target_image.data("id");
             // 対象画像をビュー上で削除する処理
             target_image.remove();
+            // dropzone,分岐用の配列から画像を削除
+            // TODO!!!!!!!!!!
             // DBに送る用の配列から画像を削除
-            new_images.slice
+            new_images = new_images.filter(n => n !== target_image_num)
+
             if (images.length == 0){
                 $('input[type="file"].selling__main__sec__content__form__write__upload__box__items__input-area__field').attr({
                     "data-image": 0
