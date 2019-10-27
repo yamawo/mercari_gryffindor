@@ -27,33 +27,29 @@ class ApplicationController < ActionController::Base
 
   def select_search
     session[:search_params] = search_params
-    if search_params[:category_id_eq].present? && search_params[:category_id_eq] != "0"
-      select_ancestry()
-    end
+    select_ancestry()
     select_brand()
     @q = Product.ransack(session[:search_params])
-    # @q = Product.ransack(search_params) if session[:search_params].empty?
     @products = @q.result(distinct: true)
     @count = @products.count.to_s
     render "application/search_for"
-    session[:search_params] = ""
-
   end
 
   def select_ancestry
-    q = Category.find(search_params[:category_id_eq]) 
-    q_indirects = q.indirects
-    q_children = q.children
-    session[:search_params] = search_params
-    session[:search_params].delete(:category_id_eq)
-    if q_indirects.present?
-      session[:search_params][:category_id_eq_any] = q_indirects.ids
-    elsif q_children.present?
-      session[:search_params][:category_id_eq_any] = q_children.ids
-    else
-      session[:search_params][:category_id_eq_any] = q.id
+    if search_params[:category_id_eq].present?
+      q = Category.find(search_params[:category_id_eq]) 
+      q_indirects = q.indirects
+      q_children = q.children
+      session[:search_params].delete(:category_id_eq)
+      if q_indirects.present?
+        session[:search_params][:category_id_eq_any] = q_indirects.ids
+      elsif q_children.present?
+        session[:search_params][:category_id_eq_any] = q_children.ids
+      else
+        session[:search_params][:category_id_eq_any] = q.id
+      end
+      return session[:search_params]
     end
-    return session[:search_params]
   end
   
   def select_brand
@@ -63,8 +59,6 @@ class ApplicationController < ActionController::Base
       return session[:search_params]
     end
   end
-
-
 
   def search_form_lv2
    @category = Category.find_by(id: params[:id])
