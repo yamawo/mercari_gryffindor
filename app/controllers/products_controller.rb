@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
-  
-  def index
+  before_action :valid_create, only: :create
+  def index 
     @product = Product.new
   end
   
@@ -21,14 +21,20 @@ class ProductsController < ApplicationController
   def create
     require "base64"                          #バイナリーデータ化（しないとJSで画像表示できない）
     @product = Product.new(product_params)    #保存できたかどうかで分岐させたいのでnew
-    @product.save
-    redirect_to controller: :products, action: :index
+    if @product.save
+      redirect_to controller: :products, action: :index
+    else
+      render action: :new, layout: "selling"
+    end
   end
+
   
+
   def edit
     require "base64"
-   
+    
     @edit_product = Product.find(params[:id])  # 既存のproductレコードを取得
+    @id = @edit_product.id
     gon.product = @edit_product
     gon.edit_product_images = @edit_product.product_images
     gon.edit_product_images_binary_datas = []
@@ -71,11 +77,16 @@ class ProductsController < ApplicationController
     parents.each do |parent|
       @parents << [parent.name, parent.id]
     end
+    size = @edit_product.size_id
+    @size = Size.find(size)
+    brand = @edit_product.brand_id
+    @brand = Brand.find(brand)
     
     respond_to do |format|
       format.json
       format.html
     end
+    
     
     #サイズを取得
     g_id = @grandchild.id
@@ -110,6 +121,7 @@ class ProductsController < ApplicationController
       @sizes << [size.name, size.id]
     end
     render layout: false
+    
   end
 
   def update
@@ -224,6 +236,22 @@ class ProductsController < ApplicationController
 
   def product_images_params
     params.require(:product).require(:product_image).permit(:image)
+  end
+
+  def valid_create
+    session[:product_params] = product_params
+    @product = Product.new(session[:product_params])
+    @product = Product.new
+    parents = Category.where(ancestry: nil)
+    @parents = [["---", "---"]]
+    @parent = "---"
+    parents.each do |parent|
+      @parents << [parent.name, parent.id]
+    end
+    
+    @product.product_images.build
+    render "layouts/selling" unless @product.valid?
+    binding.pry
   end
   
 end

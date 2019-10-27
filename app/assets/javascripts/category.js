@@ -277,13 +277,26 @@ $(document).on("turbolinks:load", function(){
       });
     }   
   })
-  if (window.location.href.match(/\/products\/\d+\/edit/)){
+})
+
+$(window).on("load", function(){
+  if(document.URL.match(/\/products\/\d+\/edit/))
+    id = $(".hidden_id").val();
+    console.log(id)
     $.ajax({
-      url: "/products/edit",
+      url: `/products/${id}/edit`,
+      data: "",
+      data: "",
+      data: "",
+      type: "GET",
       dataType: "json"
     })
-    .done(function(child_name){
-      console.log(child_name);
+    .done(function(product){
+      $("#grandchildren").val(product.grandchild_id);
+      $("#children").val(product.child_id);
+      $("#product_category_id").val(product.parent_id);
+      $("#size").val(product.size_id);
+      $("#product_brand_id").val(product.brand_name);
+      $(".brand").val(product.brand_id);
     })
-  }
 })

@@ -101,3 +101,4 @@ gem 'omniauth-facebook'
 gem 'active_hash'
 gem 'omniauth-google-oauth2'
 gem 'recaptcha', require: "recaptcha/rails"
+gem 'bootstrap', '~> 4.1.1'

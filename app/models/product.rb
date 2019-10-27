@@ -3,19 +3,19 @@ class Product < ApplicationRecord
   has_many :product_images
   accepts_nested_attributes_for :product_images
   belongs_to :user, dependent: :delete
-  belongs_to :brand, optional: true
+  belongs_to :brand, optional: true, dependent: :delete
   belongs_to :size
 
   with_options presence: true do
-    validates :name
-    validates :text
-    validates :price
-    validates :status
-    validates :delivery_responsivility
-    validates :delivery_way
-    validates :delivery_area
-    validates :delivery_day
-    validates :category_id
+    validates :name, on: :valid_create
+    validates :text, presence: { message: "入力してください"}
+    validates :price, presence: { message: "入力してください"}
+    validates :status, presence: { message: "入力してください"}
+    validates :delivery_responsivility, presence: { message: "入力してください"}
+    validates :delivery_way, presence: { message: "を入力してください"}
+    validates :delivery_area, presence: { message: "を入力してください"}
+    validates :delivery_day, presence: { message: "を入力してください"}
+    validates :category_id, presence: { message: "を入力してください"}
     validates :user_id
   end
 

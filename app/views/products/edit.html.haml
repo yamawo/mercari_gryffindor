@@ -1,5 +1,5 @@
 !!!
-%html
+%html{lang: "ja"}
     %head
         %meta{content: "text/html; charset=UTF-8", http: { equiv: "Content-Type"}}
         %title Mercari
@@ -8,11 +8,35 @@
         = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
         = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
         %link{crossorigin:"anonymous", href: "https://use.fontawesome.com/releases/v5.2.0/css/all.css", integrity: "sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ", rel: "stylesheet"}
+        %meta{charset: "UTF-8"}
+        %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
+        %meta{"http-equiv" => "X-UA-Compatible", content: "ie=edge"}
+        %title モーダル
     %body.selling
         %header.selling__header
             %h1
                 = link_to image_tag("//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?3761641567", alt: "mercari", class: "selling__header__title"), root_path
         %main.selling__main
+            .selling__main__sec__content
+                .modal#open 詳細を見る
+                .hidden#mask
+                %section#modal.hidden
+                    .hidden__text
+                        %h3.hidden__text__cut 写真を切り取る
+                        .hidden__text__right
+                            = link_to "", class: "hidden__text__right__change" do
+                                %i.fas.fa-camera.hidden__text__right__change__icon
+                                %span.hidden__text__right__change__image 
+                                    写真を変更する
+                            %input.hidden__text__right__file
+                    .hidden__image#image
+                        .hidden__image__slider
+                            %i.fas.fa-camera.hidden__image__slider__icon1
+                            %input{id: "zoom-slider", type: "range", step: "0.01", min: "1", max: "2", class: "hidden__image__slider__input", name: "scale", value: "1"}
+                            %i.fas.fa-camera.hidden__image__slider__icon2
+                        .hidden__image__btn
+                            .hidden__image__btn__cancel#close キャンセル
+                            .hidden__image__btn__edit 完了
             %section.selling__main__sec
                 .selling__main__sec__content
                     .selling__main__sec__content__form
@@ -56,13 +80,13 @@
                                         商品名
                                         %span.selling__main__sec__content__form__write__content__group__label__need
                                             必須
-                                    = f.text_field :name, placeholder: "商品名（必須40文字まで）", class: "selling__main__sec__content__form__write__content__group__input", required: "required"
+                                    = f.text_field :name, placeholder: "商品名（必須40文字まで）", class: "selling__main__sec__content__form__write__content__group__input"
                                 .selling__main__sec__content__form__write__content__group
                                     %label.selling__main__sec__content__form__write__content__group__label
                                         商品の説明
                                         %span.selling__main__sec__content__form__write__content__group__label__need
                                             必須
-                                    = f.text_area :text, placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", class: "selling__main__sec__content__form__write__content__group__textarea", required: "required"
+                                    = f.text_area :text, placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", class: "selling__main__sec__content__form__write__content__group__textarea"
                             .selling__main__sec__content__form__write__content.clearfix
                                 %h3.selling__main__sec__content__form__write__content__heading
                                     商品の詳細
@@ -97,6 +121,7 @@
                                         .selling__main__sec__content__form__write__content__box__group__select
                                             = f.text_field :brand_id, class: "selling__main__sec__content__form__write__content__box__group__select__input", placeholder: "例）シャネル"
                                     .selling__main__sec__content__form__write__content__box__group
+                                        = f.text_field :brand_id, class: "brand", type: "hidden"
                                         %label.selling__main__sec__content__form__write__content__box__group__label
                                             商品の状態
                                             %span.selling__main__sec__content__form__write__content__box__group__label__need
@@ -158,7 +183,7 @@
                                                 .selling__main__sec__content__form__write__content__box__list__group__clearfix__price
                                                     ¥
                                                     .selling__main__sec__content__form__write__content__box__list__group__clearfix__price__input
-                                                        = f.text_field :price, placeholder: "例）300", class: "selling__main__sec__content__form__write__content__box__list__group__clearfix__price__input__form", required: "required"
+                                                        = f.text_field :price, placeholder: "例）300", class: "selling__main__sec__content__form__write__content__box__list__group__clearfix__price__input__form"
                                         %li.selling__main__sec__content__form__write__content__box__list__per
                                             .selling__main__sec__content__form__write__content__box__list__per__clearfix
                                                 .selling__main__sec__content__form__write__content__box__list__per__clearfix__left
@@ -192,6 +217,25 @@
                                             加盟店規約
                                         に同意したことになります。
                                 = f.submit "変更する",  name: "", class: "selling__main__sec__content__form__write__btn-box__btn", disable_with: "出品中です..."
-                                = link_to "/products", class: "selling__main__sec__content__form__write__btn-box__link" do
+                                = link_to "/products", class: "selling__main__sec__content__form__write__btn-box__link", id: "item-delete-btn" do
                                     もどる
+                                %input.hidden_id{type: "hidden", value: @id}
 = render "/users/footer"
+
+                
+-# %button.btn.btn-primary{type: "button", "data-toggle" => "modal", "data-target" => "#Modal"} 押すと表示されます
+-# .modal.fade#Modal{tabindex: "-1", role: "dialog", "aria-labelledby" => "Modal", "aria-hidden" => "true"}
+-#     .modal-dialog.modal-lg{role: "document"}
+-#         .modal-content
+-#             .modal-header
+-#                 %h5.modal-title#Modal 写真を切り取る
+-#                 %button.close{type: "button", "data-dismiss" => "modal", "aria-label" => "閉じる"}
+-#                     %span{"aria-hidden" => "true,",} 写真を変更する
+-#             .modal-body
+-#                 
+                
+                
+-#             .modal-footer
+-#                 %button.btn.btn-secondary{type: "button", "data-dismiss" => "modal"} キャンセル
+-#                 %button.btn.btn-primary{type: "button"} 完了
+                    
