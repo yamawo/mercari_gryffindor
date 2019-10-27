@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
     @count = @products.count.to_s
     render "application/search_for"
     session[:search_params] = ""
-    # binding.pry
+
   end
 
   def select_ancestry
@@ -57,8 +57,8 @@ class ApplicationController < ActionController::Base
   end
   
   def select_brand
-    if search_params[:brand_id_eq].present?
-      brand = Brand.find_by(name: search_params[:brand_id_eq])
+    brand = Brand.find_by(name: search_params[:brand_id_eq])
+    if brand.present?
       session[:search_params][:brand_id_eq] = brand.id
       return session[:search_params]
     end
