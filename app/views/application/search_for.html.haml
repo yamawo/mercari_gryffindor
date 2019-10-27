@@ -55,12 +55,11 @@
         .search_for-main__side-bar--status--box
           = f.check_box :status_in, { multiple: true }, 1, nil
           = "売り切れ"
-     
-     
-     
-    
-     
-      = f.submit
+      .search_for-main__side-bar--button
+        .search_for-main__side-bar--button--reset
+          = f.button "リセット", type: :reset
+        .search_for-main__side-bar--button--submit
+          = f.submit "完了"
 
   
 
