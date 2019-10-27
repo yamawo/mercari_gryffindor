@@ -1,1 +1,0 @@
-json.brand_name @brand.name
