@@ -15,18 +15,37 @@
       .search_for-main__side-bar--brand
         = f.label "ブランド名から探す"
         = f.search_field :brand_id_eq
+      .search_for-main__side-bar--price
+        = f.label "価格"
+        = f.search_field :price_gteq, placeholder: "¥ Min"
+        = f.search_field :price_lteq, placeholder: "¥ Max"
+      .search_for-main__side-bar--stage
+        = f.label "商品の状態"
+        .search_for-main__side-bar--stage--box
+          = f.check_box :stage_in, { multiple: true }, "新品・未使用", nil
+          = "新品未使用"
+        .search_for-main__side-bar--stage--box
+          = f.check_box :stage_in, { multiple: true }, "未使用に近い", nil
+          = "未使用に近い"
+        .search_for-main__side-bar--stage--box
+          = f.check_box :stage_in, { multiple: true }, "目立った傷や汚れなし", nil
+          = "目立った傷や汚れなし"
+        .search_for-main__side-bar--stage--box
+          = f.check_box :stage_in, { multiple: true }, "やや傷や汚れあり", nil
+          = "やや傷や汚れあり"
+        .search_for-main__side-bar--stage--box
+          = f.check_box :stage_in, { multiple: true }, "傷や汚れあり", nil
+          = "傷や汚れあり"
+        .search_for-main__side-bar--stage--box
+          = f.check_box :stage_in, { multiple: true }, "全体的に状態が悪い", nil
+          = "全体的に状態が悪い"
      
      
      
      
      
      
-     
-     
-     
-     
-     
-     
+    
      
       = f.submit
 

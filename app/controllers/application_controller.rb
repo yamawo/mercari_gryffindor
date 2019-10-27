@@ -32,6 +32,7 @@ class ApplicationController < ActionController::Base
     @q = Product.ransack(session[:search_params])
     @products = @q.result(distinct: true)
     @count = @products.count.to_s
+    # binding.pry
     render "application/search_for"
   end
 
@@ -72,7 +73,7 @@ class ApplicationController < ActionController::Base
   private
 
   def search_params
-    params.require(:q).permit(:name_cont, :category_id_eq, :brand_id_eq)
+    params.require(:q).permit(:name_cont, :category_id_eq, :brand_id_eq, :price_gteq, :price_lteq, stage_in: [])
   end
 
   def application
