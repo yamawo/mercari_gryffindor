@@ -7,14 +7,10 @@ class UsersController < ApplicationController
   before_action :validates_step3, only: :step4
   before_action :validates_step4, only: :step6
   before_action :validates_step6, only: :step7
-  before_action :redirect_login, except: [:index, :show]
+  before_action :redirect_login, only: [:mypage, :profile, :logout, :confirmation, :card_registration]
 
-  
   layout "users_layout"
 
-  def index
-  end
-  
   def show
     redirect_to "/"
   end
