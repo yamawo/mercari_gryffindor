@@ -121,7 +121,7 @@ class ProductsController < ApplicationController
       @user = current_user
       @address = @user.address
       # テーブルからpayjpの顧客IDを検索
-      card = Credit.where(user_id: current_user.id).first
+      card = Credit.find_by(user_id: current_user.id)
       if card.blank?
         # 登録された情報がない場合はカード登録画面に遷移
         redirect_to card_registration_form_users_path
