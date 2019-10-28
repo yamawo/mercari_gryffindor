@@ -1,9 +1,11 @@
 class Product < ApplicationRecord
   belongs_to :category
-  has_many :product_images
-  accepts_nested_attributes_for :product_images
-  belongs_to :user, dependent: :delete
   belongs_to :brand, optional: true
+  has_many :product_images
+  accepts_nested_attributes_for :product_images, allow_destroy: true
+
+  belongs_to :user, dependent: :delete
+  belongs_to :brand, optional: true, dependent: :delete
   belongs_to :size
 
   with_options presence: true do

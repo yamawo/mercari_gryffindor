@@ -34,13 +34,13 @@ parent_category_blocks.each_with_index do |parent_category_block,i|
   child_category_names = parent_category_block.search(".category-list-individual-box-sub-category-name")
   child_category_blocks.each_with_index do |child_category_block, i|
     child_category = child_category_names[i].at("h4").inner_text
-    genre2 = genre.children.create(name: "#{child_category}")
+    genre2 = genre.children.create(name: "#{child_category}".squish)
     category_id += 1
     grandchild_category_blocks = child_category_block.search(".category-list-individual-box-sub-sub-category-name")
     grandchild_category_blocks.each do |grandchild_category_block|
       grandchild_category = grandchild_category_block.at("a").inner_text
       next if grandchild_category.squish == "すべて"
-      genre2.children.create(name: "#{grandchild_category}")
+      genre2.children.create(name: "#{grandchild_category}".squish)
       category_id += 1
     end
   end

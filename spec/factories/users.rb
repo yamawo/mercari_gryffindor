@@ -7,8 +7,8 @@ FactoryBot.define do
         birthdate_year          {"1990"}
         birthdate_month         {"07"}
         birthdate_day           {"31"}
-        email                   {"aaa@gmail.com"}
-        phone_number            {"00000000000"}
+        email                   {Faker::Internet.email}
+        phone_number            {Faker::Number.number(10)}
         password                {"00000000"}
         password_confirmation   {"00000000"}
         nickname                {"makonari"}
