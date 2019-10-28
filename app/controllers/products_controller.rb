@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
-  before_action :find_product, only: [:show, :destroy]
+  require 'payjp'
+  before_action :redirect_login, except: [:index, :show]
+  before_action :set_product, only: [:show, :destroy]
 
   def index
     require 'base64'
@@ -27,6 +29,12 @@ class ProductsController < ApplicationController
   def show
     @user = @product.user
     @products = @user.products
+    array = []
+    other_products = @products.limit(7)
+    other_products.each do |product|
+      array << product if product.id != params[:id].to_i
+    end
+    @array = array
   end
 
   def destroy
@@ -47,6 +55,22 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.json
     end
+  end
+
+  def category
+    require 'base64'
+    @category = Category.find(params[:format])
+    if @category.ancestry == nil
+    @categories = Product.where(category_id: @category.indirects.ids)
+    elsif @category.ancestry.match(/\//)
+    @categories = Product.where(category_id: @category.id)
+    else 
+    @categories = Product.where(category_id: @category.children.ids)
+    end
+  end
+
+  def category_list
+    @parents = Category.where(ancestry: nil)
   end
 
   def search_size
@@ -92,8 +116,9 @@ class ProductsController < ApplicationController
   end
   
   def product_confirmation
-    require 'payjp'
-    render layout: "users_layout"
+    @product = Product.find(params[:product_id])
+    @user = current_user
+    @address = @user.address
     # テーブルからpayjpの顧客IDを検索
     card = Credit.where(user_id: current_user.id).first
     if card.blank?
@@ -105,23 +130,27 @@ class ProductsController < ApplicationController
       customer = Payjp::Customer.retrieve(card.customer_id)
       # 保管したカードIDでpayjpから情報取得、カード情報表示のためにインスタンス変数に代入
       @default_card_information = customer.cards.retrieve(card.card_id)
+      @exp_month = @default_card_information.exp_month.to_s
+      @exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+
+      render layout: "users_layout"
     end
   end
 
   def product_pay
-    require 'payjp'
-
+    @product = Product.find(params[:product_id])
     card = Credit.where(user_id: current_user.id).first
     Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
     Payjp::Charge.create(
-      amount: 3500, #todo あとでproductテーブルと紐づける
+      amount: @product.price, #todo あとでproductテーブルと紐づける
       customer: card.customer_id, #顧客ID
       currency: 'jpy' #日本円
     )
-    redirect_to action 'product_done'
+    redirect_to product_product_done_path
   end
 
   def product_done
+     @product = Product.find(params[:product_id])
   end
 
   def creare
@@ -155,15 +184,20 @@ class ProductsController < ApplicationController
     params.require(:registered_images_ids).permit({ids: []})
   end
 
-  def find_product
+  def set_product
     @product = Product.find(params[:id])
   end
 
+  
   def product_images_params
     params.require(:product_images).permit({images: []})
   end
   
   def privacy_policy
+  end
+
+  def redirect_login
+    redirect_to new_user_session_path unless user_signed_in?
   end
 
 end

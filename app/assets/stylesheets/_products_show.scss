@@ -164,23 +164,19 @@
       &__left{
         float: left;
         &__like{
-          color: #333;
-          border: 1px solid #f5f5f5;
-          background: #f5f5f5;
           display: inline-block;
-          padding: 8px 16px;
-          border-radius: 40px;
-          cursor: pointer; 
-          i{
-            font-size: 14px;
-            vertical-align: middle;
-            color: #ccc;
-          }
-          span{
-            font-size: 14px;
-            display: inline-block;
-            margin: 1px 0 0 8px;
-            vertical-align: middle;
+          &__second{
+            color: #333;
+            border: 1px solid #f5f5f5;
+            background: #f5f5f5;
+            padding: 8px 16px;
+            border-radius: 40px;
+            span{
+              font-size: 14px;
+              display: inline-block;
+              margin: 1px 0 0 8px;
+              vertical-align: middle;
+            }
           }
         }
         &__report{
@@ -294,6 +290,7 @@
         color: #0099e8;
         position: absolute;
         left: 40px;
+        margin-top: 10px;
       }
       &__icon{
         color: #0099e8;
@@ -312,6 +309,7 @@
         color: #0099e8;
         position: absolute;
         right: 40px;
+        margin-top: 10px;
       }
       &__icon{ 
         color: #0099e8;
@@ -453,6 +451,33 @@
             }
           }
         }
+      }
+    }
+  }
+  &__product-name{
+    position: relative;
+    border-top: 1px solid #eee;
+    &__main{
+      width: 1000px;
+      margin: 0 auto;
+      padding: 16px 0;
+      &__site{
+        display: inline-block;
+        font-size: 12px;
+        line-height: 1.2;
+      }
+      &__icon{
+        margin: 0 8px;
+        font-size: 9px;
+        color: #888;
+        display: inline-block;
+        font-size: 16px;
+      }
+      &__product{
+        display: inline-block;
+        font-size: 12px;
+        line-height: 1.2;
+        font-weight: 600;
       }
     }
   }

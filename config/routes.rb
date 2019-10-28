@@ -12,15 +12,17 @@ Rails.application.routes.draw do
   get "search_form_lv2", to: "application#search_form_lv2"
 
   resources :products, only: [:new, :create, :index, :show, :edit, :destroy] do
+    get "product_confirmation"
+    post "product_pay"
+    get "product_done"
     collection do
+      get "category"
+      get "category_list"
       get "create_category_children"
       get 'privacy_policy'
       get "create_category_grandchildren"
       get "search_size"
       get "search"
-      get "product_confirmation"
-      post "product_pay"
-      get "product_done"
     end
   end
 
@@ -45,4 +47,8 @@ Rails.application.routes.draw do
       end
     end
   end
+  post   '/like/:product_id' => 'likes#like',   as: 'like'
+  delete '/like/:product_id' => 'likes#unlike', as: 'unlike'
+
+  root 'products#index'
 end
