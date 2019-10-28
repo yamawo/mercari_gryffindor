@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   def search_product
     @q = Product.ransack(params[:q])
     @products = @q.result(distinct: true)
-    @category = Category.where(ancestry: nil)
+    @categorise = Category.where(ancestry: nil)
   end
 
   def search_for
@@ -56,7 +56,6 @@ class ApplicationController < ActionController::Base
     brand = Brand.find_by(name: search_params[:brand_id_eq])
     if brand.present?
       session[:search_params][:brand_id_eq] = brand.id
-      return session[:search_params]
     end
   end
 
