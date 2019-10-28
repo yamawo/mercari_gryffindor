@@ -49,6 +49,7 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
                 let btn_wrapper = $("<div class='btn_wrapper'><div class='btn_edit'>編集</div><div class='btn_delete' data-image=" + images.length + ">削除</div></div>");
                 // 画像に削除・編集ボタン付与
                 img.append(btn_wrapper);
+                img.data("image", )
                 // src取りたいのでattr
                 img.find("img").attr({
                     src: e.target.result
@@ -58,7 +59,7 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
             reader.readAsDataURL(file);
             // inputのdata-imageを定義
             $("#product_product_images_attributes_" + images.length + "_image").attr("data-image", parseInt(images.length) + 1)
-            console.log(images)
+            
             // FIXME 中間の番号が削除されたときlengthと直前に追加したdata-imageの値が被り、同じ値のものが２つできてしまう
             // ビュー用に格納
             temporary_images.push(img)
