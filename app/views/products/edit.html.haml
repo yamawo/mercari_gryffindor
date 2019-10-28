@@ -1,241 +1,182 @@
 !!!
-%html{lang: "ja"}
-    %head
-        %meta{content: "text/html; charset=UTF-8", http: { equiv: "Content-Type"}}
-        %title Mercari
-        = include_gon
-        = csrf_meta_tags
-        = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-        = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-        %link{crossorigin:"anonymous", href: "https://use.fontawesome.com/releases/v5.2.0/css/all.css", integrity: "sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ", rel: "stylesheet"}
-        %meta{charset: "UTF-8"}
-        %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
-        %meta{"http-equiv" => "X-UA-Compatible", content: "ie=edge"}
-        %title モーダル
-    %body.selling
-        %header.selling__header
-            %h1
-                = link_to image_tag("//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?3761641567", alt: "mercari", class: "selling__header__title"), root_path
-        %main.selling__main
-            .selling__main__sec__content
-                .modal#open 詳細を見る
-                .hidden#mask
-                %section#modal.hidden
-                    .hidden__text
-                        %h3.hidden__text__cut 写真を切り取る
-                        .hidden__text__right
-                            = link_to "", class: "hidden__text__right__change" do
-                                %i.fas.fa-camera.hidden__text__right__change__icon
-                                %span.hidden__text__right__change__image 
-                                    写真を変更する
-                            %input.hidden__text__right__file
-                    .hidden__image#image
-                        .hidden__image__slider
-                            %i.fas.fa-camera.hidden__image__slider__icon1
-                            %input{id: "zoom-slider", type: "range", step: "0.01", min: "1", max: "2", class: "hidden__image__slider__input", name: "scale", value: "1"}
-                            %i.fas.fa-camera.hidden__image__slider__icon2
-                        .hidden__image__btn
-                            .hidden__image__btn__cancel#close キャンセル
-                            .hidden__image__btn__edit 完了
-            %section.selling__main__sec
-                .selling__main__sec__content
-                    .selling__main__sec__content__form
-                        %h2.selling__main__sec__content__form__heading
-                            商品の情報を入力
-                        = form_for @edit_product, url: product_path(params[:id]), html: {class: "selling__main__sec__content__form__write", method: "PATCH"} do |f|
-                            .selling__main__sec__content__form__write__upload
-                                %h3.selling__main__sec__content__form__write__upload__heading
-                                    出品画像
-                                    %span.selling__main__sec__content__form__write__upload__heading__need
-                                        必須
-                                %p.selling__main__sec__content__form__write__upload__p
-                                    最大10枚までアップロードできます
-                                -# = f.label :image, for: "product_product_images_attributes_0_image", class: "selling__main__sec__content__form__write__upload__input-area"
-                                -# = f.fields_for :product_images do |i|  # input area
-                                -#     .selling__main__sec__content__form__write__upload__box.clearfix
-                                -#         #preview
-                                -#             -# ここにプレビューを入れていく（１枚目〜５枚目）
-                                -#         .selling__main__sec__content__form__write__upload__box__items
-                                -#             = i.file_field :image, class: "selling__main__sec__content__form__write__upload__box__items__field", "data-image": 0
-                                -#             .selling__main__sec__content__form__write__upload__box__items__description
-                                -#                 %pre.selling__main__sec__content__form__write__upload__box__items__description__text
-                                -#                     ドラッグアンドドロップ 
-                                -#                     またはクリックしてファイルをアップロード
-                                    -# TODO ２段目実装時にいるかいらないか実装者が判断すること
+%html
+  %head
+    %meta{content: "text/html; charset=UTF-8", http: { equiv: "Content-Type"}}
+    %title Mercari
+    = include_gon
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    %link{crossorigin:"anonymous", href: "https://use.fontawesome.com/releases/v5.2.0/css/all.css", integrity: "sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ", rel: "stylesheet"}
+  %body.selling
+    %header.selling__header
+      %h1
+        = link_to image_tag("//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?3761641567", alt: "mercari", class: "selling__header__title"), root_path
+    %main.selling__main
+      %section.selling__main__sec
+        .selling__main__sec__content
+          .selling__main__sec__content__form
+            %h2.selling__main__sec__content__form__heading
+              商品の情報を入力
+            = form_for @edit_product, html: {class: "selling__main__sec__content__form__write", method: "PATCH"} do |f|
+              .selling__main__sec__content__form__write__upload
+                %h3.selling__main__sec__content__form__write__upload__heading
+                  出品画像
+                  %span.selling__main__sec__content__form__write__upload__heading__need
+                    必須
+                %p.selling__main__sec__content__form__write__upload__p
+                  最大10枚までアップロードできます
+                  .selling__main__sec__content__form__write__upload__box.clearfix.js-box
+                    #preview
+                      - @edit_product.product_images.each_with_index do |p_image, index|
+                        .add_img
+                          .img_area
+                            = image_tag p_image.image.url
+                          .btn_wrapper
+                            .btn_edit
+                              編集
+                            .btn_delete{"data-id": index}
+                              削除
+                    .selling__main__sec__content__form__write__upload__box__new_items.js-new_items
+                      -# このlabelは新規画像追加用のinputに紐づいているlabel
+                      = f.label :image, for: "product_product_images_attributes_#{@default_images}_image", class: "selling__main__sec__content__form__write__upload__box__new_items__input-area" do
+                        .selling__main__sec__content__form__write__upload__box__new_items__description
+                          %pre.selling__main__sec__content__form__write__upload__box__new_items__description__text
+                            ドラッグアンドドロップ
+                            またはクリックしてファイルをアップロード
 
-                                    -# -# ここから２段目のプレビューとドロップエリア
-                                    -# .selling__main__sec__content__form__write__upload__box2.clearfix
-                                    -#   #preview2
-                                    -#     -# ここにプレビューを入れていく（6枚目〜10枚目）
-                                    -#   .selling__main__sec__content__form__write__upload__box2__items2
-                                    -#     = i.label :image, for: "selling__main__sec__content__form__write__upload__box__items__input-area__field", class: "selling__main__sec__content__form__write__upload__box__items__input-area" do
-                                    -#       = i.file_field :image, id: "selling__main__sec__content__form__write__upload__box__items__input-area__field", class: "selling__main__sec__content__form__write__upload__box__items__input-area__field", type: "file", "data-image": 0
-                                    -#       .selling__main__sec__content__form__write__upload__box2__items2__description
-                                    -#         %pre.selling__main__sec__content__form__write__upload__box2__items2__description__text
-                                    -#           ドラッグアンドドロップ
-                                    -#           またはクリックしてファイルをアップロード
-                            .selling__main__sec__content__form__write__content
-                                .selling__main__sec__content__form__write__content__group
-                                    %label.selling__main__sec__content__form__write__content__group__label
-                                        商品名
-                                        %span.selling__main__sec__content__form__write__content__group__label__need
-                                            必須
-                                    = f.text_field :name, placeholder: "商品名（必須40文字まで）", class: "selling__main__sec__content__form__write__content__group__input"
-                                .selling__main__sec__content__form__write__content__group
-                                    %label.selling__main__sec__content__form__write__content__group__label
-                                        商品の説明
-                                        %span.selling__main__sec__content__form__write__content__group__label__need
-                                            必須
-                                    = f.text_area :text, placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", class: "selling__main__sec__content__form__write__content__group__textarea"
-                            .selling__main__sec__content__form__write__content.clearfix
-                                %h3.selling__main__sec__content__form__write__content__heading
-                                    商品の詳細
-                                .selling__main__sec__content__form__write__content__box
-                                    .selling__main__sec__content__form__write__content__box__group#group1
-                                        %label.selling__main__sec__content__form__write__content__box__group__label
-                                            カテゴリー
-                                            %span.selling__main__sec__content__form__write__content__box__group__label__need
-                                                必須
-                                        .selling__main__sec__content__form__write__content__box__group__select#category
-                                            %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
-                                            = f.select :category_id, options_for_select(@parents), {}, {class: "selling__main__sec__content__form__write__content__box__group__select__list"}
-                                        .selling__main__sec__content__form__write__content__box__group__select#category2
-                                            %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
-                                            = f.select :category_id, options_for_select(@children, @child), {}, {class: "selling__main__sec__content__form__write__content__box__group__select__list", id: "children"}
-                                        .selling__main__sec__content__form__write__content__box__group__select#category3
-                                            %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
-                                            = f.select :category_id, options_for_select(@grandchildren, @grandchild), {}, {class: "selling__main__sec__content__form__write__content__box__group__select__list", id: "grandchildren"}
-                                    .selling__main__sec__content__form__write__content__box__group#sizes
-                                        %label.selling__main__sec__content__form__write__content__box__group__label
-                                            サイズ
-                                            %span.selling__main__sec__content__form__write__content__box__group__label__need
-                                                必須
-                                        .selling__main__sec__content__form__write__content__box__group__select
-                                            %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
-                                            = f.select :size_id, options_for_select(@sizes), {}, {class: "selling__main__sec__content__form__write__content__box__group__select__list", id: "size"}
-                                    .selling__main__sec__content__form__write__content__box__group#group1
-                                        %label.selling__main__sec__content__form__write__content__box__group__label
-                                            ブランド
-                                            %span.selling__main__sec__content__form__write__content__box__group__label__free
-                                                任意
-                                        .selling__main__sec__content__form__write__content__box__group__select
-                                            = f.text_field :brand_id, class: "selling__main__sec__content__form__write__content__box__group__select__input", placeholder: "例）シャネル"
-                                    .selling__main__sec__content__form__write__content__box__group
-                                        = f.text_field :brand_id, class: "brand", type: "hidden"
-                                        %label.selling__main__sec__content__form__write__content__box__group__label
-                                            商品の状態
-                                            %span.selling__main__sec__content__form__write__content__box__group__label__need
-                                                必須
-                                        .selling__main__sec__content__form__write__content__box__group__select
-                                            %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
-                                            = f.select :status, [["---"], ["新品"], ["未使用に近い"], ["目立った傷や汚れなし"], ["やや傷や汚れあり"], ["傷や汚れあり"], ["全体的に状態が悪い"]], {}, class: "selling__main__sec__content__form__write__content__box__group__select__list", type: "status"
-                            .selling__main__sec__content__form__write__content.clearfix
-                                %h3.selling__main__sec__content__form__write__content__heading
-                                    配送について
-                                = link_to "/", target: "_blank", class: "selling__main__sec__content__form__write__content__link" do
-                                    ?
-                                .selling__main__sec__content__form__write__content__box
-                                    .selling__main__sec__content__form__write__content__box__group#responsivility
-                                        %label.selling__main__sec__content__form__write__content__box__group__label
-                                            配送料の負担
-                                            %span.selling__main__sec__content__form__write__content__box__group__label__need
-                                                必須
-                                        .selling__main__sec__content__form__write__content__box__group__select
-                                            %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
-                                            = f.select :delivery_responsivility, [["---"], ["送料込み（出品負担）"], ["着払い（購入者負担）"]], {}, class: "selling__main__sec__content__form__write__content__box__group__select__list", type: "delivery_responsivility"
-                                    .selling__main__sec__content__form__write__content__box__group#delivery_method
-                                        %label.selling__main__sec__content__form__write__content__box__group__label
-                                            配送の方法
-                                            %span.selling__main__sec__content__form__write__content__box__group__label__need
-                                                必須
-                                        .selling__main__sec__content__form__write__content__box__group__select
-                                            %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
-                                            = f.select :delivery_way, [["---"], ["未定"], ["らくらくメルカリ便"], ["ゆうメール"], ["レターパック"], ["普通郵便（定形、定形外）"], ["クロネコヤマト"], ["ゆうパック"], ["クリックポスト"], ["ゆうパケット"]], {}, class: "selling__main__sec__content__form__write__content__box__group__select__list", type: "delivery_responsivility", id: "delivery_way"
-                                    .selling__main__sec__content__form__write__content__box__group
-                                        %label.selling__main__sec__content__form__write__content__box__group__label
-                                            発送元の地域
-                                            %span.selling__main__sec__content__form__write__content__box__group__label__need
-                                                必須
-                                        .selling__main__sec__content__form__write__content__box__group__select
-                                            %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
-                                            = f.collection_select :delivery_area, Prefecture.all, :id, :name, {prompt:"---"}, {class: "selling__main__sec__content__form__write__content__box__group__select__list"}
-                                    .selling__main__sec__content__form__write__content__box__group
-                                        %label.selling__main__sec__content__form__write__content__box__group__label
-                                            発送までの日数
-                                            %span.selling__main__sec__content__form__write__content__box__group__label__need
-                                                必須
-                                        .selling__main__sec__content__form__write__content__box__group__select
-                                            %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
-                                            = f.select :delivery_day, [["---"], ["1~2日で発送"], ["2~3日で発送"], ["4~7日で発送"]], {}, class: "selling__main__sec__content__form__write__content__box__group__select__list"
-                            .selling__main__sec__content__form__write__content.clearfix
-                                %h3.selling__main__sec__content__form__write__content__heading
-                                    販売価格(300〜9,999,999)
-                                = link_to "/", target: "_blank", class: "selling__main__sec__content__form__write__content__link" do
-                                    ?
-                                .selling__main__sec__content__form__write__content__box
-                                    %ul.selling__main__sec__content__form__write__content__box__list
-                                        %li.selling__main__sec__content__form__write__content__box__list__group
-                                            .selling__main__sec__content__form__write__content__box__list__group__clearfix
-                                                %label.selling__main__sec__content__form__write__content__box__list__group__clearfix__label
-                                                    価格
-                                                    %span.selling__main__sec__content__form__write__content__box__list__group__clearfix__label__need
-                                                        必須
-                                                .selling__main__sec__content__form__write__content__box__list__group__clearfix__price
-                                                    ¥
-                                                    .selling__main__sec__content__form__write__content__box__list__group__clearfix__price__input
-                                                        = f.text_field :price, placeholder: "例）300", class: "selling__main__sec__content__form__write__content__box__list__group__clearfix__price__input__form"
-                                        %li.selling__main__sec__content__form__write__content__box__list__per
-                                            .selling__main__sec__content__form__write__content__box__list__per__clearfix
-                                                .selling__main__sec__content__form__write__content__box__list__per__clearfix__left
-                                                    販売手数料（10%）
-                                                .selling__main__sec__content__form__write__content__box__list__per__clearfix__right#fee
-                                                    −
-                                        %li.selling__main__sec__content__form__write__content__box__list__profit
-                                            .selling__main__sec__content__form__write__content__box__list__profit__clearfix
-                                                .selling__main__sec__content__form__write__content__box__list__profit__clearfix__left
-                                                    販売利益
-                                                .selling__main__sec__content__form__write__content__box__list__profit__clearfix__right#profit
-                                                    −
-                            .selling__main__sec__content__form__write__modal
-                            .selling__main__sec__content__form__write__btn-box
-                                .selling__main__sec__content__form__write__btn-box__explain
-                                    %p.selling__main__sec__content__form__write__btn-box__explain__line
-                                        = link_to "/", class: "selling__main__sec__content__form__write__btn-box__explain__line__link", target: "_blank" do
-                                            禁止されている出品
-                                        、
-                                        = link_to "/", class: "selling__main__sec__content__form__write__btn-box__explain__line__link", target: "_blank" do
-                                            行為
-                                        を必ずご確認ください。
-                                    %p.selling__main__sec__content__form__write__btn-box__explain__line
-                                        またブランド品でシリアルナンバー等がある場合はご記載ください。
-                                        = link_to "/", class: "selling__main__sec__content__form__write__btn-box__explain__line__link", target: "_blank" do
-                                            偽ブランドの販売
-                                        は犯罪であり処罰される可能性があります。
-                                    %p.selling__main__sec__content__form__write__btn-box__explain__line
-                                        また、出品をもちまして
-                                        = link_to "/", class: "selling__main__sec__content__form__write__btn-box__explain__line__link", target: "_blank" do
-                                            加盟店規約
-                                        に同意したことになります。
-                                = f.submit "変更する",  name: "", class: "selling__main__sec__content__form__write__btn-box__btn", disable_with: "出品中です..."
-                                = link_to "/products", class: "selling__main__sec__content__form__write__btn-box__link", id: "item-delete-btn" do
-                                    もどる
-                                %input.hidden_id{type: "hidden", value: @id}
+                    = f.fields_for :product_images do |i|
+                      .selling__main__sec__content__form__write__upload__box__items.js-items
+                        -# このinputはすでに登録済みの画像のinput
+                        = i.file_field :image, class: "selling__main__sec__content__form__write__upload__box__items__input-area__field", "data-id": "#{i.index}"
+                        = i.hidden_field :_destroy, class: "delete_form", "data-id": i.index
+                        = i.hidden_field :id
+                    .selling__main__sec__content__form__write__upload__box__items.js-items
+                      = f.file_field :product_images, name: "product[product_images_attributes][#{@default_images}][image]", class: "selling__main__sec__content__form__write__upload__box__new_items__input-area__field", id: "product_product_images_attributes_#{@default_images}_image"
+                  -# -# ここから２段目のプレビューとドロップエリア
+                  -# .selling__main__sec__content__form__write__upload__box2.clearfix.js-box2
+                  -#   #preview2
+                  -#     -# ここにプレビューを入れていく（6枚目〜10枚目）
+                  -#   .selling__main__sec__content__form__write__upload__box2__items2.js-item2
+                  -#     = i.label :image, for: "selling__main__sec__content__form__write__upload__box__items__input-area__field", class: "selling__main__sec__content__form__write__upload__box__items__input-area" do
+                  -#       = i.file_field :image, id: "selling__main__sec__content__form__write__upload__box__items__input-area__field", class: "selling__main__sec__content__form__write__upload__box__items__input-area__field", type: "file", "data-image": 0
+                  -#       .selling__main__sec__content__form__write__upload__box2__items2__description
+                  -#         %pre.selling__main__sec__content__form__write__upload__box2__items2__description__text
+                  -#           ドラッグアンドドロップ
+                  -#           またはクリックしてファイルをアップロード
+              .selling__main__sec__content__form__write__content
+                .selling__main__sec__content__form__write__content__group
+                  %label.selling__main__sec__content__form__write__content__group__label
+                    商品名
+                    %span.selling__main__sec__content__form__write__content__group__label__need
+                      必須
+                  = f.text_field :name, placeholder: "商品名（必須40文字まで）", class: "selling__main__sec__content__form__write__content__group__input"
+                .selling__main__sec__content__form__write__content__group
+                  %label.selling__main__sec__content__form__write__content__group__label
+                    商品の説明
+                    %span.selling__main__sec__content__form__write__content__group__label__need
+                      必須
+                  = f.text_area :text, placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", class: "selling__main__sec__content__form__write__content__group__textarea"
+              .selling__main__sec__content__form__write__content.clearfix
+                %h3.selling__main__sec__content__form__write__content__heading
+                  商品の詳細
+                .selling__main__sec__content__form__write__content__box
+                  .selling__main__sec__content__form__write__content__box__group#group1
+                    %label.selling__main__sec__content__form__write__content__box__group__label
+                      カテゴリー
+                      %span.selling__main__sec__content__form__write__content__box__group__label__need
+                        必須
+                    .selling__main__sec__content__form__write__content__box__group__select#category
+                      %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
+                      = f.select :category_id, options_for_select(@parents), {}, {class: "selling__main__sec__content__form__write__content__box__group__select__list"}
+                  .selling__main__sec__content__form__write__content__box__group
+                    %label.selling__main__sec__content__form__write__content__box__group__label
+                      商品の状態
+                      %span.selling__main__sec__content__form__write__content__box__group__label__need
+                        必須
+                    .selling__main__sec__content__form__write__content__box__group__select
+                      %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
+                      = f.select :status, [["---"], ["新品"], ["未使用に近い"], ["目立った傷や汚れなし"], ["やや傷や汚れあり"], ["傷や汚れあり"], ["全体的に状態が悪い"]], {}, class: "selling__main__sec__content__form__write__content__box__group__select__list", type: "status"
+              .selling__main__sec__content__form__write__content.clearfix
+                %h3.selling__main__sec__content__form__write__content__heading
+                  配送について
+                = link_to "/", target: "_blank", class: "selling__main__sec__content__form__write__content__link" do
+                  ?
+                .selling__main__sec__content__form__write__content__box
+                  .selling__main__sec__content__form__write__content__box__group#responsivility
+                    %label.selling__main__sec__content__form__write__content__box__group__label
+                      配送料の負担
+                      %span.selling__main__sec__content__form__write__content__box__group__label__need
+                        必須
+                    .selling__main__sec__content__form__write__content__box__group__select
+                      %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
+                      = f.select :delivery_responsivility, [["---"], ["送料込み（出品負担）"], ["着払い（購入者負担）"]], {}, class: "selling__main__sec__content__form__write__content__box__group__select__list", type: "delivery_responsivility"
+                  .selling__main__sec__content__form__write__content__box__group
+                    %label.selling__main__sec__content__form__write__content__box__group__label
+                      発送元の地域
+                      %span.selling__main__sec__content__form__write__content__box__group__label__need
+                        必須
+                    .selling__main__sec__content__form__write__content__box__group__select
+                      %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
+                      = f.collection_select :delivery_area, Prefecture.all, :id, :name, {prompt:"---"}, {class: "selling__main__sec__content__form__write__content__box__group__select__list"}
+                  .selling__main__sec__content__form__write__content__box__group
+                    %label.selling__main__sec__content__form__write__content__box__group__label
+                      発送までの日数
+                      %span.selling__main__sec__content__form__write__content__box__group__label__need
+                        必須
+                    .selling__main__sec__content__form__write__content__box__group__select
+                      %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
+                      = f.select :delivery_day, [["---"], ["1~2日で発送"], ["2~3日で発送"], ["4~7日で発送"]], {}, class: "selling__main__sec__content__form__write__content__box__group__select__list"
+              .selling__main__sec__content__form__write__content.clearfix
+                %h3.selling__main__sec__content__form__write__content__heading
+                  販売価格(300〜9,999,999)
+                = link_to "/", target: "_blank", class: "selling__main__sec__content__form__write__content__link" do
+                  ?
+                .selling__main__sec__content__form__write__content__box
+                  %ul.selling__main__sec__content__form__write__content__box__list
+                    %li.selling__main__sec__content__form__write__content__box__list__group
+                      .selling__main__sec__content__form__write__content__box__list__group__clearfix
+                        %label.selling__main__sec__content__form__write__content__box__list__group__clearfix__label
+                          価格
+                          %span.selling__main__sec__content__form__write__content__box__list__group__clearfix__label__need
+                            必須
+                        .selling__main__sec__content__form__write__content__box__list__group__clearfix__price
+                          ¥
+                          .selling__main__sec__content__form__write__content__box__list__group__clearfix__price__input
+                            = f.text_field :price, placeholder: "例）300", class: "selling__main__sec__content__form__write__content__box__list__group__clearfix__price__input__form"
+                    %li.selling__main__sec__content__form__write__content__box__list__per
+                      .selling__main__sec__content__form__write__content__box__list__per__clearfix
+                        .selling__main__sec__content__form__write__content__box__list__per__clearfix__left
+                          販売手数料（10%）
+                        .selling__main__sec__content__form__write__content__box__list__per__clearfix__right#fee
+                          −
+                    %li.selling__main__sec__content__form__write__content__box__list__profit
+                      .selling__main__sec__content__form__write__content__box__list__profit__clearfix
+                        .selling__main__sec__content__form__write__content__box__list__profit__clearfix__left
+                          販売利益
+                        .selling__main__sec__content__form__write__content__box__list__profit__clearfix__right#profit
+                          −
+              .selling__main__sec__content__form__write__modal
+              .selling__main__sec__content__form__write__btn-box
+                .selling__main__sec__content__form__write__btn-box__explain
+                  %p.selling__main__sec__content__form__write__btn-box__explain__line
+                    = link_to "/", class: "selling__main__sec__content__form__write__btn-box__explain__line__link", target: "_blank" do
+                      禁止されている出品
+                    、
+                    = link_to "/", class: "selling__main__sec__content__form__write__btn-box__explain__line__link", target: "_blank" do
+                      行為
+                    を必ずご確認ください。
+                  %p.selling__main__sec__content__form__write__btn-box__explain__line
+                    またブランド品でシリアルナンバー等がある場合はご記載ください。
+                    = link_to "/", class: "selling__main__sec__content__form__write__btn-box__explain__line__link", target: "_blank" do
+                      偽ブランドの販売
+                    は犯罪であり処罰される可能性があります。
+                  %p.selling__main__sec__content__form__write__btn-box__explain__line
+                    また、出品をもちまして
+                    = link_to "/", class: "selling__main__sec__content__form__write__btn-box__explain__line__link", target: "_blank" do
+                      加盟店規約
+                    に同意したことになります。
+                = f.submit "変更する", class: "selling__main__sec__content__form__write__btn-box__btn", disable_with: "出品中です..."
+                = link_to "/products", class: "selling__main__sec__content__form__write__btn-box__link" do
+                  もどる
 = render "/users/footer"
-
-                
--# %button.btn.btn-primary{type: "button", "data-toggle" => "modal", "data-target" => "#Modal"} 押すと表示されます
--# .modal.fade#Modal{tabindex: "-1", role: "dialog", "aria-labelledby" => "Modal", "aria-hidden" => "true"}
--#     .modal-dialog.modal-lg{role: "document"}
--#         .modal-content
--#             .modal-header
--#                 %h5.modal-title#Modal 写真を切り取る
--#                 %button.close{type: "button", "data-dismiss" => "modal", "aria-label" => "閉じる"}
--#                     %span{"aria-hidden" => "true,",} 写真を変更する
--#             .modal-body
--#                 
-                
-                
--#             .modal-footer
--#                 %button.btn.btn-secondary{type: "button", "data-dismiss" => "modal"} キャンセル
--#                 %button.btn.btn-primary{type: "button"} 完了
-                    
