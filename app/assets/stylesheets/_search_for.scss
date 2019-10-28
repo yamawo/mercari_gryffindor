@@ -1,7 +1,7 @@
 .search_for-main{
   position: relative;
   width: 100％;
-  min-height: 100vh;
+  min-height: 155vh;
   &__name{
     font-size: 20px;
     width: 700px;
@@ -32,18 +32,19 @@
   &__breadcrumb{
     position: absolute;
     bottom: 0;
-    // width: 100%;
     max-height: 50px;
     border-top: solid 1px rgb(209, 205, 205);
     margin-top: 100px;
     padding: 20px;
+    width: 100%;
+    clear: left;
   }
   &__side-bar{
     background-color: white;
     margin: 50px 0 0 150px;
-    padding: 20px 0 0 20px;
+    padding: 20px 0 0 25px;
     width: 280px;
-    height: 1000px;
+    height: 100%;
     float: left;
     font-size: 16px;
     font-weight: 600;
@@ -63,7 +64,6 @@
     }
     &--category{
       font-size: 14px;
-      
     }
     #q_category_id{
       display: block;
@@ -95,12 +95,68 @@
         margin-bottom: 30px;
       }
     }
-    // &--stage{
-    //   font-size: 14px;
-    //   &--box{
-    //     display: inline-block;
-    //     width: 90px;
-    //   }
-    // }
+    &--stage{
+      font-size: 14px;
+      &--box{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px 10px;
+      }
+      &--content{
+        font-size: 16px;
+        font-weight: 400;
+        width: 100px;
+      }
+    }
+    &--delivery-responsivility{
+      padding-top: 30px;
+      font-size: 14px;
+      &--box{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px 30px;
+        font-size: 16px;
+        font-weight: 400;
+        width: 250px;
+      }
+    }
+    &--status{
+      padding-top: 30px;
+      font-size: 14px;
+      &--box{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px 0px;
+        font-size: 16px;
+        font-weight: 400;
+      }
+    }
+    &--button{
+      padding-top: 30px;
+      height: 100px;
+      width: 100%;
+      &--reset{
+        display: inline-block;
+        button{
+          height: 50px;
+          width: 120px;
+          background-color: rgb(109, 139, 139);
+          border-radius: 4px;
+          font-size: 16px;
+          color: white;
+        }
+      }
+      &--submit{
+        display: inline-block;
+        input{
+          height: 50px;
+          width: 120px;
+          background-color: rgb(218, 4, 4);
+          border-radius: 4px;
+          font-size: 16px;
+          color: white;
+        }
+      }
+    }
   }
 }

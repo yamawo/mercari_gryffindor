@@ -22,9 +22,7 @@ $(function() {
       if(brands.length !== 0){
         brands.forEach(function(brand){
           appendBrand(brand);
-          
         })
-        
       }
       })
     }

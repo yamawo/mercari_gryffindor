@@ -24,54 +24,47 @@
       .search_for-main__side-bar--stage
         = f.label "商品の状態"
         .search_for-main__side-bar--stage--box
-          = f.check_box :stage_in, { multiple: true }, "新品・未使用", nil
-          = "新品未使用"
-        .search_for-main__side-bar--stage--box
-          = f.check_box :stage_in, { multiple: true }, "未使用に近い", nil
-          = "未使用に近い"
-        .search_for-main__side-bar--stage--box
-          = f.check_box :stage_in, { multiple: true }, "目立った傷や汚れなし", nil
-          = "目立った傷や汚れなし"
-        .search_for-main__side-bar--stage--box
-          = f.check_box :stage_in, { multiple: true }, "やや傷や汚れあり", nil
-          = "やや傷や汚れあり"
-        .search_for-main__side-bar--stage--box
-          = f.check_box :stage_in, { multiple: true }, "傷や汚れあり", nil
-          = "傷や汚れあり"
-        .search_for-main__side-bar--stage--box
-          = f.check_box :stage_in, { multiple: true }, "全体的に状態が悪い", nil
-          = "全体的に状態が悪い"
+          .search_for-main__side-bar--stage--content
+            = f.check_box :stage_in, { multiple: true }, "新品・未使用", nil
+            = "新品未使用"
+          .search_for-main__side-bar--stage--content
+            = f.check_box :stage_in, { multiple: true }, "未使用に近い", nil
+            = "未使用に近い"
+          .search_for-main__side-bar--stage--content
+            = f.check_box :stage_in, { multiple: true }, "目立った傷や汚れなし", nil
+            = "目立った傷や汚れなし"
+          .search_for-main__side-bar--stage--content
+            = f.check_box :stage_in, { multiple: true }, "やや傷や汚れあり", nil
+            = "やや傷や汚れあり"
+          .search_for-main__side-bar--stage--content
+            = f.check_box :stage_in, { multiple: true }, "傷や汚れあり", nil
+            = "傷や汚れあり"
+          .search_for-main__side-bar--stage--content
+            = f.check_box :stage_in, { multiple: true }, "全体的に状態が悪い", nil
+            = "全体的に状態が悪い"
       .search_for-main__side-bar--delivery-responsivility
         = "配送料の負担"
         .search_for-main__side-bar--delivery-responsivility--box
-          = f.check_box :delivery_responsivility_in, { multiple: true }, "送料込み(出品者負担)", nil
-          = "送料込み(出品者負担)"
-        .search_for-main__side-bar--delivery-responsivility--box
-          = f.check_box :delivery_responsivility_in, { multiple: true }, "着払い(購入者負担)", nil
-          = "着払い(購入者負担)"
+          .search_for-main__side-bar--delivery-responsivility--box-content
+            = f.check_box :delivery_responsivility_in, { multiple: true }, "送料込み(出品者負担)", nil
+            = "送料込み(出品者負担)"
+          .search_for-main__side-bar--delivery-responsivility--box-content
+            = f.check_box :delivery_responsivility_in, { multiple: true }, "着払い(購入者負担)", nil
+            = "着払い(購入者負担)"
       .search_for-main__side-bar--status
         = "販売状況"
         .search_for-main__side-bar--status--box
-          = f.check_box :status_in, { multiple: true }, 0, nil
-          = "販売中"
-        .search_for-main__side-bar--status--box
-          = f.check_box :status_in, { multiple: true }, 1, nil
-          = "売り切れ"
+          .search_for-main__side-bar--status--box-content
+            = f.check_box :status_in, { multiple: true }, 0, nil
+            = "販売中"
+          .search_for-main__side-bar--status--box-content
+            = f.check_box :status_in, { multiple: true }, 1, nil
+            = "売り切れ"
       .search_for-main__side-bar--button
         .search_for-main__side-bar--button--reset
-          = f.button "リセット", type: :reset
+          = f.button "クリア", type: :reset, size: "50x200"
         .search_for-main__side-bar--button--submit
           = f.submit "完了"
-
-  
-
-
-
-
-
-
-
-
   .search_for-main__products
     .search_for-main__name
       .search_for-main__name_a
