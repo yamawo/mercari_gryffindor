@@ -62,7 +62,7 @@
         line-height: 49px;
         display: inline-block;
         margin: 0 8px 0 0;
-        &__title{
+        .selling__header__title{
           height: 49px;
           width: 185px;
           display: flex;
@@ -102,11 +102,11 @@
               line-height: 1.5;
             }
             &__input-area{
-              width: 620px;
-              margin: 16px auto 0;
+              width: 100%;
+              margin-left: 0;
               position: absolute;
-              top: 309px;
-              left: 410px;
+              top: 0;
+              left: 0;
               min-height: 162px;
               background: #f5f5f5;
               border: 1px dashed #cccccc;

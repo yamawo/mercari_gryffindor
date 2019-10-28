@@ -49,7 +49,6 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
                 let btn_wrapper = $("<div class='btn_wrapper'><div class='btn_edit'>編集</div><div class='btn_delete' data-image=" + images.length + ">削除</div></div>");
                 // 画像に削除・編集ボタン付与
                 img.append(btn_wrapper);
-                img.data("image", )
                 // src取りたいのでattr
                 img.find("img").attr({
                     src: e.target.result
@@ -71,7 +70,6 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
                 // eachでそれぞれ追加する画像を処理
                 $.each(temporary_images, function(index, image){
                     preview.append(image);
-                    $()
                 })
                 // dropエリアの大きさを可変
                 new_dropzone.css({
