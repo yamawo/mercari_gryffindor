@@ -167,7 +167,7 @@ if (window.location.href.match(/\/products+\/new/)){
             // e.preventDefault();
             // images以外のform情報をformDataに入れる。 get() = getElementById()
             // let formData = new FormData(this);
-
+      
             // TODO Edit実装時にいるかどうか実装者が判断すること
 
             // 登録済み画像が残っていない場合は便宜的に０を入れる

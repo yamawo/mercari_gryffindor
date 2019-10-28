@@ -1,14 +1,13 @@
 class ProductsController < ApplicationController
-  
-  def index
+
+  def index 
     @product = Product.new
   end
   
   def new
     @product = Product.new
-    
     parents = Category.where(ancestry: nil)
-    @parents = [["---", "---"]]
+    @parents = [["---", ""]]
     @parent = "---"
     parents.each do |parent|
       @parents << [parent.name, parent.id]
@@ -163,19 +162,15 @@ class ProductsController < ApplicationController
   def show
   end
 
+  def selling_stage
+    #商品情報
+    @products = Product.all.order("id ASC")
+  end
 
   private 
 
   def product_params
     params.require(:product).permit(:name, :price, :text, :status, :stage, :delivery_responsivility, :delivery_way, :delivery_area, :delivery_day, :category_id, :brand_id, :product_images, product_images_attributes: [:image, :id, :_destroy])
-  end
-
-  def registered_image_params
-    params.require(:registered_images_ids).permit({ids: []})
-  end
-
-  def product_images_params
-    params.require(:product_images).require(:"0").permit({images: []})
   end
   
 end
