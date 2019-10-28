@@ -7,8 +7,13 @@ class UsersController < ApplicationController
   before_action :validates_step3, only: :step4
   before_action :validates_step4, only: :step6
   before_action :validates_step6, only: :step7
+  before_action :redirect_login, except: [:index, :show]
+
   
   layout "users_layout"
+
+  def index
+  end
   
   def show
     redirect_to "/"
@@ -144,7 +149,7 @@ class UsersController < ApplicationController
       @default_card_information = customer.cards.retrieve(card.card_id)
       @exp_month = @default_card_information.exp_month.to_s
       @exp_year = @default_card_information.exp_year.to_s.slice(2,3)
-    end  
+    end
   end
 
   def card_delete #PayjpとCardデータベースを削除します
@@ -209,7 +214,7 @@ class UsersController < ApplicationController
         :last_name,
         :first_name,
         :last_name_kana,
-        :first_name_kana,        
+        :first_name_kana,
         :postal_code,
         :address_prefecture,
         :address_city,
@@ -218,5 +223,9 @@ class UsersController < ApplicationController
         :address_phone,
       ]
     )
+  end
+
+  def redirect_login
+    redirect_to new_user_session_path unless user_signed_in?
   end
 end
