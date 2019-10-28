@@ -1,4 +1,70 @@
+%script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"}
+%script{:src => "https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"}
 .search_for-main
+  .search_for-main__side-bar
+    = search_form_for(@q, url:select_search_path, class: "search_form_side") do |f|
+      .search_for-main__side-bar--soat
+      .search_for-main__side-bar--title
+        = f.label "詳細検索"
+      .search_for-main__side-bar--keyword
+        = f.label "＋ キーワードを追加する"
+        = f.search_field :name_cont
+      .search_for-main__side-bar--category
+        = f.label "カテゴリーを選択する"
+        = f.collection_select :category_id_eq, @categorise, :id, :name,{include_blank: "全て"}, {class: "category_select", id: "q_category_id"}
+      .search_for-main__side-bar--brand
+        = f.label "ブランド名から探す"
+        = f.search_field :brand_id_eq
+      .search_for-main__side-bar--price
+        = f.label "価格"
+        .search_for-main__side-bar--price--box
+          = f.search_field :price_gteq, placeholder: "¥ Min"
+          = "〜"
+          = f.search_field :price_lteq, placeholder: "¥ Max"
+      .search_for-main__side-bar--stage
+        = f.label "商品の状態"
+        .search_for-main__side-bar--stage--box
+          .search_for-main__side-bar--stage--content
+            = f.check_box :stage_in, { multiple: true }, "新品・未使用", nil
+            = "新品未使用"
+          .search_for-main__side-bar--stage--content
+            = f.check_box :stage_in, { multiple: true }, "未使用に近い", nil
+            = "未使用に近い"
+          .search_for-main__side-bar--stage--content
+            = f.check_box :stage_in, { multiple: true }, "目立った傷や汚れなし", nil
+            = "目立った傷や汚れなし"
+          .search_for-main__side-bar--stage--content
+            = f.check_box :stage_in, { multiple: true }, "やや傷や汚れあり", nil
+            = "やや傷や汚れあり"
+          .search_for-main__side-bar--stage--content
+            = f.check_box :stage_in, { multiple: true }, "傷や汚れあり", nil
+            = "傷や汚れあり"
+          .search_for-main__side-bar--stage--content
+            = f.check_box :stage_in, { multiple: true }, "全体的に状態が悪い", nil
+            = "全体的に状態が悪い"
+      .search_for-main__side-bar--delivery-responsivility
+        = "配送料の負担"
+        .search_for-main__side-bar--delivery-responsivility--box
+          .search_for-main__side-bar--delivery-responsivility--box-content
+            = f.check_box :delivery_responsivility_in, { multiple: true }, "送料込み(出品者負担)", nil
+            = "送料込み(出品者負担)"
+          .search_for-main__side-bar--delivery-responsivility--box-content
+            = f.check_box :delivery_responsivility_in, { multiple: true }, "着払い(購入者負担)", nil
+            = "着払い(購入者負担)"
+      .search_for-main__side-bar--status
+        = "販売状況"
+        .search_for-main__side-bar--status--box
+          .search_for-main__side-bar--status--box-content
+            = f.check_box :status_in, { multiple: true }, 0, nil
+            = "販売中"
+          .search_for-main__side-bar--status--box-content
+            = f.check_box :status_in, { multiple: true }, 1, nil
+            = "売り切れ"
+      .search_for-main__side-bar--button
+        .search_for-main__side-bar--button--reset
+          = f.button "クリア", type: :reset
+        .search_for-main__side-bar--button--submit
+          = f.submit "完了"
   .search_for-main__products
     .search_for-main__name
       .search_for-main__name_a

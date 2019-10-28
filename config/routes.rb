@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   }
 
   get "search_for", to: "application#search_for"
+  get "select_search", to: "application#select_search"
+  get "search_form_lv2", to: "application#search_form_lv2"
 
   resources :products, only: [:new, :create, :index, :show, :edit, :destroy] do
     get "product_confirmation"
