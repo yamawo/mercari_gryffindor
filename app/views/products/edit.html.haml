@@ -18,7 +18,7 @@
           .selling__main__sec__content__form
             %h2.selling__main__sec__content__form__heading
               商品の情報を入力
-            = form_for @edit_product, url: products_path(params[:id]), html: {class: "selling__main__sec__content__form__write"} do |f|
+            = form_for @edit_product, html: {class: "selling__main__sec__content__form__write", method: "PATCH"} do |f|
               .selling__main__sec__content__form__write__upload
                 %h3.selling__main__sec__content__form__write__upload__heading
                   出品画像
@@ -28,36 +28,31 @@
                   最大10枚までアップロードできます
                   .selling__main__sec__content__form__write__upload__box.clearfix.js-box
                     #preview
-                      - @edit_product.product_images.each do |p_image|
+                      - @edit_product.product_images.each_with_index do |p_image, index|
                         .add_img
                           .img_area
-                            = image_tag p_image.image.url, "data-id": p_image.id
+                            = image_tag p_image.image.url
                           .btn_wrapper
                             .btn_edit
                               編集
-                            .btn_delete
+                            .btn_delete{"data-id": index}
                               削除
                     .selling__main__sec__content__form__write__upload__box__new_items.js-new_items
                       -# このlabelは新規画像追加用のinputに紐づいているlabel
-                      = f.label :image, for: "product_product_images_attributes_0_new_image", class: "selling__main__sec__content__form__write__upload__box__new_items__input-area" do
-                        -# このinputは新規画像追加用のinput
+                      = f.label :image, for: "product_product_images_attributes_#{@default_images}_image", class: "selling__main__sec__content__form__write__upload__box__new_items__input-area" do
                         .selling__main__sec__content__form__write__upload__box__new_items__description
                           %pre.selling__main__sec__content__form__write__upload__box__new_items__description__text
                             ドラッグアンドドロップ
                             またはクリックしてファイルをアップロード
 
                     = f.fields_for :product_images do |i|
-                      -# = i.hidden_field :_destroy, class: "delete_form" "data-id": 
                       .selling__main__sec__content__form__write__upload__box__items.js-items
-                        -# このlabelはすでに登録済みの画像のinputに紐づいているlabel
-                        = i.label :image, for: "product_product_images_attributes_0_image", class: "selling__main__sec__content__form__write__upload__box__items__input-area" do
-                          -# このinputはすでに登録済みの画像のinput
-                          = i.file_field :image, class: "selling__main__sec__content__form__write__upload__box__items__input-area__field"
-                          .selling__main__sec__content__form__write__upload__box__items__description
-                            %pre.selling__main__sec__content__form__write__upload__box__items__description__text
-                              ドラッグアンドドロップ
-                              またはクリックしてファイルをアップロード
-                          -# 新規画像追加用の箱
+                        -# このinputはすでに登録済みの画像のinput
+                        = i.file_field :image, class: "selling__main__sec__content__form__write__upload__box__items__input-area__field", "data-id": "#{i.index}"
+                        = i.hidden_field :_destroy, class: "delete_form", "data-id": i.index
+                        = i.hidden_field :id
+                    .selling__main__sec__content__form__write__upload__box__items.js-items
+                      = f.file_field :product_images, name: "product[product_images_attributes][#{@default_images}][image]", class: "selling__main__sec__content__form__write__upload__box__new_items__input-area__field", id: "product_product_images_attributes_#{@default_images}_image"
                   -# -# ここから２段目のプレビューとドロップエリア
                   -# .selling__main__sec__content__form__write__upload__box2.clearfix.js-box2
                   -#   #preview2
@@ -181,7 +176,7 @@
                     = link_to "/", class: "selling__main__sec__content__form__write__btn-box__explain__line__link", target: "_blank" do
                       加盟店規約
                     に同意したことになります。
-                = f.submit "変更する", formaction: products_path(params[:id]), formmethod: "PATCH", class: "selling__main__sec__content__form__write__btn-box__btn", disable_with: "出品中です..."
+                = f.submit "変更する", class: "selling__main__sec__content__form__write__btn-box__btn", disable_with: "出品中です..."
                 = link_to "/products", class: "selling__main__sec__content__form__write__btn-box__link" do
                   もどる
 = render "/users/footer"

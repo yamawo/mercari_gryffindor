@@ -29,6 +29,9 @@ class ProductsController < ApplicationController
     gon.edit_product = @edit_product
     gon.edit_product_images = @edit_product.product_images
 
+    # label用の変数
+    @default_images = @edit_product.product_images.length
+    gon.default_images = @default_images
     #孫カテゴリーを取得
     grandchild = @edit_product.category_id
     @grandchild = Category.find(grandchild)
@@ -93,7 +96,8 @@ class ProductsController < ApplicationController
   end
 
   def update
-    # @product.update(params)←このparamsの中にhidden_fieldの値が入ってる
+    product = Product.find(params[:id])
+    product.update(product_params)
   end
 
   def create_category_children
@@ -163,7 +167,7 @@ class ProductsController < ApplicationController
   private 
 
   def product_params
-    params.require(:product).permit(:name, :price, :text, :status, :stage, :delivery_responsivility, :delivery_way, :delivery_area, :delivery_day, :category_id, :brand_id, product_images_attributes: [:image, :_id, :_destroy])
+    params.require(:product).permit(:name, :price, :text, :status, :stage, :delivery_responsivility, :delivery_way, :delivery_area, :delivery_day, :category_id, :brand_id, :product_images, product_images_attributes: [:image, :id, :_destroy])
   end
 
   def registered_image_params
