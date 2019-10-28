@@ -7,14 +7,10 @@ class UsersController < ApplicationController
   before_action :validates_step3, only: :step4
   before_action :validates_step4, only: :step6
   before_action :validates_step6, only: :step7
-  before_action :redirect_login, only: [:mypage, :profile, :logout, :confirmation, :card_registration]
+  before_action :redirect_login, except: [:step3, :step4, :step6, :step7, :step8, :sns_create]
 
   layout "users_layout"
 
-  def show
-    redirect_to "/"
-  end
-  
   def step3
     @user = User.new
   end
