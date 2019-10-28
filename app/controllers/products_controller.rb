@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   require 'payjp'
-  before_action :redirect_login, except: [:index, :show]
+  before_action :redirect_login, except: [:index, :show, :category, :category_list]
   before_action :set_product, only: [:show, :destroy]
 
   def index

@@ -291,30 +291,15 @@ brand_blocks.each do |brand_block|
 end
 
 10.times do |index|
-  User.create!(email: "#{index}divnari@gmail.com", password: "00000000", password_confirmation: "00000000",last_name: "プログラ", first_name: "ミング", last_name_kana: "プログラ", first_name_kana: "ミング", birthdate_year: "2000", birthdate_month: "5", birthdate_day: "5", phone_number: "012011711#{index}", nickname: "divなり#{index + 1}")
+  User.create!(email: "#{index + 1 }@gmail.com", password: "00000000", password_confirmation: "00000000",last_name: "山田", first_name: "彩", last_name_kana: "ヤマダ", first_name_kana: "アヤ", birthdate_year: "2000", birthdate_month: "5", birthdate_day: "5", phone_number: "0900000000#{index}", nickname: "USER#{index + 1}")
 end
 
 10.times do |index|
   Product.create!(name: "アイテム#{index + 1}", price: "#{index + 1}000", text: "アイテム#{index + 1 }のテキスト",status: "0", stage: "新品・未使用", delivery_responsivility: "送料込み(出品者負担)", delivery_way: "ゆうゆうメルカリ便", delivery_area: "大阪府", delivery_day: "1~2日で発送", created_at: "0000000#{index}", updated_at: "0000000#{index}", user_id: "1", category_id: "#{index + 202 }",brand_id: "2447",size_id: "1")
 end
 
-5.times do |index|
+10.times do |index|
   Product.create!(name: "アイテム#{index + 11}", price: "#{index + 11}000", text: "アイテム#{index + 11}のテキスト",status: "0", stage: "新品・未使用", delivery_responsivility: "送料込み(出品者負担)", delivery_way: "ゆうゆうメルカリ便", delivery_area: "大阪府", delivery_day: "1~2日で発送", created_at: "0000000#{index}", updated_at: "0000000#{index}", user_id: "1", category_id: "#{index + 3 }",brand_id: "2",size_id: "1")
-end
-
-Product.create!(name: "河野孝匡a.k.a.KT-KING", price: "0", text: "紫外線からしっかり守りながら日中の肌にうるおいと
-  透明感あふれるハリ肌になります。
-  
-  日中美容液、化粧下地としてもご利用いただけます。
-  
-  残量は明確ではないと思いますが約７割〜８割位は残ってると思います。多少の誤差はお許しください。
-  
-  写真３枚目でご確認いただきたいのですがキャップに
-  擦れて剥がれた所があります。
-  気になる方はご購入をお控えください。",status: "0", stage: "傷や汚れあり", delivery_responsivility: "送料込み(出品者負担)", delivery_way: "未定", delivery_area: "大阪府", delivery_day: "1~2日で発送", created_at: "00000016", updated_at: "00000016", user_id: "1", category_id: "16",brand_id: "2",size_id: "1")
-
-4.times do |index|
-  Product.create!(name: "アイテム#{index + 17}", price: "#{index + 11}000", text: "アイテム#{index + 17 }のテキスト",status: "0", stage: "新品・未使用", delivery_responsivility: "送料込み(出品者負担)", delivery_way: "ゆうゆうメルカリ便", delivery_area: "大阪府", delivery_day: "1~2日で発送", created_at: "0000000#{index + 5}", updated_at: "0000000#{index}", user_id: "1", category_id: "#{index + 3 }",brand_id: "2",size_id: "1")
 end
 
 ProductImage.create!(image: open("#{Rails.root}/public/images/シャネル1.jpg"), product_id: "1")
@@ -329,7 +314,7 @@ ProductImage.create!(image: open("#{Rails.root}/public/images/レディース2.j
 ProductImage.create!(image: open("#{Rails.root}/public/images/レディース3.jpg"), product_id: "13")
 ProductImage.create!(image: open("#{Rails.root}/public/images/レディース4.jpg"), product_id: "14")
 ProductImage.create!(image: open("#{Rails.root}/public/images/レディース5.jpg"), product_id: "15")
-ProductImage.create!(image: open("#{Rails.root}/public/images/レディース6.jpeg"), product_id: "16")
+ProductImage.create!(image: open("#{Rails.root}/public/images/レディース6.jpg"), product_id: "16")
 ProductImage.create!(image: open("#{Rails.root}/public/images/レディース7.jpg"), product_id: "17")
 ProductImage.create!(image: open("#{Rails.root}/public/images/レディース8.jpg"), product_id: "18")
 ProductImage.create!(image: open("#{Rails.root}/public/images/レディース9.jpg"), product_id: "19")
