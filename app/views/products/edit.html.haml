@@ -50,17 +50,17 @@
                                         必須
                                 %p.selling__main__sec__content__form__write__upload__p
                                     最大10枚までアップロードできます
-                                = f.label :image, for: "product_product_images_attributes_0_image", class: "selling__main__sec__content__form__write__upload__input-area"
-                                = f.fields_for :product_images do |i|  # input area
-                                    .selling__main__sec__content__form__write__upload__box.clearfix
-                                        #preview
-                                            -# ここにプレビューを入れていく（１枚目〜５枚目）
-                                        .selling__main__sec__content__form__write__upload__box__items
-                                            = i.file_field :image, class: "selling__main__sec__content__form__write__upload__box__items__field", "data-image": 0
-                                            .selling__main__sec__content__form__write__upload__box__items__description
-                                                %pre.selling__main__sec__content__form__write__upload__box__items__description__text
-                                                    ドラッグアンドドロップ 
-                                                    またはクリックしてファイルをアップロード
+                                -# = f.label :image, for: "product_product_images_attributes_0_image", class: "selling__main__sec__content__form__write__upload__input-area"
+                                -# = f.fields_for :product_images do |i|  # input area
+                                -#     .selling__main__sec__content__form__write__upload__box.clearfix
+                                -#         #preview
+                                -#             -# ここにプレビューを入れていく（１枚目〜５枚目）
+                                -#         .selling__main__sec__content__form__write__upload__box__items
+                                -#             = i.file_field :image, class: "selling__main__sec__content__form__write__upload__box__items__field", "data-image": 0
+                                -#             .selling__main__sec__content__form__write__upload__box__items__description
+                                -#                 %pre.selling__main__sec__content__form__write__upload__box__items__description__text
+                                -#                     ドラッグアンドドロップ 
+                                -#                     またはクリックしてファイルをアップロード
                                     -# TODO ２段目実装時にいるかいらないか実装者が判断すること
 
                                     -# -# ここから２段目のプレビューとドロップエリア

@@ -30,21 +30,23 @@ $(document).on("turbolinks:load", function(){
                       <option value="---">---</option>
                     </select>
                   </div>
-                </div>
-                <div class="selling__main__sec__content__form__write__content__box__group">
-                  <label class="selling__main__sec__content__form__write__content__box__group__label">ブランド
-                    <span class="selling__main__sec__content__form__write__content__box__group__label__free">任意</span>
-                  </label>
-                  <div class="selling__main__sec__content__form__write__content__box__group__select">
-                    <input class="selling__main__sec__content__form__write__content__box__group__select__input" placeholder="例）シャネル" name="product[brand_id]" id="brand_list">
-                    </input>
-                    <div>
-                      <ul class="selling__main__sec__content__form__write__content__box__group__select__search">
-                      </ul>
-                    </div>
-                  </div>
-                  
                 </div>`
+      return html;
+    }
+    var build_brandHTML = function(brands){
+      var html = `<div class="selling__main__sec__content__form__write__content__box__group">
+                    <label class="selling__main__sec__content__form__write__content__box__group__label">ブランド
+                      <span class="selling__main__sec__content__form__write__content__box__group__label__free">任意</span>
+                    </label>
+                    <div class="selling__main__sec__content__form__write__content__box__group__select">
+                      <input class="selling__main__sec__content__form__write__content__box__group__select__input" placeholder="例）シャネル" name="product[brand_id]" id="brand_list">
+                      </input>
+                        <div>
+                          <ul class="selling__main__sec__content__form__write__content__box__group__select__search">
+                          </ul>
+                        </div>
+                    </div>
+                  </div>`
       return html;
     }
   $("#product_category_id").change(function(){
@@ -87,7 +89,6 @@ $(document).on("turbolinks:load", function(){
               var option = document.createElement("option");
               option.value = "---";
               option.text = "---";
-              document.getElementById("grandchildren").appendChild(option);
               for(var i=0; i<grandchildren.length; i++) {
                 var option = document.createElement("option");
                 option.value = grandchildren[i].id;
@@ -114,6 +115,7 @@ $(document).on("turbolinks:load", function(){
                   option.value = sizes[i].id;
                   option.text = sizes[i].name;
                   document.getElementById("size").appendChild(option);
+                  return false
                 }
               }
             })
@@ -125,12 +127,12 @@ $(document).on("turbolinks:load", function(){
               dataType: "json"
             })
             .done(function(grandchildren){
-              var html = buildgrandchildrenHTML(grandchildren);
-              $(html).insertAfter("#category2");
+              // var html = buildgrandchildrenHTML(grandchildren);
+              // $(html).insertAfter("#category2");
               var option = document.createElement("option");
-              option.value = "---";
-              option.text = "---";
-              document.getElementById("grandchildren").appendChild(option);
+              // option.value = "---";
+              // option.text = "---";
+              // document.getElementById("grandchildren").appendChild(option);
               for(var i=0; i<grandchildren.length; i++) {
                 var option = document.createElement("option");
                 option.value = grandchildren[i].id;
@@ -138,7 +140,6 @@ $(document).on("turbolinks:load", function(){
                 document.getElementById("grandchildren").appendChild(option);
               }
               $("#grandchildren").change(function(){
-
                 var input3 = $("#grandchildren").val();
                 if (input3 != "---")
                   $.ajax({
@@ -166,7 +167,7 @@ $(document).on("turbolinks:load", function(){
         })
       })
      
-    }else{
+    }else if(document.getElementById("category2") == null){
       $.ajax({
         url: "/products/create_category_children",
         data: { value: input },
@@ -248,7 +249,6 @@ $(document).on("turbolinks:load", function(){
                   document.getElementById("grandchildren").appendChild(option);
                 }
                 $("#grandchildren").change(function(){
-
                   var input3 = $("#grandchildren").val();
                   if (input3 != "---")
                     $.ajax({
@@ -258,17 +258,23 @@ $(document).on("turbolinks:load", function(){
                     })
                     .done(function(sizes){
                       var html = buildsize_brandHTML(sizes);
-                      if(document.getElementById("sizes") != null){
-                        return;
+                      var brand_html = build_brandHTML(sizes);
+                      $(brand_html).insertAfter("#group1")
+                      if(sizes.length == 0 ){
                       }else{
-                      $(html).insertAfter("#group1");
-                      for(var i=0; i<sizes.length; i++) {
-                        var option = document.createElement("option");
-                        option.value = sizes[i].id;
-                        option.text = sizes[i].name;
-                        document.getElementById("size").appendChild(option);
+                        if(document.getElementById("sizes") != null){
+                          return;
+                        }else{
+                        $(html).insertAfter("#group1");
+                        for(var i=0; i<sizes.length; i++) {
+                          var option = document.createElement("option");
+                          option.value = sizes[i].id;
+                          option.text = sizes[i].name;
+                          document.getElementById("size").appendChild(option);
+                          }
+                        }
                       }
-                      }
+                      
                     })
                 })
               })
@@ -282,7 +288,6 @@ $(document).on("turbolinks:load", function(){
 $(window).on("load", function(){
   if(document.URL.match(/\/products\/\d+\/edit/))
     id = $(".hidden_id").val();
-    console.log(id)
     $.ajax({
       url: `/products/${id}/edit`,
       data: "",

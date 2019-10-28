@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :valid_create, only: :create
+
   def index 
     @product = Product.new
   end
@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
     require "base64"                          #バイナリーデータ化（しないとJSで画像表示できない）
     @product = Product.new
     parents = Category.where(ancestry: nil)
-    @parents = [["---", "---"]]
+    @parents = [["---", ""]]
     @parent = "---"
     parents.each do |parent|
       @parents << [parent.name, parent.id]
@@ -21,11 +21,9 @@ class ProductsController < ApplicationController
   def create
     require "base64"                          #バイナリーデータ化（しないとJSで画像表示できない）
     @product = Product.new(product_params)    #保存できたかどうかで分岐させたいのでnew
-    if @product.save
-      redirect_to controller: :products, action: :index
-    else
-      render action: :new, layout: "selling"
-    end
+    @product.save
+    redirect_to controller: :products, action: :index
+    
   end
 
   
@@ -238,20 +236,5 @@ class ProductsController < ApplicationController
     params.require(:product).require(:product_image).permit(:image)
   end
 
-  def valid_create
-    session[:product_params] = product_params
-    @product = Product.new(session[:product_params])
-    @product = Product.new
-    parents = Category.where(ancestry: nil)
-    @parents = [["---", "---"]]
-    @parent = "---"
-    parents.each do |parent|
-      @parents << [parent.name, parent.id]
-    end
-    
-    @product.product_images.build
-    render "layouts/selling" unless @product.valid?
-    binding.pry
-  end
   
 end
