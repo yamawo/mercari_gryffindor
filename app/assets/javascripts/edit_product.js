@@ -22,7 +22,6 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
             new_dropzone.css({
                 "width": `calc(100% - (20% * ${images.length}))`
             });
-
             // 画像が５枚のとき１段目の枠を消し、２段目の枠を出す
         } else if (images.length == 5){
             // TODO ２段目実装時にコメントアウト外すこと
@@ -32,9 +31,7 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
             new_dropzone.css({
                 "display": "none"
             });
-        } //else if (images.length >= 6){
-        //     // １〜５枚目の画像を抽出
-        // }
+        } 
         // 新規画像投稿の場合の処理
         $(".js-box, .js-box2").on("change", 'input[type="file"].selling__main__sec__content__form__write__upload__box__new_items__input-area__field', function(){
             // ビューに表示するために、一時的に画像を入れる配列
@@ -52,8 +49,6 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
                 let btn_wrapper = $("<div class='btn_wrapper'><div class='btn_edit'>編集</div><div class='btn_delete' data-image=" + images.length + ">削除</div></div>");
                 // 画像に削除・編集ボタン付与
                 img.append(btn_wrapper);
-
-                
                 // src取りたいのでattr
                 img.find("img").attr({
                     src: e.target.result
@@ -63,7 +58,7 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
             reader.readAsDataURL(file);
             // inputのdata-imageを定義
             $("#product_product_images_attributes_" + images.length + "_image").attr("data-image", parseInt(images.length) + 1)
-            console.log(images)
+            
             // FIXME 中間の番号が削除されたときlengthと直前に追加したdata-imageの値が被り、同じ値のものが２つできてしまう
             // ビュー用に格納
             temporary_images.push(img)
@@ -75,7 +70,6 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
                 // eachでそれぞれ追加する画像を処理
                 $.each(temporary_images, function(index, image){
                     preview.append(image);
-                    $()
                 })
                 // dropエリアの大きさを可変
                 new_dropzone.css({
@@ -155,6 +149,7 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
             // 画像が４枚以下の場合
             if (images.length <= 4){
                 new_dropzone.css({
+
                     "width": `calc(100% - (20% * ${images.length}))`,
                     "display": "block"
                 })
@@ -163,6 +158,7 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
                 })
             // 画像が５枚の場合は１段目のdropエリアを消して２段目のdropエリアを出す
             } else if (images.length == 5){
+
                 appendzone.css({
                     "display": "block"
                 })
@@ -177,8 +173,7 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
             } //else {
             //     // １〜５枚目の画像を抽出する
             //     let pickup_images1 = images.slice(0, 5);
-            //     $.each(pickup_images1, function(index, image){
-            
+            //     $.each(pickup_images1, function(index, image){      
             //     })
             //     // ６枚目以降の画像を抽出する
             //     let pickup_images2 = images.slice(5);

@@ -45,6 +45,13 @@ group :development, :test do
   gem 'capistrano3-unicorn'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
+  gem 'pry-rails'
+  gem "faker"
+  gem "rspec_junit_formatter"
+  gem "rubocop-performance"
+  gem "rubocop-rails"
+  gem "rubocop-rspec"
 end
 
 group :development do
@@ -94,3 +101,4 @@ gem 'omniauth-facebook'
 gem 'active_hash'
 gem 'omniauth-google-oauth2'
 gem 'recaptcha', require: "recaptcha/rails"
+gem 'bootstrap', '~> 4.1.1'

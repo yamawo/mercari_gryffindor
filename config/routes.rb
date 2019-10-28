@@ -3,13 +3,16 @@ Rails.application.routes.draw do
  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :products, only: [:new, :create, :index, :edit, :update] do
+  resources :products, only: [:new, :create, :index, :edit, :update, :show] do
     collection do
       get "create_category_children"
       get 'privacy_policy'
       get "create_category_grandchildren"
       get "search_size"
       get "search"
+      get "selling_stage"
+      get "selling_stage2"
+      get "selling_stage3"
     end
   end
 
@@ -20,15 +23,6 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     omniauth_callbacks: 'users/omniauth_callbacks'
   } 
-
-  
-  
-  
-  
-  
-  
-  
-  
   
   resources :users do
     collection do
