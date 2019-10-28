@@ -52,8 +52,6 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
                 let btn_wrapper = $("<div class='btn_wrapper'><div class='btn_edit'>編集</div><div class='btn_delete' data-image=" + images.length + ">削除</div></div>");
                 // 画像に削除・編集ボタン付与
                 img.append(btn_wrapper);
-
-                
                 // src取りたいのでattr
                 img.find("img").attr({
                     src: e.target.result
@@ -155,6 +153,7 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
             // 画像が４枚以下の場合
             if (images.length <= 4){
                 new_dropzone.css({
+
                     "width": `calc(100% - (20% * ${images.length}))`,
                     "display": "block"
                 })
@@ -163,6 +162,7 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
                 })
             // 画像が５枚の場合は１段目のdropエリアを消して２段目のdropエリアを出す
             } else if (images.length == 5){
+
                 appendzone.css({
                     "display": "block"
                 })
@@ -177,8 +177,7 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
             } //else {
             //     // １〜５枚目の画像を抽出する
             //     let pickup_images1 = images.slice(0, 5);
-            //     $.each(pickup_images1, function(index, image){
-            
+            //     $.each(pickup_images1, function(index, image){      
             //     })
             //     // ６枚目以降の画像を抽出する
             //     let pickup_images2 = images.slice(5);

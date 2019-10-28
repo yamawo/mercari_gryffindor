@@ -15,7 +15,7 @@ CarrierWave.configure do |config|
     config.fog_directory = 'mercari-gryffindor'
     config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/mercari-gryffindor'
   else
-    config.storage :file
+    config.storage = :file
     # テスト環境では画像のアップロード処理をスキップ
     config.enable_processing = false if Rails.env.test?
   end
