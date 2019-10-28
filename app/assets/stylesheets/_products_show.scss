@@ -31,6 +31,33 @@
               max-height: 300px;
             }
           }
+          &__sold-out-text{
+            div {
+              top: 24px;
+              font-size: 28px;
+              position: absolute;
+              left: 0;
+              z-index: 2;
+              color: #fff;
+              -webkit-transform: rotate(-45deg);
+              transform: rotate(-45deg);
+              letter-spacing: 2px;
+              font-weight: 500;
+            }
+          }
+          &__sold-out-label{
+            border-width: 120px 120px 0 0;
+            border-color: #ea352d transparent transparent transparent;
+            display: block;
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            width: 0;
+            height: 0;
+            border-style: solid;
+          }
         &__list{
           line-height: 0;
           &__one{
@@ -150,6 +177,17 @@
       font-weight: 600;
       text-align: center;
       cursor: pointer;
+      &__disabled{
+        font-size: 24px;
+        line-height: 60px;
+        display: block;
+        margin-top: 16px;
+        background: #888;
+        color: #fff;
+        font-weight: 600;
+        text-align: center;
+        cursor: not-allowed;
+      }
     }
     &__text{
       padding: 32px 0 0;

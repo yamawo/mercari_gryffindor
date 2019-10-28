@@ -104,6 +104,10 @@
         .products-show__product-details__main__item-photo__outer
         -@product.product_images.limit(1).each do |product|
           = image_tag product.image.url, class: 'products-show__product-details__main__item-photo__outer__top'
+        - unless sold_out?(@product)
+          .products-show__product-details__main__item-photo__sold-out-text
+            %div SOLD
+          .products-show__product-details__main__item-photo__sold-out-label
         .products-show__product-details__main__item-photo__list
         -@product.product_images.each do |product|
           .products-show__product-details__main__item-photo__list__one
@@ -168,8 +172,12 @@
       %span.products-show__product-details__price__text= number_to_currency(@product.price, :format => "%u%n", :unit => "￥")
       %span.products-show__product-details__price__tax （税込）
       %span.products-show__product-details__price__postage 送料込み
-    = link_to product_product_confirmation_path(params[:id]), class: "products-show__product-details__btn" do
-      購入画面に進む
+    - if sold_out?(@product)
+      = link_to product_product_confirmation_path(params[:id]), class: "products-show__product-details__btn" do
+        購入画面に進む
+    - else
+      %h2.products-show__product-details__btn__disabled
+        売り切れました
     .products-show__product-details__text
       %p.products-show__product-details__text__inner
         = @product.text

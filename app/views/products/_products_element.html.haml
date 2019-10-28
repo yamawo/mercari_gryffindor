@@ -8,5 +8,9 @@
         %span{"aria-label" => "Price"}
         .contents__content__category-list__box__elements__element__link__detail__price
           = "¥#{products_element.price}"
+      - unless sold_out?(products_element)
+        .contents__content__category-list__box__elements__element__link__detail__sold-out-label
+        .contents__content__category-list__box__elements__element__link__detail__sold-out-text
+          %span SOLD
     .contents__content__category-list__box__elements__element__link__detail__text
       = products_element.name
