@@ -25,22 +25,22 @@
         = f.label "商品の状態"
         .search_for-main__side-bar--stage--box
           .search_for-main__side-bar--stage--content
-            = f.check_box :stage_in, { multiple: true }, "新品・未使用", nil
+            = f.check_box :status_in, { multiple: true }, 0, nil
             = "新品未使用"
           .search_for-main__side-bar--stage--content
-            = f.check_box :stage_in, { multiple: true }, "未使用に近い", nil
+            = f.check_box :status_in, { multiple: true }, 1, nil
             = "未使用に近い"
           .search_for-main__side-bar--stage--content
-            = f.check_box :stage_in, { multiple: true }, "目立った傷や汚れなし", nil
+            = f.check_box :status_in, { multiple: true }, 2, nil
             = "目立った傷や汚れなし"
           .search_for-main__side-bar--stage--content
-            = f.check_box :stage_in, { multiple: true }, "やや傷や汚れあり", nil
+            = f.check_box :status_in, { multiple: true }, 3, nil
             = "やや傷や汚れあり"
           .search_for-main__side-bar--stage--content
-            = f.check_box :stage_in, { multiple: true }, "傷や汚れあり", nil
+            = f.check_box :status_in, { multiple: true }, 4, nil
             = "傷や汚れあり"
           .search_for-main__side-bar--stage--content
-            = f.check_box :stage_in, { multiple: true }, "全体的に状態が悪い", nil
+            = f.check_box :status_in, { multiple: true }, 5, nil
             = "全体的に状態が悪い"
       .search_for-main__side-bar--delivery-responsivility
         = "配送料の負担"
@@ -55,10 +55,10 @@
         = "販売状況"
         .search_for-main__side-bar--status--box
           .search_for-main__side-bar--status--box-content
-            = f.check_box :status_in, { multiple: true }, 0, nil
+            = f.check_box :stage_in, { multiple: true }, 0, nil
             = "販売中"
           .search_for-main__side-bar--status--box-content
-            = f.check_box :status_in, { multiple: true }, 1, nil
+            = f.check_box :stage_in, { multiple: true }, 2, nil
             = "売り切れ"
       .search_for-main__side-bar--button
         .search_for-main__side-bar--button--reset

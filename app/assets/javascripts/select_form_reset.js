@@ -1,3 +1,4 @@
+$(document).on('turbolinks:load',function() {
 $(function(){
 
   $(".search_for-main__side-bar--button--reset").on("click", function(e){
@@ -16,4 +17,5 @@ $(function(){
       .prop("selected", false)
     ;
   }
+})
 })
