@@ -277,18 +277,18 @@ $(document).on("turbolinks:load", function(){
                       var html = buildsize_brandHTML(sizes);
                       var brand_html = build_brandHTML(sizes);
                       $(brand_html).insertAfter("#group1")
-                      $(html).insertAfter("#group1")
                       if(sizes.length == 0 ){
                         
                       }else{
                         // if(document.getElementById("size") != null){
                         // }else{
-                          for(var i=0; i<sizes.length; i++) {
-                            var option = document.createElement("option");
-                            option.value = sizes[i].id;
-                            option.text = sizes[i].name;
-                            document.getElementById("size").appendChild(option);
-                          }
+                        $(html).insertAfter("#group1")
+                        for(var i=0; i<sizes.length; i++) {
+                          var option = document.createElement("option");
+                          option.value = sizes[i].id;
+                          option.text = sizes[i].name;
+                          document.getElementById("size").appendChild(option);
+                        }
                         // }
                       }
                       
