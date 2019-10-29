@@ -26,6 +26,7 @@ class ProductsController < ApplicationController
   
   def create
     @product = Product.new(product_params)
+    binding.pry
     @product.save
     redirect_to controller: :products, action: :index
   end
