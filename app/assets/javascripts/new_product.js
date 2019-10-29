@@ -1,5 +1,5 @@
 if (window.location.href.match(/\/products+\/new/)){
-    $(window).on("turbolinks:load", function(){
+    $(document).on("turbolinks:load", function(){
         let dropzone = $(".selling__main__sec__content__form__write__upload__box__items");
         let dropzone2 = $(".selling__main__sec__content__form__write__upload__box2__items2");
         let appendzone = $(".selling__main__sec__content__form__write__upload__box2");

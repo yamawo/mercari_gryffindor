@@ -1,5 +1,5 @@
 if (window.location.href.match(/\/products\/\d+\/edit/)){
-    $(window).on("turbolinks:load", function(){
+    $(document).on("turbolinks:load", function(){
         let dropzone = $(".js-items");
         let new_dropzone = $(".js-new_items");
         let dropzone2 = $(".js-items2");
