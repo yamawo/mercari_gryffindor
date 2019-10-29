@@ -130,7 +130,7 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
                 // 対象画像をビュー上で削除する処理
                 $(this).parent().parent().remove();
                 // dropzone,分岐用の配列から画像を削除
-                images = images.splice(target_image_num, 1)
+                images.splice(target_image_num, 1)
                 // DBで削除できるようhidden_fieldのdata-idが同じものを取得してvalueの値を変更
                 $(".delete_form[data-id='" + target_image_num + "']").val(1);
             } else {
