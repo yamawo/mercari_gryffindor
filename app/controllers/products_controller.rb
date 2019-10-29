@@ -206,7 +206,7 @@ class ProductsController < ApplicationController
   
   def product_confirmation
     @product = Product.find(params[:product_id])
-    if @product.status == 0
+    if @product.stage == 0
       @user = current_user
       @address = @user.address
       # テーブルからpayjpの顧客IDを検索
@@ -232,7 +232,7 @@ class ProductsController < ApplicationController
 
   def product_pay
     @product = Product.find(params[:product_id])
-    if @product.status == 0
+    if @product.stage == 0
       card = Credit.where(user_id: current_user.id).first
       Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
       Payjp::Charge.create(
@@ -248,7 +248,7 @@ class ProductsController < ApplicationController
 
   def product_done
      @product = Product.find(params[:product_id])
-     @product.update(status: 1)
+     @product.update(stage: 1)
   end
 
   def privacy_policy

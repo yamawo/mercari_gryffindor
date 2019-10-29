@@ -4,6 +4,6 @@ module ApplicationHelper
   end
 
   def sold_out?(instance)
-    instance.status == 0
+    instance.stage == 0
   end
 end
