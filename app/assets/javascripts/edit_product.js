@@ -62,7 +62,6 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
             reader.readAsDataURL(file);
             // inputのdata-imageを定義
             $("#product_product_images_attributes_" + images.length + "_image").attr("data-image", parseInt(images.length) + 1)
-            console.log(images)
             // FIXME 中間の番号が削除されたときlengthと直前に追加したdata-imageの値が被り、同じ値のものが２つできてしまう
             // ビュー用に格納
             temporary_images.push(img)

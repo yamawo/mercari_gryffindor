@@ -26,7 +26,6 @@ $(document).on("turbolinks:load", function(){
   $(document).on("click", ".selling__main__sec__content__form__write__content__box__group__select__search__ele", function() {
     var brand_name = $(this).text().replace(/\r?\n/g, '');
     var brand_id = $(this).data("id")
-    console.log(brand_id)
     $("#brand_list").val(brand_name)
     $(".selling__main__sec__content__form__write__content__box__group__select__search__ele").remove();
     $(".brand").val(brand_id)

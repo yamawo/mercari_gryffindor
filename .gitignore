@@ -19,7 +19,8 @@
 config/secrets.yml
 　
 # Ignore uploaded files in development
-public/uploads/
+public/uploads/*
+public/images/*
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 /public/uploads
