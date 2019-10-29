@@ -24,15 +24,11 @@
           .contents__content__category-list__box__name
             %h3.contents__content__category-list__box__name__new-item
               レディース新着アイテム
-            = link_to "/", class: "contents__content__category-list__box__name__more" do
+            .contents__content__category-list__box__name__more
               もっと見る 
           .contents__content__category-list__box__elements
             .contents__content__category-list__box__elements__element
-              = render "products_element"
-              = render "products_element"
-              = render "products_element"
-              = render "products_element"
-              = render "products_element"
+              = render partial: "products_element", collection: @ladies
       .contents__content__popular-brand
         %h2.contents__content__popular-brand__name
           人気のブランド
@@ -55,8 +51,6 @@
               もっと見る
           .contents__content__brand-list__box__elements
             .contents__content__brand-list__box__elements__element
-              = render "products_element"
-              = render "products_element"
+              = render partial: "products_element", collection: @chanel unless @chanel.nil?
   = render "shared/download-ad"
   = render "shared/sell-btn"
-  

@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require "nokogiri"
+require 'base64'
 
 #サイズデータ取得
 file = File.open("商品検索結果【メルカリ】No.1フリマアプリ.html")
@@ -20,8 +21,22 @@ size_blocks[1168..1297].each_with_index do |size_block, i|
   size_id += 1
 end
 
+#ブランド取得
+file = File.open("レディース ブランド一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
+doc = Nokogiri::HTML(file)
+
+brand_blocks = doc.search(".brand-list-initial-box-brand-name")
+
+brand_id = 1
+brand_blocks.each do |brand_block|
+  brand = brand_block.at("p").inner_text
+  Brand.create(name: "#{brand}")
+  brand_id += 1
+end
+
 #カテゴリーデータ取得
-file = File.open("カテゴリー一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
+file = File.open("カテゴリー一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
+
 doc = Nokogiri::HTML(file)
 
 parent_category_blocks = doc.search(".category-list-individual-box")
@@ -45,21 +60,6 @@ parent_category_blocks.each_with_index do |parent_category_block,i|
     end
   end
 end
-
-#ブランド取得
-file = File.open("レディース ブランド一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
-doc = Nokogiri::HTML(file)
-
-brand_blocks = doc.search(".brand-list-initial-box-brand-name")
-
-brand_id = 1
-brand_blocks.each do |brand_block|
-  brand = brand_block.at("p").inner_text
-  Brand.create(name: "#{brand}")
-  brand_id += 1
-end
-
-
 
 file = File.open("メンズ ブランド一覧 - メルカリ スマホでかんたん フリマアプリ.htm")
 doc = Nokogiri::HTML(file)
@@ -290,3 +290,42 @@ brand_blocks.each do |brand_block|
   end
 end
 
+10.times do |index|
+  User.create!(email: "#{index + 1 }@gmail.com", password: "00000000", password_confirmation: "00000000",last_name: "山田", first_name: "彩", last_name_kana: "ヤマダ", first_name_kana: "アヤ", birthdate_year: "2000", birthdate_month: "5", birthdate_day: "5", phone_number: "0900000000#{index}", nickname: "USER#{index + 1}")
+end
+
+10.times do |index|
+  Product.create!(name: "アイテム#{index + 1}", price: "#{index + 1}000", text: "アイテム#{index + 1 }のテキスト",status: "0", stage: "新品・未使用", delivery_responsivility: "送料込み(出品者負担)", delivery_way: "ゆうゆうメルカリ便", delivery_area: "大阪府", delivery_day: "1~2日で発送", created_at: "0000000#{index}", updated_at: "0000000#{index}", user_id: "1", category_id: "#{index + 202 }",brand_id: "2447",size_id: "1")
+end
+
+10.times do |index|
+  Product.create!(name: "アイテム#{index + 11}", price: "#{index + 11}000", text: "アイテム#{index + 11}のテキスト",status: "0", stage: "新品・未使用", delivery_responsivility: "送料込み(出品者負担)", delivery_way: "ゆうゆうメルカリ便", delivery_area: "大阪府", delivery_day: "1~2日で発送", created_at: "0000000#{index}", updated_at: "0000000#{index}", user_id: "1", category_id: "#{index + 3 }",brand_id: "2",size_id: "1")
+end
+
+ProductImage.create!(image: open("#{Rails.root}/public/images/シャネル1.jpg"), product_id: "1")
+ProductImage.create!(image: open("#{Rails.root}/public/images/シャネル2.jpg"), product_id: "1")
+ProductImage.create!(image: open("#{Rails.root}/public/images/シャネル3.jpg"), product_id: "1")
+ProductImage.create!(image: open("#{Rails.root}/public/images/シャネル4.jpg"), product_id: "1")
+ProductImage.create!(image: open("#{Rails.root}/public/images/シャネル5.jpg"), product_id: "1")
+ProductImage.create!(image: open("#{Rails.root}/public/images/シャネル6.jpg"), product_id: "1")
+
+ProductImage.create!(image: open("#{Rails.root}/public/images/レディース1.jpg"), product_id: "11")
+ProductImage.create!(image: open("#{Rails.root}/public/images/レディース2.jpg"), product_id: "12")
+ProductImage.create!(image: open("#{Rails.root}/public/images/レディース3.jpg"), product_id: "13")
+ProductImage.create!(image: open("#{Rails.root}/public/images/レディース4.jpg"), product_id: "14")
+ProductImage.create!(image: open("#{Rails.root}/public/images/レディース5.jpg"), product_id: "15")
+ProductImage.create!(image: open("#{Rails.root}/public/images/レディース6.jpg"), product_id: "16")
+ProductImage.create!(image: open("#{Rails.root}/public/images/レディース7.jpg"), product_id: "17")
+ProductImage.create!(image: open("#{Rails.root}/public/images/レディース8.jpg"), product_id: "18")
+ProductImage.create!(image: open("#{Rails.root}/public/images/レディース9.jpg"), product_id: "19")
+ProductImage.create!(image: open("#{Rails.root}/public/images/レディース10.jpg"), product_id: "20")
+
+ProductImage.create!(image: open("#{Rails.root}/public/images/シャネル7.jpg"), product_id: "2")  
+ProductImage.create!(image: open("#{Rails.root}/public/images/シャネル8.jpg"), product_id: "3")  
+ProductImage.create!(image: open("#{Rails.root}/public/images/シャネル9.jpg"), product_id: "4")  
+ProductImage.create!(image: open("#{Rails.root}/public/images/シャネル10.jpg"), product_id: "5")  
+ProductImage.create!(image: open("#{Rails.root}/public/images/シャネル11.jpg"), product_id: "6")  
+ProductImage.create!(image: open("#{Rails.root}/public/images/シャネル12.jpg"), product_id: "7")  
+ProductImage.create!(image: open("#{Rails.root}/public/images/シャネル13.jpg"), product_id: "8")  
+ProductImage.create!(image: open("#{Rails.root}/public/images/シャネル14.jpg"), product_id: "9")  
+ProductImage.create!(image: open("#{Rails.root}/public/images/シャネル15.jpg"), product_id: "10")  

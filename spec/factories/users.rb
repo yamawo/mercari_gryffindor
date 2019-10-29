@@ -1,5 +1,6 @@
 FactoryBot.define do
     factory :user do
+        id                      { '2' }
         last_name               {"nari"}
         first_name              {"mako"}
         last_name_kana          {"ナリ"}

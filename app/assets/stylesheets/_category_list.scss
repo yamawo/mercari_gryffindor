@@ -1,0 +1,34 @@
+.category-list{
+  background: transparent;
+  margin: 40px auto;
+  width: 1020px;
+  height: 1000px;
+  &__main{
+    display: block;
+    &__heading{
+      &__txet{
+        padding: 8px 0;
+        font-size: 22px;
+        line-height: 1.4;
+      }
+    }
+    &__parents-box{
+      text-align: center;
+      &__one{
+        float: left;
+        border-radius: 4px;
+        min-width: 80px;
+        height: 40px;
+        padding: 0 30px;
+        margin: 5px;
+        color: #333;
+        font-size: 16px;
+        line-height: 40px;
+        background-color: #fff;
+        &__name{
+
+        }
+      }
+    }
+  }
+}

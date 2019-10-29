@@ -101,7 +101,9 @@
           gap: 6px 6px;
           
           &__link{
-            width: 100%;
+            background-color: white;
+            height: 252px;
+            width: 188px;
             cursor: pointer;
             display: inline-block;
             position: relative;
@@ -109,11 +111,10 @@
             vertical-align: top;
             &__detail{
               font-family: Arial, "YuGothic", "Meiryo", sans-serif;
-              width: 100%;
               display: flex;
               align-items: center;
-              background-color: gray;
               margin: 0;
+              position: relative;
               &__caption{
                 box-sizing: border-box;
                 color: #222;
@@ -124,7 +125,53 @@
                 white-space: normal;
                 word-break: break-word;
               }
-
+              &__price{
+                position: absolute;
+                top: 150px;
+                width: 80px;
+                height: 25px;
+                line-height: 25px;
+                color: white;
+                background: rgba(0, 0, 0, 0.4);
+                border-radius: 0 14px 14px 0;
+                text-align: center;
+              }
+              &__image{
+                position: relative;
+              }
+              &__text{
+                padding: 5px 12px 12px 10px;
+                font-size: 13px;
+                height: 30px;
+                overflow: hidden;
+              }
+              &__sold-out-label{
+                border-width: 60px 60px 0 0;
+                border-color: #ea352d transparent transparent transparent;
+                display: block;
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 1;
+                width: 0;
+                height: 0;
+                border-style: solid;
+              }
+              &__sold-out-text{
+                span {
+                  top: 12px;
+                  left: 0;
+                  font-size: 14px;
+                  position: absolute;
+                  z-index: 2;
+                  color: #fff;
+                  -webkit-transform: rotate(-45deg);
+                  transform: rotate(-45deg);
+                  letter-spacing: 1px;
+                  font-weight: 600;
+                }
+              }
             }
           }
         }

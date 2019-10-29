@@ -1,0 +1,22 @@
+- if user_signed_in?
+  .products-show__product-details__other__left__like{id: "like-link-#{@product.id}"}
+    .products-show__product-details__other__left__like__second
+      - if current_user.likes.find_by(product_id: @product.id)
+        = link_to unlike_path(@product.id), method: :delete, remote: true do
+          %i.fas.fa-heart.iine-status{id: "heart-#{@product.id}"}
+          %span いいね!
+          %span.like-link
+            = @product.likes.count.to_s
+      - else
+        = link_to like_path(@product.id), method: :post, remote: true do
+          %i.far.fa-heart.iine-status-empty{id: "heart-#{@product.id}"}
+          %span いいね!
+          %span.like-link
+            = @product.likes.count.to_s
+- else
+  .products-show__product-details__other__left__like
+    .products-show__product-details__other__left__like__second
+      %i.far.fa-heart.iine-status-empty
+      %span いいね!
+      %span.like-link
+        = @product.likes.count.to_s

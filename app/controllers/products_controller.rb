@@ -1,7 +1,14 @@
 class ProductsController < ApplicationController
-  
+  require 'payjp'
+  before_action :redirect_login, except: [:index, :show, :category, :category_list]
+  before_action :set_product, only: [:show, :destroy]
+
   def index
-    @product = Product.new
+    require 'base64'
+    ladies = Category.find_by(name: "レディース")
+    @ladies = Product.where(category_id: ladies.indirects.ids).last(10).sort{|a,b| b <=> a}
+    chanel = Brand.find_by(name: "シャネル")
+    @chanel = Product.where(brand_id: chanel.id).last(10).sort{|a,b| b <=> a}
   end
   
   def new
@@ -96,7 +103,6 @@ class ProductsController < ApplicationController
       brand = @edit_product.brand_id
       @brand = Brand.find(brand)
     end
-
     respond_to do |format|
       format.json
       format.html
@@ -109,6 +115,23 @@ class ProductsController < ApplicationController
     product.update(product_params)
   end
   
+  def show
+    @user = @product.user
+    @products = @user.products
+    array = []
+    other_products = @products.limit(7)
+    other_products.each do |product|
+      array << product if product.id != params[:id].to_i
+    end
+    @array = array
+  end
+
+  def destroy
+    if @product.user_id == current_user.id
+       @product.destroy
+    end
+  end
+
   def create_category_children
     @children = Category.where(ancestry: params[:value])#親カテゴリーのvalue
     respond_to do |format|
@@ -121,6 +144,22 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.json
     end
+  end
+
+  def category
+    require 'base64'
+    @category = Category.find(params[:format])
+    if @category.ancestry == nil
+    @categories = Product.where(category_id: @category.indirects.ids)
+    elsif @category.ancestry.match(/\//)
+    @categories = Product.where(category_id: @category.id)
+    else 
+    @categories = Product.where(category_id: @category.children.ids)
+    end
+  end
+
+  def category_list
+    @parents = Category.where(ancestry: nil)
   end
 
   def search_size
@@ -165,14 +204,56 @@ class ProductsController < ApplicationController
     end
   end
   
+  def product_confirmation
+    @product = Product.find(params[:product_id])
+    if @product.status == 0
+      @user = current_user
+      @address = @user.address
+      # テーブルからpayjpの顧客IDを検索
+      card = Credit.find_by(user_id: current_user.id)
+      if card.blank?
+        # 登録された情報がない場合はカード登録画面に遷移
+        redirect_to card_registration_form_users_path
+      else
+        Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
+        # 保管した顧客IDでpayjpから情報取得
+        customer = Payjp::Customer.retrieve(card.customer_id)
+        # 保管したカードIDでpayjpから情報取得、カード情報表示のためにインスタンス変数に代入
+        @default_card_information = customer.cards.retrieve(card.card_id)
+        @exp_month = @default_card_information.exp_month.to_s
+        @exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+
+        render layout: "users_layout"
+      end
+    else
+      redirect_to root_path
+    end
+  end
+
+  def product_pay
+    @product = Product.find(params[:product_id])
+    if @product.status == 0
+      card = Credit.where(user_id: current_user.id).first
+      Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
+      Payjp::Charge.create(
+        amount: @product.price, #todo あとでproductテーブルと紐づける
+        customer: card.customer_id, #顧客ID
+        currency: 'jpy' #日本円
+      )
+      redirect_to product_product_done_path
+    else
+      redirect_to root_path
+    end
+  end
+
+  def product_done
+     @product = Product.find(params[:product_id])
+     @product.update(status: 1)
+  end
 
   def privacy_policy
   end
   
-  def show
-  end
-
-
   private 
 
   def product_params
@@ -183,8 +264,16 @@ class ProductsController < ApplicationController
     params.require(:registered_images_ids).permit({ids: []})
   end
 
+  def set_product
+    @product = Product.find(params[:id])
+  end
+
   def product_images_params
     params.require(:product_images).require(:"0").permit({images: []})
+  end
+  
+  def redirect_login
+    redirect_to new_user_session_path unless user_signed_in?
   end
 
 end

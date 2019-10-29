@@ -1,0 +1,20 @@
+.iine-status{
+  font-size: 14px;
+  vertical-align: middle;
+  color: red;
+  border-radius: 50%;
+  transition: all 1s ease 0s;
+}
+.iine-status:hover {
+  cursor: pointer;
+  transform: scale(100, 100);
+}
+
+.iine-status-empty{
+  font-size: 14px;
+  vertical-align: middle;
+  color: #ccc;
+  transition: all 0.1s linear 0s;
+  border-radius: 50%;
+  cursor: pointer;
+}
