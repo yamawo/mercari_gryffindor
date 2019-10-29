@@ -33,7 +33,7 @@
                           .img_area
                             = image_tag p_image.image.url
                           .btn_wrapper
-                            .btn_edit
+                            = f.label :image, for: "product_product_images_attributes_#{index}_image", class: "btn_edit", "data-edit": index do
                               編集
                             .btn_delete{"data-id": index}
                               削除
