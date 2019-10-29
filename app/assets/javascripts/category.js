@@ -172,7 +172,7 @@ $(document).on("turbolinks:load", function(){
           }
         })
       })
-    }else if(document.getElementById("category3") == null){
+    }else{
       $.ajax({
         url: "/products/create_category_children",
         data: { value: input },
@@ -267,16 +267,17 @@ $(document).on("turbolinks:load", function(){
                       $(brand_html).insertAfter("#group1")
                       $(html).insertAfter("#group1")
                       if(sizes.length == 0 ){
+                        
                       }else{
-                        if(document.getElementById("sizes") != null){
-                        }else{
+                        // if(document.getElementById("size") != null){
+                        // }else{
                           for(var i=0; i<sizes.length; i++) {
-                          var option = document.createElement("option");
-                          option.value = sizes[i].id;
-                          option.text = sizes[i].name;
-                          document.getElementById("size").appendChild(option);
+                            var option = document.createElement("option");
+                            option.value = sizes[i].id;
+                            option.text = sizes[i].name;
+                            document.getElementById("size").appendChild(option);
                           }
-                        }
+                        // }
                       }
                       
                     })
