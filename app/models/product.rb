@@ -3,8 +3,6 @@ class Product < ApplicationRecord
   belongs_to :user
   belongs_to :category
   belongs_to :brand, optional: true
-  belongs_to :user, dependent: :delete
-  belongs_to :brand, optional: true, dependent: :delete
   belongs_to :size
 
   with_options presence: true do
