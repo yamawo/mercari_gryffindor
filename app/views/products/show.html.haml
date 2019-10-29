@@ -47,6 +47,7 @@
             %td
               %a
                 %div
+                - if @product.brand != nil
                   = link_to @product.brand.name
           %tr
             %th 商品のサイズ
@@ -148,6 +149,7 @@
             %td
               %a
                 %div
+                - if @product.brand != nil
                   = link_to @product.brand.name
           %tr
             %th 商品のサイズ
