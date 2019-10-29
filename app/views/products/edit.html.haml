@@ -86,9 +86,31 @@
                       カテゴリー
                       %span.selling__main__sec__content__form__write__content__box__group__label__need
                         必須
+                    %input.hidden_id{type: "hidden", value: "#{@edit_product.id}"}
                     .selling__main__sec__content__form__write__content__box__group__select#category
                       %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
-                      = f.select :category_id, options_for_select(@parents), {}, {class: "selling__main__sec__content__form__write__content__box__group__select__list"}
+                      = f.select :category_id, options_for_select(@parents, @parent), {}, {class: "selling__main__sec__content__form__write__content__box__group__select__list"}
+                    .selling__main__sec__content__form__write__content__box__group__select#category2
+                      %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
+                      = f.select :category_id, options_for_select(@children, @child), {}, {class: "selling__main__sec__content__form__write__content__box__group__select__list", id: "children"}
+                    .selling__main__sec__content__form__write__content__box__group__select#category3
+                      %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
+                      = f.select :category_id, options_for_select(@grandchildren, @grandchild), {}, {class: "selling__main__sec__content__form__write__content__box__group__select__list", id: "grandchildren"}
+                  .selling__main__sec__content__form__write__content__box__group#sizes
+                    %label.selling__main__sec__content__form__write__content__box__group__label
+                      サイズ
+                      %span.selling__main__sec__content__form__write__content__box__group__label__need
+                        必須
+                    .selling__main__sec__content__form__write__content__box__group__select
+                      %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
+                      = f.select :size_id, options_for_select(@sizes), {}, {class: "selling__main__sec__content__form__write__content__box__group__select__list", id: "size"}
+                  .selling__main__sec__content__form__write__content__box__group#group1
+                    %label.selling__main__sec__content__form__write__content__box__group__label
+                      ブランド
+                      %span.selling__main__sec__content__form__write__content__box__group__label__free
+                        任意
+                    .selling__main__sec__content__form__write__content__box__group__select
+                      = f.text_field :brand_id, class: "selling__main__sec__content__form__write__content__box__group__select__input", placeholder: "例）シャネル"
                   .selling__main__sec__content__form__write__content__box__group
                     %label.selling__main__sec__content__form__write__content__box__group__label
                       商品の状態
@@ -111,6 +133,14 @@
                     .selling__main__sec__content__form__write__content__box__group__select
                       %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
                       = f.select :delivery_responsivility, [["---"], ["送料込み（出品負担）"], ["着払い（購入者負担）"]], {}, class: "selling__main__sec__content__form__write__content__box__group__select__list", type: "delivery_responsivility"
+                  .selling__main__sec__content__form__write__content__box__group#delivery_method
+                    %label.selling__main__sec__content__form__write__content__box__group__label
+                      配送の方法
+                      %span.selling__main__sec__content__form__write__content__box__group__label__need
+                        必須
+                    .selling__main__sec__content__form__write__content__box__group__select
+                      %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
+                      = f.select :delivery_way, [["---"], ["未定"], ["らくらくメルカリ便"], ["ゆうメール"], ["レターパック"], ["普通郵便（定形、定形外）"], ["クロネコヤマト"], ["ゆうパック"], ["クリックポスト"], ["ゆうパケット"]], {}, class: "selling__main__sec__content__form__write__content__box__group__select__list", type: "delivery_responsivility", id: "delivery_way"
                   .selling__main__sec__content__form__write__content__box__group
                     %label.selling__main__sec__content__form__write__content__box__group__label
                       発送元の地域

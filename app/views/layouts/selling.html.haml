@@ -79,7 +79,7 @@
                         必須
                     .selling__main__sec__content__form__write__content__box__group__select
                       %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
-                      = f.select :status, [["---"], ["新品"], ["未使用に近い"], ["目立った傷や汚れなし"], ["やや傷や汚れあり"], ["傷や汚れあり"], ["全体的に状態が悪い"]], {}, class: "selling__main__sec__content__form__write__content__box__group__select__list", type: "status"
+                      = f.select :status, Product.statuses.keys.to_a, {}, class: "selling__main__sec__content__form__write__content__box__group__select__list", type: "status"
               .selling__main__sec__content__form__write__content.clearfix
                 %h3.selling__main__sec__content__form__write__content__heading
                   配送について

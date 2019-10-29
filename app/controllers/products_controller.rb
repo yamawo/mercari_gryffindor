@@ -6,7 +6,6 @@ class ProductsController < ApplicationController
   
   def new
     @product = Product.new
-    
     parents = Category.where(ancestry: nil)
     @parents = [["---", "---"]]
     @parent = "---"
@@ -23,6 +22,7 @@ class ProductsController < ApplicationController
     @product.save
     redirect_to controller: :products, action: :index
   end
+  
   
   def edit
     @edit_product = Product.find(params[:id])
@@ -55,10 +55,6 @@ class ProductsController < ApplicationController
       @parents << [parent.name, parent.id]
     end
     
-    respond_to do |format|
-      format.json
-      format.html
-    end
     
     #サイズを取得
     g_id = @grandchild.id
@@ -88,18 +84,31 @@ class ProductsController < ApplicationController
     elsif g_id == 1040
       sizes = Size.where(id: 124..130)#スノーボードのサイズ
     end
-    @sizes = ["---"]
-    sizes.each do |size|
-      @sizes << [size.name, size.id]
+    unless @edit_product.size_id.nil?
+      @sizes = ["---"]
+      sizes.each do |size|
+        @sizes << [size.name, size.id]
+      end
+      size = @edit_product.size_id
+      @size = Size.find(size)
+    end
+      if @edit_product.brand_id
+      brand = @edit_product.brand_id
+      @brand = Brand.find(brand)
+    end
+
+    respond_to do |format|
+      format.json
+      format.html
     end
     render layout: false
   end
-
+  
   def update
     product = Product.find(params[:id])
     product.update(product_params)
   end
-
+  
   def create_category_children
     @children = Category.where(ancestry: params[:value])#親カテゴリーのvalue
     respond_to do |format|
@@ -167,7 +176,7 @@ class ProductsController < ApplicationController
   private 
 
   def product_params
-    params.require(:product).permit(:name, :price, :text, :status, :stage, :delivery_responsivility, :delivery_way, :delivery_area, :delivery_day, :category_id, :brand_id, :product_images, product_images_attributes: [:image, :id, :_destroy])
+    params.require(:product).permit(:name, :price, :text, :status, :stage, :delivery_responsivility, :delivery_way, :delivery_area, :delivery_day, :category_id, :brand_id, :size_id, :product_images, product_images_attributes: [:image, :id, :_destroy]).merge(user_id: current_user.id)
   end
 
   def registered_image_params
@@ -177,5 +186,5 @@ class ProductsController < ApplicationController
   def product_images_params
     params.require(:product_images).require(:"0").permit({images: []})
   end
-  
+
 end

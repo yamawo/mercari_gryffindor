@@ -22,7 +22,6 @@ if (window.location.href.match(/\/products\/\d+\/edit/)){
             new_dropzone.css({
                 "width": `calc(100% - (20% * ${images.length}))`
             });
-            console.log(images)
             // 画像が５枚のとき１段目の枠を消し、２段目の枠を出す
         } else if (images.length == 5){
             // TODO ２段目実装時にコメントアウト外すこと
