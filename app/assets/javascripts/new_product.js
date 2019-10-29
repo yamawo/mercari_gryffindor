@@ -1,5 +1,5 @@
 if (window.location.href.match(/\/products+\/new/)){
-    $(window).on("turbolinks:load", function(){
+    $(document).on("turbolinks:load", function(){
         let dropzone = $(".selling__main__sec__content__form__write__upload__box__items");
         let dropzone2 = $(".selling__main__sec__content__form__write__upload__box2__items2");
         let appendzone = $(".selling__main__sec__content__form__write__upload__box2");
@@ -19,7 +19,7 @@ if (window.location.href.match(/\/products+\/new/)){
             let img = $(`<div class="add_img"><div class="img_area"><img class="image"></div></div>`);
 
             reader.onload = function(e){
-                let btn_wrapper = $('<div class="btn_wrapper"><a class="btn_edit">編集</a><a class="btn_delete">削除</a></div>');
+                let btn_wrapper = $(`<div class="btn_wrapper"><a class="btn_edit">編集</a><a class="btn_delete" data-delete-id=${images.length}>削除</a></div>`);
                 // 画像に削除・編集ボタン付与
                 img.append(btn_wrapper);
                 // src取りたいのでattr
@@ -93,19 +93,20 @@ if (window.location.href.match(/\/products+\/new/)){
         // 削除ボタン
         $(".selling__main__sec__content__form__write__upload__box, .selling__main__sec__content__form__write__upload__box2").on("click", ".btn_delete", function(){
             // 削除ボタンを押した画像を取得する
-            let target_image = $(this).parent().parent();
-            //削除画像のカスタムデータ属性data-image番号を取得
-            let target_image_num =target_image.data("image");
+            let target_image_num = $(this).attr('data-delete-id');
             // 対象画像をビュー上で削除する処理
-            target_image.remove();
-
+            $(this).parent().parent().remove();
+            // 実際の配列の順番に合わせる
+            target_image_num -= 1
             // 対象画像を削除したあとの新たな配列を生成(start番号, 個数)
-            images.splice(target_image_num, 1);
+            images.splice(target_image_num, 1)
+            // 対象のinputを削除
+            $(".selling__main__sec__content__form__write__upload__box__items__input-area__field[data-image=" + images.length + "]").remove();
+        
+        
 
             if (images.length == 0){
-                $('input[type="file"].selling__main__sec__content__form__write__upload__box__items__input-area__field').attr({
-                    "data-image": 0
-                })
+                $('input[type="file"].selling__main__sec__content__form__write__upload__box__items__input-area__field').attr({"data-image": 0})
             }
             // 削除した後の中身の数でCSSの処理を分岐
             // 画像が４枚以下の場合

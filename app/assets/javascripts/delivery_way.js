@@ -1,4 +1,4 @@
-$(function(){
+$(document).on("turbolinks:load", function(){
   $("#product_delivery_responsivility").change(function() {
     var html = `<div class="selling__main__sec__content__form__write__content__box__group" id="delivery_method">
                   <label class="selling__main__sec__content__form__write__content__box__group__label">配送の方法

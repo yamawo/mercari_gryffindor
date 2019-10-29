@@ -39,7 +39,9 @@ $(document).on("turbolinks:load", function(){
                       <span class="selling__main__sec__content__form__write__content__box__group__label__free">任意</span>
                     </label>
                     <div class="selling__main__sec__content__form__write__content__box__group__select">
-                      <input class="selling__main__sec__content__form__write__content__box__group__select__input" placeholder="例）シャネル" name="product[brand_id]" id="brand_list">
+                      <input class="selling__main__sec__content__form__write__content__box__group__select__input" placeholder="例）シャネル" id="brand_list">
+                      </input>
+                      <input class="brand_hidden" type="hidden" val="" name="product[brand_id]">
                       </input>
                         <div>
                           <ul class="selling__main__sec__content__form__write__content__box__group__select__search">
@@ -54,6 +56,7 @@ $(document).on("turbolinks:load", function(){
     if(input == "---"){
       $("#category2").remove();
       $("#category3").remove();
+      $("#sizes").remove();
     }else if(document.getElementById("category2") != null){
       $("#children").empty();
       $("#category3").remove();
@@ -107,7 +110,7 @@ $(document).on("turbolinks:load", function(){
             .done(function(sizes){
               var html = buildsize_brandHTML(sizes);
               if(document.getElementById("sizes") != null){
-                return;
+                
               }else{
                 $(html).insertAfter("#group1");
                 for(var i=0; i<sizes.length; i++) {
@@ -120,7 +123,7 @@ $(document).on("turbolinks:load", function(){
               }
             })
           }
-          else{
+          else{ 
             $.ajax({
               url: "/products/create_category_grandchildren",
               data: { value: val },
@@ -141,7 +144,7 @@ $(document).on("turbolinks:load", function(){
               }
               $("#grandchildren").change(function(){
                 var input3 = $("#grandchildren").val();
-                if (input3 != "---")
+                if (input3 != "---"){
                   $.ajax({
                     url: "/products/search_size",
                     data: { value: input3 },
@@ -149,8 +152,15 @@ $(document).on("turbolinks:load", function(){
                   })
                   .done(function(sizes){
                     var html = buildsize_brandHTML(sizes);
-                    if(document.getElementById("sizes") != null){
-                      document.getElementById("size").val();
+                    var unnecessary_option = $("#size").children(option);
+                    if(sizes.length == 0) {
+                      $("#sizes").remove();
+                    }else if(document.getElementById("sizes") != null){  //サイズのボックス要素がないとき
+                      var option = document.createElement("option");
+                      option.value = "---";
+                      option.text = "---";
+                      document.getElementById("size").appendChild(option);
+                      unnecessary_option.remove();
                       for(var i=0; i<sizes.length; i++) {
                       var option = document.createElement("option");
                       option.value = sizes[i].id;
@@ -165,14 +175,16 @@ $(document).on("turbolinks:load", function(){
                       option.text = sizes[i].name;
                       document.getElementById("size").appendChild(option);
                       }
+                      document.getElementById("size").remove()
                     }
                   })
+                }
               })
             })
           }
         })
       })
-    }else if(document.getElementById("category3") == null){
+    }else{
       $.ajax({
         url: "/products/create_category_children",
         data: { value: input },
@@ -267,16 +279,17 @@ $(document).on("turbolinks:load", function(){
                       $(brand_html).insertAfter("#group1")
                       $(html).insertAfter("#group1")
                       if(sizes.length == 0 ){
+                        
                       }else{
-                        if(document.getElementById("sizes") != null){
-                        }else{
+                        // if(document.getElementById("size") != null){
+                        // }else{
                           for(var i=0; i<sizes.length; i++) {
-                          var option = document.createElement("option");
-                          option.value = sizes[i].id;
-                          option.text = sizes[i].name;
-                          document.getElementById("size").appendChild(option);
+                            var option = document.createElement("option");
+                            option.value = sizes[i].id;
+                            option.text = sizes[i].name;
+                            document.getElementById("size").appendChild(option);
                           }
-                        }
+                        // }
                       }
                       
                     })

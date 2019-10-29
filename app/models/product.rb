@@ -1,10 +1,15 @@
 class Product < ApplicationRecord
-
+  
   belongs_to :user
   belongs_to :category
   belongs_to :brand, optional: true
   belongs_to :size
 
+  has_many :product_images, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liking_users, through: :likes, source: :user
+  accepts_nested_attributes_for :product_images, allow_destroy: true
+  
   with_options presence: true do
     validates :name
     validates :text

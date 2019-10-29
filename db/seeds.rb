@@ -55,7 +55,7 @@ parent_category_blocks.each_with_index do |parent_category_block,i|
     grandchild_category_blocks.each do |grandchild_category_block|
       grandchild_category = grandchild_category_block.at("a").inner_text
       next if grandchild_category.squish == "すべて"
-      genre2.children.create(name: "#{grandchild_category}")
+      genre2.children.create(name: "#{grandchild_category}".squish)
       category_id += 1
     end
   end
@@ -290,6 +290,7 @@ brand_blocks.each do |brand_block|
   end
 end
 
+
 10.times do |index|
   User.create!(email: "#{index + 1 }@gmail.com", password: "00000000", password_confirmation: "00000000",last_name: "山田", first_name: "彩", last_name_kana: "ヤマダ", first_name_kana: "アヤ", birthdate_year: "2000", birthdate_month: "5", birthdate_day: "5", phone_number: "0900000000#{index}", nickname: "USER#{index + 1}")
 end
@@ -329,3 +330,4 @@ ProductImage.create!(image: open("#{Rails.root}/public/images/シャネル12.jpg
 ProductImage.create!(image: open("#{Rails.root}/public/images/シャネル13.jpg"), product_id: "8")  
 ProductImage.create!(image: open("#{Rails.root}/public/images/シャネル14.jpg"), product_id: "9")  
 ProductImage.create!(image: open("#{Rails.root}/public/images/シャネル15.jpg"), product_id: "10")  
+
