@@ -1,4 +1,4 @@
-$(function(){
+$(document).on("turbolinks:load", function(){
   var $input = $("#product_price");
   var $fee = $("#fee");
   var $profit = $("#profit");
