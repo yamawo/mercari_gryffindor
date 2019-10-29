@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get "select_search", to: "application#select_search"
   get "search_form_lv2", to: "application#search_form_lv2"
 
-  resources :products, only: [:new, :create, :index, :show, :edit, :destroy] do
+  resources :products do
     get "product_confirmation"
     post "product_pay"
     get "product_done"
