@@ -4,7 +4,6 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :destroy]
 
   def index
-    require 'base64'
     ladies = Category.find_by(name: "レディース")
     @ladies = Product.where(category_id: ladies.indirects.ids).last(10).sort{|a,b| b <=> a}
     chanel = Brand.find_by(name: "シャネル")
@@ -113,6 +112,7 @@ class ProductsController < ApplicationController
   def update
     product = Product.find(params[:id])
     product.update(product_params)
+    redirect_to controller: :products, action: :index
   end
   
   def show

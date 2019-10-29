@@ -28,7 +28,7 @@
               もっと見る 
           .contents__content__category-list__box__elements
             .contents__content__category-list__box__elements__element
-              = render partial: "products_element", collection: @ladies
+              = render partial: "products_element", collection: @ladies unless @chanel.nil?
       .contents__content__popular-brand
         %h2.contents__content__popular-brand__name
           人気のブランド
