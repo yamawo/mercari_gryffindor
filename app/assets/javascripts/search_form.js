@@ -1,12 +1,6 @@
 $(document).on('turbolinks:load',function() {
 $(function(){
 
-  window.onpageshow = function(event) {
-	if (event.persisted) {
-		 window.location.reload();
-	}
-};
-
   let select_children = function(){
   let html = `<select class="category_children" name="q[category_id_eq]" id="q_category_id" >`
   return html;
