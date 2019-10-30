@@ -23,3 +23,10 @@ $(function(){
   }
 })
 })
+
+$(document).on("turbolinks:load", function(){
+$(function(){
+  $(".category_children").remove();
+  $(".category_indirects").remove();
+})
+})
