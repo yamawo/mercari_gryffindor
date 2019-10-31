@@ -111,7 +111,7 @@
                         任意
                     .selling__main__sec__content__form__write__content__box__group__select
                       = f.text_field :brand_id, class: "selling__main__sec__content__form__write__content__box__group__select__input", placeholder: "例）シャネル", id: "brand_list", value: "#{@brand.name}"
-                      = f.hidden_field :brand_id, value: "", class: "brand_hidden"
+                      %input.brand_hidden{value: "#{@brand.id}", name: "product[brand_id]", type: "hidden"}
                       %ul.selling__main__sec__content__form__write__content__box__group__select__search
                   .selling__main__sec__content__form__write__content__box__group
                     %label.selling__main__sec__content__form__write__content__box__group__label

@@ -107,6 +107,7 @@ class ProductsController < ApplicationController
       format.html
     end
     render layout: false
+    
   end
   
   def update
