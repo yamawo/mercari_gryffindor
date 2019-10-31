@@ -51,561 +51,259 @@ $(document).on("turbolinks:load", function(){
                   </div>`
       return html;
     }
-    if(document.URL.match(/\/products\/\d+\/edit/)){
-      $("#product_category_id").change(function(){
-        var input = $('#product_category_id').val();
-        if(input == "---"){
-          $("#category2").remove();
-          $("#category3").remove();
-          $("#sizes2").remove();
-          $("#sizes").remove();
-        }else if(document.getElementById("category2") != null){ //子カテゴリーのボックスがあった時
-          $("#children").empty();
-          $("#category3").remove();
-          $("#sizes2").remove();
-          $("#sizes").remove();
-          $.ajax({
-            url: "/products/create_category_children",
-            data: { value: input },
-            dataType: "json"
-          })
-          .done(function(children){
-            var option = document.createElement("option");
-            option.value = "---";
-            option.text = "---";
-            document.getElementById("children").appendChild(option);
-            for(var i=0; i<children.length; i++) {
-              var option = document.createElement("option");
-              option.value = children[i].id
-              option.text = children[i].name
-              document.getElementById("children").appendChild(option);
-            }
-            $("#children").change(function(){
-              var input2 = $('#children').val();
-              var val = `${input}/${input2}`
-              if (input2 == "---"){
-                $("#category3").remove();
-              }else if(document.getElementById("category3") != null){
-                $("#grandchildren").empty();
-                $.ajax({
-                  url: "/products/create_category_grandchildren",
-                  data: { value: val },
-                  dataType: "json"
-                })
-                .done(function(grandchildren){
-                  var option = document.createElement("option");
-                  option.value = "---";
-                  option.text = "---";
-                  for(var i=0; i<grandchildren.length; i++) {
-                    var option = document.createElement("option");
-                    option.value = grandchildren[i].id;
-                    option.text = grandchildren[i].name;
-                    document.getElementById("grandchildren").appendChild(option);
-                  }
-                })
-              }else if(input2 == 1325){
-                return;
-              }else if(input2 == 1234){
-                $.ajax({
-                  url: "/products/search_size",
-                  data: { value: input2 },
-                  dataType: "json",
-                })
-                .done(function(sizes){
-                  var html = buildsize_brandHTML(sizes);
-                  if(document.getElementById("sizes") != null){
-                  }else{
-                    $(html).insertAfter("#group1");
-                    for(var i=0; i<sizes.length; i++) {
-                      var option = document.createElement("option");
-                      option.value = sizes[i].id;
-                      option.text = sizes[i].name;
-                      document.getElementById("size").appendChild(option);
-                      return false
-                    }
-                  }
-                })
-              }
-              else{
-                $.ajax({
-                  url: "/products/create_category_grandchildren",
-                  data: { value: val },
-                  dataType: "json"
-                })
-                .done(function(grandchildren){
-                  var html = buildgrandchildrenHTML(grandchildren);
-                  if(document.getElementById("grandchildren") == null){
-                    $(html).insertAfter("#category2");
-                  }
-                  var option = document.createElement("option");
-                  option.value = "---";
-                  option.text = "---";
-                  if($("#grandchildren").children().length == 0){
-                    document.getElementById("grandchildren").appendChild(option);
-                  }
-                  for(var i=0; i<grandchildren.length; i++) {
-                    var option = document.createElement("option");
-                    option.value = grandchildren[i].id;
-                    option.text = grandchildren[i].name;
-                    document.getElementById("grandchildren").appendChild(option);
-                  }
-                  $("#grandchildren").change(function(){
-                    var input3 = $("#grandchildren").val();
-                    if (input3 != "---"){
-                      $.ajax({
-                        url: "/products/search_size",
-                        data: { value: input3 },
-                        dataType: "json"
-                      })
-                      .done(function(sizes){
-                        var html = buildsize_brandHTML(sizes);
-                        if(document.getElementById("sizes") == null){
-                          $(html).insertAfter("#group1");
-                        }
-                        var unnecessary_option = $("#size").children(option);
-                        if(sizes.length == 0) {
-                          $("#sizes").remove();
-                        }else if(document.getElementById("sizes") != null){  //サイズのボックス要素がないとき
-                          var option = document.createElement("option");
-                          option.value = "---";
-                          option.text = "---";
-                          document.getElementById("size").appendChild(option);
-                          unnecessary_option.remove();
-                          for(var i=0; i<sizes.length; i++) {
-                          var option = document.createElement("option");
-                          option.value = sizes[i].id;
-                          option.text = sizes[i].name;
-                          document.getElementById("size").appendChild(option);
-                          }
-                        }else{
-                          $(html).insertAfter("#group1");
-                          for(var i=0; i<sizes.length; i++) {
-                          var option = document.createElement("option");
-                          option.value = sizes[i].id;
-                          option.text = sizes[i].name;
-                          document.getElementById("size").appendChild(option);
-                          }
-                          document.getElementById("size").remove()
-                          return;
-                        }
-                      })
-                    }
-                  })
-                })
-              }
-            })
-          })
-        }else{
-          $("#sizes2").remove();
-          $("#sizes").remove()
-          $.ajax({
-            url: "/products/create_category_children",
-            data: { value: input },
-            dataType: "json"
-          })
-          .done(function(children){
-            var html = buildchildrenHTML(children);
-            $(html).insertAfter("#category");
-            for(var i=0; i<children.length; i++) {
-              var option = document.createElement("option");
-              option.value = children[i].id
-              option.text = children[i].name;
-              document.getElementById("children").appendChild(option);
-            };
-              $("#children").change(function(){
-                var input2 = $('#children').val();
-                var val = `${input}/${input2}`
-                if (input2 == "---"){
-                  $("#category3").remove();
-                }else if(document.getElementById("category3") != null){
-                  $("#grandchildren").empty();
-                  $.ajax({
-                    url: "/products/create_category_grandchildren",
-                    data: { value: val },
-                    dataType: "json"
-                  })
-                  .done(function(grandchildren){
-                    var option = document.createElement("option");
-                    option.value = "---";
-                    option.text = "---";
-                    document.getElementById("grandchildren").appendChild(option);
-                    for(var i=0; i<grandchildren.length; i++) {
-                      var option = document.createElement("option");
-                      option.value = grandchildren[i].id;
-                      option.text = grandchildren[i].name;
-                      document.getElementById("grandchildren").appendChild(option);
-                    }
-                  })
-                }else if(input2 == 1325){
-                  return;
-                }else if(input2 == 1234){
-                  $.ajax({
-                    url: "/products/search_size",
-                    data: { value: input2 },
-                    dataType: "json",
-                  })
-                  .done(function(sizes){
-                    // var html = buildsize_brandHTML(sizes);
-                    // if(document.getElementById("sizes") != null){
-                    //   return;
-                    // }else{
-                    //   $(html).insertAfter("#group1");
-                    //   for(var i=0; i<sizes.length; i++) {
-                    //     var option = document.createElement("option");
-                    //     option.value = sizes[i].id;
-                    //     option.text = sizes[i].name;
-                    //     document.getElementById("size").appendChild(option);
-                    //   }
-                    // }
-                  })
-                }
-                else{
-                  $.ajax({
-                    url: "/products/create_category_grandchildren",
-                    data: { value: val },
-                    dataType: "json"
-                  })
-                  .done(function(grandchildren){
-                    var html = buildgrandchildrenHTML(grandchildren);
-                    $(html).insertAfter("#category2");
-                    var option = document.createElement("option");
-                    option.value = "---";
-                    option.text = "---";
-                    if($("#grandchildren").children().length == 0){
-                      document.getElementById("grandchildren").appendChild(option);
-                    }
-                    for(var i=0; i<grandchildren.length; i++) {
-                      var option = document.createElement("option");
-                      option.value = grandchildren[i].id;
-                      option.text = grandchildren[i].name;
-                      document.getElementById("grandchildren").appendChild(option);
-                    }
-                    $("#grandchildren").change(function(){
-                      var input3 = $("#grandchildren").val();
-                      if (input3 != "---")
-                        $.ajax({
-                          url: "/products/search_size",
-                          data: { value: input3 },
-                          dataType: "json"
-                        })
-                        .done(function(sizes){
-                          // var brand_html = build_brandHTML(sizes);
-                          // if(document.getElementById("brand_list") == null){
-                          //   $(brand_html).insertAfter("#group1")
-                          // }
-                          // var html = buildsize_brandHTML(sizes);
-                          // if(sizes.length == 0 ){
-                          // }else{
-                          //   if(document.getElementById("size") == null){
-                          //     $(html).insertAfter("#group1")
-                          //     for(var i=0; i<sizes.length; i++) {
-                          //       var option = document.createElement("option");
-                          //       option.value = sizes[i].id;
-                          //       option.text = sizes[i].name;
-                          //       document.getElementById("size").appendChild(option);
-                          //     }
-                          //   }
-                          // }
-                          
-                        })
-                    })
-                  })
-                }
-              })
-          });
-        }   
+  $("#product_category_id").change(function(){
+    var input = $('#product_category_id').val();
+    if(input == "---"){
+      $("#category2").remove();
+      $("#category3").remove();
+      $("#sizes").remove();
+    }else if(document.getElementById("category2") != null){
+      $("#children").empty();
+      $("#category3").remove();
+      $.ajax({
+        url: "/products/create_category_children",
+        data: { value: input },
+        dataType: "json"
       })
-    }else{
-      $("#product_category_id").change(function(){
-        var input = $('#product_category_id').val();
-        if(input == "---"){
-          $("#category2").remove();
-          $("#category3").remove();
-          $("#sizes").remove();
-        }else if(document.getElementById("category2") != null){ //子カテゴリーのボックスがあった時
-          $("#children").empty();
-          $("#category3").remove();
-          $.ajax({
-            url: "/products/create_category_children",
-            data: { value: input },
-            dataType: "json"
-          })
-          .done(function(children){
-            var option = document.createElement("option");
-            option.value = "---";
-            option.text = "---";
-            document.getElementById("children").appendChild(option);
-            for(var i=0; i<children.length; i++) {
+      .done(function(children){
+        var option = document.createElement("option");
+        option.value = "---";
+        option.text = "---";
+        document.getElementById("children").appendChild(option);
+        for(var i=0; i<children.length; i++) {
+          var option = document.createElement("option");
+          option.value = children[i].id
+          option.text = children[i].name
+          document.getElementById("children").appendChild(option);
+        }
+        $("#children").change(function(){
+          var input2 = $('#children').val();
+          var val = `${input}/${input2}`
+          if (input2 == "---"){
+            $("#category3").remove();
+          }else if(document.getElementById("category3") != null){
+            $("#grandchildren").empty();
+            $.ajax({
+              url: "/products/create_category_grandchildren",
+              data: { value: val },
+              dataType: "json"
+            })
+            .done(function(grandchildren){
               var option = document.createElement("option");
-              option.value = children[i].id
-              option.text = children[i].name
-              document.getElementById("children").appendChild(option);
-            }
-            $("#children").change(function(){
-              var input2 = $('#children').val();
-              var val = `${input}/${input2}`
-              if (input2 == "---"){
-                $("#category3").remove();
-              }else if(document.getElementById("category3") != null){
-                $("#grandchildren").empty();
-                $.ajax({
-                  url: "/products/create_category_grandchildren",
-                  data: { value: val },
-                  dataType: "json"
-                })
-                .done(function(grandchildren){
-                  var option = document.createElement("option");
-                  option.value = "---";
-                  option.text = "---";
-                  for(var i=0; i<grandchildren.length; i++) {
-                    var option = document.createElement("option");
-                    option.value = grandchildren[i].id;
-                    option.text = grandchildren[i].name;
-                    document.getElementById("grandchildren").appendChild(option);
-                  }
-                })
-              }else if(input2 == 1325){
-                return;
-              }else if(input2 == 1234){
-                $.ajax({
-                  url: "/products/search_size",
-                  data: { value: input2 },
-                  dataType: "json",
-                })
-                .done(function(sizes){
-                  var html = buildsize_brandHTML(sizes);
-                  if(document.getElementById("sizes") != null){
-                  }else{
-                    if(document.getElementById("sizes") == null){
-                      $(html).insertAfter("#group1");
-                    }
-                    var option = document.createElement("option");
-                    option.value = "---";
-                    option.text = "---";
-                    if($("#grandchildren").children().length == 0){
-                      document.getElementById("grandchildren").appendChild(option);
-                    }
-                    for(var i=0; i<sizes.length; i++) {
-                      var option = document.createElement("option");
-                      option.value = sizes[i].id;
-                      option.text = sizes[i].name;
-                      document.getElementById("size").appendChild(option);
-                      return false
-                    }
-                  }
-                })
-              }
-              else{ 
-                $.ajax({
-                  url: "/products/create_category_grandchildren",
-                  data: { value: val },
-                  dataType: "json"
-                })
-                .done(function(grandchildren){
-                  var html2 = buildgrandchildrenHTML(grandchildren);
-                  var option = document.createElement("option");
-                  for(var i=0; i<grandchildren.length; i++) {
-                    var option = document.createElement("option");
-                    option.value = grandchildren[i].id;
-                    option.text = grandchildren[i].name;
-                    document.getElementById("grandchildren").appendChild(option);
-                  }
-                  $("#grandchildren").change(function(){
-                    var input3 = $("#grandchildren").val();
-                    if (input3 != "---"){
-                      $.ajax({
-                        url: "/products/search_size",
-                        data: { value: input3 },
-                        dataType: "json"
-                      })
-                      .done(function(sizes){
-                        var html = buildsize_brandHTML(sizes);
-                        var unnecessary_option = $("#size").children(option);
-                        if(sizes.length == 0) {
-                          $("#sizes").remove();
-                        }else if(document.getElementById("sizes") != null){  //サイズのボックス要素がないとき
-                          var option = document.createElement("option");
-                          option.value = "---";
-                          option.text = "---";
-                          document.getElementById("size").appendChild(option);
-                          unnecessary_option.remove();
-                          for(var i=0; i<sizes.length; i++) {
-                          var option = document.createElement("option");
-                          option.value = sizes[i].id;
-                          option.text = sizes[i].name;
-                          document.getElementById("size").appendChild(option);
-                          }
-                        }else{
-                          // $(html).insertAfter("#group1");
-                          var option = document.createElement("option");
-                          option.value = "---";
-                          option.text = "---";
-                          if($("#grandchildren").children().length == 0){
-                            document.getElementById("grandchildren").appendChild(option);
-                          }
-                          for(var i=0; i<sizes.length; i++) {
-                          var option = document.createElement("option");
-                          option.value = sizes[i].id;
-                          option.text = sizes[i].name;
-                          document.getElementById("size").appendChild(option);
-                          }
-                          document.getElementById("size").remove()
-                          return;
-                        }
-                      })
-                    }
-                  })
-                })
+              option.value = "---";
+              option.text = "---";
+              for(var i=0; i<grandchildren.length; i++) {
+                var option = document.createElement("option");
+                option.value = grandchildren[i].id;
+                option.text = grandchildren[i].name;
+                document.getElementById("grandchildren").appendChild(option);
               }
             })
-          })
-        }else{
-          $.ajax({
-            url: "/products/create_category_children",
-            data: { value: input },
-            dataType: "json"
-          })
-          .done(function(children){
-            var html = buildchildrenHTML(children);
-            $(html).insertAfter("#category");
-            for(var i=0; i<children.length; i++) {
+          }else if(input2 == 1325){
+            return;
+          }else if(input2 == 1234){
+            $.ajax({
+              url: "/products/search_size",
+              data: { value: input2 },
+              dataType: "json",
+            })
+            .done(function(sizes){
+              var html = buildsize_brandHTML(sizes);
+              if(document.getElementById("sizes") != null){
+                
+              }else{
+                $(html).insertAfter("#group1");
+                for(var i=0; i<sizes.length; i++) {
+                  var option = document.createElement("option");
+                  option.value = sizes[i].id;
+                  option.text = sizes[i].name;
+                  document.getElementById("size").appendChild(option);
+                  return false
+                }
+              }
+            })
+          }
+          else{ 
+            $.ajax({
+              url: "/products/create_category_grandchildren",
+              data: { value: val },
+              dataType: "json"
+            })
+            .done(function(grandchildren){
+              var html = buildgrandchildrenHTML(grandchildren);
+              $(html).insertAfter("#category2");
               var option = document.createElement("option");
-              option.value = children[i].id
-              option.text = children[i].name;
-              document.getElementById("children").appendChild(option);
-            };
-              $("#children").change(function(){
-                var input2 = $('#children').val();
-                var val = `${input}/${input2}`
-                if (input2 == "---"){
-                  $("#category3").remove();
-                }else if(document.getElementById("category3") != null){
-                  $("#grandchildren").empty();
-                  $.ajax({
-                    url: "/products/create_category_grandchildren",
-                    data: { value: val },
-                    dataType: "json"
-                  })
-                  .done(function(grandchildren){
-                    var option = document.createElement("option");
-                    option.value = "---";
-                    option.text = "---";
-                    document.getElementById("grandchildren").appendChild(option);
-                    for(var i=0; i<grandchildren.length; i++) {
-                      var option = document.createElement("option");
-                      option.value = grandchildren[i].id;
-                      option.text = grandchildren[i].name;
-                      document.getElementById("grandchildren").appendChild(option);
-                    }
-                  })
-                }else if(input2 == 1325){
-                  return;
-                }else if(input2 == 1234){
+              option.value = "---";
+              option.text = "---";
+              document.getElementById("grandchildren").appendChild(option);
+              for(var i=0; i<grandchildren.length; i++) {
+                var option = document.createElement("option");
+                option.value = grandchildren[i].id;
+                option.text = grandchildren[i].name;
+                document.getElementById("grandchildren").appendChild(option);
+              }
+              $("#grandchildren").change(function(){
+                var input3 = $("#grandchildren").val();
+                if (input3 != "---"){
                   $.ajax({
                     url: "/products/search_size",
-                    data: { value: input2 },
-                    dataType: "json",
+                    data: { value: input3 },
+                    dataType: "json"
                   })
                   .done(function(sizes){
                     var html = buildsize_brandHTML(sizes);
-                    if(document.getElementById("sizes") != null){
-                      return;
-                    }else{
-                      if(document.getElementById("sizes") == null){
-                        $(html).insertAfter("#group1");
-                      }
-                      for(var i=0; i<sizes.length; i++) {
-                        var option = document.createElement("option");
-                        option.value = sizes[i].id;
-                        option.text = sizes[i].name;
-                        document.getElementById("size").appendChild(option);
-                      }
-                    }
-                  })
-                }
-                else{
-                  $.ajax({
-                    url: "/products/create_category_grandchildren",
-                    data: { value: val },
-                    dataType: "json"
-                  })
-                  .done(function(grandchildren){
-                    var html = buildgrandchildrenHTML(grandchildren);
-                    $(html).insertAfter("#category2");
-                    var option = document.createElement("option");
-                    option.value = "---";
-                    option.text = "---";
-                    if($("#grandchildren").children().length == 0){
-                      document.getElementById("grandchildren").appendChild(option);
-                    }
-                    for(var i=0; i<grandchildren.length; i++) {
+                    var unnecessary_option = $("#size").children(option);
+                    if(sizes.length == 0) {
+                      $("#sizes").remove();
+                    }else if(document.getElementById("sizes") != null){  //サイズのボックス要素がないとき
                       var option = document.createElement("option");
-                      option.value = grandchildren[i].id;
-                      option.text = grandchildren[i].name;
-                      document.getElementById("grandchildren").appendChild(option);
+                      option.value = "---";
+                      option.text = "---";
+                      document.getElementById("size").appendChild(option);
+                      unnecessary_option.remove();
+                      for(var i=0; i<sizes.length; i++) {
+                      var option = document.createElement("option");
+                      option.value = sizes[i].id;
+                      option.text = sizes[i].name;
+                      document.getElementById("size").appendChild(option);
+                      }
+                    }else{
+                      $(html).insertAfter("#group1");
+                      for(var i=0; i<sizes.length; i++) {
+                      var option = document.createElement("option");
+                      option.value = sizes[i].id;
+                      option.text = sizes[i].name;
+                      document.getElementById("size").appendChild(option);
+                      }
+                      document.getElementById("size").remove()
                     }
-                    $("#grandchildren").change(function(){
-                      var input3 = $("#grandchildren").val();
-                      if (input3 != "---")
-                        $.ajax({
-                          url: "/products/search_size",
-                          data: { value: input3 },
-                          dataType: "json"
-                        })
-                        .done(function(sizes){
-                          var brand_html = build_brandHTML(sizes);
-                          var html = buildsize_brandHTML(sizes)
-                          if(document.getElementById("brand_list") == null){
-                            $(brand_html).insertAfter("#group1")
-                            if(document.getElementById("size") == null){
-                              $(html).insertAfter("#group1")
-                              var option = document.createElement("option");
-                              option.value = "---";
-                              option.text = "---";
-                              if($("#grandchildren").children().length == 0){
-                                document.getElementById("grandchildren").appendChild(option);
-                              }
-                              for(var i=0; i<sizes.length; i++) {
-                                var option = document.createElement("option");
-                                option.value = sizes[i].id;
-                                option.text = sizes[i].name;
-                                document.getElementById("size").appendChild(option);
-                              }
-                            }
-                          }
-                          var html = buildsize_brandHTML(sizes);
-                          if(sizes.length == 0 ){
-                          }else{
-                            if(document.getElementById("size") == null){
-                              $(html).insertAfter("#group1")
-                              var option = document.createElement("option");
-                              option.value = "---";
-                              option.text = "---";
-                              if($("#grandchildren").children().length == 0){
-                                document.getElementById("grandchildren").appendChild(option);
-                              }
-                              for(var i=0; i<sizes.length; i++) {
-                                var option = document.createElement("option");
-                                option.value = sizes[i].id;
-                                option.text = sizes[i].name;
-                                document.getElementById("size").appendChild(option);
-                              }
-                            }
-                          }
-                          
-                        })
-                    })
                   })
                 }
               })
-          });
-        }   
+            })
+          }
+        })
       })
-    }
+    }else{
+      $.ajax({
+        url: "/products/create_category_children",
+        data: { value: input },
+        dataType: "json"
+      })
+      .done(function(children){
+        var html = buildchildrenHTML(children);
+        $(html).insertAfter("#category");
+        for(var i=0; i<children.length; i++) {
+          var option = document.createElement("option");
+          option.value = children[i].id
+          option.text = children[i].name;
+          document.getElementById("children").appendChild(option);
+        };
+          $("#children").change(function(){
+            var input2 = $('#children').val();
+            var val = `${input}/${input2}`
+            if (input2 == "---"){
+              $("#category3").remove();
+            }else if(document.getElementById("category3") != null){
+              $("#grandchildren").empty();
+              $.ajax({
+                url: "/products/create_category_grandchildren",
+                data: { value: val },
+                dataType: "json"
+              })
+              .done(function(grandchildren){
+                var option = document.createElement("option");
+                option.value = "---";
+                option.text = "---";
+                document.getElementById("grandchildren").appendChild(option);
+                for(var i=0; i<grandchildren.length; i++) {
+                  var option = document.createElement("option");
+                  option.value = grandchildren[i].id;
+                  option.text = grandchildren[i].name;
+                  document.getElementById("grandchildren").appendChild(option);
+                }
+              })
+            }else if(input2 == 1325){
+              return;
+            }else if(input2 == 1234){
+              $.ajax({
+                url: "/products/search_size",
+                data: { value: input2 },
+                dataType: "json",
+              })
+              .done(function(sizes){
+                var html = buildsize_brandHTML(sizes);
+                if(document.getElementById("sizes") != null){
+                  return;
+                }else{
+                  $(html).insertAfter("#group1");
+                  for(var i=0; i<sizes.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = sizes[i].id;
+                    option.text = sizes[i].name;
+                    document.getElementById("size").appendChild(option);
+                  }
+                }
+              })
+            }
+            else{
+              $.ajax({
+                url: "/products/create_category_grandchildren",
+                data: { value: val },
+                dataType: "json"
+              })
+              .done(function(grandchildren){
+                var html = buildgrandchildrenHTML(grandchildren);
+                $(html).insertAfter("#category2");
+                var option = document.createElement("option");
+                option.value = "---";
+                option.text = "---";
+                document.getElementById("grandchildren").appendChild(option);
+                for(var i=0; i<grandchildren.length; i++) {
+                  var option = document.createElement("option");
+                  option.value = grandchildren[i].id;
+                  option.text = grandchildren[i].name;
+                  document.getElementById("grandchildren").appendChild(option);
+                }
+                $("#grandchildren").change(function(){
+                  var input3 = $("#grandchildren").val();
+                  if (input3 != "---")
+                    $.ajax({
+                      url: "/products/search_size",
+                      data: { value: input3 },
+                      dataType: "json"
+                    })
+                    .done(function(sizes){
+                      var html = buildsize_brandHTML(sizes);
+                      var brand_html = build_brandHTML(sizes);
+                      $(brand_html).insertAfter("#group1")
+                      if(sizes.length == 0 ){
+                        
+                      }else{
+                        // if(document.getElementById("size") != null){
+                        // }else{
+                        $(html).insertAfter("#group1")
+                        for(var i=0; i<sizes.length; i++) {
+                          var option = document.createElement("option");
+                          option.value = sizes[i].id;
+                          option.text = sizes[i].name;
+                          document.getElementById("size").appendChild(option);
+                        }
+                        // }
+                      }
+                      
+                    })
+                })
+              })
+            }
+          })
+      });
+    }   
+  })
 })
 
 $(window).on("load", function(){
-  if(document.URL.match(/\/products\/\d+\/edit/)){
+  if(document.URL.match(/\/products\/\d+\/edit/))
     id = $(".hidden_id").val();
     $.ajax({
       url: `/products/${id}/edit`,
@@ -623,5 +321,4 @@ $(window).on("load", function(){
       $("#product_brand_id").val(product.brand_name);
       $(".brand").val(product.brand_id);
     })
-  }
 })

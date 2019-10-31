@@ -96,25 +96,23 @@
                     .selling__main__sec__content__form__write__content__box__group__select#category3
                       %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
                       = f.select :category_id, options_for_select(@grandchildren, @grandchild), {}, {class: "selling__main__sec__content__form__write__content__box__group__select__list", id: "grandchildren"}
-                  -if @edit_product.size_id
-                    .selling__main__sec__content__form__write__content__box__group#sizes2
-                      %label.selling__main__sec__content__form__write__content__box__group__label
-                        サイズ
-                        %span.selling__main__sec__content__form__write__content__box__group__label__need
-                          必須
-                      .selling__main__sec__content__form__write__content__box__group__select
-                        %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
-                        = f.select :size_id, options_for_select(@sizes), {}, {class: "selling__main__sec__content__form__write__content__box__group__select__list", id: "size"}
-                  -if @edit_product.brand_id
-                    .selling__main__sec__content__form__write__content__box__group#group1
-                      %label.selling__main__sec__content__form__write__content__box__group__label
-                        ブランド
-                        %span.selling__main__sec__content__form__write__content__box__group__label__free
-                          任意
-                      .selling__main__sec__content__form__write__content__box__group__select
-                        = f.text_field :brand_id, class: "selling__main__sec__content__form__write__content__box__group__select__input", placeholder: "例）シャネル", id: "brand_list", value: "#{@brand.name}"
-                        %input.brand_hidden{value: "#{@brand.id}", name: "product[brand_id]", type: "hidden"}
-                        %ul.selling__main__sec__content__form__write__content__box__group__select__search
+                  .selling__main__sec__content__form__write__content__box__group#sizes
+                    %label.selling__main__sec__content__form__write__content__box__group__label
+                      サイズ
+                      %span.selling__main__sec__content__form__write__content__box__group__label__need
+                        必須
+                    .selling__main__sec__content__form__write__content__box__group__select
+                      %i.fas.fa-chevron-down.selling__main__sec__content__form__write__content__box__group__select__icon
+                      = f.select :size_id, options_for_select(@sizes), {}, {class: "selling__main__sec__content__form__write__content__box__group__select__list", id: "size"}
+                  .selling__main__sec__content__form__write__content__box__group#group1
+                    %label.selling__main__sec__content__form__write__content__box__group__label
+                      ブランド
+                      %span.selling__main__sec__content__form__write__content__box__group__label__free
+                        任意
+                    .selling__main__sec__content__form__write__content__box__group__select
+                      = f.text_field :brand_id, class: "selling__main__sec__content__form__write__content__box__group__select__input", placeholder: "例）シャネル", id: "brand_list", value: "#{@brand.name}"
+                      %input.brand_hidden{value: "#{@brand.id}", name: "product[brand_id]", type: "hidden"}
+                      %ul.selling__main__sec__content__form__write__content__box__group__select__search
                   .selling__main__sec__content__form__write__content__box__group
                     %label.selling__main__sec__content__form__write__content__box__group__label
                       商品の状態
