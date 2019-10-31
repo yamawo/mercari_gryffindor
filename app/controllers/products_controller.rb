@@ -25,7 +25,9 @@ class ProductsController < ApplicationController
   
   def create
     @product = Product.new(product_params)
-    @product.save
+    unless @product.product_images == []
+      @product.save
+    end
     redirect_to controller: :products, action: :index
   end
   
