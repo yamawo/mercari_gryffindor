@@ -91,7 +91,7 @@ class ProductsController < ApplicationController
       sizes = Size.where(id: 124..130)#スノーボードのサイズ
     end
     unless @edit_product.size_id.nil?
-      @sizes = ["---"]
+      @sizes = []
       sizes.each do |size|
         @sizes << [size.name, size.id]
       end
