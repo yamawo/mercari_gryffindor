@@ -12,7 +12,7 @@ describe ProductsController, type: :controller do
   end
   describe "#create" do 
     fail_path = File.join(Rails.root, 'public/images/a15451168d02bf14fd28c9110b161f8d.jpg')
-    fail = Rack::Test::UploadedFile.new(fail_path)
+    fail = Rack::Test::UploadedFile.new(fail_path) #Rack::Test::UploadedFileを指定すればRailsでは画像として認識してくれる
     binding.pry
     image = { "product_images_attributes" => {"0" => {"image" => fail}} } 
     let(:params) { { product: attributes_for(:product_with_images, :image) } }
