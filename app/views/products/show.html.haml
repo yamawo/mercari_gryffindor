@@ -51,7 +51,8 @@
                   = link_to @product.brand.name
           %tr
             %th 商品のサイズ
-            %td= @product.size.name
+            - if @product.size_id
+              %td= @product.size.name
           %tr
             %th 商品の状態
             %td= @product.status
@@ -153,7 +154,8 @@
                   = link_to @product.brand.name
           %tr
             %th 商品のサイズ
-            %td= @product.size.name
+            - if @product.size_id
+              %td= @product.size.name
           %tr
             %th 商品の状態
             %td= @product.status
