@@ -254,6 +254,20 @@ class ProductsController < ApplicationController
 
   def privacy_policy
   end
+
+  def selling_stage
+    @user = current_user
+    @product = @user.products
+    @product.each do |product|
+      image = product.product_images[0].image
+      
+      if image.file and File.exists?(image.file.file)
+        img = ::Magick::Image::read(@product.image.file.file).first
+        { width: img.columns, height: img.rows }
+        binding.pry
+      end
+    end
+  end
   
   private 
 

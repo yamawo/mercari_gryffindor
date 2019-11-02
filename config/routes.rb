@@ -23,6 +23,10 @@ Rails.application.routes.draw do
       get "create_category_grandchildren"
       get "search_size"
       get "search"
+      get "selling_stage"
+      get "selling_stage2"
+      get "selling_stage3"
+
     end
   end
 
