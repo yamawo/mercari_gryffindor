@@ -135,7 +135,7 @@
                 %li.main__r-content__product__ele__list__item
                   = link_to "/products/#{product.id}", class: "main__r-content__product__ele__list__item__a" do
                     %figure.main__r-content__product__ele__list__item__a__img
-                      = image_tag  product.product_images[0].image.file.file, class: "main__r-content__product__ele__list__item__a__img__content", size: "50×50"
+                      = image_tag  product.product_images.first.image.url, class: "main__r-content__product__ele__list__item__a__img__content", size: "50×50"
                     .main__r-content__product__ele__list__item__a__detail
                       .main__r-content__product__ele__list__item__a__detail__text
                         = product.name
