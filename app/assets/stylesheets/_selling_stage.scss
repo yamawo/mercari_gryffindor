@@ -47,9 +47,11 @@
                 position: relative;
                 overflow: hidden;
                 float: left;
-                height: 18px;
+                height: 50px;
+                width: 50px;
                 &__content{
-                  top: 50%;
+                  width: 50px;
+                  height: 50px;
                   position: absolute;
                   right: 0;
                   bottom: 0;

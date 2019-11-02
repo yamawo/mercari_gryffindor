@@ -36,15 +36,15 @@
               出品する
               %i.icon-arrow-right
           %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
+            = link_to "/products/selling_stage", class: "main__l-side__nav__list__item" do
               出品した商品 - 出品中
               %i.icon-arrow-right
           %li
-            = link_to "/", class: "main__l-side__nav__list__item__active" do
+            = link_to "/products/selling_stage2", class: "main__l-side__nav__list__item__active" do
               出品した商品 - 取引中
               %i.icon-arrow-right
           %li
-            = link_to "/", class: "main__l-side__nav__list__item" do
+            = link_to "/products/selling_stage3", class: "main__l-side__nav__list__item" do
               出品した商品 - 売却済み
               %i.icon-arrow-right
           %li
@@ -121,7 +121,7 @@
         %ul.main__r-content__product__tabs
           %li.main__r-content__product__tabs__tab.active
             %h3.main__r-content__product__tabs__tab__heading
-              = link_to "出品中", "/products/selling_stage2", class: "main__r-content__product__tabs__tab__heading__a" 
+              = link_to "出品中", "/products/selling_stage", class: "main__r-content__product__tabs__tab__heading__a" 
           %li.main__r-content__product__tabs__tab
             %h3.main__r-content__product__tabs__tab__heading
               = link_to "取引中", "/products/selling_stage2", class: "main__r-content__product__tabs__tab__heading__a" 
@@ -129,27 +129,28 @@
             %h3.main__r-content__product__tabs__tab__heading
               = link_to "売却済み", "/products/selling_stage3", class: "main__r-content__product__tabs__tab__heading__a" 
         - @products.each do |product|
-          .main__r-content__product__ele
-            %ul.main__r-content__product__ele__list
-              %li.main__r-content__product__ele__list__item
-                = link_to "/", class: "main__r-content__product__ele__list__item__a" do
-                  %figure.main__r-content__product__ele__list__item__a__img
-                    = image_tag  "", class: "main__r-content__product__ele__list__item__a__img__content"
-                  .main__r-content__product__ele__list__item__a__detail
-                    .main__r-content__product__ele__list__item__a__detail__text
-                      = product.text
-                    .main__r-content__product__ele__list__item__a__detail__list
-                      %span.main__r-content__product__ele__list__item__a__detail__list__count
-                        %i.far.fa-heart.main__r-content__product__ele__list__item__a__detail__list__count__icon
-                        .main__r-content__product__ele__list__item__a__detail__list__count__number
-                          0
-                      %span.main__r-content__product__ele__list__item__a__detail__list__count
-                        %i.far.fa-comment-alt.main__r-content__product__ele__list__item__a__detail__list__count__icon
-                        .main__r-content__product__ele__list__item__a__detail__list__count__number
-                          0
-                      .main__r-content__product__ele__list__item__a__detail__list__stage
-                        出品中
-                  %i.icon-arrow-right
+          - if product.stage == 0
+            .main__r-content__product__ele
+              %ul.main__r-content__product__ele__list
+                %li.main__r-content__product__ele__list__item
+                  = link_to "/products/#{product.id}", class: "main__r-content__product__ele__list__item__a" do
+                    %figure.main__r-content__product__ele__list__item__a__img
+                      = image_tag  product.product_images[0].image.file.file, class: "main__r-content__product__ele__list__item__a__img__content", size: "50×50"
+                    .main__r-content__product__ele__list__item__a__detail
+                      .main__r-content__product__ele__list__item__a__detail__text
+                        = product.name
+                      .main__r-content__product__ele__list__item__a__detail__list
+                        %span.main__r-content__product__ele__list__item__a__detail__list__count
+                          %i.far.fa-heart.main__r-content__product__ele__list__item__a__detail__list__count__icon
+                          .main__r-content__product__ele__list__item__a__detail__list__count__number
+                            0
+                        %span.main__r-content__product__ele__list__item__a__detail__list__count
+                          %i.far.fa-comment-alt.main__r-content__product__ele__list__item__a__detail__list__count__icon
+                          .main__r-content__product__ele__list__item__a__detail__list__count__number
+                            0
+                        .main__r-content__product__ele__list__item__a__detail__list__stage
+                          出品中
+                    %i.icon-arrow-right
 
   = render "shared/sell-btn"
   = render "shared/download-ad"
