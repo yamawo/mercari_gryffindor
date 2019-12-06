@@ -73,7 +73,7 @@ describe ProductsController do
       end
     end
   end
-
+  
   let(:user) { create(:user) }
 
   describe "GET #new" do
@@ -94,6 +94,7 @@ describe ProductsController do
       before do
         login user
       end
+
 
       context "can save" do #保存できた時
         category = FactoryBot.create(:category)
