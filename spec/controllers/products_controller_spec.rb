@@ -95,6 +95,7 @@ describe ProductsController do
         login user
       end
 
+
       context "can save" do #保存できた時
         category = FactoryBot.create(:category)
         user = FactoryBot.create(:user)
@@ -123,4 +124,5 @@ describe ProductsController do
       end
     end
   end
+
 end
